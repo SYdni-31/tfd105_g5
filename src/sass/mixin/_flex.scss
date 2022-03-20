@@ -1,0 +1,65 @@
+/* ======= flex ======= */
+  /* @include flex-box(寬, 縱向, 橫向, 高: null); */
+  @mixin flex-box($width, $jc, $ai, $heigh: null) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    width: $width;
+    height: $heigh;
+    @content;
+    @media screen and (max-width: $md_bkpoint) {
+      flex-wrap: wrap;
+    }
+  }
+  /* @include flex-box-center(寬, 縱向: center, 橫向: center, 高: null); */
+  @mixin flex-box-center($width, $jc: center, $ai: center, $heigh: null) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    width: $width;
+    height: $heigh;
+    @content;
+    @media screen and (max-width: $md_bkpoint) {
+      flex-wrap: wrap;
+    }
+  }
+  /* 兩側留一點，中間平均 */
+  /* @include flex-box-around(寬, 縱向: space-around, 橫向: center, 高: null); */
+  @mixin flex-box-around($width, $jc: space-around, $ai: center, $heigh: null) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    width: $width;
+    height: $heigh;
+    @content;
+    @media screen and (max-width: $md_bkpoint) {
+      flex-wrap: wrap;
+    }
+  }
+  /* 兩側不留，中間平均 */
+  /* @include flex-box-between(寬, 縱向: space-between, 橫向: center, 高: null); */
+  @mixin flex-box-between($width, $jc: space-between, $ai: center, $heigh: null) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    width: $width;
+    height: $heigh;
+    @content;
+    @media screen and (max-width: $md_bkpoint) {
+      flex-wrap: wrap;
+    }
+  }
+  /* 垂直 */
+  /* @include flex-box-column(寬, 橫向: center, 縱向: center, 高: null);  */
+  @mixin flex-box-column($width, $jc: center, $ai: center, $heigh: null) {
+    display: flex;
+    flex-direction:column;
+    justify-content: $jc;
+    align-items: $ai;
+    width: $width;
+    height: $heigh;
+    @content;
+    @media screen and (max-width: $md_bkpoint) {
+      flex-wrap: wrap;
+    }
+  }

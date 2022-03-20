@@ -1,0 +1,16 @@
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import 'base/var';
+@import 'mixin/font';
+@import 'mixin/rwd';
+@import 'mixin/space';
+@import 'mixin/position';
+@import 'mixin/flex';
+@import 'mixin/other';
+@import 'base/reset';
+@import 'base/typography';
+// 這下面是給共用頁面引入的
+@import 'layout/nav';
+@import 'layout/footer';
+@import 'layout/login';
+// 各頁面的css請在這邊引入，不用再寫到html了
+@import 'page/index';

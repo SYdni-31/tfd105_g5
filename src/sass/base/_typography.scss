@@ -1,0 +1,185 @@
+/*======= 區塊space ======= */
+section{
+  margin-bottom: 30px;
+}
+/* ======= font ======= */
+/* @include font(大小, 字重, 位置:預設置左, 行高:預設1.5, 字距:預設1; */
+h1 {
+  @include font(36px, 700, left, 2);
+  @include mobile() {
+    font-size: 28px;
+  }
+}
+h2 {
+  @include font(28px, 700, left, 2);
+  @include mobile() {
+    font-size: 24px;
+  }
+}
+h3 {
+  @include font(20px, 700, left, 1.8);
+  @include mobile() {
+    font-size: 16px;
+  }
+}
+h4 {
+  @include font(16px, 300, left, 1.6);
+}
+h5 {
+  @include font(14px, 300, left, 2);
+}
+a {
+  @include font(18px, 300, left, 1.4);
+  display: block;
+  text-decoration: none; /*取消底線*/
+}
+/*======= text-align ======= */
+.text_center {
+  text-align: center;
+}
+.text_left {
+  text-align: left;
+}
+/* ======= 顏色 ======= */
+.bg-color {
+  color: $black-color;
+}
+.main-color {
+  color: $main-color;
+}
+.second-color {
+  color: $second-color;
+}
+.accent-color {
+  color: $accent-color;
+}
+.back-color {
+  color: $backmain-color;
+}
+/*======== button & tag ========*/
+.btn {
+  padding: 4px 35px;
+  display: block;
+  text-align: center;
+  // background-color: $main-color;
+  background: #0a0e27;
+  border: 1px solid $main-color;
+  box-sizing: border-box;
+  // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $main-color;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $main-color;
+  border-radius: 5px;
+  // color: $main-color;
+  > a {
+    @include font(14px, 700, left, 2);
+    color: $main-color;
+  }
+  &:hover {
+     background-color: $main-color;
+    > a {
+      @include font(14px, 1000, left, 2);
+      color: $black-color; 
+    }
+  }
+}
+.btn-short {
+  padding: 4px 14px;
+  display: block;
+  text-align: center;
+  background: #0a0e27;
+  border: 1px solid $main-color;
+  box-sizing: border-box;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $main-color;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $main-color;
+  border-radius: 5px;
+  > a {
+    @include font(14px, 700, left, 2);
+    color: $main-color;
+  }
+  &:hover {
+     background-color: $main-color;
+    > a {
+      @include font(14px, 1000, left, 2);
+      color: $black-color; 
+    }
+  }
+}
+/* ======= 圖片 ======= */
+.img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border: 1px solid $main-color;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $main-color;
+}
+/* ======= include ======= */
+/*絕對定位 */
+/*@include absolute(上, 右, 下:null, 左:null, 比重:null); */
+.absolute {
+  @include absolute(0, 0);
+}
+
+/*相對定位 */
+/*@include relative(上, 右, 下:null, 左:null, 比重:null); */
+.relative {
+  @include relative(0, 0);
+}
+
+/*固定 */
+/*@include fixed(上, 右, 下:null, 左:null, 比重:null); */
+.fixed {
+  @include fixed(0, 0);
+}
+
+/*相對固定 */
+/*@include fixed(上, 右, 下:null, 左:null, 比重:null); */
+.sticky {
+  @include sticky(0, 0);
+}
+
+
+/*======= flex ======= */
+/*@include flex-box(寬, 縱向, 橫向, 高: null); */
+.flex-box-end {
+  @include flex-box(100%, flex-end, center);
+}
+/*@include flex-box-center(寬, 縱向: center, 橫向: center, 高: null); */
+.flex-box-center {
+  @include flex-box-center(100%);
+}
+
+/*兩側留一點，中間平均*/
+/*@include flex-box-around(寬, 縱向: around, 橫向: center, 高: null); */
+.flex-box-around {
+  @include flex-box-around(100%);
+}
+
+/*兩側不留，中間平均*/
+/*@include flex-box-between(寬, 縱向: between, 橫向: center, 高: null); */
+.flex-box-between {
+  @include flex-box-between(100%);
+}
+
+/*垂直*/
+/*@include flex-box-column(寬, 橫向: center, 縱向: center, 高: null); */
+.flex-box-column {
+  @include flex-box-column(100%);
+}
+
+/* ======= 其他 ======= */
+.-over-hidden {
+  overflow: hidden;
+}
+.-bigger {
+  transform: scale(1.2);
+}
+.-smaller {
+  transform: scale(0.8);
+}
+.-show {
+  display: block;
+}
+.-hide {
+  display: none;
+}

@@ -1,0 +1,23 @@
+/* ======= RWD =======  */
+/* 筆電，預設1200px  */
+/* @include laptop(1200px);  */
+@mixin laptop($xl_bkpoint:1200px) {
+    @media screen and (max-width: $xl_bkpoint) {
+      @content;
+    }
+  }
+  /* 平板，預設768px */
+  /* @include pad(768px); */
+  @mixin pad($md_bkpoint:768px) {
+    @media screen and (max-width: $md_bkpoint) {
+      @content;
+    }
+  }
+  /* 手機，預設375px */
+  /* @include mobile(375px); */
+  @mixin mobile($xs_bkpoint:375px) {
+    @media screen and (max-width: $xs_bkpoint) {
+      @content;
+    }
+  }
+  

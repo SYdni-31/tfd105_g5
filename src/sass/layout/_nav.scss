@@ -1,0 +1,30 @@
+.nav {
+    margin: 0px auto;
+    padding: 0px 20px;
+    height: 60px;
+    @include flex-box-between(100%);
+    width: 100%;
+    
+    @include pad(768px) {
+      height: 50px;
+    }
+    .logo_icon {
+      width: 60px;
+      height: 60px;
+      display: block;
+      color: $second-color;
+      font-size: 25px;
+      text-align: center;
+      .fa-user,
+      .fa-bars {
+        line-height: 60px;
+      }
+    }
+    .logo {
+      width: 60px;
+    }
+    ul {
+      width: 120px;
+    }
+  }
+  
