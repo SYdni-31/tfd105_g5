@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <!-- css -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+    integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+  <!-- title icon -->
+  <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+
+  <title>聚策展-範例頁</title>
+</head>
+
+<body>
+  <!-- header -->
+  <nav>
+      @@include('layout/nav.html')
+  </nav>
+  <head>
+      @@include('layout/login.html')
+  </head>
+  <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+  <main>
+    <section>
+      <div><img src="http://fakeimg.pl/2000x1000/" alt="fake" class="img"/></div>
+    </section>
+
+    <section class="wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-4"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
+          <div class="col-6 col-md-4"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
+          <div class="col-6 col-md-4"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
+        </div>
+      </div>
+    </section>
+    <section class=" wrapper">
+
+    </section>
+
+    <section class="wrapper">
+      <div class="emample_box flex-box-column mb-15">
+        <h1 class="second-color">nav的include乖乖</h1>
+        <h3 class="second-color mb-10">
+          h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+        </h3>
+        <div class="btn"><a href="">開始登入</a></div>
+      </div>
+    </section>
+
+    <section class="wrapper">
+      <div class="emample_box flex-box-between mb-15">
+        <img src="http://fakeimg.pl/300/" alt="fake" class="img" />
+        <div class="example_text flex-box-column">
+          <h3 class="second-color mb-12">
+            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+          </h3>
+          <div class="btn-short"><a href="">登入</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrapper">
+      <div class="two-block">
+        <div class="two-block-left"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
+        <div class="two-block-right flex-box-column">
+          <h3 class="second-color mb-12">
+            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+          </h3>
+          <div class="btn"><a href="">登入</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrapper">
+      <div class="three-block">
+        <div class="three-block-one flex-box-column">
+          <img src="http://fakeimg.pl/300/" alt="fake" class="img" />
+          <h3 class="second-color mb-12">
+            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+          </h3>
+          <div class="btn"><a href="">登入</a></div>
+        </div>
+        <div class="three-block-two flex-box-column">
+          <img src="http://fakeimg.pl/300/" alt="fake" class="img" />
+          <h3 class="second-color mb-12">
+            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+          </h3>
+          <div class="btn"><a href="">登入</a></div>
+        </div>
+        <div class="three-block-three flex-box-column">
+          <img src="http://fakeimg.pl/300/" alt="fake" class="img" />
+          <h3 class="second-color mb-12">
+            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+          </h3>
+          <div class="btn"><a href="">登入</a></div>
+        </div>
+      </div>
+      
+    </section>
+  </main>
+  <!-- footer -->
+  <footer>
+    @@include('layout/footer.html')
+  </footer>
+
+  <!-- 先連結main再連結各自設的js -->
+  <script src="js/main.min.js"></script>
+  <script src="js/login.min.js"></script>
+  <script src="js/index.min.js"></script>
+  <script>
+
+  </script>
+</body>
+
+</html>
