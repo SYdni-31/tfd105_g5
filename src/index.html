@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <!-- css -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+    integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+  <!-- title icon -->
+  <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+
+  <title>聚策展-範例頁</title>
+</head>
+
+<body>
+  <!-- header -->
+  <nav>
+      @@include('layout/nav.html')
+  </nav>
+  <head>
+      @@include('layout/login.html')
+  </head>
+  <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+  <main>
+    <!-- <section> -----------------example----------------------------
+      <div><img src="http://fakeimg.pl/2000x1000/" alt="fake" class="img"/></div>
+    </section> -->
+
+
+        <section>
+
+            <div class="mt-10"></div>
+
+
+        </section>
+
+        
+   
+  </main>  
+  <!-- footer -->
+  <footer>
+    @@include('layout/footer.html')
+  </footer>
+
+  <!-- 先連結main再連結各自設的js -->
+  <script src="js/main.min.js"></script>
+  <script src="js/login.min.js"></script>
+  <script src="js/index.min.js"></script>
+  <script>
+
+  </script>
+</body>
+
+</html>
