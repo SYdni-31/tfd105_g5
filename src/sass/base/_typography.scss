@@ -24,9 +24,15 @@ h3 {
 }
 h4 {
   @include font(16px, 300, left, 1.6);
+  @include mobile() {
+    font-size: 14px;
+  }
 }
 h5 {
   @include font(14px, 300, left, 2);
+  @include mobile() {
+    font-size: 12px;
+  }
 }
 a {
   @include font(18px, 300, left, 1.4);
