@@ -9,7 +9,7 @@ const {
 //  搬移檔案
 // 將檔案從src搬移到dest路徑
 function package() {
-    return src('src/img/*.*').pipe(dest('dist/img'))
+    return src(['src/img/*.*', 'src/img/**/*.*']).pipe(dest('dist/img'))
  }
 
 // 改檔名套件
