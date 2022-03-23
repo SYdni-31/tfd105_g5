@@ -1,13 +1,12 @@
+/* ----- NAV選單 ----- */
 .nav {
+  z-index: 9999;
   margin: 0px auto;
   padding: 0px 20px;
   height: 60px;
   @include flex-box-between(100%);
   width: 100%;
-
-  @include pad(768px) {
-    height: 50px;
-  }
+  position: relative;
   .logo_icon {
     width: 60px;
     height: 60px;
@@ -15,6 +14,7 @@
     color: $second-color;
     font-size: 25px;
     text-align: center;
+    .fa-user-check,
     .fa-user,
     .fa-bars {
       line-height: 60px;
@@ -22,12 +22,157 @@
   }
   .logo {
     width: 60px;
+    // display: none;
+  }
+  // 廠商後台LOGO不同
+  .logo-orange {
+    width: 60px;
+    display: none;
   }
   .img {
     border: 0px;
-    box-shadow: 0px 0px 0px 0px ;
+    box-shadow: 0px 0px 0px 0px;
   }
   ul {
-    width: 120px;
+    width: 300px;
+    .nav-name {
+      @include flex-box-center(180px);
+    }
+    // 登入顯示
+    .nav-login {
+      display: none;
+    }
+    li{
+      width: 60px;
+    }
   }
+  /* 漢堡圖示變化 */
+  #ham-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    margin-top: 15px;
+    position: relative;
+    /* margin: 50px auto; */
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    z-index: 9999999;
+  }
+  /* 漢堡三條線 */
+  #ham-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: $second-color;
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+  }
+  /* 漢堡三條線高度 */
+  #ham-icon span:nth-child(1) {
+    top: 0px;
+  }
+
+  #ham-icon span:nth-child(2),
+  #ham-icon span:nth-child(3) {
+    top: 9px;
+  }
+
+  #ham-icon span:nth-child(4) {
+    top: 18px;
+  }
+  /* 漢堡點擊效果 */
+  #ham-icon.open span:nth-child(1) {
+    top: 9px;
+    width: 0%;
+    left: 50%;
+  }
+
+  #ham-icon.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  #ham-icon.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  #ham-icon.open span:nth-child(4) {
+    top: 9px;
+    width: 0%;
+    left: 50%;
+  }
+}
+/*  -----漢堡MENU----- */
+.menu {
+  /* @include absolute(上, 右, 下:null, 左:null, 比重:null); */
+  @include absolute(0px, 0, null, null, 1001);
+  text-align: center;
+  flex-wrap: wrap;
+  height: calc(100vh);
+  padding-top: 60px;
+  width: 300px;
+  background-color: $black-color;
+  transition: 1s;
+  transform: translateX(200%);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $main-color;
+  li {
+    border-bottom: 1px solid $main-color;
+    height: 60px;
+    a {
+      text-align: center;
+      width: 100%;
+      display: block;
+      line-height: 60px;
+      color: $second-color;
+    }
+  }
+  // 廠商後台頁面
+  .nav-company {
+    display: none;
+  }
+}
+// 點擊漢堡選單，展開
+.menu-active {
+  opacity: 1;
+  transform: translateX(0%);
+}
+// menu遮罩
+.menu-backdrop {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  inline-size: 120vw;
+  block-size: 120vh;
+  backdrop-filter: blur(4px);
+  pointer-events: inherit;
+  background-color: rgba($black-color, 0.5);
+  z-index: 999;
+}
+
+.-blur {
+  display: none;
 }
