@@ -1,11 +1,80 @@
+.banner{
+    // height: 800px;
+    position: relative;
+
+}
+
+.slogan{
+    position: absolute;
+    right: 10vw;
+    bottom: 100px;
+}
+
+@media  (max-width:1120px) {
+    .slogan{
+
+        
+        
+    }
+}
+
 .schedule li h3{
     display: inline;
+}
+.speakers{
+    display: flex;
+    text-align: center;
+    line-height: 20px;
+}
+.speakers h3{
+    text-align: center;
+}
+.speakers h4{
+    text-align: center;
 }
 .speaker{
     width: 290px;
     height: 481px;
-    border:1px solid #57FFF5 ;
+    border:2px solid #57FFF5 ;
+    display: block;
 }
+
+.speaker:hover{
+    cursor: pointer;
+    border: 1px solid #57FFF5;
+    
+}
+// 沒有hover時 不顯示文字
+.hoverText{
+    display: none;
+    
+}
+.speaker:hover .hoverText{
+    display: block;
+    text-align: left;
+    margin-top: 150px;
+
+}
+.speaker:hover >h3,
+.speaker:hover >h4,
+.speaker:hover >img{
+    display: none;
+    text-align: center;
+}
+
+
+.speaker:hover .hoverText li{
+    text-align: left;
+}
+
+// 分三塊
+.speakers{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:80px 40px;
+}
+
 // background-position: right top;
 // height: 100%;
 // padding-top: calc(100% * (9/16));
