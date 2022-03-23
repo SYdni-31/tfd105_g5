@@ -128,7 +128,7 @@
 /*  -----漢堡MENU----- */
 .menu {
   /* @include absolute(上, 右, 下:null, 左:null, 比重:null); */
-  @include absolute(0px, 0, null, null, 1001);
+  @include fixed(0px, 0, null, null, 1001);
   text-align: center;
   flex-wrap: wrap;
   height: calc(100vh);
