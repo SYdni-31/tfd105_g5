@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <!-- css -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+    integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+  <!-- title icon -->
+  <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+
+  <title>聚策展-範例頁</title>
+</head>
+
+<body>
+  <!-- header -->
+  <nav>
+      @@include('layout/nav.html')
+  </nav>
+  <head>
+      @@include('layout/login.html')
+  </head>
+  <!-- content，各自頁面的html寫在這邊以下都是範例 大區塊外面包section  -->
+  <main>
+    <section class="wrapper company_wrapper">
+     <ul class="company_title">
+         <li><a class="title_skill">技術展示區</a></li>
+         <li><a class="btn_company_back">新增</a></li>
+     </ul> 
+     <form action="#">
+         <ol class="companyback_icon">
+             <li> <a href=""><i class="fa-solid fa-trash-can"></i></a></li>
+             <li><a href=""><i class="fa-solid fa-pen-to-square"></i></a></li>
+         </ol>
+         <ul>
+            <li class="company_iive_li"><h3>技術名稱:</h3><input type="text" name="skill"></li>
+            <li class="company_iive_li"><h3>技術網址:</h3><input type="text" name="address"></li>
+        </ul>
+     </form>  
+    </section>
+  </main>
+  <!-- footer -->
+  <footer>
+    @@include('layout/footer.html')
+  </footer>
+
+  <!-- 先連結main再連結各自設的js -->
+  <script src="js/main.min.js"></script>
+  <script src="js/login.min.js"></script>
+  <script src="js/index.min.js"></script>
+  <script>
+
+  </script>
+</body>
+
+</html>

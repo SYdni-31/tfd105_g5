@@ -38,6 +38,7 @@ a {
   @include font(18px, 300, left, 1.4);
   display: block;
   text-decoration: none; /*取消底線*/
+  color: $second-color;
 }
 /*======= text-align ======= */
 .text_center {
@@ -110,6 +111,28 @@ a {
       @include font(14px, 1000, left, 2);
       color: $black-color; 
     }
+  }
+}
+.btn_company_back {
+  padding: 15px 50px;
+  display: block;
+  text-align: center;
+  // background-color: $main-color;
+  background: #0a0e27;
+  border: 1px solid $accent-color;
+  box-sizing: border-box;
+  // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $accent-color;
+  // box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $accent-color;
+  box-shadow: 0px 4px 4px rgba($accent-color,0.25);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-radius: 20px;
+  color:  $second-color;
+    // @include font(14px, 700, left, 2);
+  &:hover {
+     background-color: $accent-color;
+      // @include font(14px, 1000, left, 2);
+      color: $black-color; 
   }
 }
 /* ======= 圖片 ======= */

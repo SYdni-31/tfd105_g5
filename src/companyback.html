@@ -12,6 +12,8 @@
     integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
   <!-- title icon -->
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+  <!-- 套件flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
   <title>聚策展-範例頁</title>
 </head>
@@ -19,14 +21,86 @@
 <body>
   <!-- header -->
   <nav>
-      @@include('layout/nav.html')
+    @@include('layout/nav.html')
   </nav>
+
   <head>
-      @@include('layout/login.html')
+    @@include('layout/login.html')
   </head>
   <!-- content，各自頁面的html寫在這邊以下都是範例 -->
   <main>
+    <section class="wrapper">
+      <div class="streaming"><a>直播申請區</a></div>
+      <!-- 第一層 -->
+      <nav>
+        <form action="#">
+          <input class="form-contril" type="datetime-local" placeholder="Select DateTime" >
+       
+        <input type="date">
+        <input type="time" value="13:14">
+      </form>
+      </nav>
+      <div class="streaming"><a>廠商留言板</a></div>
+      <!-- 第二層聊天室 -->
+      <section>
+        <div class="companyback_search">
+        <!-- icon -->
+        <img src="/src/img/c_back/icons8-search.svg" alt="">
+        <input type="text" name="search" placeholder="search">
+      </div>
+        <ul>
+          <li> <div class="chat1">
 
+          </div> </li>
+          <li> <div class="chat2"></div> </li>
+        </ul>
+
+
+
+
+        <div class="all_block">
+
+          <section class="result_block">
+            <div class="search_container">
+
+            </div>
+          </section>
+
+          <section class="input_block">
+            <input type="text" placeholder="資料" class="stock_text">
+            <button class="send_stock" type="button">送出</button>
+          </section>
+        </div>
+
+
+
+
+
+      </section>
+    </section>
+    <ul>
+      <li>
+        <h3>往前</h3>
+      </li>
+      <li>
+        <h3>1</h3>
+      </li>
+      <li>
+        <h3>2</h3>
+      </li>
+      <li>
+        <h3>3</h3>
+      </li>
+      <li>
+        <h3>4</h3>
+      </li>
+      <li>
+        <h3>5</h3>
+      </li>
+      <li>
+        <h3>往後</h3>
+      </li>
+    </ul>
   </main>
   <!-- footer -->
   <footer>
@@ -37,9 +111,36 @@
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
   <script src="js/index.min.js"></script>
+  <!-- flatpickr -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-
+    flatpickr("input[type=datetime-local]",{
+      mode: "range",
+    minDate: "today",
+    dateFormat: "Y-m-d",
+    inline: true,
+    disable: [
+        function(date) {
+            // disable every multiple of 8
+            return !(date.getDate() % 8);
+        }
+    ]
+    })
   </script>
+  <style>
+    .flatpickr-calendar::before {
+      display: none;
+    
+    }
+
+    .flatpickr-calendar.inline{
+      background-color: blueviolet;
+    }
+
+    .flatpickr-calendar{
+      top:100px !important;
+    }
+  </style>
 </body>
 
 </html>
