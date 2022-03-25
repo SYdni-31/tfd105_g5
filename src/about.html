@@ -12,6 +12,9 @@
     integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
   <!-- title icon -->
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  
+
 
   <title>聚策展-範例頁</title>
 </head>
@@ -27,9 +30,9 @@
   </head>
   <!-- content，各自頁面的html寫在這邊以下都是範例 大區塊外面包section  -->
   <main>
-    <section class="banner">
+    <section class="about_banner">
       <img src="img/about/about_banner.png">
-      <div class="slogan">
+      <div class="about_slogan">
         <h2>---------- 2022 最新科技展 ----------</h2>
         <h1>新智慧、新科技、新創意</h1>
         <h2>2022.04.01 - 2022.06.30</h2>
@@ -41,56 +44,56 @@
         新冠肺炎疫情自2020年爆發以來，徹底翻轉人類生活、工作與娛樂型態。遠距、零接觸成為「新常態」，促使國家、企業乃至個人，都要展開「智慧轉型」，以迎向後疫情時代，並緊緊握住復甦商機。在疫情期間展現優異的經濟韌性。疫情過後，全球更應該積極推動經濟轉型，邁入新形態市場，要強化數位轉型，更要提升民眾數位化能力。
       </h3>
     </section>
-    <section class="agenda">
-      <img src="img/about/abou_middleimg.png">
-      <div class="schedule">
-        <h1>大會議程</h1>
-        <h3>
+    <section class="about_agenda wrapper">
+      <!-- <img src="img/about/abou_middleimg.png"> -->
+      <div class="about_schedule ">
+        <div class="about_scheduleText">
+          <h1>大會議程</h1>
           <ul>
             <li>
-              <h3 class="time">10:20-10:30</h3>
-              <h3 class="theme">主持人介紹</h3>
+              <h3 class="about_time">10:20-10:30</h3>
+              <h3 class="about_theme">主持人介紹</h3>
             </li>
             <li>
-              <h3 class="time">10:30-11:00</h3>
-              <h3 class="theme">主講人:唐鳳-數位國家・創新經濟發展方案</h3>
+              <h3 class="about_time">10:30-11:00</h3>
+              <h3 class="about_theme">主講人:唐鳳-數位國家・創新經濟發展方案</h3>
             </li>
             <li>
-              <h3 class="time">11:00-11:30</h3>
-              <h3 class="theme">主講人:郭水義-看好5G 前景</h3>
+              <h3 class="about_time">11:00-11:30</h3>
+              <h3 class="about_theme">主講人:郭水義-看好5G 前景</h3>
             </li>
             <li>
-              <h3 class="time">11:30-12:00</h3>
-              <h3 class="theme">主講人:張忠謀-經營人的學習與成長</h3>
+              <h3 class="about_time">11:30-12:00</h3>
+              <h3 class="about_theme">主講人:張忠謀-經營人的學習與成長</h3>
             </li>
             <li>
-              <h3 class="time">12:00-13:00</h3>
-              <h3 class="theme">中午休息</h3>
+              <h3 class="about_time">12:00-13:00</h3>
+              <h3 class="about_theme">中午休息</h3>
             </li>
             <li>
-              <h3 class="time">13:00-14:00</h3>
-              <h3 class="theme">廠商名-技術分享</h3>
+              <h3 class="about_time">13:00-14:00</h3>
+              <h3 class="about_theme">廠商名-技術分享</h3>
             </li>
             <li>
-              <h3 class="time">14:00-15:00</h3>
-              <h3 class="theme">廠商名-技術分享</h3>
+              <h3 class="about_time">14:00-15:00</h3>
+              <h3 class="about_theme">廠商名-技術分享</h3>
             </li>
             <li>
-              <h3 class="time">15:00-16:00</h3>
-              <h3 class="theme">廠商名-技術分享</h3>
+              <h3 class="about_time">15:00-16:00</h3>
+              <h3 class="about_theme">廠商名-技術分享</h3>
             </li>
           </ul>
-        </h3>
+        </div>
       </div>
     </section>
     <section class="wrapper">
       <h1>講師介紹</h1>
-      <div class="speakers">
-        <div class="speaker">
+      <div class="about_speakers">
+        <div class="about_speaker">
           <img class="mt-35" src="img/about/speaker1.png">
           <h3 class="mt-18">郭水義</h3>
           <h4 class="mt-8">中華電信總經理</h4>
-          <div class="hoverText ">
+          <div class="about_hoverText ">
             <h4>郭水義<br>經歷
               <ul>
                 <li>-中華電信執行副總經理暨財務長</li>
@@ -102,11 +105,11 @@
             </h4>
           </div>
         </div>
-        <div class="speaker">
+        <div class="about_speaker">
           <img class="mt-35" src="img/about/speaker2.png">
           <h3 class="mt-18">張忠謀</h3>
           <h4 class="mt-8">台積電創辦人</h4>
-          <div class="hoverText">
+          <div class="about_hoverText">
             <h4>張忠謀<br>經歷
               <ul>
                 <li>-應邀至台灣擔任工業技術研究院院長</li>
@@ -117,11 +120,11 @@
             </h4>
           </div>
         </div>
-        <div class="speaker">
+        <div class="about_speaker">
           <img class="mt-35" src="img/about/speaker3.png">
           <h3 class="mt-18">唐鳳</h3>
           <h4 class="mt-8">現職:行政院政務委員</h4>
-          <div class="hoverText">
+          <div class="about_hoverText">
             <h4>唐鳳<br>經歷
               <ul>
                 <li>-行政院虛擬世界法規調適計劃顧問</li>
@@ -138,6 +141,7 @@
     </section>
     <section>
       <h1>參與廠商</h1>
+     
     </section>
 
 
@@ -148,13 +152,13 @@
     @@include('layout/footer.html')
   </footer>
 
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <!-- 先連結main再連結各自設的js -->
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
   <script src="js/index.min.js"></script>
-  <script>
-
-  </script>
+  <script src="js/about.js"></script>
+  
 </body>
 
 </html>
