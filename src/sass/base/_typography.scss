@@ -3,7 +3,7 @@ section{
   margin-bottom: 30px;
 }
 /* ======= font ======= */
-/* @include font(大小, 字重, 位置:預設置左, 行高:預設1.5, 字距:預設1; */
+/* @include font(大小, 字重, 位置:預設置左, 行高:預設1.5, 字距:預設2; */
 h1 {
   @include font(36px, 700, left, 2);
   @include mobile() {

@@ -25,7 +25,6 @@ ham_mask.addEventListener("click", function () {
     // 點擊開啟登入註冊
     login_page_icon.addEventListener("click", function () {
         // 選單收合
-        console.log(login);
         login.classList.add("-login_page_icon");
     });
     

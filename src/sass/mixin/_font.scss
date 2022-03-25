@@ -1,6 +1,6 @@
 /* ======= font ======= */
-/* @include font(大小, 字重, 位置:預設置左, 行高:預設1.5, 字距:預設1; */
-@mixin font($fs, $fw, $ta: left, $lineHight: 1.5, $tSpace: 1) {
+/* @include font(大小, 字重, 位置:預設置左, 行高:預設1.5, 字距:預設2; */
+@mixin font($fs, $fw, $ta: left, $lineHight: 1.5, $tSpace: 2px) {
     font-size: $fs;
     font-weight: $fw;
     line-height: $lineHight;
