@@ -1,0 +1,19 @@
+// =========首圖輪播==========
+.extend_head{
+    width: 90%;
+    position: relative;
+    .owl-nav{
+        height: 0;
+        span{
+            transform: scale(1.5) translateY(-50%);
+            color:$second-color;
+            opacity: .6;
+        }
+    }
+    .owl-prev span{
+        @include absolute(50%, null, null, -5%);
+    }
+    .owl-next span{
+        @include absolute(50%, -5%);
+    }
+}

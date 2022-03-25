@@ -1,7 +1,7 @@
 /* ======= position ======= */
 /* 絕對定位 */
-/* @include absolute(上, 右, 下:null, 左:null, 比重:null); */
-@mixin absolute($top, $right, $bottom: null, $left: null, $z-index: null) {
+/* @include absolute(上:null, 右:null, 下:null, 左:null, 比重:null); */
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
     position: absolute;
     top: $top;
     right: $right;
@@ -11,8 +11,8 @@
     @content;
   }
   /* 相對定位 */
-  /* @include relative(上, 右, 下:null, 左:null, 比重:null); */
-  @mixin relative($top, $right, $bottom: null, $left: null, $z-index: null) {
+  /* @include relative(上: null, 右: null, 下:null, 左:null, 比重:null); */
+  @mixin relative($top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
     position: relative;
     top: $top;
     right: $right;
@@ -22,8 +22,8 @@
     @content;
   }
   /* 固定 */
-  /* @include fixed(上, 右, 下:null, 左:null, 比重:null); */
-  @mixin fixed($top, $right, $bottom: null, $left: null, $z-index: null) {
+  /* @include fixed(上: null, 右: null, 下:null, 左:null, 比重:null); */
+  @mixin fixed($top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
     position: fixed;
     top: $top;
     right: $right;
@@ -33,8 +33,8 @@
     @content;
   }
   /* 相對固定 */
-/* @include sticky(上, 右, 下:null, 左:null, 比重:null); */
-@mixin sticky($top, $right, $bottom: null, $left: null, $z-index: null) {
+/* @include sticky(上: null, 右: null, 下:null, 左:null, 比重:null); */
+@mixin sticky($top: null, $right: null, $bottom: null, $left: null, $z-index: null) {
     position: sticky;
     top: $top;
     right: $right;

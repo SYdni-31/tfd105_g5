@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <!-- OwlCarousel2.3.4 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
   <!-- css -->
   <link rel="stylesheet" href="css/style.css" />
   <!-- font awesome -->
@@ -22,22 +25,31 @@
       @@include('layout/nav.html')
   </nav>
   <head>
-      @@include('layout/login.html')
+      <!-- @@include('layout/login.html') -->
   </head>
   <!-- content，各自頁面的html寫在這邊以下都是範例 -->
   <main>
-    <section>
-      <div><img src="http://fakeimg.pl/2000x1000/" alt="fake" class="img"/></div>
+    <section class="wrapper">
+      <article class="extend_head -margin0auto">
+        <div class="owl-carousel owl-theme">
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+          <div class="item"><img src="img/sample/tsmc_logo.png" alt=""></div>
+        </div>
+      </article>
     </section>
 
-    <section class="wrapper">
-      <div class="container">
-        <div class="row">
-          <div class="col-6 col-md-4"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
-          <div class="col-6 col-md-4"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
-          <div class="col-6 col-md-4"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
-        </div>
-      </div>
+    <section >
+      <article></article>
     </section>
     <section class=" wrapper">
 
@@ -109,13 +121,12 @@
     @@include('layout/footer.html')
   </footer>
 
-  <!-- 先連結main再連結各自設的js -->
+  <!-- OwlCarousel2.3.4 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
-  <script src="js/index.min.js"></script>
-  <script>
-
-  </script>
+  <script src="js/extend.min.js"></script>
 </body>
 
 </html>
