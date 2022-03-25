@@ -1,74 +1,86 @@
-.banner{
+h1{
+    color: #57FFF5;
+}
+.about_banner{
     // height: 800px;
     position: relative;
 
 }
 
-.slogan{
+.about_slogan{
     position: absolute;
     right: 10vw;
     bottom: 100px;
 }
 
-@media  (max-width:1120px) {
-    .slogan{
+// @media  (max-width:1120px) {
+//     .about_slogan{
 
         
         
-    }
+//     }
+// }
+
+.about_schedule{
+    // background-image: url("/img/about/middle_2.png");
+    background-image: url("/img/about/abou_middleimg.png");
+    background-size: cover;
+    background-position: top center;
 }
-
-.schedule li h3{
+  
+.about_schedule li h3{
     display: inline;
 }
-.speakers{
+
+
+.about_speakers{
     display: flex;
     text-align: center;
     line-height: 20px;
 }
-.speakers h3{
+.about_speakers h3{
     text-align: center;
 }
-.speakers h4{
+.about_speakers h4{
     text-align: center;
 }
-.speaker{
+.about_speaker{
     width: 290px;
     height: 481px;
     border:2px solid #57FFF5 ;
     display: block;
 }
 
-.speaker:hover{
+.about_speaker:hover{
     cursor: pointer;
     border: 1px solid #57FFF5;
     
 }
 // 沒有hover時 不顯示文字
-.hoverText{
+.about_hoverText{
     display: none;
     
 }
-.speaker:hover .hoverText{
+.about_speaker:hover .about_hoverText{
     display: block;
     text-align: left;
     margin-top: 150px;
 
 }
-.speaker:hover >h3,
-.speaker:hover >h4,
-.speaker:hover >img{
+.about_speaker:hover >h3,
+.about_speaker:hover >h4,
+.about_speaker:hover >img{
     display: none;
     text-align: center;
 }
 
 
-.speaker:hover .hoverText li{
+.about_speaker:hover .about_hoverText li{
     text-align: left;
 }
 
 // 分三塊
-.speakers{
+.about_speakers{
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
@@ -78,3 +90,6 @@
 // background-position: right top;
 // height: 100%;
 // padding-top: calc(100% * (9/16));
+
+//輪播
+
