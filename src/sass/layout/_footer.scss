@@ -1,0 +1,18 @@
+.footer-main {
+    border-top: 1px solid $main-color;
+    @include flex-box-column(100%);
+    .footer-icon {
+        @include flex-box-between(90px);
+        li {
+            a:hover {
+                color: $main-color;
+            }
+        }
+    }
+    .footer-menu {
+        @include flex-box-between(480px);
+        @include mobile() {
+            @include flex-box-between(100%);
+        }
+    }
+}
