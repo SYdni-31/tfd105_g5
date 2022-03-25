@@ -3,10 +3,10 @@ var owl = $('.owl-carousel');
 owl.owlCarousel({
     stagePadding: 50,
     loop:true,
-    margin:20,
+    margin:5,
     nav:true,
     dots:false,
-    autoplay:true,
+    autoplay:false,
     autoplayTimeout:3000,
     autoplayHoverPause: true,
     responsive:{
@@ -21,6 +21,7 @@ owl.owlCarousel({
         }
     }
 })
+// 滑鼠滾動事件
 owl.on('mousewheel', '.owl-stage', function (e) {
     if (e.deltaY>0) {
         owl.trigger('next.owl');

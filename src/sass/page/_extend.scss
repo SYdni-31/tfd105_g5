@@ -2,6 +2,13 @@
 .extend_head{
     width: 90%;
     position: relative;
+    .item{
+        height: 60px;
+        img{
+            max-height: 100%;
+            width: auto;
+        }
+    }
     .owl-nav{
         height: 0;
         span{
