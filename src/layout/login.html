@@ -2,15 +2,14 @@
     <section class="form-container company-sign-in-container">
         <form action="#" method="#" id="right_form">
             <h2 class="mb-30">廠商登入</h2>
-            <div class="field mb-20">
-                <input type="email" id="email" required autocomplete="off" class="" />
-                <label for="email" title="email" data-title="email"></label>
+            <div class="field">
+                <input type="text" id="email" required autocomplete="off" placeholder="" class="" />
+                <label for="email" title="電子郵件" data-title="email"></label>
             </div>
-            <div class="field mb-20">
-                <input type="password" id="password" required autocomplete="off"/>
-                <label for="password" title="密碼" data-title="密碼"></label>
+            <div class="field">
+                <input type="password" id="password" required autocomplete="off" placeholder=""/>
+                <label for="password" title="密碼" data-title="password"></label>
             </div>
-            
             <div class="group">
                 <button type="submit" class="btn-short mb-20">登入</button>
                 <button type="submit" class="btn-short">註冊</button>
@@ -19,26 +18,50 @@
         </form>
     </section>
     <section class="form-container guest-sign-in-container">
-        <form action="#" method="#" id="left_form">
-            <h2>我是訪客</h2>
-            <input type="text" placeholder="姓名" />
-            <input type="email" placeholder="email" />
-            <input type="text" placeholder="貴公司單位" />
-            <button>參觀</button>
+        <form action="" method="" id="left_form">
+            <h2 class="mb-30 guestsignin">我是訪客</h2>
+            <div class="field" >
+                <input type="text" id="name" required autocomplete="off" class="" placeholder="" />
+                <label for="name" title="姓名" data-title="name"></label>
+            </div>
+            <div class="field" >
+                <input type="text" id="email" required autocomplete="off" class="" placeholder="" />
+                <label for="email" title="電子郵件" data-title="e-mail"></label>
+            </div>
+            <div class="field" >
+                <input type="text" id="division" required autocomplete="off" class="" placeholder="" />
+                <label for="division" title="貴公司單位" data-title="division"></label>
+            </div>
+            
+            <button class="btn-short">參觀</button>
         </form>
     </sectoin>
-    <section class="form-signup guest-sign-up-container">
-        <form action="#" method="#" id="signup_form">
-            <h2>廠商註冊</h2>
-            <input type="text" placeholder="姓名" />
-            <input type="email" placeholder="電子郵件" />
-            <input type="text" placeholder="密碼" />
-            <input type="text" placeholder="貴公司單位" />
-            <select name="" id="">
-                <option value="">展覽類型</option>
+    <section class="form-signup company-sign-up-container">
+        <form action="" method="" id="signup_form">
+            <h2 class="companysignup mt-45">廠商註冊</h2>
+            <div class="field">
+                <input type="text" id="name" required autocomplete="off" class="signup" placeholder="" />
+                <label for="name" title="姓名" data-title="name"></label>
+            </div>
+            <div class="field">
+                <input type="text" id="email" required autocomplete="off" class="signup" placeholder="" />
+                <label for="email" title="電子郵件" data-title="email"></label>
+            </div>
+            <div class="field">
+                <input type="password" id="password" required autocomplete="off" class="signup" placeholder="" />
+                <label for="email" title="密碼" data-title="password"></label>
+            </div>
+            <div class="field">
+                <input type="text" id="division" required autocomplete="off" class="signup" placeholder="" />
+                <label for="division" title="貴公司單位" data-title="division"></label>
+            </div>
+            
+            <select name="" id="exb_dropdown">
+                <option value="" >展覽類型</option>
                 <option value="">Tián lám 2022智慧全球科技聚策展</option>
             </select>
-            <button type="submit">送出資料</button>
+
+            <button type="submit" class="btn-short">送出資料</button>
         </form>
     </sectoin>
     <section>
