@@ -1,42 +1,144 @@
+$companyback_num2 : 2 ;
+
+
+
 .company_wrapper{
-    padding: 35px;
+    padding: 40px 20px 20px 20px;
 }
 .company_title{
-    display: flex;
-    @include flex-box-between(100%, space-between, center, null);
+    display: inline-block;
     .title_skill{
         display: block;
         color: $second-color;
         border: 1px solid rgba($accent-color,0.5);
-        // width: 201px;
-        // height: 57px;
         padding: 15px 50px;
         text-align: center;
         //  line-height: 57px;
         box-shadow: 0px 4px 4px rgba($accent-color,0.25);
     }
-   
+ 
 }
 
-form{
+.companyback_form{
+    background-color: #0D0D0D;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(87, 255, 245, 0.25);
+    width: 1153px;
+    height: 443px;
+    padding: 20px;
+    margin-top: 86px;
+    position: relative;
+
+    .companyback_layout{
+        font-size: 300px;
+        cursor:default;
+        position: absolute;
+        color: rgba(255, 255, 255, 0.2);
+        top:-80px;
+    }
+
     .company_iive_li{
         display: flex;
     } 
     .companyback_icon{
         display: flex;
+        justify-content: flex-end;
         i{
             color: $accent-color;
             font-size: 30px;
+            padding: 15px;
+            transition: 300ms all;
+            &:hover{
+                transform: scale(1.1,1.1);
+            }
         }
     }
     h2{
-        text-shadow: 0px 4px 4px $accent-color;
+        text-shadow: $companyback_text_shadow;
+        line-height:52px;
     }
-    input{  width: 695px;
-            height: 36px;
+    .label-before {
+        line-height: 20px;
+        font-size: 14px;
+        top: 34px;
+        background: #040F15;
+        padding: 0 6px;
+        left: 236px;
+        // margin: 0 auto;
+    }
+    .field {
+        position: relative;
+        display: flex;
+        // margin-bottom: 15px;
+        margin: 0 auto;
+        margin-left: 105px;
+        // border: 1px solid red;
+        label::before {
+            content: attr(title);
+            position: absolute;
+            top: 53px;
+            left: 243px;
             line-height: 36px;
+            font-size: 16px;
+            color: #F6FAFB;
+            transition: 300ms all;
+        }
+        input {
+            display: block;
+            width: 695px;
+            height: 56px;
+            line-height: 56px;
             margin: 0 auto;
-            padding: 0 15px;
-            background-color: black;
+            padding: 0 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: $second-color;
+            // border: 1px solid #ccc;
+            border: 1px solid #F6FAFB;
+            border-radius: 5px;
+            background-color: transparent;
+            &:focus {
+                outline: 0;
+                border-color: $accent-color;
+            }
+
+            &:valid+label::before {
+                @extend .label-before;
+                content: attr(data-title);
+            }
+
+            &:focus+label::before {
+                @extend .label-before;
+                color: $accent-color;
+                // color: rgba(0,0,0,0);
+            }
+            &::selection{
+                background-color: $black-color;
+                color: $accent-color;
+            }
+        }
+        // input:not(:focus) + label{
+        //     color: rgba(0,0,0,0);
+        // }
     }
+    .companyback_save{
+        width: 177px;
+        margin: 0 auto;
+        margin-top: 45px;
+    }
+}
+
+
+
+//下方按鈕
+.companyback_add{
+.btn_company_back{
+    border: 1px solid rgba($accent-color,0.5);
+    display: inline-block;
+    float: right;
+   }
+}
+aside.oreange{
+    color: rgba(243, 127, 21, 0.14);
+
 }
