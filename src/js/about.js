@@ -5,6 +5,8 @@
             loop:true,
             scrollbar: {
               el: ".swiper-scrollbar",
-              hide: true,
+              hide: false,
+              draggable:true,
+        
             },
           });
