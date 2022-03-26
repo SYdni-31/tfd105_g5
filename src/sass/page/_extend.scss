@@ -1,9 +1,10 @@
 // =========首圖輪播==========
 .extend_head{
-    width: 90%;
+    width: 80%;
     position: relative;
     .item{
         height: 60px;
+        width: 100px;
         img{
             max-height: 100%;
             width: auto;
@@ -18,9 +19,73 @@
         }
     }
     .owl-prev span{
-        @include absolute(50%, null, null, -5%);
+        @include absolute(50%, null, null, -2%);
     }
     .owl-next span{
-        @include absolute(50%, -5%);
+        @include absolute(50%, -2%);
     }
 }
+
+// ======攤位圖======
+.extend_booth1{
+    @include relative();
+    .video{
+        @include absolute(47.5%, null, null, 26%);
+        width: 36%;
+        height: 36%;
+    };
+    .extend_banner{
+        @include absolute(15%, null, null, 27.5%);
+        @include flex-box(33%,flex-start,center);
+        height: 7.5vw;
+        max-height: 90px;
+        @media screen and (max-width: $md_bkpoint) {
+            flex-wrap: nowrap;
+        }
+        img{
+            height:100%;
+        }
+        @include pad(992px){
+            h3{
+                font-size: min(1.6vw ,24px);
+                line-height: 1.5;
+            }
+        };
+    }
+    a{
+        .extend_robot, .extend_robotwave{
+            @include absolute(null, 8%, 0);
+            height: 60%;
+            animation: robotMove 1.5s infinite;
+        }
+        .extend_robotwave{
+            opacity: 0;
+        }
+        .extend_chat{
+            @include absolute(28%, 6%);
+            font-size: min(10vw, 120px);
+            animation: robotMove 1.5s infinite;
+        }
+        &:hover {
+            color: $main-color;
+            .extend_robot{
+                opacity: 0;
+            }
+            .extend_robotwave{
+                opacity: 1;
+            }
+        }
+    }
+}
+@keyframes robotMove{
+    0%{
+        transform: translateY(0);
+    }50%{
+        transform: translateY(4%);
+    }100%{
+        transform: translateY(0);
+    }
+}
+// =======RWD======
+@include mobile(375px){
+} 
