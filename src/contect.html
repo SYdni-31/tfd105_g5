@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+        integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+    <!-- title icon -->
+    <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+
+    <title>聚策展-範例頁</title>
+</head>
+
+<body>
+    <!-- header -->
+    <nav>
+        @@include('layout/nav.html')
+    </nav>
+
+    <head>
+        @@include('layout/login.html')
+    </head>
+    <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+    <main>
+        <section class="wrapper">
+            <div class="contect_slogan">
+                <h2>Attend Exhibition</h2>
+                <h2>策展這件事，就是聚策展的事</h2>
+            </div>
+        </section>
+        <section class="wrapper">
+            <!-- <div class="row">
+                <div class="col-6">
+                    <H2>你</H2>
+                </div>
+                <div class="col-6">
+                    <H2>你</H2>
+                </div>
+
+            </div> -->
+            
+
+        </section>
+    </main>
+    <!-- footer -->
+    <footer>
+        @@include('layout/footer.html')
+    </footer>
+
+    <!-- 先連結main再連結各自設的js -->
+    <script src="js/main.min.js"></script>
+    <script src="js/login.min.js"></script>
+    <script src="js/index.min.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>
