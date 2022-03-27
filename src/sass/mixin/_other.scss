@@ -36,7 +36,7 @@ input {
         color: $main-color;
     }
 }
-
+//@include input()
 @mixin input($width: 200px, $mc: #57FFF5, $sc: #F6FAFB, $bc:#040F15){
     display: block;
     width: $width;
