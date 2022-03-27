@@ -1,10 +1,20 @@
-//刪除紐
+//刪除案紐
 document.addEventListener("click",function(e){
-    if(e.target.classList.contains("trash-can")){
-        console.log("ttt");
+    
+    if(e.target.classList.contains("fa-trash-can")){
+        i--;
+      let form = e.target.closest("form");
+      setTimeout(function clear() {
+        form.remove();
+      }, 500);
     }
 })
-
+//更新文字
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn_update")) {
+        
+}
+})
 
 
 
@@ -22,21 +32,28 @@ document.addEventListener("click",function(e){
 let add_btn = document.querySelector(".companyback_add");
 add_btn.addEventListener("click", function () {
  add_form();
+ let layout_num=document.querySelector(".companyback_layout");
+ console.log(layout_num);
 })
 
-for(var i = 4; i<=10; i++){
-    // console.log(i);
-}
-// let i = 4;
+//這裡有問題
+var i = 4;
+
 function add_form() {
+    let org_asideclass = "companyback_layout";
+    if(i%3==0){
+        org_asideclass="companyback_layout orange";
+    }else if(i%3==2){
+        org_asideclass="companyback_layout blue";
+    }
     let str =     
     `       
     <form action="#" class="companyback_form">
     <!-- icon -->
-    <aside class="companyback_layout">${[i++]}</aside>
+    <aside class="${org_asideclass}">${i++}</aside>
     <ol class="companyback_icon">
-    <li><a href=""><i class="fa-regular fa-pen-to-square"></i></a></li>
-    <li> <a href=""><i class="fa-regular fa-trash-can"></i></a></li>
+    <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
+    <li> <a><i class="fa-regular fa-trash-can"></i></a></li>
     </ol>
     <div class="field pt-45">
     <h2>技術名稱 :</h2>
@@ -52,5 +69,7 @@ function add_form() {
     </form>
     `;
     let add_btn = document.querySelector(".companyback_add");
-    add_btn.insertAdjacentHTML("beforebegin",str)
+    add_btn.insertAdjacentHTML("beforebegin",str);
+   
+   
 }
