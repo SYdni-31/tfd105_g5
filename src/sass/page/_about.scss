@@ -1,18 +1,24 @@
-h1{
+//標題顏色
+.about_brief>h1, .about_agenda h1,.about_lecturer>h1,
+.about_exhibitor >h1{
     color: #57FFF5;
 }
-.about_banner{
-    // height: 800px;
-    position: relative;
 
+.about_banner{
+    position: relative;
 }
 
 .about_slogan{
     position: absolute;
     right: 10vw;
     bottom: 100px;
-    color: white;
 }
+// .about_slogan{
+//     position: absolute;
+//     right: 10vw;
+//     bottom: 100px;
+//     color: white;
+// }
 
 // @media  (max-width:1120px) {
 //     .about_slogan{
@@ -22,11 +28,15 @@ h1{
 //     }
 // }
 
-.about_schedule{
+.about_agenda{
     // background-image: url("/img/about/middle_2.png");
     background-image: url("/img/about/abou_middleimg.png");
     background-size: cover;
     background-position: top center;
+    
+    
+//    background-position: left bottom;
+// position: absolute;
 }
   
 .about_schedule li h3{
@@ -38,6 +48,7 @@ h1{
     display: flex;
     text-align: center;
     line-height: 20px;
+    justify-items: center;
 }
 .about_speakers h3{
     text-align: center;
@@ -51,6 +62,7 @@ h1{
     background-color: #333333;
     // border:2px solid #57FFF5 ;
     display: block;
+   
 }
 
 .about_speaker:hover{
@@ -94,6 +106,8 @@ h1{
     grid-template-columns: 1fr 1fr 1fr;
     gap:80px 40px;
 }
+
+
 
 // background-position: right top;
 // height: 100%;
