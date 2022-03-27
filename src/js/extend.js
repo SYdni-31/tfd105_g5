@@ -1,15 +1,20 @@
-// =================貓頭鷹輪播=================
-var owl = $('.owl-carousel');
-console.log(owl)
-owl.owlCarousel({
-    stagePadding: 20,
-    loop:true,
-    margin:10,
-    nav:true,
-    dots:false,
-    autoplay:true,
-    autoplayTimeout:3000,
-    autoplayHoverPause: true,
-    autoWidth:true,
-    items:10,
-})    
+// =================輪播=================  
+var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoHeight: false,
+    spaceBetween: 20,
+    slidesPerView: "auto",
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+  var swiper2 = new Swiper(".mySwiper2", {
+    loop: true,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: swiper,
+    },
+  }); 

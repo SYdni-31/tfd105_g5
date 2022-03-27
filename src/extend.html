@@ -5,11 +5,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <!-- OwlCarousel2.3.4 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-  <!-- css -->
+  <!-- slider (swiper) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <!-- css -->
   <link rel="stylesheet" href="css/style.css" />
   <!-- font awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
@@ -27,70 +25,135 @@
   </nav>
 
   <head>
-    <!-- @@include('layout/login.html') -->
+    @@include('layout/login.html')
   </head>
-  <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+  <!-- content，各自頁面的html寫在這邊 -->
   <main>
-    <section class="wrapper">
-      <article class="extend_head -margin0auto">
-        <div class="owl-carousel owl-theme">
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo1.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo2.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo3.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo4.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo5.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo6.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo7.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo8.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo9.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo10.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/extend/robotwave2.gif" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/about/about_banner.png" alt=""></div>
-        </div>
-      </article>
-    </section>
-    <section class="wrapper">
-      <article class="extend_booth1">
-        <img src="img/extend/booth1.png" alt="">
-        <div class="extend_banner">
-          <img src="img/sample/Logo1.png" alt="">
-          <h3 class="bg-color ml-5">Technology-company股份有限公司</h3>
-        </div>
-        <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
-        <a href="#">
-          <div class="extend_robotch1 -hide">
-            <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
-            <img class="extend_robot" src="img/extend/robot1.png" alt="">
+    <section>
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2 wrapper">
+        <div thumbsSlider="" class="swiper mySwiper extend_head">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="img/sample/Logo1.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo2.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/logo3.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo4.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo5.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/logo6.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo7.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/logo8.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/about/about_banner.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/extend/robot1.png" />
+            </div>
           </div>
-          <div class="extend_robotch2">
-            <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
-            <img class="extend_robot" src="img/extend/robot2.png" alt="">
+        </div>
+<!-- 攤位圖 -->
+        <div class="swiper-wrapper extend_body">
+          <div class="swiper-slide wrapper">
+            <article class="extend_booth1">
+              <img src="img/extend/booth1.png" alt="">
+              <div class="extend_banner">
+                <img src="img/sample/Logo1.png" alt="">
+                <h3 class="bg-color ml-5">Technology-company股份有限公司</h3>
+              </div>
+              <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch1 -hide">
+                <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
+                <img class="extend_robot" src="img/extend/robot1.png" alt="">
+                </div>
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </article>
           </div>
-          <i class="fa-solid fa-comment-dots extend_chat"></i>
-        </a>
-      </article>
-    </section>
-    <section class="wrapper">
-      <div class="emample_box flex-box-between mb-15">
-        <img src="http://fakeimg.pl/300/" alt="fake" class="img" />
-        <div class="example_text flex-box-column">
-          <h3 class="second-color mb-12">
-            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-          </h3>
-          <div class="btn-short"><a href="">登入</a></div>
+          <div class="swiper-slide">
+            <article class="extend_booth2">
+              <img src="img/extend/booth2.png" alt="">
+              <div class="extend_banner">
+                <img src="img/sample/Logo2.png" alt="">
+                <h3 class="bg-color ml-5">SEARCHETH</h3>
+              </div>
+              <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch1">
+                  <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot1.png" alt="">
+                </div>
+                <div class="extend_robotch2 -hide">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article class="extend_booth3">
+              <img src="img/extend/booth3.png" alt="">
+              <div class="extend_banner">
+                <img src="img/sample/Logo1.png" alt="">
+                <h3 class="bg-color ml-5">Technology-company股份有限公司</h3>
+              </div>
+              <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch1 -hide">
+                  <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot1.png" alt="">
+                </div>
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="wrapper">
-      <div class="two-block">
-        <div class="two-block-left"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
-        <div class="two-block-right flex-box-column">
-          <h3 class="second-color mb-12">
-            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-          </h3>
-          <div class="btn"><a href="">登入</a></div>
-        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
     </section>
   </main>
@@ -99,9 +162,8 @@
     @@include('layout/footer.html')
   </footer>
 
-  <!-- OwlCarousel2.3.4 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <!-- slider (swiper) -->
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
   <script src="js/extend.min.js"></script>
