@@ -1,18 +1,16 @@
 // main
 .index_block {
     height: 100vh;
-    // border: 1px solid red;
     background-image: url(../img/index/01.jpg);
     max-width: 100%;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    position: relative;
+    position: relative;  // w/ div.index_title
 }
 
 
-// h1
+// div&h1
 .index_title {
-    border: 1px solid green;
     color: $second-color;
     position: absolute;
     left: 50%;
@@ -20,6 +18,44 @@
     transform: translateX(-50%);
     letter-spacing: 3px;
     text-shadow: 2px 2px 2px rgba($main-color, .7);
+}
+
+// spotlight on title  (還需再修改)
+.index_title h1 {
+    position: relative;
+}
+
+.index_title h1::after {
+    content: attr(data-spotlight);
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+    clip-path: ellipse(100px 100px at 0% 50%);
+    animation: spotlight 10s infinite;
+    background-image: url(https://images.unsplash.com/photo-1579547621869-0ddb5f237392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+    background-size: 150%;
+    background-position: center center;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes spotlight {
+    0% {
+        -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+        clip-path: ellipse(100px 100px at 0% 50%);
+    }
+    50% {
+        -webkit-clip-path: ellipse(100px 100px at 100% 50%);
+        clip-path: ellipse(100px 100px at 100% 50%);
+
+    }
+    100% {
+        -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+        clip-path: ellipse(100px 100px at 0% 50%);
+    }
 }
 
 // div carousel
