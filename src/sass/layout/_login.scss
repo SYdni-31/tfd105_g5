@@ -43,6 +43,7 @@ form.login {
                 color: $black-color;
             }
             .field {
+                display: flex;
                 position: relative;
                 margin: 0 auto 20px;
                 height: 36px;
@@ -71,14 +72,13 @@ form.login {
                     // font-size: 20px;
                     // line-height: 36px;
                     // padding:4px 14px;
-                    display: block;
+                    display: inline-block;
                     cursor: pointer;
-                    margin-top: 35px;
+                    margin-top: 10px;
                     // color: $main-color;
                     &:hover{
                         background-color: $main-color;
                         color: $black-color;
-
                     }
                 }
                 .btn-1 {
@@ -202,13 +202,19 @@ form.login {
             width: 410px;
             height: 508px;
             border: 1px solid $main-color;
-
+            .h2-forget{
+                text-align: center;
+                margin-top: 90px;
+            }
             ul {
                 @include flex-box-between(230px);
                 margin: 30px auto 0;
                 li {
+                    margin-bottom: 20px;
                     input#changeemail {
                         width: 200px;
+                        height: 36px;
+                        
                     }
                 }
             }
