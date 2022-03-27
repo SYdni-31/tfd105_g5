@@ -1,41 +1,24 @@
-// =========首圖輪播==========
+// =========輪播==========
 .extend_head{
-    width: 80%;
-    position: relative;
-    .item{
-        height: 60px;
-        width: 100px;
+    margin-bottom: 0;
+    .swiper-slide{
+        max-width: 100px;
+        cursor: pointer;
         img{
-            max-height: 100%;
-            width: auto;
+            max-height: 91.15px;
+            display: block;
+            margin: 0 auto;
         }
-    }
-    .owl-nav{
-        height: 0;
-        span{
-            transform: scale(1.5) translateY(-50%);
-            color:$second-color;
-            opacity: .6;
-        }
-    }
-    .owl-prev span{
-        @include absolute(50%, null, null, -2%);
-    }
-    .owl-next span{
-        @include absolute(50%, -2%);
     }
 }
 
 // ======攤位圖======
-.extend_booth1{
-    @include relative();
+.extend_body{
     .video{
-        @include absolute(47.5%, null, null, 26%);
         width: 36%;
         height: 36%;
-    };
+    }
     .extend_banner{
-        @include absolute(15%, null, null, 27.5%);
         @include flex-box(33%,flex-start,center);
         height: 7.5vw;
         max-height: 90px;
@@ -50,9 +33,37 @@
                 font-size: min(1.6vw ,24px);
                 line-height: 1.5;
             }
-        };
+        }
     }
-    a{
+    .extend_booth1{
+        @include relative();
+        .video{
+            @include absolute(47.5%, null, null, 26%);
+        };
+        .extend_banner{
+            @include absolute(14.9%, null, null, 27.5%);
+        }
+    }
+    .extend_booth2{
+        @include relative();
+        .video{
+            @include absolute(47.5%, null, null, 25%);
+        };
+        .extend_banner{
+            @include absolute(17.1%, null, null, 24.6%);
+            @include flex-box(33%,flex-start,center);
+        }
+    }
+    .extend_booth3{
+        @include relative();
+        .video{
+            @include absolute(36%, null, null, 32.5%);
+        };
+        .extend_banner{
+            @include absolute(2.5%, null, null, 34.5%);
+        }
+    }   
+    .extend_chat_btn{
         .extend_robot, .extend_robotwave{
             @include absolute(null, 8%, 0);
             height: 60%;
@@ -77,6 +88,7 @@
         }
     }
 }
+
 @keyframes robotMove{
     0%{
         transform: translateY(0);
