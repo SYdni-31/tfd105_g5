@@ -1,31 +1,15 @@
 // =================貓頭鷹輪播=================
 var owl = $('.owl-carousel');
+console.log(owl)
 owl.owlCarousel({
-    stagePadding: 50,
+    stagePadding: 20,
     loop:true,
-    margin:20,
+    margin:10,
     nav:true,
     dots:false,
     autoplay:true,
     autoplayTimeout:3000,
     autoplayHoverPause: true,
-    responsive:{
-        0:{
-            items:3
-        },
-        768:{
-            items:5
-        },
-        1000:{
-            items:8
-        }
-    }
-})
-owl.on('mousewheel', '.owl-stage', function (e) {
-    if (e.deltaY>0) {
-        owl.trigger('next.owl');
-    } else {
-        owl.trigger('prev.owl');
-    }
-    e.preventDefault();
-});
+    autoWidth:true,
+    items:10,
+})    
