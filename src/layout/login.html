@@ -1,7 +1,7 @@
 <form class="login" id="login">
     <div class="member" id="">
         <a class="btn btn-close" id="BtnClose"><i class="fa-solid fa-xmark"></i></a>
-        <section class="form-container company-sign-in-container">
+        <section class="form-container company-sign-in-container" id="company-sign-in-container">
             <h2 class="mb-30 h2-white">廠商登入</h2>
             <div class="field">
                 <input type="text" id="email-1" required autocomplete="off" placeholder="" class="login_signup" />
@@ -13,7 +13,7 @@
             </div>
             <div class="login-group">
                 <button type="submit" class="btn-short mr-10">登入</button>
-                <button type="button" class="btn-short ml-10">註冊</button>
+                <button type="button" class="btn-short ml-10" id="login_btn_signup">註冊</button>
             </div>
             <a href="#" class="mt-20 forget-a">忘記密碼?</a>
 
@@ -30,8 +30,8 @@
                 <label for="email-2" title="電子郵件" data-title="e-mail"></label>
             </div>
             <div class="field">
-                <input type="text" id="division-1" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="division-1" title="貴公司單位" data-title="division"></label>
+                <input type="text" id="Company-1" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="Company-1" title="貴公司單位" data-title="Company"></label>
             </div>
 
             <button type="button" class="btn-short btn-2">參觀</button>
@@ -52,14 +52,14 @@
                 <label for="password-2" title="密碼" data-title="password"></label>
             </div>
             <div class="field">
-                <input type="text" id="division-2" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="division-2" title="貴公司單位" data-title="division"></label>
+                <input type="text" id="Company-2" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="Company-2" title="貴公司單位" data-title="Company"></label>
             </div>
 
-            <div name="" id="exb_dropdown">
+            <select name="" id="exb_dropdown">
                 <option value="">展覽類型</option>
                 <option value="">Tián lám 2022智慧全球科技聚策展</option>
-            </div>
+            </select>
 
             <button type="submit" class="btn-short btn-2">送出資料</button>
         </section>

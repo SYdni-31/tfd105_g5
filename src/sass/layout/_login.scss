@@ -29,19 +29,19 @@ form.login {
             padding: 0;
             outline: none;
             border: none;
-            // background-color: transparent;
+            i.fa-solid{
+                color: $second-color;
+                text-align: center;
+                line-height: 40px;
+                font-size: 40px;
+            }
             &:hover{
                 color: $main-color;
             }
             &:active{
                 transform: translateY(4px);
             }
-            i .fa-regular{
-                color: $second-color;
-                text-align: center;
-                line-height: 40px;
-                font-size: 40px;
-            }
+            
         }
         .company-sign-in-container,
         .guest-sign-in-container,
@@ -135,6 +135,7 @@ form.login {
         .company-sign-in-container {
             order: 1;
             background-color: $black-color;
+            // transform: translateX(0);
             // @include relative(0, 0, 0, 0, 2);
             // position: relative;
         }
@@ -144,6 +145,7 @@ form.login {
             top: 0;
             right: 0;
             display: none;
+            // z-index: 4;
         }
         .guest-sign-in-container,
         .company-sign-up-container {
@@ -182,7 +184,7 @@ form.login {
             .label-before {
                 background: $second-color;
             }
-            div#exb_dropdown {
+            #exb_dropdown {
                 display: block;
                 width: 200px;
                 height: 36px;
@@ -194,6 +196,7 @@ form.login {
                 border-radius: 5px;
                 font-weight: 700;
                 border: 1px solid $black-color;
+                color: $black-color;
             }
         }
         .received-form {
@@ -300,6 +303,12 @@ form.-login_page_icon {
     pointer-events: auto;
 }
 
-.js-slide-r{
-    transform: translateX(-50%);
+.js-slide-left{
+    transition: .8s;
+    transform: translateX(-100%);
+}
+
+.js-slide-right{
+    transition: .8s;
+    transform: translateX(100%);
 }
