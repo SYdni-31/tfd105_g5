@@ -1,4 +1,4 @@
-.contect_introduction{
+.contect_introduction {
     width: 530px;
     background-color: #333333;
 }
@@ -8,15 +8,15 @@ p:before {
     font-size: 16px;
     color: white;
 }
-.contect_box{
+.contect_box {
     width: 100%;
     padding-left: 42px;
     padding-right: 40px;
-    transition: all .3s;
-    border-bottom: 1px solid #F6FAFB;
+    transition: all 0.3s;
+    border-bottom: 1px solid #f6fafb;
     box-sizing: border-box;
     border: 0;
-    transition: all .3s;
+    transition: all 0.3s;
     border-bottom: 1px solid #bebed2;
     border-radius: 0;
     padding: 10px;
@@ -40,46 +40,50 @@ p:before {
 //     border: 2px solid #57FFF5;
 // }
 
-.contect_box:focus{
-    border: 2px solid #57FFF5;
+.contect_box:focus {
+    border: 2px solid #57fff5;
 }
-.contect_information{
+.contect_information {
     background-color: #333333;
     margin-left: 50px;
 }
 
-.contect_phone, .contect_mail, .contect_address{
+.contect_phone,
+.contect_mail,
+.contect_address {
     display: flex;
-    align-items: baseline;   //center
+    align-items: baseline; //center
 }
 
 //縮和Q&A
-.contect_question{
-    background-color: #4F4F4F;
+.contect_question {
+    background-color: #4f4f4f;
     padding: 6px 0 5px 12px;
+    box-sizing: border-box;
 }
 
 //上下按鈕
-.contect_btn{
+
+.contect_btn {
     float: right;
     background: none;
     border: 0;
     outline: none;
     color: white;
     // display: inline-block;
-
 }
-.contect_answer{
-    background-color: #4F4F4F;
-}
-
-.contect_up{
+.contect_answer {
+    background-color: #4f4f4f;
     display: none;
 }
 
-ul > li.-on > .contect_btn .contect_up{
+.contect_up {
     display: none;
-  }
-  ul > li.-on > .contect_btn .contect_down{
+}
+
+ul > li.-on > .contect_btn .contect_down {
+    display: none;
+}
+ul > li.-on > .contect_btn .contect_up {
     display: block;
-  }
+}
