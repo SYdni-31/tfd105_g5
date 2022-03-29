@@ -52,3 +52,34 @@ p:before {
     display: flex;
     align-items: baseline;   //center
 }
+
+//縮和Q&A
+.contect_question{
+    background-color: #4F4F4F;
+    padding: 6px 0 5px 12px;
+}
+
+//上下按鈕
+.contect_btn{
+    float: right;
+    background: none;
+    border: 0;
+    outline: none;
+    color: white;
+    // display: inline-block;
+
+}
+.contect_answer{
+    background-color: #4F4F4F;
+}
+
+.contect_up{
+    display: none;
+}
+
+ul > li.-on > .contect_btn .contect_up{
+    display: none;
+  }
+  ul > li.-on > .contect_btn .contect_down{
+    display: block;
+  }
