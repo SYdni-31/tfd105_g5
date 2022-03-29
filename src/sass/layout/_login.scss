@@ -1,23 +1,48 @@
 form.login {
-    // position: fixed;
-    // top: 0;
-    // z-index: 3;
+    position: fixed;
+    top: 0;
+    z-index: 10000000;
     display: none;
-    // background-color: rgba(0, 0, 0, .6);
-    // width: 100%;
-    // height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    width: 100%;
+    height: 100%;
     div.member {
-        // display: flex;
+        display: flex;
         width: 820px;
         height: 508px;
-        // position: relative;
-        // top: 50%;
-        // left: 50%;
-        // transform: translate(-50%,-50%);
-        // overflow: hidden;
-        button.btn-close {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        overflow: hidden;
+        z-index: 3;
+        a.btn-close {
             display: block;
-            color: red;
+            color: $second-color;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            font-size: 40px;
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            // background-color: transparent;
+            &:hover{
+                color: $main-color;
+            }
+            &:active{
+                transform: translateY(4px);
+            }
+            i .fa-regular{
+                color: $second-color;
+                // font-weight: 400;
+                text-align: center;
+                line-height: 40px;
+                font-size: 40px;
+            }
         }
         .company-sign-in-container,
         .guest-sign-in-container,
@@ -69,13 +94,12 @@ form.login {
                 display: flex;
                 justify-content: center;
                 button{
-                    // font-size: 20px;
-                    // line-height: 36px;
-                    // padding:4px 14px;
                     display: inline-block;
                     cursor: pointer;
                     margin-top: 10px;
-                    // color: $main-color;
+                    button:active {
+                        transform: scale(0.95);
+                    }
                     &:hover{
                         background-color: $main-color;
                         color: $black-color;
@@ -102,6 +126,7 @@ form.login {
                 color: $accent-color;
             }
             button {
+                transition: transform 80ms ease-in;
                 &:hover {
                     color: $black-color;
                     background-color: $main-color;
@@ -115,12 +140,10 @@ form.login {
         }
         .company-sign-up-container {
             // @include absolute(0, 0, 0, 0, 2);
-            // position: absolute;
-            // top: -10;
-            // right: 0;
-            // bottom: 0;
-            // left: 0;
-            // margin: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: none;
         }
         .guest-sign-in-container,
         .company-sign-up-container {
@@ -158,7 +181,7 @@ form.login {
             .label-before {
                 background: $second-color;
             }
-            select#exb_dropdown {
+            div#exb_dropdown {
                 display: block;
                 width: 200px;
                 height: 36px;
@@ -177,6 +200,10 @@ form.login {
             height: 508px;
             border: 1px solid $main-color;
             background-color: $second-color;
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: none;
             p.rcvd {
                 text-align: center;
                 margin-top: 90px;
@@ -202,6 +229,10 @@ form.login {
             width: 410px;
             height: 508px;
             border: 1px solid $main-color;
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: none;
             .h2-forget{
                 text-align: center;
                 margin-top: 90px;
@@ -228,6 +259,10 @@ form.login {
             height: 508px;
             border: 1px solid $main-color;
             background-image: url(../img/login/Maskgroup.png);
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: none;
             .welcome {
                 text-align: center;
                 margin-top: 90px;
@@ -244,6 +279,27 @@ form.login {
     }
 }
 
-.-login_page_icon {
+form.-login_page_icon {
+    display: block; 
+}
+
+.js-block {
     display: block;
+}
+
+.js-none {
+    display: none;
+}
+
+.js-hide {
+    visibility: hidden;
+}
+
+.js-show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.js-slide-r{
+    transform: translateX(-50%);
 }
