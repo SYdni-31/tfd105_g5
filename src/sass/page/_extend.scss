@@ -2,88 +2,97 @@
 .extend_head{
     margin-bottom: 0;
     .swiper-slide{
-        max-width: 100px;
         cursor: pointer;
+        width: 100px;
+        height: 91.15px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
         img{
             max-height: 91.15px;
-            display: block;
-            margin: 0 auto;
         }
     }
 }
 
 // ======攤位圖======
-.extend_body{
-    .video{
-        width: 36%;
-        height: 36%;
+.extend_main{
+    .swiper-button-next, .swiper-button-prev{
+        top:500px;
     }
-    .extend_banner{
-        @include flex-box(33%,flex-start,center);
-        height: 7.5vw;
-        max-height: 90px;
-        @media screen and (max-width: $md_bkpoint) {
-            flex-wrap: nowrap;
+}
+.extend_body{
+    .extend_look{
+        @include relative();
+        .video{
+            width: 36%;
+            height: 36%;
         }
-        img{
-            height:100%;
-        }
-        @include pad(992px){
-            h3{
-                font-size: min(1.6vw ,24px);
-                line-height: 1.5;
+        .extend_banner{
+            @include flex-box(33%,flex-start,center);
+            height: 7.1vw;
+            max-height: 88px;
+            @media screen and (max-width: $md_bkpoint) {
+                flex-wrap: nowrap;
+            }
+            img{
+                height:100%;
+            }
+            @include pad(992px){
+                h3{
+                    font-size: min(1.6vw ,24px);
+                    line-height: 1.5;
+                }
             }
         }
-    }
-    .extend_booth1{
-        @include relative();
-        .video{
-            @include absolute(47.5%, null, null, 26%);
-        };
-        .extend_banner{
-            @include absolute(14.9%, null, null, 27.5%);
+        .extend_booth1{
+            @include relative();
+            .video{
+                @include absolute(47.5%, null, null, 26%);
+            };
+            .extend_banner{
+                @include absolute(15.1%, null, null, 27.7%);
+            }
         }
-    }
-    .extend_booth2{
-        @include relative();
-        .video{
-            @include absolute(47.5%, null, null, 25%);
-        };
-        .extend_banner{
-            @include absolute(17.1%, null, null, 24.6%);
-            @include flex-box(33%,flex-start,center);
+        .extend_booth2{
+            @include relative();
+            .video{
+                @include absolute(47.5%, null, null, 25%);
+            };
+            .extend_banner{
+                @include absolute(17.2%, null, null, 24.8%);
+            }
         }
-    }
-    .extend_booth3{
-        @include relative();
-        .video{
-            @include absolute(36%, null, null, 32.5%);
-        };
-        .extend_banner{
-            @include absolute(2.5%, null, null, 34.5%);
-        }
-    }   
-    .extend_chat_btn{
-        .extend_robot, .extend_robotwave{
-            @include absolute(null, 8%, 0);
-            height: 60%;
-            animation: robotMove 1.5s infinite;
-        }
-        .extend_robotwave{
-            opacity: 0;
-        }
-        .extend_chat{
-            @include absolute(28%, 6%);
-            font-size: min(10vw, 120px);
-            animation: robotMove 1.5s infinite;
-        }
-        &:hover {
-            color: $main-color;
-            .extend_robot{
-                opacity: 0;
+        .extend_booth3{
+            @include relative();
+            .video{
+                @include absolute(36%, null, null, 32.5%);
+            };
+            .extend_banner{
+                @include absolute(2.7%, null, null, 34.5%);
+            }
+        }   
+        .extend_chat_btn{
+            .extend_robot, .extend_robotwave{
+                @include absolute(null, 8%, 0);
+                height: 60%;
+                animation: robotMove 1.5s infinite;
             }
             .extend_robotwave{
-                opacity: 1;
+                opacity: 0;
+            }
+            .extend_chat{
+                @include absolute(28%, 6%);
+                font-size: min(10vw, 120px);
+                animation: robotMove 1.5s infinite;
+            }
+            &:hover {
+                color: $main-color;
+                .extend_robot{
+                    opacity: 0;
+                }
+                .extend_robotwave{
+                    opacity: 1;
+                }
             }
         }
     }
@@ -98,6 +107,73 @@
         transform: translateY(0);
     }
 }
+// ======下面內文======
+
+.extend_content{
+    width: 95%;
+    h3{
+        display: inline-block;
+        width: 30%;
+        cursor: pointer;
+        &:hover {
+            color: $main-color;
+        }
+        &.content_pointed{
+            color: $main-color;
+            &::after{
+                content: "";
+                display: block;
+                width: 100%;
+                border-bottom: 2px solid $main-color;
+            }
+        }
+    }
+    .content_tech{
+        >div{
+            width: 95%;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid $main-color;
+            h4{
+                min-width: 200px;
+                white-space : nowrap;
+                overflow: hidden;
+                text-overflow : ellipsis;
+            }
+            a{
+                font-size: 15px;;
+                width: 100px;
+                padding:4px 10px;
+                display : inline-block;
+            }
+            div{
+                margin-left: auto;
+                text-align: right;
+            }
+            &:last-of-type{
+                margin-bottom: 40px;
+            }
+        }
+    }
+    .content_video{
+        .video{
+            width: 80vw;
+            height: 45vw;           
+        }
+    } 
+}
 // =======RWD======
-@include mobile(375px){
+@include laptop(1200px){
+    .extend_main{
+        .swiper-button-next, .swiper-button-prev{
+            top:40vw;
+        }
+    }
+}
+@include mobile(576px){
+    .extend_content{
+        h3{
+            font-size: 16px;
+        }
+    }
 } 
