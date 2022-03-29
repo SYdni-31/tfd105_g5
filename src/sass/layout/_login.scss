@@ -82,7 +82,7 @@ form.login {
                     color: $second-color;
                     transition: 300ms all;
                 }
-                input {
+                .login_signup {
                     @include input();
                 }
             }
@@ -162,7 +162,7 @@ form.login {
                 margin: 0 auto;
             }
             .field {
-                input {
+                .login_signup {
                     border: 1px solid $black-color;
                     color: $black-color;
                     font-size: 16px;
@@ -171,7 +171,7 @@ form.login {
                         color: $main-color;
                     }
                 }
-                input.signup {
+                .login_signup {
                     margin-bottom: 0px;
                     margin-top: 0px;
                 }
@@ -243,10 +243,9 @@ form.login {
                 margin: 30px auto 0;
                 li {
                     margin-bottom: 20px;
-                    input#changeemail {
+                    #changeemail {
                         width: 200px;
                         height: 36px;
-                        
                     }
                 }
             }
