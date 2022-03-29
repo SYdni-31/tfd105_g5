@@ -38,7 +38,6 @@ form.login {
             }
             i .fa-regular{
                 color: $second-color;
-                // font-weight: 400;
                 text-align: center;
                 line-height: 40px;
                 font-size: 40px;
@@ -135,6 +134,7 @@ form.login {
         }
         .company-sign-in-container {
             order: 1;
+            background-color: $black-color;
             // @include relative(0, 0, 0, 0, 2);
             // position: relative;
         }
@@ -156,6 +156,7 @@ form.login {
             h2.companysignup {
                 margin-top: 40px;
                 margin-bottom: 20px;
+                
             }
             .btn-2 {
                 margin: 0 auto;
