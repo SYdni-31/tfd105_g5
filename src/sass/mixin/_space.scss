@@ -1,6 +1,11 @@
 /* ======= padding $ margin ======= */
 /* margin */
 @for $i from 1 through 60{
+  .mall-#{$i}{
+    margin: $i * 1px;
+  }
+}
+@for $i from 1 through 60{
     .mt-#{$i}{
       margin-top: $i * 1px;
     }
@@ -22,6 +27,11 @@
   }
   
   /* padding */
+  @for $i from 1 through 60{
+    .pall-#{$i}{
+      padding: $i * 1px;
+    }
+  }
   @for $i from 1 through 60{
     .pt-#{$i}{
       padding-top: $i * 1px;
