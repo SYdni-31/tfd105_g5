@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     login_page_icon.addEventListener('click', function () {
         login.classList.remove('js-none');
         login.classList.add('js-block');
-        document.body.style.overflow = 'hidden';
+        // document.body.style.overflow = 'hidden';
     });
     btn_close.addEventListener('click', function () {
         CloseLightBox();
