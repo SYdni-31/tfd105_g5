@@ -1,42 +1,4 @@
 //看其他sass再來新增(不要重複)
-input {
-    display: block;
-    width: 200px;
-    height: 100%;
-    line-height: 36px;
-    margin: 0 auto;
-    padding: 0 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-    color: $second-color;
-    // border: 1px solid #ccc;
-    border: 1px solid $second-color;
-    // border: 0;
-    // border-bottom: 1px solid $accent-color;
-    border-radius: 5px;
-    background-color: transparent;
-    // margin-bottom: 20px;
-    &:focus {
-        outline: 0;
-        border-color: $main-color;
-    }
-
-    &:valid+label::before {
-        @extend .label-before;
-        content: attr(data-title);
-    }
-
-    &:focus+label::before {
-        @extend .label-before;
-        color: $main-color;
-        // color: rgba(0,0,0,0);
-    }
-    &::selection{
-        background-color: $black-color;
-        color: $main-color;
-    }
-}
-
 @mixin input($width: 200px, $mc: #57FFF5, $sc: #F6FAFB, $bc:#040F15){
     display: block;
     width: $width;
