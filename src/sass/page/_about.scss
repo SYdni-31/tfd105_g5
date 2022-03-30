@@ -1,20 +1,24 @@
-.wrapper_about{
+.wrapper_about {
     max-width: 1280px;
-    padding:0 40px;
+    padding: 0 40px;
 }
-.about_title{
-    font-size:36px;
-    color: #57FFF5;
+.about_title {
+    font-size: 36px;
+    color: #57fff5;
 }
-.about_banner{
+.about_banner {
     position: relative;
 }
 
-.about_slogan{
+.about_slogan {
     position: absolute;
     right: 10vw;
     bottom: 100px;
     text-align: center;
+}
+
+.about_rwd_title{
+    display: none;
 }
 // .about_slogan{
 //     position: absolute;
@@ -23,87 +27,122 @@
 //     color: white;
 // }
 
-@media (min-width: 768px) and (max-width:1200px) {
-    .about_slogan{
+@media (min-width: 768px) and (max-width: 1200px) {
+    .about_slogan {
         right: 0;
         bottom: 0;
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199px){
-    .about_slogan{
+@media (min-width: 576px) and (max-width: 768px) {
+    // 有關banner slogan 字大小變動
+    .about_slogan {
         right: 0;
         bottom: 0;
     }
-  }
+    .about_slogan h1 {
+        font-size: 24px;
+    }
+    .about_slogan h2 {
+        font-size: 14px;
+    }
 
-.about_agenda{
+}
+
+
+@media screen and (max-width:576px){
+    .about_slogan {
+        right: 14px;
+        bottom: 22px
+    }
+    .about_subtitle {
+        display: none;
+    }
+    .about_slogan h2 {
+        font-size: 14px;
+    }
+    .about_rwd_title{
+        display: block;
+        font-size: 24px;
+    }
+    .about_slogan h1{
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width:768px) {
+     //其他字大小變動
+     .about_title{
+        font-size: 24px;
+      
+    }
+    .about_brief h3, .about_agenda h3{
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 32px;
+    }
+}
+.about_agenda {
     // background-image: url("/img/about/middle_2.png");
     background-image: url("/img/about/abou_middleimg.png");
     background-size: cover;
     background-position: top center;
-    
-    
-//    background-position: left bottom;
-// position: absolute;
+
+    //    background-position: left bottom;
+    // position: absolute;
 }
-  
-.about_schedule li h3{
+
+.about_schedule li h3 {
     display: inline;
 }
 
-
-.about_speakers{
+.about_speakers {
     display: flex;
     text-align: center;
     line-height: 20px;
     justify-items: center;
 }
-.about_speakers h3{
+.about_speakers h3 {
     text-align: center;
 }
-.about_speakers h4{
+.about_speakers h4 {
     text-align: center;
 }
-.about_speaker{
+.about_speaker {
     width: 290px;
     height: 481px;
     background-color: #333333;
     // border:2px solid #57FFF5 ;
     display: block;
-   
 }
 
-.about_speaker:hover{
+.about_speaker:hover {
     cursor: pointer;
-    border: 1px solid #57FFF5;
-    
+    border: 1px solid #57fff5;
 }
 // 沒有hover時 不顯示文字
-.about_hoverText{
+.about_hoverText {
     display: none;
-    
 }
-.about_speaker:hover .about_hoverText{
+.about_speaker:hover .about_hoverText {
     display: block;
     text-align: left;
     margin-top: 150px;
-
 }
-.about_speaker:hover >h3,
-.about_speaker:hover >h4,
-.about_speaker:hover >img{
+.about_speaker:hover > h3,
+.about_speaker:hover > h4,
+.about_speaker:hover > img {
     display: none;
     text-align: center;
 }
 
-
-.about_speaker:hover .about_hoverText li{
+.about_speaker:hover .about_hoverText li {
     text-align: left;
     font-size: 14px;
 }
 
-.about_speaker:hover .about_hoverText h4{
+.about_speaker:hover .about_hoverText h4 {
     text-align: left;
     padding: 20px;
 }
@@ -116,28 +155,23 @@
 //     gap:80px 40px;
 // }
 
-.about_speakers{
+.about_speakers {
     display: flex;
     align-content: space-between;
-    justify-content: space-around
+    justify-content: space-around;
 }
 
-
-
-@media (max-width:1100px) {
-    .about_speakers{
+@media (max-width: 1100px) {
+    .about_speakers {
         flex-wrap: wrap;
     }
-
 }
 
 //輪播
 
-
 .about_mySwiper {
     margin-bottom: 100px;
 }
-
 
 // .swiper-scrollbar {
 //     height:10px;
@@ -153,16 +187,15 @@
 //     box-shadow: 0px 1px 1px rgb(240, 240, 240);
 //   }
 
-.about_slide{
+.about_slide {
     margin-bottom: 20px;
 }
- .swiper-horizontal>.about_scrollbar{
+.swiper-horizontal > .about_scrollbar {
     background: $black-color;
     // background-color: aliceblue;
-    height: 1px !important;;
-
+    height: 1px !important;
 }
-.swiper-horizontal>.swiper-scrollbar>.swiper-scrollbar-drag{
-    background: #57FFF5;
+.swiper-horizontal > .swiper-scrollbar > .swiper-scrollbar-drag {
+    background: #57fff5;
     width: 120px !important;
 }
