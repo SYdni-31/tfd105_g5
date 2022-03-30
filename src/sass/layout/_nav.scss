@@ -1,6 +1,6 @@
 /* ----- NAV選單 ----- */
 .nav {
-  z-index: 9999;
+  z-index: 100;
   margin: 0px auto;
   padding: 0px 20px;
   height: 60px;
@@ -35,6 +35,9 @@
   }
   ul {
     width: 300px;
+    @include pad(768px) {
+      width: 50%;
+    }
     .nav-name {
       @include flex-box-center(180px);
     }
@@ -64,7 +67,7 @@
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
     cursor: pointer;
-    z-index: 9999999;
+    z-index: 101;
   }
   /* 漢堡三條線 */
   #ham-icon span {
@@ -138,6 +141,9 @@
   transition: 1s;
   transform: translateX(200%);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $main-color;
+  @include mobile(375px){
+    width: 100%;
+  }
   li {
     border-bottom: 1px solid $main-color;
     height: 60px;
@@ -173,7 +179,7 @@
   backdrop-filter: blur(4px);
   pointer-events: inherit;
   background-color: rgba($black-color, 0.5);
-  z-index: 999;
+  z-index: 99;
 }
 
 .-blur {

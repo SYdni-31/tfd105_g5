@@ -1,5 +1,6 @@
 .footer {
     border-top: 1px solid $main-color;
+    background-color: $black-color;
     @include laptop(1200px) {
         @include flex-box-column(100%);
     }
