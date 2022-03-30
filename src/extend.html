@@ -5,11 +5,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <!-- OwlCarousel2.3.4 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-  <!-- css -->
+  <!-- slider (swiper) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <!-- css -->
   <link rel="stylesheet" href="css/style.css" />
   <!-- font awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
@@ -26,71 +24,425 @@
     @@include('layout/nav.html')
   </nav>
 
-  <head>
-    <!-- @@include('layout/login.html') -->
-  </head>
-  <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+  <header>
+    @@include('layout/login.html')
+  </header>
+  <!-- content，各自頁面的html寫在這邊 -->
   <main>
-    <section class="wrapper">
-      <article class="extend_head -margin0auto">
-        <div class="owl-carousel owl-theme">
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo1.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo2.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo3.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo4.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo5.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo6.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/Logo7.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo8.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo9.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/sample/logo10.png" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/extend/robotwave2.gif" alt=""></div>
-          <div class="item"><img class="-margin0auto" src="img/about/about_banner.png" alt=""></div>
-        </div>
-      </article>
-    </section>
-    <section class="wrapper">
-      <article class="extend_booth1">
-        <img src="img/extend/booth1.png" alt="">
-        <div class="extend_banner">
-          <img src="img/sample/Logo1.png" alt="">
-          <h3 class="bg-color ml-5">Technology-company股份有限公司</h3>
-        </div>
-        <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
-        <a href="#">
-          <div class="extend_robotch1 -hide">
-            <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
-            <img class="extend_robot" src="img/extend/robot1.png" alt="">
+    <section class="extend_main">
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2 wrapper">
+        <div thumbsSlider="" class="swiper mySwiper extend_head">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="img/sample/Logo1.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo2.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/logo3.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo4.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo5.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/logo6.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/Logo7.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/sample/logo8.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/about/about_banner.png" />
+            </div>
+            <div class="swiper-slide">
+              <img src="img/extend/robot1.png" />
+            </div>
           </div>
-          <div class="extend_robotch2">
-            <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
-            <img class="extend_robot" src="img/extend/robot2.png" alt="">
+        </div>
+        <!-- 攤位圖&內容 -->
+        <div class="swiper-wrapper extend_body">
+          <div class="swiper-slide wrapper">
+            <section class="extend_look">
+              <article class="extend_booth1">
+                <img src="img/extend/booth1.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/Logo1.png" alt="">
+                  <h3 class="bg-color ml-5">Technology-company股份有限公司</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch1">
+                <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
+                <img class="extend_robot" src="img/extend/robot1.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </section>
+            <section class="extend_content wrapper -border_maincolor pall-20">
+              <h3 class="pb-20 content_point content_pointed">關於我們</h3>
+              <h3 class="pb-20 content_point">技術展示</h3>
+              <h3 class="pb-20 content_point">展覽影片</h3>
+              <article class="content_inner content_about">
+                <h4 class="mall-10">台積公司<br>
+                  tsmc.com/chinese/aboutTSMC<br>
+                  <br>
+                  PHONE: 886-3-5636688<br>
+                  EMAIL: tsmchr@tsmc.com<br>
+                  <br>
+                  台積公司成立於1987年，率先開創了專業積體電路製造服務之商業模式，自此成為世界領先的專業積體電路製造服務公司。台積公司以領先業界的製程技術及設計解決方案組合支援其客戶及夥伴生態系統的蓬勃發展，以此釋放全球半導體產業的創新。身為全球的企業公民，台積公司的營運範圍遍及亞洲、歐洲及北美，致力成為企業社會責任的行動者。<br>
+                </h4>
+              </article>
+              <article class="content_inner content_tech -hide">
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱1</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱2</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱4</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱5</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱6</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+              </article>
+              <article class="content_inner content_video -hide">
+                <iframe class="video -margin0auto" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+                <a class="pt-20" href="./live.html"><button class="btn-short -margin0auto">前往觀看</button></a>
+              </article>
+            </section>
           </div>
-          <i class="fa-solid fa-comment-dots extend_chat"></i>
-        </a>
-      </article>
-    </section>
-    <section class="wrapper">
-      <div class="emample_box flex-box-between mb-15">
-        <img src="http://fakeimg.pl/300/" alt="fake" class="img" />
-        <div class="example_text flex-box-column">
-          <h3 class="second-color mb-12">
-            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-          </h3>
-          <div class="btn-short"><a href="">登入</a></div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth2">
+                <img src="img/extend/booth2.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/Logo2.png" alt="">
+                  <h3 class="bg-color ml-5">SEARCHETH</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>
+            <a href="#" class="extend_chat_btn">
+              <div class="extend_robotch1">
+                <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
+                <img class="extend_robot" src="img/extend/robot1.png" alt="">
+              </div>
+              <i class="fa-solid fa-comment-dots extend_chat"></i>
+            </a>
+          </section>
+          <section class="extend_content wrapper -border_maincolor pall-20">
+            <h3 class="pb-20 content_point content_pointed">關於我們</h3>
+            <h3 class="pb-20 content_point">技術展示</h3>
+            <h3 class="pb-20 content_point">展覽影片</h3>
+            <article class="content_inner content_about">
+              <h4 class="mall-10">宏達國際電子<br>
+                <br>
+                簡稱宏達電或HTC，為源自臺灣的跨國消費性電子產品公司，成立於1997年，目前以研發與製造智慧型手機與虛擬實境裝置為主要業務，為全球第二大VR頭戴顯示器製造商。<br>
+                2018年，宏達電以2.67億美金的品牌價值入選當年台灣20大國際品牌，名列第14。<br>
+              </h4>
+            </article>
+            <article class="content_inner content_tech -hide">
+              <div class="-margin0auto pt-30">
+                <h4 class="mr-10">技術名稱1</h4>
+                <div>
+                  <a href="#" class="btn-short mall-10">CONTACT</a>
+                  <a href="#" class="btn-short mall-10">VIEW</a>  
+                </div>
+              </div>
+              <div class="-margin0auto pt-30">
+                <h4 class="mr-10">技術名稱2</h4>
+                <div>
+                  <a href="#" class="btn-short mall-10">CONTACT</a>
+                  <a href="#" class="btn-short mall-10">VIEW</a>  
+                </div>
+              </div>
+              <div class="-margin0auto pt-30">
+                <h4 class="mr-10">技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3</h4>
+                <div>
+                  <a href="#" class="btn-short mall-10">CONTACT</a>
+                  <a href="#" class="btn-short mall-10">VIEW</a>  
+                </div>
+              </div>
+              <div class="-margin0auto pt-30">
+                <h4 class="mr-10">技術名稱4</h4>
+                <div>
+                  <a href="#" class="btn-short mall-10">CONTACT</a>
+                  <a href="#" class="btn-short mall-10">VIEW</a>  
+                </div>
+              </div>
+              <div class="-margin0auto pt-30">
+                <h4 class="mr-10">技術名稱5</h4>
+                <div>
+                  <a href="#" class="btn-short mall-10">CONTACT</a>
+                  <a href="#" class="btn-short mall-10">VIEW</a>  
+                </div>
+              </div>
+              <div class="-margin0auto pt-30">
+                <h4 class="mr-10">技術名稱6</h4>
+                <div>
+                  <a href="#" class="btn-short mall-10">CONTACT</a>
+                  <a href="#" class="btn-short mall-10">VIEW</a>  
+                </div>
+              </div>
+            </article>
+            <article class="content_inner content_video -hide">
+              <iframe class="video -margin0auto" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              <a class="pt-20" href="./live.html"><button class="btn-short -margin0auto">前往觀看</button></a>
+            </article>
+          </section>
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth3">
+                <img src="img/extend/booth3.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/logo3.png" alt="">
+                  <h3 class="bg-color ml-5">cybercode</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>  
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch1">
+                  <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot1.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </section>
+            <section class="extend_content wrapper -border_maincolor pall-20">
+              <h3 class="pb-20 content_point content_pointed">關於我們</h3>
+              <h3 class="pb-20 content_point">技術展示</h3>
+              <h3 class="pb-20 content_point">展覽影片</h3>
+              <article class="content_inner content_about">
+                <h4 class="mall-10">趨勢科技股份有限公司<br>
+                  <br>
+                  為一間跨國軟體公司，提供電腦防毒軟體及網路安全服務。<br>
+                  趨勢科技董事長暨創辦人為來自台灣屏東的張明正，1988年與妻子陳怡蓁、小姨子陳怡樺於赴美國創立趨勢科技，至今全球營運據點遍及65個國家、共有超過6,700名員工。Trend Labs 為其全球技術支援與研發中心。<br>  
+                </h4>
+              </article>
+              <article class="content_inner content_tech -hide">
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱1</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱2</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱4</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱5</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱6</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+              </article>
+              <article class="content_inner content_video -hide">
+                <iframe class="video -margin0auto" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+                <a class="pt-20" href="./live.html"><button class="btn-short -margin0auto">前往觀看</button></a>
+              </article>
+            </section>
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth1">
+                <img src="img/extend/booth1.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/Logo4.png" alt="">
+                  <h3 class="bg-color ml-5">Neurotechnology</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            <section class="extend_look">
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth2">
+                <img src="img/extend/booth2.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/Logo5.png" alt="">
+                  <h3 class="bg-color ml-5">NetWork</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            <section class="extend_look">
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth3">
+                <img src="img/extend/booth3.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/logo6.png" alt="">
+                  <h3 class="bg-color ml-5">INNOVATION</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>  
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </section>
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth2">
+                <img src="img/extend/booth2.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/Logo7.png" alt="">
+                  <h3 class="bg-color ml-5">ITechnology</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </section>
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth3">
+                <img src="img/extend/booth3.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/sample/logo8.png" alt="">
+                  <h3 class="bg-color ml-5">NEW BRAIN</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>  
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </section>
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth2">
+                <img src="img/extend/booth2.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/about/about_banner.png" alt="">
+                  <h3 class="bg-color ml-5">SEARCHETH</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch1">
+                  <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot1.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </section>
+          </div>
+          <div class="swiper-slide">
+            <section class="extend_look">
+              <article class="extend_booth1">
+                <img src="img/extend/booth1.png" alt="">
+                <div class="extend_banner">
+                  <img src="img/extend/robot1.png" alt="">
+                  <h3 class="bg-color ml-5">Neurotechnology</h3>
+                </div>
+                <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+              </article>
+              <a href="#" class="extend_chat_btn">
+                <div class="extend_robotch2">
+                  <img class="extend_robotwave" src="img/extend/robotwave2.gif" alt="">
+                  <img class="extend_robot" src="img/extend/robot2.png" alt="">
+                </div>
+                <i class="fa-solid fa-comment-dots extend_chat"></i>
+              </a>
+            </section>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="wrapper">
-      <div class="two-block">
-        <div class="two-block-left"><img src="http://fakeimg.pl/300/" alt="fake" class="img" /></div>
-        <div class="two-block-right flex-box-column">
-          <h3 class="second-color mb-12">
-            h3內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-          </h3>
-          <div class="btn"><a href="">登入</a></div>
-        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
     </section>
   </main>
@@ -99,9 +451,10 @@
     @@include('layout/footer.html')
   </footer>
 
-  <!-- OwlCarousel2.3.4 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- slider (swiper) -->
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
   <script src="js/extend.min.js"></script>

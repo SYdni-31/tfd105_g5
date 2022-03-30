@@ -1,42 +1,141 @@
 // main
 .index_block {
     height: 100vh;
-    // border: 1px solid red;
     background-image: url(../img/index/01.jpg);
     max-width: 100%;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    position: relative;
+    position: relative;  // w/ div.index_title
 }
 
 
-// h1
+// div&h1
 .index_title {
-    border: 1px solid green;
     color: $second-color;
     position: absolute;
     left: 50%;
-    top: 5%;
+    top: 0;
     transform: translateX(-50%);
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 2px rgba($main-color, .7);
+    // text-shadow: 1px 1px 1px rgba($main-color, .7);
+}
+
+// spotlight on title  (無法自適應寬度減少的狀況，::after無法折行)
+.index_title h1 {
+    position: relative;
+}
+
+.index_title h1::after {
+    content: attr(data-spotlight);
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+    clip-path: ellipse(100px 100px at 0% 50%);
+    animation: spotlight 5s infinite;
+
+    background: url(https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+    // background: #ff4b1f;  /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right, #ff9068, #ff4b1f);  /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to right, #ff9068, #ff4b1f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    background-size: 150%;
+    background-position: left top;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes spotlight {
+    0% {
+        -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+        clip-path: ellipse(100px 100px at 0% 50%);
+    }
+    50% {
+        -webkit-clip-path: ellipse(100px 100px at 100% 50%);
+        clip-path: ellipse(100px 100px at 100% 50%);
+
+    }
+    100% {
+        -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+        clip-path: ellipse(100px 100px at 0% 50%);
+    }
 }
 
 // div carousel
-.index_carousel{
-    // margin-top: 200px;
-    border: 1px solid red;
-    .index_carousel_single {
-        border: 1px solid purple;
-        background-image: url(../img/index/02.svg);
-        background-repeat: no-repeat;
-        background-size: 25% auto;
-        background-position: center center;
-        padding: 30px;
-        h1,h2{
+// .index_carousel{
+//     max-width: 100%;
+//     display: flex;
+//     position: absolute;
+//     left: 50%;
+//     bottom: 45%;
+//     transform: translateX(-50%);
+//     // padding-top: 200px;
+//     // display: block;
+//     justify-content: center;
+//     // align-content: center;
+    
+//     // border: 1px solid red;
+
+//     .index_carousel_single {
+//         max-width: 100%;
+//         border: 1px solid purple;
+//         background-image: url(../img/index/02.svg);
+//         background-repeat: no-repeat;
+//         background-size: 130% auto;
+//         background-position: center center;
+//         padding: 30px;
+
+//         flex: 1 0 300px;
+
+//         h2,h3{
+//             text-align: center;
+//             letter-spacing: 2px;
+//             text-shadow: 1px 1px 1px rgba($second-color, .7);
+//         }
+//     }
+// }
+
+
+// swiper css
+.index_swiper {
+  // border: 1px solid red;
+  // position: absolute;
+  transform: translateY(50%);
+
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  .index_slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      img {
+          // border: 1px solid yellowgreen;
+          display: block;
+          width: 100%;
+          @include relative();
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include absolute(33%, 30%);
+
+        // border: 1px solid red;
+        h2,h3 {
             text-align: center;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 2px rgba($second-color, .7);
+            text-shadow: 1px 1px 1px rgba($second-color, .7);
+            margin-bottom: auto;
         }
+      }
     }
+  }
 }

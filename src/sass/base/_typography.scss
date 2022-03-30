@@ -76,13 +76,14 @@ a {
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $main-color;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px  $main-color;
   border-radius: 5px;
-  // color: $main-color;
+  color: $main-color;
   > a {
     @include font(14px, 700, left, 2);
     color: $main-color;
   }
   &:hover {
      background-color: $main-color;
+     color: $black-color; 
     > a {
       @include font(14px, 1000, left, 2);
       color: $black-color; 
@@ -218,5 +219,10 @@ a {
   display: none;
 }
 .-margin0auto{
+  display: block;
   margin:0 auto;
+}
+.-border_maincolor{
+  border:1px solid $main-color;
+  border-radius: 10px;
 }
