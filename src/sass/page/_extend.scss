@@ -5,9 +5,7 @@
         cursor: pointer;
         width: 100px;
         height: 91.15px;
-        display:flex;
-        justify-content: center;
-        align-items: center;
+        @include flex-box-center(null);
         img{
             max-height: 91.15px;
         }
@@ -93,6 +91,107 @@
                 .extend_robotwave{
                     opacity: 1;
                 }
+            }
+        }
+        .extend_chatbox{
+            @include absolute(10%,null, null, 50%);
+            transform: translateX(-50%);
+            background-color: $black-color;
+            height: 450px;
+            width: 300px;
+            .chat_title{
+                border-bottom: 1px solid #f6fafb78;
+                h3{
+                    i{
+                    font-size: 30px;
+                    vertical-align: middle;
+                    }
+                }
+                >i{
+                    @include absolute(10px,10px);
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+            }
+            .chated{
+                height: 300px;
+                overflow-y: auto;
+                touch-action: pan-y;
+                &::-webkit-scrollbar{
+                    height: 3px;
+                }
+                &::-webkit-scrollbar-thumb{
+                    box-shadow: inset 0 0 5px grey;
+                    border-radius: 5px; 
+                }
+                .chat_content:first-of-type{
+                    margin-top: 10px;
+                }
+                .chat_content_you{
+                    font-size: 16px;
+                    line-height: 1.6;
+                    width:fit-content;
+                    width:-webkit-fit-content;
+                    width:-moz-fit-content;
+                    max-width: 60%;
+                    border-radius: 10px;
+                    border-bottom-left-radius: 0;
+                    background-color: $second-color;
+                    color: $black-color;
+                    @include relative();
+                    &::before{
+                        content: '';
+                        @include absolute(null,null,0,-10px);
+                        border-color: transparent transparent $second-color transparent;
+                        border-style: solid solid solid solid;
+                        border-width: 20px 0px 10px 10px;
+                        height: 0px;
+                        width: 0px;
+                    }
+                    span{
+                        @include absolute(null,null,-20px,5px);
+                        color:#f6fafb78;
+                        font-size: 12px;
+                    }
+                }
+                .chat_content_me{
+                    font-size: 16px;
+                    line-height: 1.6;
+                    width:fit-content;
+                    width:-webkit-fit-content;
+                    width:-moz-fit-content;
+                    max-width: 60%;
+                    border-radius: 10px;
+                    border-bottom-right-radius: 0;
+                    background-color: $main-color;
+                    color: $black-color;
+                    margin-left: auto;
+                    @include relative();
+                    &::before{
+                        content: '';
+                        @include absolute(null,-10px,0);
+                        border-color: transparent transparent $main-color transparent;
+                        border-style: solid solid solid solid;
+                        border-width: 20px 10px 10px 0px;
+                        height: 0px;
+                        width: 0px;
+                    }
+                    span{
+                        @include absolute(null,5px,-20px);
+                        color:#f6fafb78;
+                        font-size: 12px;
+                        word-wrap:nowrap
+                    }
+                }
+            }
+            .chat_input{
+                @include flex-box-center(100%);
+                input{
+                    @include input(70%);
+                    padding:10px 5px;
+                    margin: 10px;
+                }
+
             }
         }
     }
