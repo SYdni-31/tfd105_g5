@@ -1,7 +1,13 @@
+.contect>.row{
+    justify-content: space-between;
+}
+
+// 左邊聯絡表單
 .contect_introduction {
-    width: 530px;
+    // width: 530px;
     background-color: #333333;
 }
+
 p:before {
     content: attr(type);
     display: block;
@@ -24,28 +30,15 @@ p:before {
     outline: 0;
 }
 
-// input {
-//     width: 100%;
-//     padding: 10px;
-//     box-sizing: border-box;
-//     background: none;
-//     outline: 0;
-//     resize: none;
-//     border: 0;
-//     transition: all .3s;
-//     border-bottom: 1px solid #bebed2;
-//     border-radius: 0;
-// }
-// input:focus {
-//     border: 2px solid #57FFF5;
-// }
-
 .contect_box:focus {
     border: 2px solid #57fff5;
 }
+
+//右邊聯絡資訊
 .contect_information {
     background-color: #333333;
-    margin-left: 50px;
+   
+    // width: 530px;
 }
 
 .contect_phone,
@@ -55,6 +48,9 @@ p:before {
     align-items: baseline; //center
 }
 
+.contect_map > iframe{
+max-width: 100%;
+}
 //縮和Q&A
 .contect_question {
     background-color: #4f4f4f;
