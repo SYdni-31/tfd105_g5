@@ -16,7 +16,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!-- aos動畫 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <title>聚策展-範例頁</title>
+  <!-- VUE -->
+  <script src="js/vue.min.js"></script>
+
+  <title>聚策展-現正直播</title>
 </head>
 
 <body>
@@ -31,6 +34,7 @@
     <section>
       <div class="live-container">
         <!-- 影片區 -->
+        <!-- https://www.youtube.com/embed/gfwWsWJhoig?modestbranding=1&autoplay=1&playlist=gfwWsWJhoig -->
         <div class="live-viedo-container">
           <h2>
             抱歉，目前無直播<br />下一次直播時間 : <br />2022/03/14 09:00
@@ -41,9 +45,9 @@
           </iframe>
         </div>
         <!-- 留言板(PC) -->
-        <div class="live-board-container -live-on">
+        <div id="live_pc" class="live-board-container" :class="{'pc-active': open === true}">
           <div class="live-board">
-            <div class="search-container-title">
+            <div class="search-container-title" @click="toggle()" :class="{'-transform-180': open === true}">
               <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" />
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
@@ -53,28 +57,19 @@
             </div>
             <!-- 打字傳送區 -->
             <div class="input-block">
-              <input type="text" id="live-text-input" placeholder="傳送訊息" class="input" />
-              <!-- 上課測試 -->
-              <!-- <input type="text" id="username" name="username" placeholder="帳號" class="input" />
-              <input type="text" id="password" name="password" placeholder="密碼" class="input" />
-              <div class="test-div">123</div> -->
-
-              <!-- 上課測試圖片 -->
-              <!-- <input type="file" id="file-test">
-              <br>
-              <img src="" alt="" id="file-img"> -->
-
-              <button class="btn-short" id="live-submit" type="button">
+              <input type="text" class="live-text-input" name="live-text-input" placeholder="傳送訊息" />
+              <button class=" live-submit btn-short" name="live-submit" type="button">
                 送出
               </button>
             </div>
           </div>
         </div>
+
         <!-- 留言板(RWD) -->
-        <div class="live-board-container -live-on">
+        <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': open === true}">
           <div class="live-board">
-            <div class="search-container-title">
-              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" />
+            <div class="search-container-title" @click="toggle()">
+              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img-rwd" class="-transform--90" :class="{'-transform-90': open === true}"/>
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
@@ -83,18 +78,8 @@
             </div>
             <!-- 打字傳送區 -->
             <div class="input-block">
-              <input type="text" id="live-text-input" placeholder="傳送訊息" class="input" />
-              <!-- 上課測試 -->
-              <!-- <input type="text" id="username" name="username" placeholder="帳號" class="input" />
-                      <input type="text" id="password" name="password" placeholder="密碼" class="input" />
-                      <div class="test-div">123</div> -->
-
-              <!-- 上課測試圖片 -->
-              <!-- <input type="file" id="file-test">
-                      <br>
-                      <img src="" alt="" id="file-img"> -->
-
-              <button class="btn-short" id="live-submit" type="button">
+              <input type="text" class="live-text-input-rwd" name="live-text-input" placeholder="傳送訊息" />
+              <button class="btn-short live-submit-rwd" name="live-submit" type="button">
                 送出
               </button>
             </div>
@@ -102,34 +87,77 @@
         </div>
       </div>
     </section>
+    <!-- 下方廠商介紹區 -->
     <section>
-      <ul class="live-company-text">
-        <li>
-          <div class="live-company-title">
-            <img src="img/live/compnay-title.png" alt="現在直播廠商" />
-            <h2>現在直播廠商</h2>
-          </div>
-          <h3>台灣積體電路製造股份有限公司(台積電)</h3>
-        </li>
-        <li>
-          <div class="live-company-email">
-            <img src="img/live/compnay-email.png" alt="聯絡方式" />
-            <h2>聯絡方式</h2>
-          </div>
-          <h3>email: test@gmail.com</h3>
-        </li>
-      </ul>
+      <div class="live-company">
+        <ul class="live-company-text">
+          <li>
+            <div class="live-company-title">
+              <img src="img/live/compnay-title.png" alt="現在直播廠商" />
+              <h2>現在直播廠商</h2>
+            </div>
+            <h3>台灣積體電路製造股份有限公司(台積電)</h3>
+          </li>
+          <li>
+            <div class="live-company-email">
+              <img src="img/live/compnay-email.png" alt="聯絡方式" />
+              <h2>聯絡方式</h2>
+            </div>
+            <h3>email: test@gmail.com</h3>
+          </li>
+        </ul>
+        <img src="img/live/live_circle.svg" alt="圓形圖案" class="img-circle">
+      </div>
     </section>
   </main>
   <!-- footer -->
   <footer>@@include('layout/footer.html')</footer>
+  <script>
+    new Vue({
+      el: '#live_pc', //在這講是給誰執行
+      data() {
+        return {
+          open: false,
+        };
+      },
+      methods: {
+        toggle() {
+          this.open = !this.open
+        },
+        open(){
+            this.open = true
+        },
+        close() {
+          this.open = false
+        }
+      },
+    }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
+    new Vue({
+      el: '#live_rwd', //在這講是給誰執行
+      data() {
+        return {
+          open: false,
+        };
+      },
+      methods: {
+        toggle() {
+          this.open = !this.open
+        },
+        open(){
+            this.open = true
+        },
+        close() {
+          this.open = false
+        }
+      },
+    }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
 
+
+  </script>
   <!-- 先連結main再連結各自設的js -->
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
-  <script src="js/index.min.js"></script>
   <script src="js/live.min.js"></script>
-  <script></script>
 </body>
 
 </html>

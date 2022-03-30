@@ -1,8 +1,11 @@
 .live-container {
+  margin: 0 auto;
   display: flex;
   @include laptop(1100px) {
     flex-wrap: wrap;
+    @include flex-box-column(100%);
   }
+  // 影片區
   .live-viedo-container {
     flex-grow: 1;
     border: 1px solid $main-color;
@@ -10,12 +13,22 @@
     width: 70%;
     padding-top: calc(70% * 9 / 16);
     position: relative;
+    @include laptop(1100px) {
+      width: 100%;
+      padding-top: calc(100% * 9 / 16);
+    }
     h2 {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
+      @include pad(768px){
+        font-size: 22px;
+      }
+      @include mobile(414px){
+        font-size: 18px;
+      }
     }
     .live-viedo {
       position: absolute;
@@ -25,21 +38,19 @@
       height: 100%;
     }
   }
-  // 留言區塊
+  // 留言區塊(PC)
   .live-board-container {
+    @include laptop(1100px) {
+      display: none;
+    }
     border: 1px solid $main-color;
     width: 30%;
     padding-top: calc(30% * 9 / 16);
     position: relative;
     // 關閉時至少要60px
-    flex-basis: 60px;
+    flex-basis: 30%;
     flex-shrink: 0;
     transition: flex-basis 1s;
-    @include laptop(1100px) {
-      width: 100%;
-      // padding-top: 0;
-      height: 300px;
-    }
     .live-board {
       position: absolute;
       top: 0;
@@ -49,8 +60,187 @@
       // 留言版上方文字
       .search-container-title {
         @include flex-box-center(100%, null);
-        // display: flex;
         height: 60px;
+        border-bottom: 1px solid $main-color;
+        img {
+          margin-left: 14px;
+          width: 25px;
+          height: 25px;
+          transition: transform 0.5s;
+        }
+        h3 {
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .result-block {
+        background-color: $black-color;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 100px);
+        overflow-y: auto;
+
+        .search-container {
+          position: relative;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          min-height: 100%;
+          span.text-hint {
+            position: absolute;
+            display: inline-block;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            color: $black-color;
+            font-size: 14px;
+            line-height: 1.6;
+          }
+          ul.search-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            overflow-x: auto;
+            li {
+              border-radius: 5px;
+              overflow: hidden;
+              display: flex;
+              width: 90%;
+              margin: 5px 20px 0px;
+              flex-shrink: 0;
+              //頭像
+              .search-li-icon {
+                margin-right: 10px;
+                text-align: center;
+                width: 30px;
+                height: 30px;
+              }
+              //姓名
+              .item-name {
+                // @include font(14px, 500, left, 2);
+              }
+              div.item-block {
+                div.img-block {
+                  font-size: 0;
+                  img {
+                    width: 100%;
+                  }
+                }
+                div.title-block {
+                  @include font(14px, 500, left, 2);
+                  //   margin: 5px 0;
+                  padding: 5px;
+                }
+                div.description-block {
+                  @include font(14px, 300, left, 2);
+                  padding: 0 5px;
+                }
+              }
+            }
+            li:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+      .live-height {
+        height: 100%;
+      }
+
+      .input-block {
+        border-top: 1px solid $main-color;
+        @include flex-box-center(100%);
+        padding: 12px 20px;
+        ::placeholder {
+          color: $main-color;
+          @include font(16px, 300, center, 1.6);
+          line-height: 40px;
+        }
+        input {
+          @include input();
+          border-radius: 5px;
+          width: 75%;
+          margin-bottom: 0;
+        }
+        .-live-text-input-hide {
+          display: none;
+        }
+        button {
+          @include font(16px, 300, center, 1.6);
+          line-height: 40px;
+          margin-left: 12px;
+          width: 25%;
+        }
+      }
+    }
+  }
+  // PC點擊時
+  .pc-active{
+    width: 60px;
+    flex-basis: 60px;
+    .live-board{
+      width: 60px;
+      .search-container-title{
+        border-bottom: 0px;
+        width: 60px;
+        h3{
+          display: none;
+        }
+      }
+      .result-block{
+        height: 100%;
+        width: 30px;
+        .search-container{
+          display: none;
+        }
+      }
+      .input-block{
+        display: none;
+      }
+    }
+  }
+  // 留言區塊(RWD)
+  .live-board-container-rwd {
+    // 當瀏覽器大於1100px時隱藏
+    @media screen and (min-width: 1100px) {
+      display: none;
+    }
+    // 當瀏覽器小於1100px時顯示
+    @include laptop(1100px) {
+      display: block;
+    }
+    @include flex-box-column(100%);
+    // width: 100%;
+    height: 480px;
+    border: 1px solid $main-color;
+    // position: relative;
+    // 關閉時至少要60px
+    // flex-basis: 60px;
+    // flex-shrink: 0;
+    transition: all 1s;
+    .live-board {
+      // position: absolute;
+      top: 0;
+      left: 0;
+      height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      // 留言版上方文字
+      .search-container-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        height: 60px;
+        width: 100%;
         border-bottom: 1px solid $main-color;
         img {
           margin-left: 14px;
@@ -143,13 +333,20 @@
           }
         }
       }
-      .live-height {
-        height: 100%;
-      }
-
+      // 點擊時隱藏
+      // .live-height {
+      //   display: none;
+      // }
+      // .live-height-0 {
+      //   height: 0%;
+      // }
       .input-block {
         border-top: 1px solid $main-color;
-        @include flex-box-center(100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex-wrap: nowrap;
         padding: 12px 20px;
         ::placeholder {
           color: $main-color;
@@ -157,58 +354,116 @@
           line-height: 40px;
         }
         input {
+          @include input();
           border-radius: 5px;
-          width: 75%;
+          width: calc(90% - 60px);
+          margin-bottom: 0;
         }
-        button {
+        .live-submit-rwd {
           @include font(16px, 300, center, 1.6);
           line-height: 40px;
           margin-left: 12px;
-          width: 25%;
+          width: 120px;
         }
       }
       // 點擊時隱藏線
-      .-live-border-hide {
-        border: 0px;
+      // .-live-border-hide {
+      //   border: 0px;
+      // }
+      // 點擊時隱藏input
+      // .-live-input-hide {
+      //   display: none;
+      // }
+    }
+    // 點擊時隱藏高度
+    // .-live-border-hide-0 {
+    //   height: 60px;
+    // }
+  }
+    // RWD點擊時
+    .rwd-active{
+      height: 60px;
+      .live-board{
+        height: 60px;
+        .search-container-title{
+          border-bottom: 0px;
+          // height: 60px;
+        }
+        .result-block{
+          // height: 0;
+          .search-container{
+            display: none;
+          }
+        }
+        .input-block{
+          display: none;
+        }
       }
     }
-  }
-  .-live-on {
-    box-sizing: content-box;
-    flex-basis: 30%;
-  }
+}
+.-transform--90 {
+  transform: rotate(-90deg);
 }
 .-transform-180 {
+  transition: all 1s;
   transform: rotate(180deg);
 }
-.live-company-text {
-  @include pad(768px) {
-    @include flex-box-column(100%,center,null);
-    padding-left: 20px;
-  }
-  li {
-    margin-bottom: 30px;
+.-transform-90 {
+  transform: rotate(90deg);
+}
+// 下方廠商介紹文字區
+.live-company{
+  @include relative();
+  .live-company-text {
     @include pad(768px) {
-      padding-left: 0;
+      @include flex-box-column(100%, center, null);
+      padding-left: 20px;
     }
-    .live-company-title,
-    .live-company-email {
-      padding-left: 80px;
+    li {
+      margin-bottom: 30px;
       @include pad(768px) {
-        padding-left: 0px;
+        padding-left: 0;
       }
-      @include flex-box-center(80%, null);
-      img {
-        margin-right: 20px;
-        width: 30px;
-        height: 30px;
+      .live-company-title,
+      .live-company-email {
+        padding-left: 80px;
+        @include pad(768px) {
+          padding-left: 0px;
+        }
+        @include flex-box-center(80%, null);
+        img {
+          margin-right: 20px;
+          width: 30px;
+          height: 30px;
+        }
+      }
+      h3 {
+        padding-left: 130px;
+        @include pad(768px) {
+          padding: 10px;
+        }
       }
     }
-    h3 {
-      padding-left: 130px;
-      @include pad(768px) {
-        padding:10px
-      }
+  }
+  .img-circle{
+    @include absolute(20%,10%);
+    z-index: -1;
+    width: 400px;
+    height: 500px;
+    transform: rotate(90deg);
+    animation: 1s all;
+    // box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $main-color;
+    animation: rotation 20s infinite linear;
+    @include pad(768px) {
+      display: none;
+    }
+  }
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
     }
   }
 }
