@@ -2,128 +2,99 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <!-- css -->
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- font awesome -->
-  <link rel="stylesheet" 
-  href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
-  integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" 
-  crossorigin="anonymous"
-  />
-  <!-- title icon -->
-  <link rel="icon" href="img/tianlam-logo-mainblack.svg">
-  <!-- parallax.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-  <!-- jQeury -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
-  <!-- Swiper css/js -->
-  <link rel="stylesheet"
-  href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+        integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+    <!-- title icon -->
+    <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+    <!-- parallax.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <!-- jQeury -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        referrerpolicy="no-referrer"></script>
+    <!-- Swiper css/js -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-  <title>聚策展</title>
+    <title>聚策展</title>
 </head>
 
 <body>
-  <!-- header -->
-  <nav>
-      @@include('layout/nav.html')
-  </nav>
-  <header>
-      @@include('layout/login.html')
-  </header>
-  <!-- content，各自頁面的html寫在這邊以下都是範例 -->
-  <main class="wrapper index_block main-color ">
-      <div class="index_title mt-60">
-        <h1 class="index_title_h1" data-spotlight="Tián lám 2022 智慧全球科技聚策展！">Tián lám 2022 智慧全球科技聚策展</h1>
-      </div>
+    <!-- header -->
+    <nav>
+        @@include('layout/nav.html')
+    </nav>
+    <header>
+        @@include('layout/login.html')
+    </header>
+    <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+    <main>
+        <section class="wrapper index_block main-color">
+            <div class="index_title mt-60">
+                <h1 class="index_title_h1" data-spotlight="Tián lám 2022 智慧全球科技聚策展！">
+                    Tián lám 2022 智慧全球科技聚策展
+                </h1>
+            </div>
 
-      <!-- <article class="index_carousel">
-        <div class="index_carousel_single ">
-          <h2>現正直播</h2>
-          <h3>Live</h3>
-        </div>
-        <div class="index_carousel_single ">
-          <h2>虛擬商展</h2>
-          <h3>Exhibition</h3>
-        </div>
-        <div class="index_carousel_single ">
-          <h2>展會介紹</h2>
-          <h3>About</h3>
-        </div>
-      </article> -->
-      <!-- <div class="swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" style="background-image:url(./img/index/02.svg)">
-            <h2>現正直播</h2>
-            <h3>Live</h3>  
-          </div>
-          <div class="swiper-slide" style="background-image:url(./img/index/02.svg)">
-            <h2>虛擬商展</h2>
-            <h3>Exhibition</h3>
-          </div>
-          <div class="swiper-slide" style="background-image:url(./img/index/02.svg)">
-            <h2>展會介紹</h2>
-            <h3>About</h3>
-          </div>
+            <!-- 下方輪播 -->
+            <div class="swiper mySwiper index_swiper_container">
+                <div class="swiper-wrapper index_wrapper">
+                    <div class="swiper-slide index_slide">
+                        <a href="./live.html">
+                            <img src="./img/index/02.svg" />
+                            <div>
+                                <h2>現正直播</h2>
+                                <h3>Live</h3>
+                            </div>
+                        </a>
+                    </div>
 
-          <div class="swiper-pagination"></div>
-      </div>       -->
+                    <div class="swiper-slide index_slide">
+                        <a href="./extend.html">
+                            <img src="./img/index/02.svg" />
+                            <div>
+                                <h2>虛擬商展</h2>
+                                <h3>Exhibition</h3>
+                            </div>
+                        </a>
+                    </div>
 
-      <div class="swiper mySwiper index_swiper">
-        <div class="swiper-wrapper index_wrapper">
-          <div class="swiper-slide index_slide">
-            <a href="./live.html">
-              <img src="./img/index/02.svg"/>
-              <div>
-                <h2>現正直播</h2>
-                <h3>Live</h3>
-              </div>
-            </a>
-          </div>
-          
-          <div class="swiper-slide index_slide">
-            <a href="./extend.html">
-              <img src="./img/index/02.svg"/>
-              <div>
-                <h2>虛擬商展</h2>
-                <h3>Exhibition</h3>
-              </div>
-            </a>
-          </div>
-          
-          <div class="swiper-slide index_slide">
-              <a href="./about.html">
-                <img src="./img/index/02.svg"/>
-                <div>
-                  <h2>展會介紹</h2>
-                  <h3>About</h3>
+                    <div class="swiper-slide index_slide">
+                        <a href="./about.html">
+                            <img src="./img/index/02.svg" />
+                            <div>
+                                <h2>展會介紹</h2>
+                                <h3>About</h3>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-              </a>
-          </div>
-        </div>
+            </div>
+        </section>
 
-        <!-- <div class="swiper-pagination"></div> -->
-      </div>
-  
+        <!-- <div class="swiper-pagination index_pagination"></div> -->
 
-    
-  </main>  
-  <!-- footer -->
-  <footer>
-    @@include('layout/footer.html')
-  </footer>
 
-  <!-- 先連結main再連結各自設的js -->
-  <script src="js/main.min.js"></script>
-  <script src="js/login.min.js"></script>
-  <script src="js/index.min.js"></script>
-  <script>
 
-  </script>
+
+    </main>
+    <!-- footer -->
+    <footer>
+        @@include('layout/footer.html')
+    </footer>
+
+    <!-- 先連結main再連結各自設的js -->
+    <script src="js/main.min.js"></script>
+    <script src="js/login.min.js"></script>
+    <script src="js/index.min.js"></script>
+    <script>
+
+    </script>
 </body>
 
 </html>
