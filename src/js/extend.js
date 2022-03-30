@@ -21,8 +21,6 @@ var swiper = new Swiper(".mySwiper", {
   window.addEventListener('DOMContentLoaded', function(){
     let content_point= document.querySelectorAll('.content_point')
     let content_inner= document.querySelectorAll('.content_inner')
-    console.log(content_inner)
-    console.log(content_point)
     content_point.forEach(function(item, index){
       item.addEventListener('click', function(){
         let others_point=this.parentElement.querySelectorAll('.content_point')
@@ -36,4 +34,13 @@ var swiper = new Swiper(".mySwiper", {
       })
     })
   })
-  // =================聊天室啟動=================   
+  // =================留言板啟動=================  
+  let extend_chat_btn=document.querySelector('.extend_chat_btn') 
+  
+  $('.extend_chat_btn').on('click', function(e){
+    e.preventDefault();
+    $(this).next('.extend_chatbox').toggle(300)
+  })
+  $('.chatbox_close').on('click',function(){
+    $(this).parents('.extend_chatbox').hide(300)
+  }) 

@@ -28,7 +28,7 @@
         .extend_banner{
             @include flex-box(33%,flex-start,center);
             height: 7.1vw;
-            max-height: 88px;
+            max-height: 85px;
             @media screen and (max-width: $md_bkpoint) {
                 flex-wrap: nowrap;
             }
@@ -70,6 +70,10 @@
             }
         }   
         .extend_chat_btn{
+            display: block;
+            height: 100%;
+            width: 20%;
+            @include absolute(null, 8%, 0);
             .extend_robot, .extend_robotwave{
                 @include absolute(null, 8%, 0);
                 height: 60%;
@@ -107,7 +111,7 @@
                     vertical-align: middle;
                     }
                 }
-                >i{
+                .chatbox_close{
                     @include absolute(10px,10px);
                     font-size: 20px;
                     cursor: pointer;

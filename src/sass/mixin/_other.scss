@@ -1,5 +1,4 @@
 //看其他sass再來新增(不要重複)
-<<<<<<< HEAD
 @mixin input_Date($width: 200px, $mc: #F37F15, $sc: #F6FAFB, $bc:#040F15) {
     display: block;
     width: 200px;
@@ -38,10 +37,8 @@
     }
 }
 //@include input()
-=======
 
 // 4號設定的
->>>>>>> dev
 @mixin input($width: 200px, $mc: #57FFF5, $sc: #F6FAFB, $bc:#040F15){
     display: block;
     width: $width;
