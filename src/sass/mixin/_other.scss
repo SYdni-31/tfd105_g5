@@ -1,24 +1,24 @@
 //看其他sass再來新增(不要重複)
-input {
+@mixin input_Date($width: 200px, $mc: #F37F15, $sc: #F6FAFB, $bc:#040F15) {
     display: block;
     width: 200px;
-    height: 100%;
+    // height: 100%;
     line-height: 36px;
-    margin: 0 auto;
+    // margin: 0 auto;
     padding: 0 15px;
     box-sizing: border-box;
     font-size: 14px;
-    color: $second-color;
+    color: $sc;
     // border: 1px solid #ccc;
-    border: 1px solid $second-color;
+    border: 1px solid $sc;
     // border: 0;
     // border-bottom: 1px solid $accent-color;
     border-radius: 5px;
-    background-color: transparent;
+    background-color: black;
     // margin-bottom: 20px;
     &:focus {
         outline: 0;
-        border-color: $main-color;
+        border-color: $mc;
     }
 
     &:valid+label::before {
@@ -28,12 +28,12 @@ input {
 
     &:focus+label::before {
         @extend .label-before;
-        color: $main-color;
+        color: $mc;
         // color: rgba(0,0,0,0);
     }
     &::selection{
-        background-color: $black-color;
-        color: $main-color;
+        background-color: $bc;
+        color: $mc;
     }
 }
 //@include input()

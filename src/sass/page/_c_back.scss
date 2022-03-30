@@ -1,6 +1,216 @@
+
+
+
 .wrapper{
-    // width: 100%;
-    // background-color: rgb(223, 168, 51);
-    // height: 1000px;
-    // &:hover {background-color: rgb(0, 234, 255);}
+    padding: 40px 20px 20px 20px;
+    .companyback_dateform{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding-top: 120px;
+
+
+        .flatpickr-calendar.inline {
+            background-color: #040F15;
+            // box-shadow: none;
+            width: 331px;
+            // display:none;
+            box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+            padding: 0px 8px;
+            // order: 1;
+            position: absolute;
+            top: 58px;
+            left: 55px;
+        }
+        
+        .label-before {
+            line-height: 20px;
+            font-size: 16px;
+            top: -10px;
+            background: #040F15;
+            padding: 0 6px;
+            left: 15px;
+            // margin: 0 auto;
+        }
+        .field {
+            position: relative;
+            display: flex;
+            // order: 2;
+            // margin-bottom: 15px;
+            // margin: 0 auto;
+            // border: 1px solid red;
+            label::before {
+                content: attr(title);
+                position: absolute;
+                top: 12px;
+                left: 30px;
+                line-height: 36px;
+                font-size: 18px;
+                color: #F6FAFB;
+                transition: 300ms all;
+            }
+            input {
+                @include input(391px,$accent-color);
+                height: 64px;
+                line-height: 64px;
+                font-size: 18px;
+                box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+            }
+            // input:not(:focus) + label{
+            //     color: rgba(0,0,0,0);
+            // }
+        }
+    }
+
+
+}
+
+
+
+
+//下面兩個都是第一部分右半邊的input
+.time_tech{
+    display: flex;
+    // justify-content: flex-end;
+    flex-direction: row-reverse;
+    //timepicker的input
+            //年月日的input
+    .form-contril{
+    @include input_Date();
+        text-align: center;
+        padding: 5px;
+        border: 1px solid #F37F15;
+        font-size: 20px;
+        letter-spacing: 1px;
+        display: inline-block;
+        // order: 2;
+        margin-right: 52px;
+        box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+            }
+    .timepicker {
+        // width: 391px;
+        border-radius: 10px;
+        @include input($width: 391px, $mc:#F37F15, $sc: #F6FAFB, $bc:#040F15);
+        height: 64px;
+        margin: 0;
+        border:1px solid #F37F15;
+        font-size: 20px;
+        text-align: center;
+        background-color: black;
+        box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+    }
+    
+}
+
+.form_under{
+    display: flex;
+    flex-direction: row-reverse;
+    
+   .companyback_submit{
+    margin-left: 39px;
+    width: 213px;
+    height: 64px;
+    font-size: 23px;
+    border: 1px solid #F37F15;
+    filter: drop-shadow(0px 4px 4px rgba(0, 209, 255, 0.25));
+    border-radius: 10px;
+    color: $second-color;
+    background-color: black;
+   }
+}
+
+
+
+
+//第二層
+.chatboard{
+    padding-top: 80px;
+}
+
+.companyback_search{
+    .companyback_searchinput{
+    background: #0D0D0D;
+    color:$second-color;
+    box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+    border-radius: 20px;
+    display: inline-block;
+    width: 427px;
+    height: 59px;
+    border: none ;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    &::before{
+        // content:"abc";
+        // font-size: 20px;
+        // color: white;
+                 }
+
+        }
+}
+
+
+
+
+// 第一個聊天室
+section.companyback_chat1{
+    width: 427px;
+    // height: 347px;
+    box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+    padding: 21px;
+    border-radius: 20px;
+    
+}
+
+
+
+.chat1_company{
+     i{
+            font-size: 65px;
+            color: #F37F15;
+        }
+    li.variouscompany{
+        border-bottom: 1px solid white;
+        padding: 10px 2px;
+       
+        display: flex;
+        flex-wrap: wrap;
+        i.-main_color{
+            color: $main-color;
+           }
+    div{
+        display: flex;
+        width: 100%;
+            .company_receive{
+            padding-left: 115px;
+            text-align: center;
+            line-height: 60px;
+            }
+            p{
+            font-size: 12px;
+            
+            }
+            span{
+                padding: 0 14px;
+            }
+        }
+    
+    }
+}
+
+
+// 第二個聊天室
+
+
+
+
+li.variouscompany{
+    div{
+    span.variouscompany_span{
+    padding-left: 115px;
+        i{
+        font-size:18px;
+         }
+        }
+    }
 }

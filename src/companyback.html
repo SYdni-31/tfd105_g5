@@ -30,77 +30,157 @@
   <!-- content，各自頁面的html寫在這邊以下都是範例 -->
   <main>
     <section class="wrapper">
-      <div class="streaming"><a>直播申請區</a></div>
+      <div class="company_title"><a class="title_skill">直播申請區</a></div>
       <!-- 第一層 -->
-      <nav>
-        <form action="#">
-          <input class="form-contril" type="datetime-local" placeholder="Select DateTime" >
-       
-        <input type="date">
-        <input type="time" value="13:14">
+
+      <form action="#" class="companyback_dateform">
+
+        <!-- 這是套件 -->
+        <div class="time_tech">
+          <input class="timepicker" type="time" placeholder="Select DateTime">
+          <input class="form-contril" type="datetime-local" placeholder="Select DateTime">
+
+        </div>
+        <!-- <input type="date" class="companyback_time"> -->
+
+
+
+        <div class="form_under pt-58">
+          <input type="submit" value="確認送出" class="companyback_submit">
+          <div class="field">
+            <input type="text" id="email" required autocomplete="off" class="" />
+            <label for="email" title="Address" data-title="直播網址"></label>
+          </div>
+        </div>
       </form>
-      </nav>
-      <div class="streaming"><a>廠商留言板</a></div>
+      <div class="company_title chatboard"><a class="title_skill">廠商留言板</a></div>
       <!-- 第二層聊天室 -->
       <section>
-        <div class="companyback_search">
-        <!-- icon -->
-        <img src="/src/img/c_back/icons8-search.svg" alt="">
-        <input type="text" name="search" placeholder="search">
-      </div>
         <ul>
-          <li> <div class="chat1">
-
-          </div> </li>
-          <li> <div class="chat2"></div> </li>
+          <li>
+            <div class="companyback_search">
+              <!-- icon -->
+              <input class="companyback_searchinput mt-38" type="search" name="search" placeholder="Search"
+                autocomplete="">
+            </div>
+          </li>
+          <li>
+            <section class="companyback_chat1 mt-43">
+              <h3>廠商</h3>
+              <ol class="chat1_company pt-12">
+                <li class="variouscompany">
+                  <div>
+                    <i class="fa-solid fa-address-card"></i>
+                    <span>
+                      <h3>廠商</h3>
+                      <h5>Hi</h5>
+                    </span>
+                    <span class="company_receive">
+                      <p>Today, 5:25pm</p>
+                    </span>
+                  </div>
+                </li>
+                <li class="variouscompany">
+                  <div>
+                    <i class="fa-solid fa-address-card"></i>
+                    <span>
+                      <h3>廠商</h3>
+                      <h5>Hi</h5>
+                    </span>
+                    <span class="company_receive">
+                      <p>Today, 5:25pm</p>
+                    </span>
+                  </div>
+                </li>
+                <li class="variouscompany" style="border: none;">
+                  <div>
+                    <i class="fa-solid fa-address-card"></i>
+                    <span>
+                      <h3>廠商</h3>
+                      <h5>Hi</h5>
+                    </span>
+                    <span class="company_receive">
+                      <p>Today, 5:25pm</p>
+                    </span>
+                  </div>
+                </li>
+              </ol>
+            </section>
+          </li>
         </ul>
 
 
 
 
-        <div class="all_block">
-
-          <section class="result_block">
-            <div class="search_container">
-
-            </div>
-          </section>
-
-          <section class="input_block">
-            <input type="text" placeholder="資料" class="stock_text">
-            <button class="send_stock" type="button">送出</button>
-          </section>
-        </div>
 
 
 
+        <section class="companyback_chat1 sechtion_chat2 mt-43">
+          <h3>來賓</h3>
+          <ol class="chat1_company pt-12">
+            <li class="variouscompany">
+              <div>
+                <i class="fa-solid fa-id-card-clip "></i>
+                <span>
+                  <h3>來賓</h3>
+                  <h5>Hi</h5>
+                </span>
+                <span class="variouscompany_span">
+                  <i class="fa-solid fa-check -main_color"></i>
+                  <p>Today, 5:25pm</p>
+                </span>
+              </div>
+
+            </li>
+            <li class="variouscompany">
+              <div>
+                <i class="fa-solid fa-id-card-clip"></i>
+                <span>
+                  <h3>來賓</h3>
+                  <h5>Hi</h5>
+                </span>
+                <span class="variouscompany_span">
+                  <i class="fa-solid fa-check-double"></i>
+                  <p>Today, 5:25pm</p>
+                </span>
+              </div>
+
+            </li>
+            <li class="variouscompany">
+              <div>
+                <i class="fa-solid fa-id-card-clip"></i>
+                <span>
+                  <h3>來賓</h3>
+                  <h5>Hi</h5>
+                </span>
+                <span class="variouscompany_span">
+                  <i class="fa-solid fa-check  -main_color"></i>
+                  <p>Today, 5:25pm</p>
+                </span>
+              </div>
+
+            </li>
+            <li class="variouscompany" style="border: none;">
+              <div>
+                <i class="fa-solid fa-id-card-clip"></i>
+                <span>
+                  <h3>來賓</h3>
+                  <h5>Hi</h5>
+                </span>
+                <span class="variouscompany_span">
+                  <i class="fa-solid fa-check-double"></i>
+                  <p>Today, 5:25pm</p>
+                </span>
+              </div>
+
+            </li>
+          </ol>
+        </section>
 
 
-      </section>
-    </section>
-    <ul>
-      <li>
-        <h3>往前</h3>
-      </li>
-      <li>
-        <h3>1</h3>
-      </li>
-      <li>
-        <h3>2</h3>
-      </li>
-      <li>
-        <h3>3</h3>
-      </li>
-      <li>
-        <h3>4</h3>
-      </li>
-      <li>
-        <h3>5</h3>
-      </li>
-      <li>
-        <h3>往後</h3>
-      </li>
-    </ul>
+
+
+
   </main>
   <!-- footer -->
   <footer>
@@ -110,35 +190,139 @@
   <!-- 先連結main再連結各自設的js -->
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
-  <script src="js/index.min.js"></script>
   <!-- flatpickr -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-    flatpickr("input[type=datetime-local]",{
-      mode: "range",
-    minDate: "today",
-    dateFormat: "Y-m-d",
-    inline: true,
-    disable: [
-        function(date) {
-            // disable every multiple of 8
-            return !(date.getDate() % 8);
+    flatpickr("input[type=datetime-local]", {
+      // mode: "range",
+      minDate: "today",
+      dateFormat: "Y-m-d",
+      inline: true,
+      disable: [
+        function (date) {
+          // disable every multiple of 8
+          // return !(date.getDate() % 8);
         }
-    ]
+      ]
     })
+    flatpickr(".timepicker", {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i-K",
+      mode: "range",
+
+    })
+
   </script>
+
+
+
+
+
+
+
+
+
   <style>
     .flatpickr-calendar::before {
       display: none;
-    
+
     }
 
-    .flatpickr-calendar.inline{
-      background-color: blueviolet;
+    .flatpickr-day.flatpickr-disabled,
+    .flatpickr-day.flatpickr-disabled:hover,
+    .flatpickr-day.prevMonthDay,
+    .flatpickr-day.nextMonthDay,
+    .flatpickr-day.notAllowed,
+    .flatpickr-day.notAllowed.prevMonthDay,
+    .flatpickr-day.notAllowed.nextMonthDay {
+      color: #3C3844;
+      /* box-shadow: 0px 4px 4px rgba(87, 255, 245, 0.25); */
     }
 
-    .flatpickr-calendar{
-      top:100px !important;
+    .flatpickr-day {
+      color: black;
+    }
+
+    div.flatpickr-months .flatpickr-month {
+      color: white;
+    }
+
+
+    .flatpickr-day {
+      color: #7A7585;
+    }
+
+    .flatpickr-calendar {
+      /* top: 100px !important; */
+    }
+
+    span.flatpickr-weekday {
+      font-size: 16px;
+      color: #F6FAFB;
+      padding: 5px;
+    }
+
+    .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
+      background-color: #040F15;
+    }
+
+    .flatpickr-monthDropdown-month {
+      color: #F37F15;
+    }
+
+    .flatpickr-months .flatpickr-prev-month,
+    .flatpickr-months .flatpickr-next-month {
+      fill: white;
+    }
+
+
+
+
+
+    .flatpickr-day.selected,
+    .flatpickr-day.startRange,
+    .flatpickr-day.endRange,
+    .flatpickr-day.selected.inRange,
+    .flatpickr-day.startRange.inRange,
+    .flatpickr-day.endRange.inRange,
+    .flatpickr-day.selected:focus,
+    .flatpickr-day.startRange:focus,
+    .flatpickr-day.endRange:focus,
+    .flatpickr-day.selected:hover,
+    .flatpickr-day.startRange:hover,
+    .flatpickr-day.endRange:hover,
+    .flatpickr-day.selected.prevMonthDay,
+    .flatpickr-day.startRange.prevMonthDay,
+    .flatpickr-day.endRange.prevMonthDay,
+    .flatpickr-day.selected.nextMonthDay,
+    .flatpickr-day.startRange.nextMonthDay,
+    .flatpickr-day.endRange.nextMonthDay {
+      background-color: #F37F15;
+      border: #F37F15;
+    }
+
+
+    .flatpickr-day.inRange,
+    .flatpickr-day.prevMonthDay.inRange,
+    .flatpickr-day.nextMonthDay.inRange,
+    .flatpickr-day.today.inRange,
+    .flatpickr-day.prevMonthDay.today.inRange,
+    .flatpickr-day.nextMonthDay.today.inRange,
+    .flatpickr-day:hover,
+    .flatpickr-day.prevMonthDay:hover,
+    .flatpickr-day.nextMonthDay:hover,
+    .flatpickr-day:focus,
+    .flatpickr-day.prevMonthDay:focus,
+    .flatpickr-day.nextMonthDay:focus {
+      background-color: #F6FAFB;
+
+      box-shadow: -5px 0 0 #F6FAFB, 5px 0 0 #F6FAFB;
+    }
+
+
+    .flatpickr-day.today {
+      border-color: #57FFF5;
     }
   </style>
 </body>
