@@ -63,27 +63,24 @@ p:before {
 }
 
 //上下按鈕
-
+.contect_question{
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
 .contect_btn {
-    float: right;
     background: none;
     border: 0;
     outline: none;
     color: white;
-    // display: inline-block;
+    display: flex;
+   
 }
 .contect_answer {
     background-color: #4f4f4f;
     display: none;
 }
 
-.contect_up {
-    display: none;
-}
-
-ul > li.-on > .contect_btn .contect_down {
-    display: none;
-}
-ul > li.-on > .contect_btn .contect_up {
-    display: block;
+.-change-color{
+    color: #57fff5;
 }

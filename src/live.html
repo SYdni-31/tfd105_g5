@@ -1,165 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- font awesome -->
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
-      integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
-      crossorigin="anonymous"
-    />
-    <!-- title icon -->
-    <link rel="icon" href="img/tianlam-logo-mainblack.svg" />
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- aos動畫 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <title>聚策展-範例頁</title>
-  </head>
 
-  <body>
-    <!-- header -->
-    <nav>@@include('layout/nav.html')</nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <!-- css -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+    integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+  <!-- title icon -->
+  <link rel="icon" href="img/tianlam-logo-mainblack.svg" />
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- aos動畫 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <title>聚策展-範例頁</title>
+</head>
 
-    <header>
-        @@include('layout/login.html')
-    </header>
-    <!-- content，各自頁面的html寫在這邊以下都是範例 -->
-    <main>
-      <section>
-        <div class="live-container">
-          <!-- 影片區 -->
-          <div class="live-viedo-container">
-            <h2>
-              抱歉，目前無直播<br />下一次直播時間 : <br />2022/03/14 09:00
-            </h2>
-            <iframe
-              width="900"
-              height="500"
-              src=""
-              title="video"
-              frameborder="0"
-              class="live-viedo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            >
-            </iframe>
-          </div>
-          <!-- 留言板(PC) -->
-          <div class="live-board-container -live-on">
-            <div class="live-board">
-              <div class="search-container-title">
-                <img
-                  src="img/live/live-arrow.svg"
-                  alt="留言板開關"
-                  id="live-icon-img"
-                />
-                <h3 id="search-container-title-h3">留言板</h3>
-              </div>
-              <!-- 留言顯示區 -->
-              <div class="result-block">
-                <div class="search-container"></div>
-              </div>
-              <!-- 打字傳送區 -->
-              <div class="input-block">
-                <input
-                  type="text"
-                  id="live-text-input"
-                  placeholder="傳送訊息"
-                  class="input"
-                />
-                <!-- 上課測試 -->
-                <!-- <input type="text" id="username" name="username" placeholder="帳號" class="input" />
+<body>
+  <!-- header -->
+  <nav>@@include('layout/nav.html')</nav>
+
+  <header>
+    @@include('layout/login.html')
+  </header>
+  <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+  <main>
+    <section>
+      <div class="live-container">
+        <!-- 影片區 -->
+        <div class="live-viedo-container">
+          <h2>
+            抱歉，目前無直播<br />下一次直播時間 : <br />2022/03/14 09:00
+          </h2>
+          <iframe width="900" height="500" src="" title="video" frameborder="0" class="live-viedo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <!-- 留言板(PC) -->
+        <div class="live-board-container -live-on">
+          <div class="live-board">
+            <div class="search-container-title">
+              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" />
+              <h3 id="search-container-title-h3">留言板</h3>
+            </div>
+            <!-- 留言顯示區 -->
+            <div class="result-block">
+              <div class="search-container"></div>
+            </div>
+            <!-- 打字傳送區 -->
+            <div class="input-block">
+              <input type="text" id="live-text-input" placeholder="傳送訊息" class="input" />
+              <!-- 上課測試 -->
+              <!-- <input type="text" id="username" name="username" placeholder="帳號" class="input" />
               <input type="text" id="password" name="password" placeholder="密碼" class="input" />
               <div class="test-div">123</div> -->
 
-                <!-- 上課測試圖片 -->
-                <!-- <input type="file" id="file-test">
+              <!-- 上課測試圖片 -->
+              <!-- <input type="file" id="file-test">
               <br>
               <img src="" alt="" id="file-img"> -->
 
-                <button class="btn-short" id="live-submit" type="button">
-                  送出
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- 留言板(RWD) -->
-          <div class="live-board-container -live-on">
-            <div class="live-board">
-              <div class="search-container-title">
-                <img
-                  src="img/live/live-arrow.svg"
-                  alt="留言板開關"
-                  id="live-icon-img"
-                />
-                <h3 id="search-container-title-h3">留言板</h3>
-              </div>
-              <!-- 留言顯示區 -->
-              <div class="result-block">
-                <div class="search-container"></div>
-              </div>
-              <!-- 打字傳送區 -->
-              <div class="input-block">
-                <input
-                  type="text"
-                  id="live-text-input"
-                  placeholder="傳送訊息"
-                  class="input"
-                />
-                <!-- 上課測試 -->
-                <!-- <input type="text" id="username" name="username" placeholder="帳號" class="input" />
-                      <input type="text" id="password" name="password" placeholder="密碼" class="input" />
-                      <div class="test-div">123</div> -->
-
-                <!-- 上課測試圖片 -->
-                <!-- <input type="file" id="file-test">
-                      <br>
-                      <img src="" alt="" id="file-img"> -->
-
-                <button class="btn-short" id="live-submit" type="button">
-                  送出
-                </button>
-              </div>
+              <button class="btn-short" id="live-submit" type="button">
+                送出
+              </button>
             </div>
           </div>
         </div>
-      </section>
-      <section>
-        <ul class="live-company-text">
-          <li>
-            <div class="live-company-title">
-              <img src="img/live/compnay-title.png" alt="現在直播廠商" />
-              <h2>現在直播廠商</h2>
+        <!-- 留言板(RWD) -->
+        <div class="live-board-container -live-on">
+          <div class="live-board">
+            <div class="search-container-title">
+              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" />
+              <h3 id="search-container-title-h3">留言板</h3>
             </div>
-            <h3>台灣積體電路製造股份有限公司(台積電)</h3>
-          </li>
-          <li>
-            <div class="live-company-email">
-              <img src="img/live/compnay-email.png" alt="聯絡方式" />
-              <h2>聯絡方式</h2>
+            <!-- 留言顯示區 -->
+            <div class="result-block">
+              <div class="search-container"></div>
             </div>
-            <h3>email: test@gmail.com</h3>
-          </li>
-        </ul>
-      </section>
-    </main>
-    <!-- footer -->
-    <footer>@@include('layout/footer.html')</footer>
+            <!-- 打字傳送區 -->
+            <div class="input-block">
+              <input type="text" id="live-text-input" placeholder="傳送訊息" class="input" />
+              <!-- 上課測試 -->
+              <!-- <input type="text" id="username" name="username" placeholder="帳號" class="input" />
+                      <input type="text" id="password" name="password" placeholder="密碼" class="input" />
+                      <div class="test-div">123</div> -->
 
-    <!-- 先連結main再連結各自設的js -->
-    <script src="js/main.min.js"></script>
-    <script src="js/login.min.js"></script>
-    <script src="js/index.min.js"></script>
-    <script src="js/live.min.js"></script>
-    <script></script>
-  </body>
+              <!-- 上課測試圖片 -->
+              <!-- <input type="file" id="file-test">
+                      <br>
+                      <img src="" alt="" id="file-img"> -->
+
+              <button class="btn-short" id="live-submit" type="button">
+                送出
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <ul class="live-company-text">
+        <li>
+          <div class="live-company-title">
+            <img src="img/live/compnay-title.png" alt="現在直播廠商" />
+            <h2>現在直播廠商</h2>
+          </div>
+          <h3>台灣積體電路製造股份有限公司(台積電)</h3>
+        </li>
+        <li>
+          <div class="live-company-email">
+            <img src="img/live/compnay-email.png" alt="聯絡方式" />
+            <h2>聯絡方式</h2>
+          </div>
+          <h3>email: test@gmail.com</h3>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <!-- footer -->
+  <footer>@@include('layout/footer.html')</footer>
+
+  <!-- 先連結main再連結各自設的js -->
+  <script src="js/main.min.js"></script>
+  <script src="js/login.min.js"></script>
+  <script src="js/index.min.js"></script>
+  <script src="js/live.min.js"></script>
+  <script></script>
+</body>
+
 </html>
