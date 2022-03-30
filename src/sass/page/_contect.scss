@@ -15,11 +15,23 @@
     padding: 10px;
 }
 
-p:before {
-    content: attr(type);
+// p:before {
+//     content: attr(type) ;
+//     display: block;
+//     font-size: 16px;
+//     color: white;
+// }
+.contect_introduction span {
+    color: #f6fafb;
     display: block;
     font-size: 16px;
-    color: white;
+}
+.contect_mark:before{
+    content: "*";
+    display: block;
+    color: #F37F15;
+    display: inline-block;
+
 }
 .contect_box {
     width: 100%;
