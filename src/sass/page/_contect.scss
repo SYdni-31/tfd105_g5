@@ -12,7 +12,7 @@
 .contect_introduction {
     // width: 530px;
     background-color: #333333;
-    padding: 10px;
+    padding: 20px;
 }
 
 // p:before {
@@ -33,6 +33,9 @@
     display: inline-block;
 
 }
+.contect_name{
+    padding-top: 5px;
+}
 .contect_box {
     width: 100%;
     padding-left: 42px;
@@ -46,17 +49,39 @@
     border-radius: 0;
     padding: 10px;
     background: none;
+    font-size: 16px;
     outline: 0;
 }
 
+//訊息欄位
+.contect_message{
+    height: 255px;
+}
 .contect_box:focus {
     border: 2px solid #57fff5;
 }
-
+//為了和右邊聯絡資訊同高度 調整textarea高度
+@media (min-width:614px) and (max-width:956px){
+    .contect_message{
+        height: 281px;
+    }
+}
+@media (min-width:576px) and (max-width:613.99px){
+    .contect_message{
+        height: 308px;
+    }
+}
+//rwd 直行縮小高度
+@media screen and (max-width:575.99px){
+    .contect_message{
+        height: 166px;
+    }
+    
+}
 //右邊聯絡資訊
 .contect_information {
     background-color: #333333;
-   padding: 10px;
+    padding: 20px;
     // width: 530px;
 }
 
@@ -69,7 +94,17 @@
 
 .contect_map > iframe{
 max-width: 100%;
+height: 450px;
 }
+
+//rwd 直行縮小高度
+@media screen and (max-width:575.99px){
+    .contect_map > iframe{
+        max-width: 100%;
+        height: 400px;
+        }
+}
+
 //縮和Q&A
 .contect_question {
     background-color: #4f4f4f;
