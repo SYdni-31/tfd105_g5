@@ -128,6 +128,11 @@
                     box-shadow: inset 0 0 5px grey;
                     border-radius: 5px; 
                 }
+                .chat_content{
+                    span{
+                        min-width: 110px;
+                    }
+                }
                 .chat_content:first-of-type{
                     margin-top: 10px;
                 }
@@ -214,6 +219,7 @@
 
 .extend_content{
     width: 95%;
+    word-break: break-all;
     h3{
         display: inline-block;
         width: 30%;
@@ -269,14 +275,14 @@
 @include laptop(1200px){
     .extend_main{
         .swiper-button-next, .swiper-button-prev{
-            top:40vw;
+            top:60vw;
         }
     }
 }
 @include mobile(576px){
     .extend_content{
         h3{
-            font-size: 16px;
+            font-size: 14px;
         }
     }
 } 
