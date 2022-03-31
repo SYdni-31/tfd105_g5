@@ -67,7 +67,7 @@
         </div>
         <!-- 攤位圖&內容&各自聊天室 -->
         <div class="swiper-wrapper extend_body swiper-no-swiping">
-          <div class="swiper-slide wrapper">
+          <div class="swiper-slide">
             <section class="extend_look">
               <article class="extend_booth1">
                 <img src="img/extend/booth1.png" alt="">
@@ -185,67 +185,86 @@
               </div>
               <i class="fa-solid fa-comment-dots extend_chat"></i>
             </a>
-          </section>
-          <section class="extend_content wrapper -border_maincolor pall-20">
-            <h3 class="pb-20 content_point content_pointed">關於我們</h3>
-            <h3 class="pb-20 content_point">技術展示</h3>
-            <h3 class="pb-20 content_point">展覽影片</h3>
-            <article class="content_inner content_about">
-              <h4 class="mall-10">宏達國際電子<br>
-                <br>
-                簡稱宏達電或HTC，為源自臺灣的跨國消費性電子產品公司，成立於1997年，目前以研發與製造智慧型手機與虛擬實境裝置為主要業務，為全球第二大VR頭戴顯示器製造商。<br>
-                2018年，宏達電以2.67億美金的品牌價值入選當年台灣20大國際品牌，名列第14。<br>
-              </h4>
-            </article>
-            <article class="content_inner content_tech -hide">
-              <div class="-margin0auto pt-30">
-                <h4 class="mr-10">技術名稱1</h4>
-                <div>
-                  <a href="#" class="btn-short mall-10">CONTACT</a>
-                  <a href="#" class="btn-short mall-10">VIEW</a>  
-                </div>
+            <!-- chatbox彈窗 -->
+            <article class="extend_chatbox -border_maincolor -hide">
+              <div class="chat_title mall-10 pall-10">
+                <h3><i class="fa-solid fa-address-card main-color"></i>
+                廠商名稱</h3>
+                <span class="chatbox_close"><i class="fa-regular fa-circle-xmark main-color"></i></span>
               </div>
-              <div class="-margin0auto pt-30">
-                <h4 class="mr-10">技術名稱2</h4>
-                <div>
-                  <a href="#" class="btn-short mall-10">CONTACT</a>
-                  <a href="#" class="btn-short mall-10">VIEW</a>  
-                </div>
+              <div class="chated">
+              <p class="chat_content chat_content_you pall-5 mall-10 mt-30 ml-30">你今天過得好嗎?<span>3/30, 2:01pm</span></p>
+              <p class="chat_content chat_content_you pall-5 mall-10 mt-30 ml-30">我過得很好喔<span>3/30, 2:01pm</span></p>
+              <p class="chat_content chat_content_me pall-5 mall-10 mt-30 mr-30">對啊團專<span>3/30, 2:01pm</span></p>
+              <p class="chat_content chat_content_me pall-5 mall-10 mt-30 mr-30">哭啊大家的動作也太快了吧<span>Today, 2:01pm</span></p>
+              <p class="chat_content chat_content_you pall-5 mall-10 mt-30 ml-30">所以你要振作一點阿<span>Today, 2:01pm</span></p>
               </div>
-              <div class="-margin0auto pt-30">
-                <h4 class="mr-10">技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3</h4>
-                <div>
-                  <a href="#" class="btn-short mall-10">CONTACT</a>
-                  <a href="#" class="btn-short mall-10">VIEW</a>  
-                </div>
-              </div>
-              <div class="-margin0auto pt-30">
-                <h4 class="mr-10">技術名稱4</h4>
-                <div>
-                  <a href="#" class="btn-short mall-10">CONTACT</a>
-                  <a href="#" class="btn-short mall-10">VIEW</a>  
-                </div>
-              </div>
-              <div class="-margin0auto pt-30">
-                <h4 class="mr-10">技術名稱5</h4>
-                <div>
-                  <a href="#" class="btn-short mall-10">CONTACT</a>
-                  <a href="#" class="btn-short mall-10">VIEW</a>  
-                </div>
-              </div>
-              <div class="-margin0auto pt-30">
-                <h4 class="mr-10">技術名稱6</h4>
-                <div>
-                  <a href="#" class="btn-short mall-10">CONTACT</a>
-                  <a href="#" class="btn-short mall-10">VIEW</a>  
-                </div>
+              <div class="chat_input">
+                <input type="text" placeholder="請輸入訊息內容...">
+                <button class="btn-short"><i class="fa-solid fa-paper-plane"></i></button>
               </div>
             </article>
-            <article class="content_inner content_video -hide">
-              <iframe class="video -margin0auto" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
-              <a class="pt-20" href="./live.html"><button class="btn-short -margin0auto">前往觀看</button></a>
-            </article>
-          </section>
+            </section>
+            <section class="extend_content wrapper -border_maincolor pall-20">
+              <h3 class="pb-20 content_point content_pointed">關於我們</h3>
+              <h3 class="pb-20 content_point">技術展示</h3>
+              <h3 class="pb-20 content_point">展覽影片</h3>
+              <article class="content_inner content_about">
+                <h4 class="mall-10">宏達國際電子<br>
+                  <br>
+                  簡稱宏達電或HTC，為源自臺灣的跨國消費性電子產品公司，成立於1997年，目前以研發與製造智慧型手機與虛擬實境裝置為主要業務，為全球第二大VR頭戴顯示器製造商。<br>
+                  2018年，宏達電以2.67億美金的品牌價值入選當年台灣20大國際品牌，名列第14。<br>
+                </h4>
+              </article>
+              <article class="content_inner content_tech -hide">
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱1</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱2</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱4</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱5</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+                <div class="-margin0auto pt-30">
+                  <h4 class="mr-10">技術名稱6</h4>
+                  <div>
+                    <a href="#" class="btn-short mall-10">CONTACT</a>
+                    <a href="#" class="btn-short mall-10">VIEW</a>  
+                  </div>
+                </div>
+              </article>
+              <article class="content_inner content_video -hide">
+                <iframe class="video -margin0auto" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
+                <a class="pt-20" href="./live.html"><button class="btn-short -margin0auto">前往觀看</button></a>
+              </article>
+            </section>
           </div>
           <div class="swiper-slide">
             <section class="extend_look">

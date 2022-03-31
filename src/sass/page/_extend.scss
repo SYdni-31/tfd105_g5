@@ -249,15 +249,16 @@
                 overflow: hidden;
                 text-overflow : ellipsis;
             }
-            a{
-                font-size: 15px;;
-                width: 100px;
-                padding:4px 10px;
-                display : inline-block;
-            }
             div{
                 margin-left: auto;
                 text-align: right;
+                display: flex;
+                a{
+                    font-size: 14px;;
+                    width: 95px;
+                    padding:4px;
+                    word-break: keep-all;
+                }
             }
             &:last-of-type{
                 margin-bottom: 40px;
@@ -266,8 +267,8 @@
     }
     .content_video{
         .video{
-            width: 80vw;
-            height: 45vw;           
+            width: 80%;
+            height: 40vw;           
         }
     } 
 }
