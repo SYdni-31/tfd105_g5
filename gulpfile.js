@@ -11,14 +11,28 @@ const {
 function package() {
     return src(['src/img/*.*', 'src/img/**/*.*']).pipe(dest('dist/img'))
  }
-
 // 改檔名套件
 const rename = require('gulp-rename');
+
+// sass編譯
+const sass = require('gulp-sass')(require('sass'));
+const sourcemaps = require('gulp-sourcemaps');
+function sassstyle() {
+    return src('./src/sass/*.scss')
+       .pipe(sourcemaps.init())
+       .pipe(sass.sync().on('error', sass.logError))
+       .pipe(sourcemaps.write())
+       .pipe(dest('./dist/css'));
+ }
+exports.s = sassstyle;
 
 // css壓縮套件
 const cleanCSS = require('gulp-clean-css');
 function minicss() {
-    return src('src/*.css')
+    return src('./src/sass/*.scss')
+       .pipe(sourcemaps.init())
+       .pipe(sass.sync().on('error', sass.logError))
+       .pipe(sourcemaps.write())
        .pipe(cleanCSS())
        .pipe(rename({
           extname: '.min.css'
@@ -26,6 +40,16 @@ function minicss() {
        .pipe(dest('dist/css'))
  }
  exports.c = minicss;
+
+// 檔案整合套件
+const concat = require('gulp-concat');
+function concatall_css() {
+   return src('src/*.css')
+      .pipe(concat('all.css')) // 整合成一支css
+      .pipe(cleanCSS()) // minify css
+      .pipe(dest('dist/css'));
+}
+exports.allcss = concatall_css;
 
 //  js壓縮套件 
 const uglify = require('gulp-uglify');
@@ -41,28 +65,6 @@ function minijs() {
       .pipe(dest('dist/js'))
 }
 exports.ugjs = minijs;
-
-// 檔案整合套件
-const concat = require('gulp-concat');
-function concatall_css() {
-   return src('src/*.css')
-      .pipe(concat('all.css')) // 整合成一支css
-      .pipe(cleanCSS()) // minify css
-      .pipe(dest('dist/css'));
-}
-exports.allcss = concatall_css;
-
-// sass編譯
-const sass = require('gulp-sass')(require('sass'));
-const sourcemaps = require('gulp-sourcemaps');
-function sassstyle() {
-    return src('./src/sass/*.scss')
-       .pipe(sourcemaps.init())
-       .pipe(sass.sync().on('error', sass.logError))
-       .pipe(sourcemaps.write())
-       .pipe(dest('./dist/css'));
- }
-exports.s = sassstyle;
 
 // 合併html的套件，使用@@作為變數宣告，@@作為引用代號
 const fileinclude = require('gulp-file-include');
@@ -138,12 +140,11 @@ function clear() {
   .pipe(clean({force: true})); //強制刪除檔案 
 }
 
-
 exports.cls = clear
 
 
- exports.default = series(parallel(includeHTML ,sassstyle, minijs ,package),browser) 
+ exports.default = series(parallel(includeHTML, sassstyle, package),browser) 
  
  // online
-exports.online = series(clear, parallel(includeHTML ,sassstyle , babel5 , min_images))
+exports.online = series(clear, parallel(includeHTML, minicss, minijs, babel5, min_images))
  
