@@ -108,7 +108,9 @@ const imagemin = require('gulp-imagemin');
 
 function min_images(){
     return src(['src/img/*.*' , 'src/img/**/*.*'])
-    .pipe( imagemin.optipng({optimizationLevel: 6})// png 壓縮 數字越高 壓縮越大)
+    .pipe(imagemin([
+      imagemin.optipng({optimizationLevel: 6}) // 壓縮品質      quality越低 -> 壓縮越大 -> 品質越差 
+  ]))
     .pipe(dest('dist/img'))
 }
 
