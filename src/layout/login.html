@@ -1,7 +1,7 @@
 <form class="login" id="login">
     <div class="member" id="">
-        <a class="btn btn-close" id="BtnClose"><i class="fa-solid fa-xmark"></i></a>
-        <section class="form-container company-sign-in-container" id="company-sign-in-container">
+        <a class="btn login_btn-close" id="BtnClose"><i class="fa-solid fa-xmark"></i></a>
+        <div class="form-container company-sign-in-container" id="company-sign-in-container">
             <h2 class="mb-30 h2-white">廠商登入</h2>
             <div class="field">
                 <input type="text" id="email-1" required autocomplete="off" placeholder="" class="login_signup" />
@@ -16,10 +16,9 @@
                 <button type="button" class="btn-short ml-10" id="login_btn_signup">註冊</button>
             </div>
             <a href="#" class="mt-20 forget-a">忘記密碼?</a>
+        </div>
 
-        </section>
-
-        <section class="form-container guest-sign-in-container">
+        <div class="form-container guest-sign-in-container">
             <h2 class="mb-30 guestsignin h2-black">我是訪客</h2>
             <div class="field">
                 <input type="text" id="name-1" required autocomplete="off" class="login_signup" placeholder="" />
@@ -33,11 +32,10 @@
                 <input type="text" id="Company-1" required autocomplete="off" class="login_signup" placeholder="" />
                 <label for="Company-1" title="貴公司單位" data-title="Company"></label>
             </div>
-
             <button type="button" class="btn-short btn-2">參觀</button>
-        </section>
+        </div>
 
-        <section class="form-signup company-sign-up-container">
+        <div class="form-signup company-sign-up-container">
             <h2 class="companysignup mt-45 h2-black">廠商註冊</h2>
             <div class="field">
                 <input type="text" id="name-2" required autocomplete="off" class="login_signup" placeholder="" />
@@ -61,29 +59,29 @@
                 <option value="">Tián lám 2022智慧全球科技聚策展</option>
             </select>
 
-            <button type="submit" class="btn-short btn-2">送出資料</button>
-        </section>
+            <button type="submit" class="btn-short btn-2 login_btn_submitinfo">送出資料</button>
+        </div>
 
-        <section class="received-form">
+        <div class="received-form">
             <p class="rcvd">已收到申請!</p>
             <p>我們已收到您的詳細資料，<br>審核工作天為7個工作天，<br>敬請耐心等候~</p>
-            <button type="button" class="btn-2 btn-short">確認</button>
-        </section>
+            <button type="button" class="btn-2 btn-short login_btn_confirm">確認</button>
+        </div>
         
-        <section class="form-forget-password">
+        <div class="form-forget-password" id="form-forget-password">
             <h2 class="h2-forget">忘記密碼</h2>
             <ul>
                 <li><i class="fa-solid fa-envelope"></i></li>
                 <li><input type="text" id="changeemail" required autocomplete="off" placeholder="電子郵件" /></li>
             </ul>
             <button type="submit" class="give btn-short ">寄送驗證信</button>
-        </section>
+        </div>
 
-        <article class="overlay-container form-container" id="overlay-slide">
+        <div class="overlay-container form-container" id="overlay-slide">
             <h2 class="welcome">歡迎回來</h2>
             <p class="welslogan">登入為您的展覽創造無限可能 </p>
             <button class="ghost btn-short" id="signIn">登入會員</button>
-        </article>
+        </div>
 
     </div>
 
