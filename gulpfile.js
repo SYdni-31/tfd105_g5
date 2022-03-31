@@ -11,6 +11,12 @@ const {
 function package() {
     return src(['src/img/*.*', 'src/img/**/*.*']).pipe(dest('dist/img'))
  }
+// 打包js但先不壓縮
+function packagejs() {
+    return src('src/js/*.js').pipe(rename({
+        extname: '.min.js' 
+     })).pipe(dest('dist/js'))
+ }
 // 改檔名套件
 const rename = require('gulp-rename');
 
@@ -32,11 +38,11 @@ function minicss() {
     return src('./src/sass/*.scss')
        .pipe(sourcemaps.init())
        .pipe(sass.sync().on('error', sass.logError))
-       .pipe(sourcemaps.write())
        .pipe(cleanCSS())
        .pipe(rename({
           extname: '.min.css'
        }))
+       .pipe(sourcemaps.write())
        .pipe(dest('dist/css'))
  }
  exports.c = minicss;
@@ -69,7 +75,7 @@ exports.ugjs = minijs;
 // 合併html的套件，使用@@作為變數宣告，@@作為引用代號
 const fileinclude = require('gulp-file-include');
 function includeHTML() {
-    return src('src/*.html')
+    return src(['src/*.html' , 'src/backstage/*.html' ])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
@@ -97,8 +103,8 @@ function browser(done) {
         port: 3000
      });
     watch(['src/*.html' , 'src/layout/*.html' ,] , includeHTML).on('change' , reload);
-    watch(['src/sass/*.scss' , 'src/sass/**/*.scss'] , sassstyle).on('change' , reload);
-    watch(['src/js/*.js' , 'src/js/**/*.js'] , minijs).on('change' , reload);
+    watch(['src/sass/*.scss' , 'src/sass/**/*.scss'] , minicss).on('change' , reload);
+    watch(['src/js/*.js' , 'src/js/**/*.js'] , packagejs).on('change' , reload);
     watch(['src/img/*.*' ,  'src/img/**/*.*'] , package).on('change' , reload);
     done();
  }
@@ -143,7 +149,7 @@ function clear() {
 exports.cls = clear
 
 
- exports.default = series(parallel(includeHTML, sassstyle, package),browser) 
+exports.default = series(parallel(includeHTML, minicss, packagejs, package),browser) 
  
  // online
 exports.online = series(clear, parallel(includeHTML, minicss, minijs, babel5, min_images))

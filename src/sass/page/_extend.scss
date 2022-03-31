@@ -10,6 +10,9 @@
             max-height: 91.15px;
         }
     }
+    h1.cblook_top{
+        width: 100%;
+    }
 }
 
 // ======攤位圖======
@@ -27,8 +30,8 @@
         }
         .extend_banner{
             @include flex-box(33%,flex-start,center);
-            height: 7.1vw;
-            max-height: 85px;
+            height: calc(7.5vw - 4px);
+            max-height: 86px;
             @media screen and (max-width: $md_bkpoint) {
                 flex-wrap: nowrap;
             }
@@ -48,7 +51,7 @@
                 @include absolute(47.5%, null, null, 26%);
             };
             .extend_banner{
-                @include absolute(15.1%, null, null, 27.7%);
+                @include absolute(14.9%, null, null, 27.7%);
             }
         }
         .extend_booth2{
@@ -57,7 +60,7 @@
                 @include absolute(47.5%, null, null, 25%);
             };
             .extend_banner{
-                @include absolute(17.2%, null, null, 24.8%);
+                @include absolute(17.1%, null, null, 24.8%);
             }
         }
         .extend_booth3{
@@ -66,7 +69,7 @@
                 @include absolute(36%, null, null, 32.5%);
             };
             .extend_banner{
-                @include absolute(2.7%, null, null, 34.5%);
+                @include absolute(2.6%, null, null, 34.5%);
             }
         }   
         .extend_chat_btn{
@@ -98,7 +101,7 @@
             }
         }
         .extend_chatbox{
-            @include absolute(10%,null, null, 50%);
+            @include absolute(20%,null, null, 50%);
             transform: translateX(-50%);
             background-color: $black-color;
             height: 450px;
@@ -286,4 +289,10 @@
             font-size: 14px;
         }
     }
-} 
+    .extend_body .extend_look .extend_chatbox{
+        @include absolute(-10%,null, null, 50%);
+    }
+    h1.cblook_top{
+        font-size: 26px;
+    }
+}
