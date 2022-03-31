@@ -1,9 +1,11 @@
-// section
-img {
-width: 100vw;
-position: relative; // w/ div.index_title
+// 外層>img
+.index_block{
+    img {
+    max-width: 1440px;
+    width: 100%;
+    position: relative; // w/ div.index_title
+    }
 }
-
 
 // div&h1
 .index_title {
@@ -156,10 +158,5 @@ position: relative; // w/ div.index_title
                 }
             }
         }
-}
+}}
 
-
-// rwd 1200px-1400px
-@media (min-width: 1200px) and (max-width: 1399.98px){
-
-}
