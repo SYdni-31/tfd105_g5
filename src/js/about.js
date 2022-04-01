@@ -37,20 +37,17 @@ for (let i = 0; i < speaker.length; i++) {
   speaker[i].addEventListener("click", function () {
     console.log(speaker[i]);
     (speaker[i]).classList.add("-hide");
-    // for (let i = 0; i < speaker_.length; i++) {
     (speaker_[i]).classList.add("-show");
     (speaker_[i]).classList.remove("-hide");
-    // };
+
 
   });
 
 }
 for (let i = 0; i < speaker_.length; i++) {
   speaker_[i].addEventListener("click", function () {
-    // for (let i = 0; i < speaker_.length; i++) {
-      (speaker_[i]).classList.add("-hide");
-      (speaker_[i]).classList.remove("-show");
-    // };
+    (speaker_[i]).classList.add("-hide");
+    (speaker_[i]).classList.remove("-show");
     (speaker[i]).classList.add("-show");
     (speaker[i]).classList.remove("-hide");
 

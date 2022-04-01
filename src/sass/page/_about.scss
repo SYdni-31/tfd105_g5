@@ -97,6 +97,21 @@
     display: inline;
 }
 
+.about_time{
+    border-right:6px solid white;
+    padding-right: 10px;
+}
+.about_theme{
+    padding-left: 10px;
+}
+
+// .about_time::after{
+//     content: "";
+//     background-color: white;
+//     width: 10px;
+//     height: 42px;
+//     display:inline-block;
+// }
 .about_speakers {
     display: flex;
     text-align: center;
@@ -149,7 +164,7 @@
     display: flex;
     align-content: space-between;
     justify-content: space-around;
-    height: 480px;
+   
 }
 
 @media (max-width: 1100px) {
