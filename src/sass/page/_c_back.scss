@@ -1,8 +1,7 @@
 
 
 
-.wrapper{
-    padding: 40px 20px 20px 20px;
+.company_wrapper{
     .companyback_dateform{
         position: relative;
         display: flex;
@@ -127,6 +126,17 @@
     padding-top: 80px;
 }
 
+.chat1_company{
+    overflow-y: auto;
+    .sechtion_chat2{
+        overflow-y: auto;
+    }
+}
+
+
+
+
+
 .companyback_search{
     .companyback_searchinput{
     background: #0D0D0D;
@@ -153,13 +163,23 @@
 
 
 // 第一個聊天室
+.companyback_main_chatbox{
+    display: flex;
+
+}
+
+
+
+
+
 section.companyback_chat1{
     width: 427px;
     // height: 347px;
+    background-color: #0D0D0D;
     box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
     padding: 21px;
     border-radius: 20px;
-    
+    display: inline-block;
 }
 
 
@@ -170,7 +190,7 @@ section.companyback_chat1{
             color: #F37F15;
         }
     li.variouscompany{
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 10px 2px;
        
         display: flex;
@@ -213,4 +233,128 @@ li.variouscompany{
          }
         }
     }
+}
+
+
+
+
+//聊天版
+
+.companyback_back_chatbox {
+   width: 666px;
+   padding:30px;
+   background-color: #0D0D0D;
+//    border: 2px solid sandybrown;
+   border-radius: 20px;
+   box-shadow: 0px 4px 4px rgb(0 209 255 / 25%);
+       .chat_title{
+        padding: 10px 25px 35px;
+           display: flex;
+           align-items: center;
+           border-bottom:1px solid rgba(255, 255, 255, 0.25);
+           i{
+            font-size: 65px; 
+            color: $accent-color; 
+             }
+       }
+       .chat_input{
+        display: flex;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding-top: 32px;
+        justify-content: space-between;
+        align-items: center;
+        input{
+            width: 90%;
+            height: 45px;
+            border-radius: 10px;
+            background-color: #212121;
+            border: 1px solid $accent-color;
+            outline: none;
+            color: $second-color;
+            &::selection{
+                background-color: #212121;
+                color: $accent-color;
+            }
+        }
+        .btn-short{
+           padding: 0;
+           font-size: 30px;
+        }
+        .chat_input_button{
+            background-color: $accent-color;
+            border:none ;
+            border-radius: 10px;
+            i{
+                font-size: 30px;
+                color:#212121 ;
+            }
+        }
+    }
+}
+
+//聊天室內部
+.companyback_chated{
+    padding: 10px;
+    overflow-y: auto;
+    
+    &::-webkit-scrollbar{
+        // height:3px;
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track{
+        // background-color: #F6FAFB;
+    }
+    &::-webkit-scrollbar-thumb{
+        // background-color: #F37F15;
+        box-shadow: inset 0 0 4px $accent-color;
+        border-radius: 5px; 
+        
+    }
+    &::-webkit-scrollbar-track-piece{
+
+    }
+    p.chat_content {
+        font-size: 16px;
+        max-width: 60%;
+        border-radius: 10px;
+        border-bottom-left-radius: 0;
+        background-color: #1B1B1B;
+        color: $second-color;
+        position: relative;
+        padding: 15px;
+        width: fit-content;
+        
+        span{
+            position: absolute;
+            bottom: -20px;
+            left: 4px;
+            color: #f6fafb78;
+            font-size: 12px;
+            min-width: 110px;  
+            };
+        &::before{
+            content: "";
+        position: absolute;
+        bottom: 0;
+        left: -10px;
+        border-color: transparent transparent  #1B1B1B transparent;
+        border-style: solid solid solid solid;
+        border-width: 20px 0px 10px 10px;
+        height: 0px;
+        width: 0px;    
+   
+        }
+        
+    }
+    p.chat_content_you{
+        margin-left: auto;
+        background-color:$accent-color;
+        color: $black-color;
+        &::before{
+            left:10px ;
+            border-color: transparent transparent  $accent-color transparent;
+        }
+    }
+   
+
 }
