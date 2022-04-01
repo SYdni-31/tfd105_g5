@@ -323,20 +323,21 @@ li.variouscompany{
         font-size: 16px;
         max-width: 60%;
         border-radius: 10px;
-        border-bottom-left-radius: 0;
         background-color: #1B1B1B;
         color: $second-color;
         position: relative;
         padding: 15px;
         width: fit-content;
-        
+    }
+    p.chat_content_me {
+        border-bottom-left-radius: 0;    
         span{
             position: absolute;
             bottom: -20px;
             left: 4px;
             color: #f6fafb78;
             font-size: 12px;
-            min-width: 110px;  
+            min-width: 110px; 
             };
         &::before{
             content: "";
@@ -356,11 +357,23 @@ li.variouscompany{
         margin-left: auto;
         background-color:$accent-color;
         color: $black-color;
+        border-bottom-right-radius: 0;
         &::before{
-            left:10px ;
-            border-color: transparent transparent  $accent-color transparent;
+            content: '';
+            @include absolute(null,-10px,0);
+            border-color: transparent transparent $accent-color transparent;
+            border-style: solid solid solid solid;
+            border-width: 20px 10px 10px 0px;
+            height: 0px;
+            width: 0px;
+
+        }
+        span{
+            @include absolute(null,5px,-20px);
+            color:#f6fafb78;
+            font-size: 12px;
+            word-wrap:nowrap
         }
     }
-   
 
 }
