@@ -21,7 +21,7 @@
     margin-top: 100px;
     // @include relative();
 
-    .index_title h1 {
+    h1 {
         position: relative;
         text-shadow: 1px 1px 1px (rgba($second-color, 0.7));
     }
@@ -34,19 +34,16 @@
     position: absolute;
     top: 0;
     left: 0;
-    -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+    // -webkit-clip-path: ellipse(100px 100px at 0% 50%);
     clip-path: ellipse(100px 100px at 0% 50%);
-    animation: spotlight 3s infinite;
-    background: $accent-color; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, $accent-color, #dc3005); /* Chrome 10-25, Safari 5.1-6 */
+    animation: spotlight 4s infinite;
     background: linear-gradient(
         to right,
         $accent-color,
         #dc3005
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    );
     background-size: 100%;
-    background-position: left top;
+    background-position: center center;
     -webkit-background-clip: text;
     background-clip: text;
 }
@@ -117,7 +114,7 @@
 }
 
 
-//rwd 1400px-1600px
+// rwd 1400px-1600px
 @media (min-width: 1400px) and (max-width: 1599.98px){
     .index_title {
         h1 {
@@ -129,39 +126,30 @@
     .index_swiper_wrapper{
         .index_swiper_container{
             .index_slide {
-            background-position: center;
-            background-size: cover;
             width: 25vw;
             height: 25vw;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-                a {
-                    &:hover {
-                        color: $main-color;
-                    }
-                    img {
-                        display: block;
-                        width: 100%;
-                        @include relative();
-                    }
-                    div {
-                        @include absolute(50%, null, null, 50%);
-                        transform: translate(-50%, -50%);
-
-                        h2,
-                        h3 {
-                            text-align: center;
-                            letter-spacing: 2px;
-                            text-shadow: 1px 1px 1px rgba($second-color, 0.7);
-                            margin-bottom: auto;
-                        }
-                    }
-                }
             }
         }
     }
 }
 
+// rwd 1600-2000px
+@media (min-width: 1600px) and (max-width: 1999.98px){
+    .index_title{
+        margin-top: 120px;
+        h1 {
+            font-size: 50px;
+            // margin-top: 120px;
+        }
+    }
+
+//     .index_swiper_wrapper{
+//         width: 60vw;
+//         .index_swiper_container{
+//             .index_slide {
+//             width: 25vw;
+//             height: 25vw;
+//             }
+//         }
+//     }
+// }
