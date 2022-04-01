@@ -30,8 +30,8 @@
         }
         .extend_banner{
             @include flex-box(33%,flex-start,center);
-            height: calc(7.5vw - 4px);
-            max-height: 86px;
+            height: calc(7.5vw - 1px);
+            max-height: 90px;
             @media screen and (max-width: $md_bkpoint) {
                 flex-wrap: nowrap;
             }
