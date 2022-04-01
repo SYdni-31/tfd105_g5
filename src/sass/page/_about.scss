@@ -128,14 +128,12 @@
 .about_speaker:hover .about_hoverText {
     display: block;
     text-align: left;
-    margin-top: 150px;
+    margin-top: 120px;
 }
-.about_speaker:hover > h3,
-.about_speaker:hover > h4,
-.about_speaker:hover > img {
+.about_speaker:hover .about_speaker_intro{
     display: none;
-    text-align: center;
 }
+
 
 .about_speaker:hover .about_hoverText li {
     text-align: left;
