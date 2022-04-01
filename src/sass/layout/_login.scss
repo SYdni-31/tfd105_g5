@@ -275,6 +275,21 @@ form.login {
         .js-block {
             display: block;
         }
+        .js-none {
+            display: none;
+        }
+        .js-block2 {
+            display: block;
+        }
+        .js-none2 {
+            display: none;
+        }
+        .js-block3 {
+            display: block;
+        }
+        .js-block3{
+
+        }
         .overlay-container {
             width: 410px;
             height: 508px;
@@ -334,5 +349,112 @@ form.-login_page_icon {
 
 .js-slide-right{
     transition: .8s;
+    transform: translateX(0);
+}
+.js-slide-right2{
+    transition: .8s;
     transform: translateX(100%);
+}
+
+@include pad(768px) {
+    form.login {
+        div.member {
+            flex-wrap: wrap;
+            width: 350px;
+            height: 440px;
+            display: block;
+            // margin: 0;
+            // list-style: none;
+            a.login_btn-close{
+                top: 45px;
+            }
+            .tab-title {
+                border-radius: 5px;
+                @include flex-box-center(350px);
+                height: 40px;
+                // list-style: none;
+                li {
+                    background-color: $black-color;
+                    width: 175px;
+                    list-style: none;
+                    box-sizing: border-box;
+                    a {
+                        text-align: center;
+                        color: $second-color;
+                        display: block;
+                        height: 40px;
+                        line-height: 40px;
+                    }
+                }
+                // li:nth-last-child(2n) {
+                //     background-color: $second-color;
+                //     a {
+                //         color: $black-color;
+                //     }
+                // }
+                li.active {
+                    border-bottom: 1px solid $second-color;
+                    background: $second-color;
+                    a{
+                        color: $black-color;
+                    }
+                }
+            }
+            .guest-sign-in-container,
+            .company-sign-up-container,
+            .received-form,
+            .form-forget-password,
+            .form-container {
+                border: 1px solid $main-color;
+                width: 350px;
+                height: 400px;
+                display: none;
+                .h2-white,.h2-black {
+                    margin-top: 24px;
+                    
+                }
+                .label-before {
+                    left: 80px;
+                }
+                .field{
+                    label::before {
+                        // content: attr(title);
+                        // position: absolute;
+                        // top: 0;
+                        left: 90px;
+                        // line-height: 36px;
+                        // font-size: 14px;
+                        // color: $second-color;
+                        // transition: 300ms all;
+                    }
+                }
+            }
+            .company-sign-in-container {
+                width: 350px;
+                height: 400px;
+                display: block;
+                .h2-white,.h2-black {
+                    margin-top: 24px;
+                    
+                }
+                .field{
+                    label::before {
+                        // content: attr(title);
+                        // position: absolute;
+                        // top: 0;
+                        left: 90px;
+                        // line-height: 36px;
+                        // font-size: 14px;
+                        // color: $second-color;
+                        // transition: 300ms all;
+                    }
+                }
+            }
+            .tab-inner {
+                // clear: both;
+                // color: #000;
+                // border: 1px #bcbcbc solid;
+            }
+        }
+    }
 }

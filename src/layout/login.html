@@ -1,7 +1,12 @@
 <form class="login" id="login">
-    <div class="member" id="">
+    <div class="member tab-demo" id="">
         <a class="btn login_btn-close" id="BtnClose"><i class="fa-solid fa-xmark"></i></a>
-        <div class="form-container company-sign-in-container" id="company-sign-in-container">
+        <ul class="tab-title">
+            <li><a href="#company-sign-in-container">廠商</a></li>
+            <li><a href="#tab02">訪客</a></li>
+        </ul>
+        <!-- 廠商登入(右) 預設一開始顯示-->
+        <div class="form-container company-sign-in-container tab-inner" id="company-sign-in-container">
             <h2 class="mb-30 h2-white">廠商登入</h2>
             <div class="field">
                 <input type="text" id="email-1" required autocomplete="off" placeholder="" class="login_signup" />
@@ -17,8 +22,8 @@
             </div>
             <a href="#" class="mt-20 forget-a">忘記密碼?</a>
         </div>
-
-        <div class="form-container guest-sign-in-container">
+        <!-- 訪客登入(左) 預設，點擊頁籤顯示-->
+        <div class="form-container guest-sign-in-container tab-inner" id="tab02">
             <h2 class="mb-30 guestsignin h2-black">我是訪客</h2>
             <div class="field">
                 <input type="text" id="name-1" required autocomplete="off" class="login_signup" placeholder="" />
@@ -34,7 +39,7 @@
             </div>
             <button type="button" class="btn-short btn-2">參觀</button>
         </div>
-
+        <!-- 廠商註冊 (右) 點擊"註冊"，滑動後顯示-->
         <div class="form-signup company-sign-up-container">
             <h2 class="companysignup mt-45 h2-black">廠商註冊</h2>
             <div class="field">
@@ -61,13 +66,13 @@
 
             <button type="submit" class="btn-short btn-2 login_btn_submitinfo">送出資料</button>
         </div>
-
+        <!-- 收到申請 (右) 點擊"送出"，顯示-->
         <div class="received-form">
             <p class="rcvd">已收到申請!</p>
             <p>我們已收到您的詳細資料，<br>審核工作天為7個工作天，<br>敬請耐心等候~</p>
             <button type="button" class="btn-2 btn-short login_btn_confirm">確認</button>
         </div>
-        
+        <!-- 忘記密碼 (右) 點擊""忘記密碼，顯示-->
         <div class="form-forget-password" id="form-forget-password">
             <h2 class="h2-forget">忘記密碼</h2>
             <ul>
@@ -76,7 +81,7 @@
             </ul>
             <button type="submit" class="give btn-short ">寄送驗證信</button>
         </div>
-
+        <!-- 歡迎回來 (左) 滑動後顯示(RWD沒有) --> 
         <div class="overlay-container form-container" id="overlay-slide">
             <h2 class="welcome">歡迎回來</h2>
             <p class="welslogan">登入為您的展覽創造無限可能 </p>
