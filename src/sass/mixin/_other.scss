@@ -15,6 +15,7 @@
     // border-bottom: 1px solid $accent-color;
     border-radius: 5px;
     background-color: black;
+
     // margin-bottom: 20px;
     &:focus {
         outline: 0;
@@ -31,15 +32,19 @@
         color: $mc;
         // color: rgba(0,0,0,0);
     }
-    &::selection{
+
+    &::selection {
         background-color: $bc;
         color: $mc;
     }
+
+    @content;
 }
+
 //@include input()
 
 // 4號設定的
-@mixin input($width: 200px, $mc: #57FFF5, $sc: #F6FAFB, $bc:#040F15){
+@mixin input($width: 200px, $mc: #57FFF5, $sc: #F6FAFB, $bc:#040F15) {
     display: block;
     width: $width;
     height: 100%;
@@ -56,6 +61,7 @@
     border-radius: 5px;
     background-color: transparent;
     margin-bottom: 20px;
+
     &:focus {
         outline: 0;
         border-color: $mc;
@@ -71,9 +77,11 @@
         color: $mc;
         // color: rgba(0,0,0,0);
     }
-    &::selection{
+
+    &::selection {
         background-color: $bc;
         color: $mc;
     }
+
     @content;
 }
