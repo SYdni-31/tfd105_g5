@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.min.css" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+        integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+    <!-- title icon -->
+    <link rel="icon" href="img/tianlam-logo-mainblack.svg" />
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- aos動畫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- VUE -->
+    <script src="js/vue.min.js"></script>
+
+    <title>聚策展-新聞資訊</title>
+</head>
+
+<body>
+    <!-- header -->
+    <nav>@@include('layout/nav.html')</nav>
+
+    <header>
+        @@include('layout/login.html')
+    </header>
+    <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+    <main>
+        <section class="news_banner">
+            <img src="img/news/news_banner.jpg">
+            <div class="news_slogan pd-10">
+                <h2 class="news_subtitle"><span class="news_span">--------- </span>新聞資訊 <span class="news_span">---------</span></h2>
+            </div>
+        </section>
+        <section>
+            <!-- <row class="row wrapper">
+                <div class="col-12 col-md-6">test</div>
+                <div class="col-12 col-md-6">test</div>
+            </row> -->
+            <div class="news wrapper">
+
+                <div class="news-card">
+                    <div class="news-date">
+                        <h2>2022.03.15</h2>
+                    </div>
+                    <div class="news-content">
+                        <a href="https://finance.ettoday.net/news/2208861"  target="_blank">
+                            <img src="img/news/news_1.jpg" alt="新聞資訊">
+                            <h3>3M「大未來」平台登場！輕鬆掌握5大全球科技趨勢</h3>
+                            <h4>聚合物高性能添加劑大廠3M於今（15）日宣布，正式推出「3M大未來」平台，該平台將協助民眾瞭解影響現今社會及未來發展的「5大全球科技趨勢」；並由3M 專家團隊透過平台，逐一對每項發展趨勢進行探討，各自發表自己對其的評論和觀點。</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-date">
+                        <h2>2022.03.15</h2>
+                    </div>
+                    <div class="news-content">
+                        <a href="https://ctee.com.tw/bookstore/selection/608385.html"  target="_blank">
+                            <img src="img/news/news_2.jpg" alt="新聞資訊">
+                            <h3>為何智慧手機不是元宇宙最適配的硬體？</h3>
+                            <h4>上一個改變計算平台的是智慧手機，手機因為有了4G 行動網路的加持，取代了個人電腦，成為人類歷史上功能最豐富、應用生態最成熟的媒介和計算平台。那做為一個生態已經非常成熟的計算平台，智慧手機為什麼不能是元宇宙最適配的硬體入口？</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-date">
+                        <h2>2022.03.12</h2>
+                    </div>
+                    <div class="news-content">
+                        <a href="https://news.tvbs.com.tw/tech/1738064"  target="_blank">
+                            <img src="img/news/news_3.jpg" alt="新聞資訊">
+                            <h3>資安即國安！電信推「網路計畫」　AI惹議：出錯誰負責</h3>
+                            <h4>【台灣銀行家】面對數位時代，金融業正積極進行供應鏈資安管理，現階段國內要求金融業者要設置副總層級以上的資安長，且導入資安的國際標準，加上系統化培育金融資安人才，都是審慎面對相關問題的正確態度。</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-date">
+                        <h2>2022.01.06</h2>
+                    </div>
+                    <div class="news-content">
+                        <a href="https://udn.com/news/story/6811/6013172?from=udn-referralnews_ch2artbottom" target="_blank">
+                            <img src="img/news/news_4.jpg" alt="新聞資訊">
+                            <h3>蘋果攻元宇宙？ 分析師：AR/MR頭戴裝置年底亮相</h3>
+                            <h4>市場高度關注蘋果在元宇宙領域布局進展，天風國際證券分析師郭明錤5日發出報告重申，蘋果的AR/MR頭戴裝置將延後到今年底亮相，他預估明顯出貨量可在2023年第1季出現。</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- footer -->
+    <footer>@@include('layout/footer.html')</footer>
+    <script>
+
+    </script>
+    <!-- 先連結main再連結各自設的js -->
+    <script src="js/main.min.js"></script>
+    <script src="js/login.min.js"></script>
+    <script src="js/news.min.js"></script>
+</body>
+
+</html>
