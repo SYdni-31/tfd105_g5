@@ -1,4 +1,5 @@
 .live-container {
+  overflow: hidden;
   margin: 0 auto;
   display: flex;
   @include laptop(1100px) {
@@ -23,10 +24,10 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-      @include pad(768px){
+      @include pad(768px) {
         font-size: 22px;
       }
-      @include mobile(414px){
+      @include mobile(414px) {
         font-size: 18px;
       }
     }
@@ -40,6 +41,7 @@
   }
   // 留言區塊(PC)
   .live-board-container {
+    overflow: hidden;
     @include laptop(1100px) {
       display: none;
     }
@@ -180,32 +182,33 @@
     }
   }
   // PC點擊時
-  .pc-active{
+  .pc-active {
     width: 60px;
     flex-basis: 60px;
-    .live-board{
+    .live-board {
       width: 60px;
-      .search-container-title{
+      .search-container-title {
         border-bottom: 0px;
         width: 60px;
-        h3{
+        h3 {
           display: none;
         }
       }
-      .result-block{
+      .result-block {
         height: 100%;
         width: 30px;
-        .search-container{
+        .search-container {
           display: none;
         }
       }
-      .input-block{
+      .input-block {
         display: none;
       }
     }
   }
   // 留言區塊(RWD)
   .live-board-container-rwd {
+    overflow: hidden;
     // 當瀏覽器大於1100px時隱藏
     @media screen and (min-width: 1100px) {
       display: none;
@@ -380,26 +383,26 @@
     //   height: 60px;
     // }
   }
-    // RWD點擊時
-    .rwd-active{
+  // RWD點擊時
+  .rwd-active {
+    height: 60px;
+    .live-board {
       height: 60px;
-      .live-board{
-        height: 60px;
-        .search-container-title{
-          border-bottom: 0px;
-          // height: 60px;
-        }
-        .result-block{
-          // height: 0;
-          .search-container{
-            display: none;
-          }
-        }
-        .input-block{
+      .search-container-title {
+        border-bottom: 0px;
+        // height: 60px;
+      }
+      .result-block {
+        // height: 0;
+        .search-container {
           display: none;
         }
       }
+      .input-block {
+        display: none;
+      }
     }
+  }
 }
 .-transform--90 {
   transform: rotate(-90deg);
@@ -412,7 +415,8 @@
   transform: rotate(90deg);
 }
 // 下方廠商介紹文字區
-.live-company{
+.live-company {
+  // overflow: hidden;
   @include relative();
   .live-company-text {
     @include pad(768px) {
@@ -445,16 +449,16 @@
       }
     }
   }
-  .img-circle{
-    @include absolute(20%,10%);
+  .img-circle {
+    @include absolute(20%, 15%);
     z-index: -1;
-    width: 400px;
+    width: 300px;
     height: 500px;
     transform: rotate(90deg);
     animation: 1s all;
     // box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $main-color;
     animation: rotation 20s infinite linear;
-    @include pad(768px) {
+    @include pad(950px) {
       display: none;
     }
   }

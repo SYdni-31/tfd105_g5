@@ -1,12 +1,18 @@
 /* ----- NAV選單 ----- */
 .nav {
-  z-index: 100;
+  @include fixed(0px, 0, null, null);
+  z-index: 150;
   margin: 0px auto;
   padding: 0px 20px;
   height: 60px;
   @include flex-box-between(100%);
   width: 100%;
-  position: relative;
+  flex-basis: auto;
+  flex-wrap: nowrap;
+  background-color: $black-color;
+  @include mobile(568px) {
+    padding: 0 6px;
+  }
   .logo_icon {
     width: 60px;
     height: 60px;
@@ -21,8 +27,14 @@
     }
   }
   .logo {
-    width: 60px;
+    width: 50px;
+    height: 50px;
     // display: none;
+    @include mobile(568px) {
+      width: 30px;
+      height: 30px;
+      margin-left: 6px;
+    }
   }
   // 廠商後台LOGO不同
   .logo-orange {
@@ -36,17 +48,50 @@
   ul {
     width: 300px;
     @include pad(768px) {
-      width: 50%;
+      width: 80%;
     }
     .nav-name {
-      @include flex-box-center(180px);
+      @include flex-box-center(200px);
+      @include mobile(568px) {
+        font-size: 14px;
+        width: 160px;
+      }
     }
     // 登入顯示
     .nav-login {
+      // display: none;
+      a {
+        i{
+          font-size: 20px;
+          @include mobile(568px) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    li {
+      // width: 60px;
+      p {
+        padding: 0 6px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        font-size: 20px;
+        @include pad(770px) {
+          width: 140px;
+        }
+        @include mobile(568px) {
+          font-size: 14px;
+          width: 100px;
+        }
+      }
+    }
+    .login-icon-hide{
       display: none;
     }
-    li{
-      width: 60px;
+    .login-icon-show{
+      display: block;
     }
   }
   /* 漢堡圖示變化 */
@@ -67,7 +112,12 @@
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
     cursor: pointer;
-    z-index: 101;
+    z-index: 199;
+    @include mobile(568px) {
+      margin: 0;
+      width: 40px;
+      height: 15px;
+    }
   }
   /* 漢堡三條線 */
   #ham-icon span {
@@ -87,6 +137,10 @@
     -moz-transition: 0.25s ease-in-out;
     -o-transition: 0.25s ease-in-out;
     transition: 0.25s ease-in-out;
+    @include mobile(568px) {
+      height: 2px;
+      width: 15px;
+    }
   }
   /* 漢堡三條線高度 */
   #ham-icon span:nth-child(1) {
@@ -96,10 +150,16 @@
   #ham-icon span:nth-child(2),
   #ham-icon span:nth-child(3) {
     top: 9px;
+    @include mobile(568px) {
+      top: 6px;
+    }
   }
 
   #ham-icon span:nth-child(4) {
     top: 18px;
+    @include mobile(568px) {
+      top: 12px;
+    }
   }
   /* 漢堡點擊效果 */
   #ham-icon.open span:nth-child(1) {
@@ -127,6 +187,7 @@
     width: 0%;
     left: 50%;
   }
+  
 }
 /*  -----漢堡MENU----- */
 .menu {
@@ -141,7 +202,8 @@
   transition: 1s;
   transform: translateX(200%);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $main-color;
-  @include mobile(375px){
+  z-index: 101;
+  @include mobile(375px) {
     width: 100%;
   }
   li {
@@ -154,13 +216,13 @@
       line-height: 60px;
       color: $second-color;
     }
-    .accent-color{
+    .accent-color {
       color: $accent-color;
     }
   }
   // 廠商後台頁面
   .nav-company {
-    display: none;
+    // display: none;
   }
 }
 // 點擊漢堡選單，展開
@@ -184,4 +246,26 @@
 
 .-blur {
   display: none;
+}
+.bg-null{
+  background-color:rgba(0, 0, 0, 0.075)
+}
+.company-menu{
+  @include fixed(60px, null, null, 0,100);
+  @include flex-box-column(70px);
+  background-color: $black-color;
+  height: calc(100vh - 60px);
+  li{
+    margin-bottom: 90px;
+    a{
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+.company-menu-hide{
+  display: none;
+}
+.company-menu-show{
+  display: block;
 }
