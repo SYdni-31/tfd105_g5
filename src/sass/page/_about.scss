@@ -27,14 +27,14 @@
 //     color: white;
 // }
 
-@media (min-width: 768px) and (max-width: 1200px) {
+@media (min-width: 902px) and (max-width: 1200px) {
     .about_slogan {
-        right: 0;
+        right: 15px;
         bottom: 0;
     }
 }
 
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 576px) and (max-width: 902px) {
     // 有關banner slogan 字大小變動
     .about_slogan {
         right: 0;
