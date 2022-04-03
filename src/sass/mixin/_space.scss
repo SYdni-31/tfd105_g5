@@ -1,4 +1,9 @@
 /* ======= padding $ margin ======= */
+.-margin0auto{
+  display: block;
+  margin:0 auto;
+}
+
 /* margin */
 @for $i from 1 through 60{
   .mall-#{$i}{

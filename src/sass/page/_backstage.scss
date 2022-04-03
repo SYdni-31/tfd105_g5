@@ -1,0 +1,189 @@
+// =====上方=====
+.backstage_body{
+    background-color: $second-color;
+}
+.backstage_nav{
+    flex-wrap: nowrap;
+    min-width: 768px;
+    position: sticky;
+    h3{
+        margin-right: auto;
+        min-width: 220px;
+    }
+    .backstage_logout{
+        display: flex;
+        &:hover{
+            color: $backmain-color ;
+            transition: color .5s;
+        }
+    }
+}
+// =====左側bar=====
+.backstage_menu{
+    position: fixed;
+    top: 60px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    width: 250px;
+    background-color: #040f15;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+        height: 3px;
+    }
+    &::-webkit-scrollbar-thumb{
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 5px; 
+    }
+    .backstage_aside_btn{
+        @include absolute(5px, 5px);
+        transform: rotate(-180deg);
+    }
+    div{
+        width: 60%;
+    }
+    button{
+        border: 0;
+        border-radius: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $black-color;
+        &:hover{
+            h4{
+                font-weight: bold;
+            }
+        }
+    }
+    .backstage_menu_btn{
+        background-color: $backmain-color;
+        height: 50px;
+        h4{
+            font-weight: bold;
+        }
+    }
+    .backstage_menu_inner{
+        border-radius: 10px;
+        background-color: $second-color;
+        button{
+            background-color: $second-color;
+        }
+    }
+
+}
+// =====主區塊======
+.backstage_main{
+    width: calc(100% - 250px);
+    margin-left:250px;
+    min-height: calc(100vh - 60px);
+    @include relative();
+    &::-webkit-scrollbar{
+        height: 3px;
+    }
+    &::-webkit-scrollbar-thumb{
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 5px; 
+    }
+
+// =====中間table=====
+    
+    .backstage_aside_btn{
+        @include absolute(10px, null, null, 10px);
+    }
+    .table_outer{
+        width: 95%;
+        min-width: 728px;
+    }
+    h3{
+        background-color: $backmain-color;  
+    }
+    .dataTables_wrapper{
+        background-color: $black-color;
+        padding:5px;
+        font-size: 16px;
+        padding: 5px;
+        a{
+            font-size: 14px;
+        }
+    }
+    table{
+        width: 99%;
+        margin: 0 auto;
+        background-color: $second-color;
+        border-collapse:collapse;
+        border:1px solid rgb($black-color, .5);
+        th, tr, td{
+            border:1px solid rgb($black-color, .5);
+            vertical-align: middle;
+            padding: 5px;
+            img{
+                max-height: 50px;
+            }
+        }
+    }
+    .page-item{
+        &.active .page-link{
+            background-color: $backmain-color;
+            border-color: $backmain-color;
+            color: $second-color;
+        }
+        a{
+            color: $backmain-color;
+        }
+
+    }
+}
+.backstage_btn_td{
+    white-space: nowrap;
+}
+    .backstage_btn{
+        border: 0;
+        border-radius: 10px;
+        color: $black-color;
+        &_add{
+            background-color: $backmain-color;
+            display: block;
+            margin-left: auto;
+            width: 110px;
+        }
+        &_short{
+            background-color: $backmain-color;
+            width: 60px;
+        }
+        &_bad{
+            
+            background-color: #9B9797;
+            width: 60px;
+        }
+        &:hover{
+            font-weight: bold;
+        }
+    }
+
+// =====RWD=====
+.backstage_aside_btn{
+    display: none;
+    cursor: pointer;
+}
+@media (max-width: 991.98px){
+    .backstage_menu{
+        height: 100%;
+        transition: all .5s;
+        transform: translateX(-100%);
+    }
+    .backstage_menu.-backstage_aside_on{
+        transform: translateX(0);
+    }
+    .backstage_main{
+        margin-left: 0;
+        width: 100%;
+        min-width: 768px;
+    }
+    .backstage_aside_btn{
+        display: block;
+    }
+}

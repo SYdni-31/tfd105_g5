@@ -1,6 +1,6 @@
 /* ----- NAV選單 ----- */
 .nav {
-  @include fixed(0px, 0, null, null);
+  @include fixed(0px, null, null, 0);
   z-index: 150;
   margin: 0px auto;
   padding: 0px 20px;
