@@ -5,16 +5,17 @@
             <li><a href="#company-sign-in-container">廠商</a></li>
             <li><a href="#tab02">訪客</a></li>
         </ul>
+
         <!-- 廠商登入(右) 預設一開始顯示-->
         <div class="form-container company-sign-in-container tab-inner" id="company-sign-in-container">
             <h2 class="mb-30 h2-white">廠商登入</h2>
             <div class="field">
-                <input type="text" id="email-1" required autocomplete="off" placeholder="" class="login_signup" />
-                <label for="email-1" title="電子郵件" data-title="email"></label>
+                <input type="text" id="email_1" required autocomplete="true" placeholder="" class="login_signup" />
+                <label for="email_1" title="電子郵件" data-title="email"></label>
             </div>
             <div class="field">
-                <input type="password" id="password-1" required autocomplete="off" placeholder="" class="login_signup" />
-                <label for="password-1" title="密碼" data-title="password"></label>
+                <input type="password" id="password_1" required autocomplete="off" placeholder="" class="login_signup" />
+                <label for="password_1" title="密碼" data-title="password"></label>
             </div>
             <div class="login-group">
                 <button type="submit" class="btn-short mr-10">登入</button>
@@ -26,37 +27,37 @@
         <div class="form-container guest-sign-in-container tab-inner" id="tab02">
             <h2 class="mb-30 guestsignin h2-black">我是訪客</h2>
             <div class="field">
-                <input type="text" id="name-1" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="name-1" title="姓名" data-title="name"></label>
+                <input type="text" id="name_1" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="name_1" title="姓名" data-title="name"></label>
             </div>
             <div class="field">
-                <input type="text" id="email-2" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="email-2" title="電子郵件" data-title="e-mail"></label>
+                <input type="text" id="email_2" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="email_2" title="電子郵件" data-title="e-mail"></label>
             </div>
             <div class="field">
-                <input type="text" id="Company-1" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="Company-1" title="貴公司單位" data-title="Company"></label>
+                <input type="text" id="Company_1" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="Company_1" title="貴公司單位" data-title="Company"></label>
             </div>
-            <button type="button" class="btn-short btn-2">參觀</button>
+            <button type="button" class="btn-short btn-2 login_btn-visit">參觀</button>
         </div>
         <!-- 廠商註冊 (右) 點擊"註冊"，滑動後顯示-->
         <div class="form-signup company-sign-up-container">
             <h2 class="companysignup mt-45 h2-black">廠商註冊</h2>
             <div class="field">
-                <input type="text" id="name-2" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="name-2" title="姓名" data-title="name"></label>
+                <input type="text" id="name_2" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="name_2" title="姓名" data-title="name"></label>
             </div>
             <div class="field">
-                <input type="text" id="email-3" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="email-3" title="電子郵件" data-title="email"></label>
+                <input type="text" id="email_3" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="email_3" title="電子郵件" data-title="email"></label>
             </div>
             <div class="field">
-                <input type="password" id="password-2" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="password-2" title="密碼" data-title="password"></label>
+                <input type="password" id="password_2" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="password_2" title="密碼" data-title="password"></label>
             </div>
             <div class="field">
-                <input type="text" id="Company-2" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="Company-2" title="貴公司單位" data-title="Company"></label>
+                <input type="text" id="Company_2" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="Company_2" title="貴公司單位" data-title="Company"></label>
             </div>
 
             <select name="" id="exb_dropdown">
@@ -77,9 +78,11 @@
             <h2 class="h2-forget">忘記密碼</h2>
             <ul>
                 <li><i class="fa-solid fa-envelope"></i></li>
-                <li><input type="text" id="changeemail" required autocomplete="off" placeholder="電子郵件" /></li>
+                <li><input type="text" id="changeemail" required autocomplete="off" placeholder="請輸入電子郵件..." /></li>
             </ul>
-            <button type="submit" class="give btn-short ">寄送驗證信</button>
+            <button type="button" class="give btn-long">寄送驗證信</button>
+            <p class="mt-20" id="prompt_message">已寄送密碼信，請至電子郵件收驗證信!</p>
+            <button type="button" class="login_btn_back btn-long mt-20">返回登入</button>
         </div>
         <!-- 歡迎回來 (左) 滑動後顯示(RWD沒有) --> 
         <div class="overlay-container form-container" id="overlay-slide">
