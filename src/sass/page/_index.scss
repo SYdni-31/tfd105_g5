@@ -1,28 +1,25 @@
-// 外層>img
+// 外層>.index_bcg_desktop
 .index_block{
-    img {
-    max-width: 1440px;
-    width: 100%;
-    position: relative; // w/ div.index_title
+    .index_bcg_desktop {
+        max-width: 100%;
+        width: 100%;
+    }
+    .index_bcg_mobile {
+        display: none;
     }
 }
 
-// div&h1
+// title
 .index_title {
+    margin-top: 100px;
     color: $second-color;
     position: absolute;
     left: 50%;
     top: 0;
-    transform: translateX(-50%);
-}
-
-// spotlight on title
-.index_title{
-    margin-top: 100px;
-    // @include relative();
+    transform: translateX(-48%);  // 中間框並非置中所以設定48%
 
     h1 {
-        position: relative;
+        font-size: 220%;
         text-shadow: 1px 1px 1px (rgba($second-color, 0.7));
     }
 }
@@ -70,14 +67,13 @@
 
 .index_swiper_wrapper{
     @include absolute(25%, null, null, 50%);
-    transform: translateX(-50%);
+    transform: translateX(-48%);
     width: 60vw;
 
     .index_swiper_container {
         width: 100%;
 
         .index_slide {
-            // margin-top: 170px;
             background-position: center;
             background-size: cover;
             width: 22vw;
@@ -116,35 +112,29 @@
 @media (min-width: 1400px) and (max-width: 1599.98px){
     .index_title {
         h1 {
-            font-size: 42px;
+            font-size: 210%;
         }
     }
-
-    // .index_swiper_wrapper{
-    //     .index_swiper_container{
-    //         .index_slide {
-    //         width: 22vw;
-    //         height: 22vw;
-    //         }
-    //     }
-    // }
 }
 
 // rwd 1600-2000px
 @media (min-width: 1600px) and (max-width: 1999.98px){
     .index_title{
         margin-top: 120px;
+
         h1 {
-            font-size: 48px;
+            font-size: 240%;
         }
     }
-
     .index_swiper_wrapper{
-        width: 54vw;
+        width: 66vw;
+        top: 20%;
+
         .index_swiper_container{
+        
             .index_slide {
-                width: 20vw;
-                height: 20vw;
+                width: 26vw;
+                height: 26vw;
             }
         }
     }
@@ -154,11 +144,12 @@
 @media (min-width: 1200px) and (max-width: 1399.98px){
     .index_title {
         h1 {
-            font-size: 34px;
+            font-size: 2.5vw;
         }
     }
     .index_swiper_wrapper{
         width: 60vw;
+
         .index_swiper_container{
 
             .index_slide {
@@ -166,7 +157,7 @@
                 height: 23vw;
 
                 a{
-                    img{
+                    .index_bcg_desktop{
                         width: 90%;
                     }
                 }
@@ -178,14 +169,16 @@
 // rwd 992-1200px
 @media (min-width: 992px) and (max-width: 1199.98px){
     .index_title {
+        margin-top: 70px;
+
         h1 {
             font-size: 28px;
         }
     }
     .index_swiper_wrapper{
         width: 60vw;
-        .index_swiper_container{
 
+        .index_swiper_container{
             .index_slide {
                 width: 23vw;
                 height: 23vw;
@@ -209,10 +202,127 @@
 // rwd 768-992px
 @media (min-width: 768px) and (max-width: 991.98px){
     .index_title {
+        margin-top: 70px;
+
         h1 {
-            font-size: 80%;
+            font-size: 100%;
         }
+    }
+    .index_swiper_wrapper{
+        width: 60vw;
+
+        .index_swiper_container{
+            .index_slide {
+                width: 23vw;
+                height: 23vw;
+
+                a{
+                    img {
+                        width: 90%;
+                    }
+                    div {
+                        h2,
+                        h3 {
+                            font-size: 110%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// rwd 576-768px
+@media (min-width: 576px) and (max-width: 767.98px){
+    .index_title {
+        margin-top: 50px;
+
+        h1 {
+            font-size: 78%;
+        }
+    }
+    
+
+    .index_swiper_wrapper{
+        width: 60vw;
+
+        .index_swiper_container{
+            .index_slide {
+                width: 23vw;
+                height: 23vw;
+
+                a{
+                    img {
+                        width: 84%;
+                    }
+                    div {
+                        h2,
+                        h3 {
+                            font-size: 80%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// rwd 375-576px
+@media (min-width: 375px) and (max-width: 575.98px){
+    .index_title {
+        margin-top: 10px;
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+    }
+    .index_title h1::after {
+        content: 'Tián lám 2022 智慧全球科技聚策展';
+        width: auto;
+        color: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        // -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+        clip-path: ellipse(100px 100px at 0% 50%);
+        animation: spotlight 3s infinite;
+        background: linear-gradient(
+            to right,
+            $accent-color,
+            #dc3005
+        );
+        background-size: 100%;
+        background-position: center center;
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 
 
+    .index_swiper_wrapper{
+        width: 60vw;
+        top: 27%;
+
+        .index_swiper_container{
+            width: 60%;
+            .index_slide {
+                width: 23vw;
+                height: 23vw;
+
+                a{
+                    img {
+                        width: 84%;
+                    }
+                    div {
+                        h2,
+                        h3 {
+                            font-size: 80%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
+
