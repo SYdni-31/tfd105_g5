@@ -38,8 +38,14 @@
   }
   // 廠商後台LOGO不同
   .logo-orange {
-    width: 60px;
+    width: 50px;
+    height: 50px;
     display: none;
+    @include mobile(568px) {
+      width: 30px;
+      height: 30px;
+      margin-left: 6px;
+    }
   }
   .img {
     border: 0px;
@@ -187,6 +193,12 @@
     width: 0%;
     left: 50%;
   }
+  .logo-icon-show{
+    display: block;
+  }
+  .logo-icon-hide{
+    display: none;
+  }
   
 }
 /*  -----漢堡MENU----- */
@@ -256,12 +268,21 @@
   background-color: $black-color;
   height: calc(100vh - 60px);
   li{
-    margin-bottom: 90px;
+    margin-bottom: 60px;
+    height: 75px;
     a{
+      margin-top: 15px;
+      margin-left: 15px;
+      margin-right: 15px;
       width: 40px;
       height: 40px;
     }
+
   }
+  .company-menu-border{
+    border-right: 3px solid $accent-color;
+  }
+
 }
 .company-menu-hide{
   display: none;
