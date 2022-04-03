@@ -1,7 +1,6 @@
 // 外層>.index_bcg_desktop
 .index_block{
     .index_bcg_desktop {
-        max-width: 100%;
         width: 100%;
     }
     .index_bcg_mobile {
@@ -10,17 +9,17 @@
 }
 
 // title
-.index_title {
-    margin-top: 100px;
-    color: $second-color;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-48%);  // 中間框並非置中所以設定48%
+.index_block{
+    @include relative();
+    .index_title {
+        margin-top: 100px;
+        color: $second-color;
+        @include absolute(0, null, null, 50%);
+        transform: translateX(-48%);  // 中間框並非置中所以設定48%
 
-    h1 {
-        font-size: 220%;
-        text-shadow: 1px 1px 1px (rgba($second-color, 0.7));
+        h1 {
+            text-shadow: 1px 1px 1px (rgba($second-color, 0.7));
+        }
     }
 }
 
@@ -110,22 +109,28 @@
 
 // rwd 1400px-1600px
 @media (min-width: 1400px) and (max-width: 1599.98px){
-    .index_title {
-        h1 {
-            font-size: 210%;
+    .index_block{
+
+        .index_title {
+            h1 {
+                font-size: 3vw;
+            }
         }
     }
 }
 
 // rwd 1600-2000px
 @media (min-width: 1600px) and (max-width: 1999.98px){
-    .index_title{
-        margin-top: 120px;
+    .index_block{
+        .index_title{
+            margin-top: 120px;
 
-        h1 {
-            font-size: 240%;
+            h1 {
+                font-size: 3vw;
+            }
         }
     }
+
     .index_swiper_wrapper{
         width: 66vw;
         top: 20%;
@@ -142,11 +147,15 @@
 
 // rwd 1200-1400px
 @media (min-width: 1200px) and (max-width: 1399.98px){
-    .index_title {
-        h1 {
-            font-size: 2.5vw;
+    .index_block{
+
+        .index_title {
+            h1 {
+                font-size: 2.5vw;
+            }
         }
     }
+
     .index_swiper_wrapper{
         width: 60vw;
 
@@ -168,13 +177,17 @@
 
 // rwd 992-1200px
 @media (min-width: 992px) and (max-width: 1199.98px){
-    .index_title {
-        margin-top: 70px;
+    .index_block{
 
-        h1 {
-            font-size: 28px;
+        .index_title {
+            margin-top: 70px;
+
+            h1 {
+                font-size: 2.5vw;
+            }
         }
     }
+
     .index_swiper_wrapper{
         width: 60vw;
 
@@ -201,11 +214,14 @@
 
 // rwd 768-992px
 @media (min-width: 768px) and (max-width: 991.98px){
-    .index_title {
-        margin-top: 70px;
+    .index_block{
 
-        h1 {
-            font-size: 100%;
+        .index_title {
+            margin-top: 70px;
+
+            h1 {
+                font-size: 2.5vw;
+            }
         }
     }
     .index_swiper_wrapper{
@@ -234,14 +250,16 @@
 
 // rwd 576-768px
 @media (min-width: 576px) and (max-width: 767.98px){
-    .index_title {
-        margin-top: 50px;
+    .index_block{
 
-        h1 {
-            font-size: 78%;
+        .index_title {
+            margin-top: 50px;
+
+            h1 {
+                font-size: 2.5vw;
+            }
         }
     }
-    
 
     .index_swiper_wrapper{
         width: 60vw;
@@ -269,45 +287,44 @@
 
 // rwd 375-576px
 @media (min-width: 375px) and (max-width: 575.98px){
-    .index_title {
-        margin-top: 10px;
-        h1 {
-            font-size: 20px;
-            text-align: center;
-            line-height: 1.6;
+    
+    .index_block{
+        .index_bcg_desktop {
+            display: none;
+        }
+        .index_bcg_mobile {
+            display: block;
+            width: 100%;
         }
     }
+
+    .index_block{
+
+        .index_title {
+            margin-top: 20%;
+
+            h1 {
+                font-size: 5.5vw;
+                text-align: center;
+            }
+        }
+    }
+
     .index_title h1::after {
         content: 'Tián lám 2022 智慧全球科技聚策展';
         width: auto;
         color: transparent;
-        position: absolute;
-        top: 0;
-        left: 0;
-        // -webkit-clip-path: ellipse(100px 100px at 0% 50%);
-        clip-path: ellipse(100px 100px at 0% 50%);
-        animation: spotlight 3s infinite;
-        background: linear-gradient(
-            to right,
-            $accent-color,
-            #dc3005
-        );
-        background-size: 100%;
-        background-position: center center;
-        -webkit-background-clip: text;
-        background-clip: text;
     }
 
-
     .index_swiper_wrapper{
-        width: 60vw;
-        top: 27%;
+        width: 66vw;
+        top: 33%;
 
         .index_swiper_container{
-            width: 60%;
+
             .index_slide {
                 width: 23vw;
-                height: 23vw;
+                height: 40vw;
 
                 a{
                     img {
