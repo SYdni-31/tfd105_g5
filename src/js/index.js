@@ -43,3 +43,11 @@ var swiper = new Swiper(".mySwiper", {
   //   el: ".swiper-pagination",
   // },
 });
+
+
+
+// parallax.js
+// var scene = document.getElementById('scene');
+// var parallaxInstance = new Parallax(scene, {
+//   relativeInput: true
+// });
