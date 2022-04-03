@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.min.css" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+        integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+    <!-- title icon -->
+    <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+
+    <title>聚策展-範例頁</title>
+</head>
+
+<body>
+    <!-- header -->
+    <!-- content，各自頁面的html寫在這邊以下都是範例 -->
+    <main>
+        <section>
+            <div class="back-teacher">
+                <h2 class="mb-30">新增</h2>
+                <ul>
+                    <li class="mb-16 input-short"><label for="name">序號</label>
+                        <input type="text" name="name" id="name">
+                    </li>
+                    <li class="mb-16 input-short"><label for="introduce">講師姓名</label>
+                        <input type="text" name="introduce" id="introduce">
+                    </li>
+                    <li class="mb-16 input-long"><label for="time">講師介紹</label>
+                        <textarea name="time" id="time" cols="30" rows="10"></textarea>
+                    <li class="mb-16 input-long"><label for="date">議程日期</label>
+                        <input type="date" name="date" id="date">
+                    </li>
+                    <!-- <li class="mb-16 input-file">
+                        <label for="photo">講師照片</label>
+                        <input type="file" name="photo" class="photo" id="photo">
+                        <p>選擇檔案</p>
+                    </li>
+                    <li class="mb-16 input-long"><label for=""></label><input type="text">講師照片</li> -->
+                </ul>
+                <div class="mb-16 input-file">
+                    <div class="input-file-group">
+                        <label for='photo'>講師照片</label>
+                        <input type="file" id="photo" class="photo">
+                        <p>選擇檔案</p>
+                        <div class="input-file-img">
+                            <img :src='img_name.src'>
+                            <p><i class="fa-solid fa-image"></i></p>
+                        </div>
+                        <button>上傳</button>
+                    </div>
+                </div>
+                <div class="back-teacher-btn">
+                    <button class="back-teacher_save">新增</button>
+                    <button class="back-teacher_close">關閉</button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <!-- footer -->
+    <footer>
+        @@include('layout/footer.html')
+    </footer>
+
+    <!-- 先連結main再連結各自設的js -->
+    <script src="js/main.min.js"></script>
+    <script src="js/login.min.js"></script>
+    <script src="js/index.min.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

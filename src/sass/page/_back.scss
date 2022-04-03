@@ -1,0 +1,130 @@
+.back-teacher {
+  @include fixed(50%, null, null, 50%, 100);
+  width: 1000px;
+  background-color: #eeeeee;
+  border-radius: 5px;
+  margin: 0 auto;
+  height: 90%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  h2 {
+    background-color: $backmain-color;
+    color: $black-color;
+    text-align: center;
+  }
+  ul {
+    @include flex-box-center(550px, space-between);
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      label {
+        text-align: left;
+        color: $black-color;
+      }
+      input {
+        height: 45px;
+        color: $black-color;
+      }
+    }
+    .input-short {
+      width: 250px;
+    }
+    .input-long {
+      width: 550px;
+    }
+  }
+  .input-file {
+    width: 550px;
+    position: relative;
+    margin: 0 auto;
+    .input-file-group {
+      label {
+        /* border: 1px solid purple; */
+        font-size: 16px;
+        font-weight: bold;
+        color: $black-color;
+      }
+      input {
+        position: absolute;
+        top: 0;
+        left: 60px;
+        opacity: 0;
+        z-index: 2;
+        color: $black-color;
+      }
+      & > p {
+        margin: 0;
+        padding-left: 16px;
+        line-height: 45px;
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        border: 1.5px solid $black-color;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 550px;
+        font-size: 16px;
+        color: $black-color;
+        font-weight: bold;
+        background-color: #fff;
+      }
+    }
+    .input-file-img {
+      border: 1.5px solid $black-color;
+      width: 260px;
+      height: 224px;
+      margin-top: 84px;
+      padding: 0;
+      position: relative;
+      background-color: #fff;
+      img {
+        max-width: 200px;
+        max-height: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      & > p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 16px;
+        color: $black-color;
+        & > i {
+          line-height: 40px;
+        }
+      }
+    }
+    button {
+      position: absolute;
+      width: 100px;
+      right: 0px;
+      font-size: 14px;
+      line-height: 43px;
+      top: 39px;
+      border-radius: 5px;
+      color: $black-color;
+      background-color: $backmain-color;
+    }
+  }
+}
+.back-teacher-btn {
+  @include flex-box-center(550px);
+  margin: 24px auto;
+  button {
+    width: 120px;
+    font-size: 14px;
+    line-height: 45px;
+    color: $black-color;
+    background-color: $backmain-color;
+  }
+  .back-teacher_close {
+    margin-left: 24px;
+    background-color: $backSecond-color;
+  }
+}
