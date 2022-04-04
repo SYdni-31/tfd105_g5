@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <!-- datatable -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"/>
+  <!-- boostrap form switch按鈕 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <!-- css -->
+  <link rel="stylesheet" href="./css/style.min.css" />
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"
+    integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
+  <!-- title icon -->
+  <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+  <!-- vue -->
+  <!-- <script src="js/vue.min.js"></script> -->
+
+  <title>聚策展-虛擬商展</title>
+</head>
+
+<body class="backstage_body">
+  <nav class="nav backstage_nav">
+    <a href="./index.html" class="logo"><img src="img/tianlam-logo-backstage.svg" alt="logo" class="img"></img></a>
+    <h3 class="ml-45">Tián lám➪後台中心</h3>
+    <ul class="flex-box-end">
+      <li><a href="index.html" class="backstage_logout"><h4>帳號登出</h4><img src="img/backstage_logout.svg" alt="logout" class="ml-6"></a></li>
+    </ul>
+  </nav>
+  <main id="page">
+    <ul class="backstage_menu pall-5">
+        <div class="mt-20 mb-10 -margin0auto "><a class="backstage_menu_btn"><h4>資訊管理</h4><img src="img/backstage/backstage-arrow-down-circle.svg" alt="logo"></a></div>
+        <div class="backstage_menu_inner mb-10">
+          <a href="backstage_info1.html"><h4>展覽場次</h4></a>
+          <a href="backstage_info2.html"><h4>大會議程</h4></a>
+          <a href="backstage_info3.html"><h4>講師介紹</h4></a>
+          <a href="backstage_info4.html"><h4>新聞資訊</h4></a>
+          <a href="backstage_info5.html"><h4>聯絡我們</h4></a>
+        </div>
+        <div class="-margin0auto pb-10"><a class="backstage_menu_btn"><h4>會員管理</h4><img src="img/backstage/backstage-arrow-down-circle.svg" alt="logo"></a></div>
+        <div class="backstage_menu_inner mb-10">
+          <a href="backstage_member1.html"><h4>來賓管理</h4></a>
+          <a href="backstage_member2.html"><h4>廠商管理</h4></a>
+        </div>
+        <div class="-margin0auto pb-10"><a class="backstage_menu_btn"><h4>活動管理</h4><img src="img/backstage/backstage-arrow-down-circle.svg" alt="logo"></a></div>
+        <div class="backstage_menu_inner">
+          <a href="backstage_expo1.html"><h4>廠商資料</h4><a>
+          <a href="backstage_expo2.html"><h4>直播時段</h4></a>
+          <a href="backstage_expo3.html"><h4>直播審核表</h4></a>
+          <a href="backstage_expo4.html"><h4>直播留言板</h4></a>
+        </div>
+        <img src="img/backstage/backstage_aside_btn.svg" alt="" class="backstage_aside_btn"/>
+    </ul>
+    <section class="backstage_main">
+      <img src="img/backstage/backstage_aside_btn.svg" alt="" class="backstage_aside_btn"/>
+      <data-table v-if="list !== null" :head="list.head" :data="list.body"></data-table>
+
+      <article class="-margin0auto mt-10 table_outer">
+        <button class="backstage_btn backstage_btn_add mb-15">新增</button>
+        <h3 class="bg-color pall-15">講師介紹</h3>
+        <table id="table" class="table">
+           <!-- <thead>
+            <tr>
+              <th>序號</th>
+              <th>講師名稱</th>
+              <th>講師照片</th>
+              <th>議程日期</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>王大明</td>
+              <td><img src="img/sample/speaker_sample.png" alt=""></td>
+              <td>2022/03/17</td>
+              <td><div class="backstage_btn_td"><button class="backstage_btn backstage_btn_short">修改</button><button class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></td>
+            </tr>
+          </tbody> -->
+        </table>
+      </article>
+       <!-- <article class="-margin0auto mt-10 table_outer">
+        <button class="backstage_btn backstage_btn_add mb-15">新增</button>
+        <h3 class="bg-color pall-15">直播審核表</h3>
+        <table id="table" class="table">
+          <thead>
+            <tr>
+              <th>直播ID</th>
+              <th>廠商名稱</th>
+              <th>開始時間</th>
+              <th>申請時間</th>
+              <th>狀態</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>台積電股份有限公司</td>
+              <td>2022/03/17 13:00</td>
+              <td>2022/03/17 13:00</td>
+              <td class="backstage_btn_td">
+                <div class="custom-control custom-switch switch_flex">不通過
+                  <div class="custom-control custom-switch">   
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1"></label>
+                  </div>
+                通過</div> 
+              </td>
+              <td class="backstage_btn_td"><button class="backstage_btn backstage_btn_short">修改</button><button class="backstage_btn backstage_btn_bad ml-4">刪除</button></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>台積電股份有限公司</td>
+              <td>2022/03/17 13:00</td>
+              <td>2022/03/17 13:00</td>
+              <td class="backstage_btn_td">
+                <div class="custom-control custom-switch switch_flex">不通過
+                  <div class="custom-control custom-switch">   
+                    <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                    <label class="custom-control-label" for="customSwitch2"></label>
+                  </div>
+                通過</div> 
+              </td>
+              <td class="backstage_btn_td"><button class="backstage_btn backstage_btn_short">修改</button><button class="backstage_btn backstage_btn_bad ml-4">刪除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="lookmorebox">
+  
+        </div>
+      </article> -->
+    </section>
+  </main>
+
+  <!-- jQuery for datatable-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- datatable -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
+  <script src="js/backstage_info3.min.js"></script>
+</body>
+
+</html>

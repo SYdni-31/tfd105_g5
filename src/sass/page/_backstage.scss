@@ -45,14 +45,13 @@
     div{
         width: 60%;
     }
-    button{
-        border: 0;
+    a{
         border-radius: 10px;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: $black-color;
+        color: $black-color !important;
         &:hover{
             h4{
                 font-weight: bold;
@@ -69,7 +68,7 @@
     .backstage_menu_inner{
         border-radius: 10px;
         background-color: $second-color;
-        button{
+        a{
             background-color: $second-color;
         }
     }
@@ -80,6 +79,7 @@
     width: calc(100% - 250px);
     margin-left:250px;
     min-height: calc(100vh - 60px);
+    margin-bottom: 0;
     @include relative();
     &::-webkit-scrollbar{
         height: 3px;
@@ -90,7 +90,6 @@
     }
 
 // =====中間table=====
-    
     .backstage_aside_btn{
         @include absolute(10px, null, null, 10px);
     }
@@ -125,6 +124,11 @@
             }
             
         }
+        // tr{
+        //     td:last-of-type{
+        //         text-align: center;
+        //     }
+        // }
     }
     .page-item{
         &.active .page-link{
@@ -140,6 +144,7 @@
 }
 .backstage_btn_td{
     white-space: nowrap;
+    text-align: center;
     .switch_flex{
         display: flex;
         padding-left:0;
