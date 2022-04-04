@@ -13,6 +13,7 @@
     // width: 530px;
     background-color: #333333;
     padding: 20px;
+    
 }
 
 // p:before {
@@ -51,14 +52,20 @@
     background: none;
     font-size: 16px;
     outline: 0;
+    color: #f6fafb;
 }
 
 //訊息欄位
 .contect_message{
     height: 255px;
+    resize: none;
 }
 .contect_box:focus {
     border: 2px solid #57fff5;
+}
+
+.-error {
+    border: 2px solid  $accent-color;
 }
 //為了和右邊聯絡資訊同高度 調整textarea高度
 @media (min-width:614px) and (max-width:956px){

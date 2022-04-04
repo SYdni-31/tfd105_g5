@@ -85,13 +85,8 @@ $(function () {
       //console.log( $('section.result-block').prop("scrollHeight") );
 
       // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
-      $(".result-block").animate(
-        {
-          //scrollTop: 10
-          scrollTop: $(".result-block").prop("scrollHeight"),
-        },
-        10
-      );
+      $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight}, 9999);
+      $(".result-block").animate({ scrollTop: $('.result-block')[1].scrollHeight}, 9999);
 
 
 
@@ -177,7 +172,7 @@ $(function () {
   // RWD點擊"送出"
   $(".live-submit-rwd").on("click", function () {
     const input_text = $(".live-text-input-rwd").val().trim();
-    console.log(input_text);
+    // console.log(input_text);
     if (input_text == "") {
       alert("請輸入資料");
     } else {
@@ -205,15 +200,14 @@ $(function () {
       // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
 
       // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
-      $(".result-block").animate(
-        {
-          //scrollTop: 10
-          scrollTop: $(".result-block").prop("scrollHeight"),
-        },
-        10
-      );
+      $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight}, 10);
+      $(".result-block").animate({ scrollTop: $('.result-block')[1].scrollHeight}, 10);
+
     }
+    
+    // console.log(scrollTop);
     // 欄位清空
     $(".live-text-input-rwd").val("");
   });
+
 });

@@ -45,9 +45,9 @@
           </iframe>
         </div>
         <!-- 留言板(PC) -->
-        <div id="live_pc" class="live-board-container" :class="{'pc-active': open === true}">
+        <div id="live_pc" class="live-board-container" :class="{'pc-active': pcOpen === true}">
           <div class="live-board">
-            <div class="search-container-title" @click="toggle()" :class="{'-transform-180': open === true}">
+            <div class="search-container-title" @click="toggle()" :class="{'-transform-180': pcOpen === true}">
               <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" />
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
@@ -66,10 +66,11 @@
         </div>
 
         <!-- 留言板(RWD) -->
-        <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': open === true}">
+        <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': rwdOpen === true}">
           <div class="live-board">
             <div class="search-container-title" @click="toggle()">
-              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img-rwd" class="-transform--90" :class="{'-transform-90': open === true}"/>
+              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img-rwd" class="-transform--90"
+                :class="{'-transform-90': rwdOpen === true}" />
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
@@ -117,18 +118,12 @@
       el: '#live_pc', //在這講是給誰執行
       data() {
         return {
-          open: false,
+          pcOpen: false,
         };
       },
       methods: {
         toggle() {
-          this.open = !this.open
-        },
-        open(){
-            this.open = true
-        },
-        close() {
-          this.open = false
+          this.pcOpen = !this.pcOpen;
         }
       },
     }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
@@ -136,18 +131,12 @@
       el: '#live_rwd', //在這講是給誰執行
       data() {
         return {
-          open: false,
+          rwdOpen: false,
         };
       },
       methods: {
         toggle() {
-          this.open = !this.open
-        },
-        open(){
-            this.open = true
-        },
-        close() {
-          this.open = false
+          this.rwdOpen = !this.rwdOpen
         }
       },
     }); //給初值，在裡面描述屬性跟方法，包在物件{}裡

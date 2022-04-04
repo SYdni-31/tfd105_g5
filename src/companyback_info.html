@@ -32,18 +32,76 @@
           <a class="title_skill">廠商資料設定區</a>
         </div>
         <form action="" class="companyback_info_form">
-          <ul>
-            <li>
-              <div class="field">
+          <ul class="all_input">
+            <li class="">
+              <div class="field pt-45">
                 <h2>策展名稱:</h2>
-                <input type="text" id="email" required autocomplete="off" class="" />
-                <label for="email" title="Display name" data-title="策展名稱"></label>
+                <input type="text" id="email_1" required autocomplete="off" class="" />
+                <label for="email_1" title="Display name" data-title="策展名稱"></label>
+              </div>
+              <div class="field pt-45">
+                <h2>廠商名稱:</h2>
+                <input type="text" id="email_2" required autocomplete="off" class="" />
+                <label for="email_2" title="Company name" data-title="廠商名稱"></label>
+              </div>
+              <div class="field pt-45">
+                <h2>影片網址:</h2>
+                <input type="text" id="email_3" required autocomplete="off" class="" />
+                <label for="email_3" title="Video address" data-title="影片網址"></label>
               </div>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>
+              <div class="company_logo mt-45">
+                <button>插入logo</button>
+              </div>
+            </li>
           </ul>
+          <div class="field introduce pt-60">
+            <h2>廠商介紹:</h2>
+            <textarea name="" class="fle" id="email" rows="8" required autocomplete="off" size="300"></textarea>
+            <label for="email" title="Introduce" data-title="廠商介紹"></label>
+          </div>
+
+          <ul class="robot pt-60">
+            <li>
+              <span>
+                <h2>客服機器人:</h2>
+                <h5>(需擇一)</h5>
+              </span>
+            </li>
+            <li>
+              <label for="robot1"><img src="./img/c_back/robot1.png" alt=""></label>
+              <input type="radio" name="robotpicture" id="robot1">
+            </li>
+            <li>
+              <label for="robot2"><img src="./img/c_back/robot2 .png" alt=""></label>
+              <input type="radio" name="robotpicture" id="robot2">
+            </li>
+          </ul>
+
+
+          <ul class="environment pt-60">
+            <li>
+              <span>
+                <h2>廠商攤位樣式:</h2>
+                <h5>(需擇一)</h5>
+              </span>
+            </li>
+            <li>
+              <label for="environment1"><img src="./img/c_back/evin (1).png" alt=""></label>
+              <input type="radio" name="environmentpicture" id="environment1">
+            </li>
+            <li>
+              <label for="environment2"><img src="./img/c_back/evin (2).png" alt=""></label>
+              <input type="radio" name="environmentpicture" id="environment2">
+            </li>
+            <li>
+              <label for="environment3"><img src="./img/c_back/evin (3).png" alt=""></label>
+              <input type="radio" name="environmentpicture" id="environment3">
+            </li>
+          </ul>
+
+          <input type="submit" class="btn-long save mt-60" name="save" value="儲存並預覽">
         </form>
 
       </section>
