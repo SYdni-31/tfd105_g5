@@ -14,8 +14,8 @@
     }
   }
   /* 手機，預設375px */
-  /* @include mobile(375px); */
-  @mixin mobile($xs_bkpoint:375px) {
+  /* @include mobile(576px); */
+  @mixin mobile($xs_bkpoint:576px) {
     @media screen and (max-width: $xs_bkpoint) {
       @content;
     }
