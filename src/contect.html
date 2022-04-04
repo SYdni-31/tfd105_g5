@@ -16,6 +16,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- SweetAlert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- is.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
     <title>Contect</title>
 </head>
 
@@ -40,9 +42,9 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <div class="contect_introduction">
-                        <form action="#">
+                        <form action="#" method="#" id="contect_form">
                             <label for="contect_name"><span class="contect_mark contect_name ">您的姓名:</span></label>
-                            <input type="text" class="contect_box required" id="contect_name" name="" />
+                            <input type="text" class="contect_box " id="contect_name" name="" />
                             <label for="contect_mail"><span class="contect_mark">電子郵件:</span></label>
                             <input type="text" class="contect_box" id="contect_mail" name="" />
                             <label for="contect_phone"><span class="contect_mark">連絡電話:</span></label>
@@ -53,7 +55,7 @@
                             <input type="text" class="contect_box" id="contect_type" name="" />
                             <label for="contect_message"><span class="contect_mark">訊息內容:</span></label>
                             <textarea cols="20" rows="5" class="contect_box contect_message"  id="contect_message" name=""></textarea>
-                            <input type="submit" class="btn-long mt-15" id="submit"value="送出資料">
+                            <input type="submit" class="btn-long mt-15" id="contect_submit"value="送出資料">
 
 
                         </form>

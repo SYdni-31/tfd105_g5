@@ -9,18 +9,62 @@ $(".contect_question").on("click", function (e) {
   $(this).closest("li").find(".fa-chevron-down").toggleClass("-change-color");
 });
 
-// 跳出視窗
-document.getElementById("submit").addEventListener("click", function (e) {
-  // console.log('a')
-  e.preventDefault();
-  // 目前只判斷姓名
-  let required = document.getElementsByClassName("required")[0];
-  if (required.value !== "" && required.value !== null) {
-    swal("送出成功", "此為學習、展示之用，無法幫忙製作網頁", "success");
-  } else {
-    swal("送出失敗，必填欄位未輸入", "此為學習、展示之用，無法幫忙製作網頁", "error");
-  }
-});
+
 
 //驗證email 
 //let regex = new RegExp(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+//   var reg = /(\S)+[@]{1}(\S)+[.]{1}(\w)+/;
+
+var the_form_el = document.getElementById("contect_form");
+the_form_el.addEventListener("submit", function (e) {    //針對送出事建綁定  先驗證再送出 帳號email 卡號 必填符合格式
+  //先抓欄位
+  let name_el = document.getElementById("contect_name");
+  let email_el = document.getElementById("contect_mail");
+  let phone_el = document.getElementById("contect_phone");
+  let message_el = document.getElementById("contect_message");
+  let send_data = true;
+
+
+  //input姓名  變紅框
+  if (name_el.value === "") {
+    name_el.classList.add("-error");
+      send_data = false;
+  } else {
+    name_el.classList.remove("-error");
+  }
+
+  //驗證email
+  if (is.email(email_el.value)) {
+      // console.log("1");
+      email_el.classList.remove("-error");
+  } else {
+      // console.log("2");
+      email_el.classList.add("-error");
+      send_data = false;
+  }
+ 
+  //驗證電話號碼
+  if(is.number(phone_el.value) || !phone_el.value === "" || (phone_el.value.length >=9 && phone_el.value.length <=10) ){            //不是數字
+    phone_el.classList.remove("-error")
+  }else {
+    phone_el.classList.add("-error");
+    send_data = false;
+  }
+
+  //驗證訊息欄位
+  if (message_el.value === "") {
+    message_el.classList.add("-error");
+    send_data = false;
+  } else {
+    message_el.classList.remove("-error");
+  }
+
+  if (!send_data) {            //if(send_data == false) 一樣
+      e.preventDefault();
+    swal("送出失敗，必填欄位未輸入或未填正確格式", "此為學習、展示之用，無法幫忙製作網頁", "error");
+ 
+  }else{
+    swal("送出成功", "此為學習、展示之用，無法幫忙製作網頁", "success");
+  }
+
+});
