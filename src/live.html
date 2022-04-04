@@ -18,7 +18,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <!-- VUE -->
   <script src="js/vue.min.js"></script>
-
+  <!-- 發信emailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+  (function() {
+  emailjs.init("HRi5tweGhe3y1JwPZ");
+  })();
+  </script>
   <title>聚策展-現正直播</title>
 </head>
 
@@ -35,11 +41,11 @@
       <div class="live-container">
         <!-- 影片區 -->
         <!-- https://www.youtube.com/embed/gfwWsWJhoig?modestbranding=1&autoplay=1&playlist=gfwWsWJhoig -->
-        <div class="live-viedo-container">
+        <div class="live-video-container">
           <h2>
             抱歉，目前無直播<br />下一次直播時間 : <br />2022/03/14 09:00
           </h2>
-          <iframe width="900" height="500" src="" title="video" frameborder="0" class="live-viedo"
+          <iframe width="900" height="500" src="" title="video" frameborder="0" class="live-video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
@@ -47,8 +53,8 @@
         <!-- 留言板(PC) -->
         <div id="live_pc" class="live-board-container" :class="{'pc-active': pcOpen === true}">
           <div class="live-board">
-            <div class="search-container-title" @click="toggle()" :class="{'-transform-180': pcOpen === true}">
-              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" />
+            <div class="search-container-title" @click="toggle()">
+              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" :class="{'-transform-180': pcOpen === true}"/>
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
@@ -74,7 +80,7 @@
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
-            <div class="result-block">
+            <div class="result-block-rwd">
               <div class="search-container"></div>
             </div>
             <!-- 打字傳送區 -->
@@ -107,7 +113,7 @@
             <h3>email: test@gmail.com</h3>
           </li>
         </ul>
-        <img src="img/live/live_circle.svg" alt="圓形圖案" class="img-circle">
+        <img src="img/live/live_circle_2.svg" alt="圓形圖案" class="img-circle">
       </div>
     </div>
   </main>
