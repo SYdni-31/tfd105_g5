@@ -121,8 +121,9 @@
             vertical-align: middle;
             padding: 5px;
             img{
-                max-height: 50px;
+                max-height: 100px;
             }
+            
         }
     }
     .page-item{
@@ -139,6 +140,14 @@
 }
 .backstage_btn_td{
     white-space: nowrap;
+    .switch_flex{
+        display: flex;
+        padding-left:0;
+        .custom-control-input:checked~.custom-control-label::before{
+            border-color: $backmain-color;
+            background-color: $backmain-color;
+        }
+    }
 }
     .backstage_btn{
         border: 0;
