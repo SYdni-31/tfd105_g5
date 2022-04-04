@@ -1,4 +1,4 @@
-form.login {
+.login {
     position: fixed;
     top: 0;
     z-index: 10000000;
@@ -6,7 +6,7 @@ form.login {
     background-color: rgba(0, 0, 0, .7);
     width: 100%;
     height: 100%;
-    div.member {
+    .member {    
         display: flex;
         width: 820px;
         height: 508px;
@@ -105,6 +105,9 @@ form.login {
                         color: $black-color;
                     }
                 }
+                .js-none {
+                    display: none;
+                }
                 .btn-1 {
                     display: block;
                     // margin: 0 10px;
@@ -143,10 +146,19 @@ form.login {
             // transform: translateX(0);
             // @include relative(0, 0, 0, 0, 2);
             // position: relative;
+            .login-group{
+                #login_btn_signup_rwd{
+                    display: none;
+                }
+                .js-block {
+                    display: block;
+                }
+            }
+           
         }
-        .js-block {
-            display: block;
-        }
+        // .js-block {
+        //     display: block;
+        // }
         .company-sign-up-container {
             // @include absolute(0, 0, 0, 0, 2);
             position: absolute;
@@ -154,6 +166,12 @@ form.login {
             right: 0;
             // display: none;
             z-index: 2;
+            .btn_group2{
+                display: flex;
+                .login_btn_back2{
+                    display: none;
+                }
+            }
         }
         .guest-sign-in-container,
         .company-sign-up-container {
@@ -250,7 +268,7 @@ form.login {
             display: none;
             z-index: 2;
             background-color: $black-color;
-            .h2-forget{
+            .h2_forget{
                 text-align: center;
                 margin-top: 100px;
             }
@@ -312,7 +330,7 @@ form.login {
             left: 0;
             top: 0;
             // display: none;
-            z-index: 1;
+            z-index: 3;
             .welcome {
                 color: $second-color;
                 text-align: center;
@@ -333,7 +351,7 @@ form.login {
     }
 }
 
-form.-login_page_icon {
+.-login_page_icon {
     display: block; 
 }
 
@@ -368,18 +386,31 @@ form.-login_page_icon {
     transition: .8s;
     transform: translateX(100%);
 }
+.login-rwd{
+    display: none;
+}
 
-@include pad(768px) {
-    form.login {
-        div.member {
+@include pad(880px) {
+    // .login{
+    //     display: none;
+    // }
+    .login {
+        // display: block;
+        .member {
+            display: flex;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 3;
+
             flex-wrap: wrap;
             width: 350px;
             height: 440px;
             display: block;
-            // margin: 0;
-            // list-style: none;
             a.login_btn-close{
-                top: 45px;
+                top: -50px;
+                right: -10px;
             }
             .tab-title {
                 border-radius: 5px;
@@ -387,30 +418,31 @@ form.-login_page_icon {
                 height: 40px;
                 // list-style: none;
                 li {
-                    background-color: $black-color;
+                    background-color: $second-color;
                     width: 175px;
                     list-style: none;
                     box-sizing: border-box;
                     a {
                         text-align: center;
-                        color: $second-color;
+                        color: $black-color;
                         display: block;
                         height: 40px;
                         line-height: 40px;
                     }
                 }
-                // li:nth-last-child(2n) {
-                //     background-color: $second-color;
-                //     a {
-                //         color: $black-color;
-                //     }
-                // }
                 li.active {
-                    border-bottom: 1px solid $second-color;
+                    // border-bottom: 1px solid $second-color;
                     background: $second-color;
                     a{
-                        color: $black-color;
+                        color: $black-color; 
                     }
+                }
+                li.-on{
+                    background-color: $black-color;
+                    a{
+                        color: $second-color;
+                    }
+                    
                 }
             }
             .guest-sign-in-container,
@@ -418,64 +450,106 @@ form.-login_page_icon {
             .received-form,
             .form-forget-password,
             .form-container {
-                border: 1px solid $main-color;
+                // border: 1px solid $main-color;   
                 width: 350px;
                 height: 400px;
                 // display: none;
                 .h2-white,.h2-black {
-                    margin-top: 24px;
+                    margin-top: 0;
+                    padding-top: 20px;
                 }
                 .label-before {
-                    left: 80px;
+                    left: 90px;
                 }
                 .field{
                     label::before {
-                        // content: attr(title);
-                        // position: absolute;
-                        // top: 0;
                         left: 90px;
-                        // line-height: 36px;
-                        // font-size: 14px;
-                        // color: $second-color;
-                        // transition: 300ms all;
                     }
                 }
             }
+            .form-forget-password{
+                .h2_forget{
+                    text-align: center;
+                    margin-top: 50px;
+                }
+            }
+            .company-sign-up-container{
+                display: none;
+                width: 350px;
+                height: 450px;
+                margin-top: 40px;
+                border: 0;
+                // .h2-white,.h2-black {
+                //     margin-top: 24px;  
+                // }
+                h2.companysignup{
+                    // @include font(20px, 700, center, 1.8);
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
+                .field{
+                    // @include font(16px, 700, center, 1.6);
+                }
+                .btn_group2{
+                    display: flex;
+                    .login_btn_back2{
+                        display: block;
+                    }
+                }
+                
+            }
             .guest-sign-in-container{
                 display: block;
+                margin-top: 0;
+                border: none;
             }
             .company-sign-in-container {
                 width: 350px;
                 height: 400px;
                 display: block;
+                border: 0;
+                margin-top: 0;
                 .h2-white,.h2-black {
-                    margin-top: 24px;
-                    
+                    // margin-top: 24px;   
+                }
+                h2{
+                    margin-top: 0;
                 }
                 .field{
                     label::before {
-                        // content: attr(title);
-                        // position: absolute;
-                        // top: 0;
                         left: 90px;
-                        // line-height: 36px;
-                        // font-size: 14px;
-                        // color: $second-color;
-                        // transition: 300ms all;
                     }
                 }
+                .login-group{
+                    #login_btn_signup{
+                        display: none;
+                    }
+                    #login_btn_signup_rwd{
+                        display: block;
+                    }
+                }
+                .label-before {
+                    left: 90px;
+                }
             }
-            .tab-inner {
-                // clear: both;
-                // color: #000;
-                // border: 1px #bcbcbc solid;
+            .js-none {
+                display: none;
+            }
+            .js-block{
+                display: block;
+            }
+            // .tab-inner {
+                
+            // }
+            .overlay-container{
+                display: none;
             }
         }
     }
 }
 
-    @media screen and (min-width: $md_bkpoint) {
-        form.login{
+    @media screen and (min-width: 880px) {
+        .login{
             div.member{
                 .tab-title{
                     display: none;  
