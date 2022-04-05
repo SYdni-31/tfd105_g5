@@ -1,11 +1,53 @@
 // =====datdtable=====
 $(document).ready( function () {
+    Vue.component('backstage_info1_add',{
+        template:`
+        <article class="backstage_box backstage_info1_add">
+                <h2>新增</h2>
+                <div class="backstage_box-content pt-30">
+                    <ul>
+                        <li class="mb-16 input-short"><label for="name">策展ID</label>
+                            <input type="text" name="name" id="name">
+                        </li>
+                        <li class="mb-16 input-short"><label for="introduce">展會名稱</label>
+                            <input type="text" name="introduce" id="introduce">
+                        </li>
+                        <li class="mb-16 input-long"><label for="time">會議簡介</label>
+                            <textarea name="time" id="time" cols="30" rows="10"></textarea>
+                        <li class="mb-16 input-short"><label for="startdate">活動開始</label>
+                            <input type="date" name="date" id="startdate">
+                        </li>
+                        <li class="mb-16 input-short"><label for="enddate">活動結束</label>
+                            <input type="date" name="date" id="enddate">
+                        </li>
+                        <div class="mb-16 input-short"><label>進行狀態</label><br>
+                            <label for="notwork"><input type="radio" name="date" id="notwork">尚未開始</label>
+                            <label for="working"><input type="radio" name="date" id="working">進行中</label>
+                            <label for="worked"><input type="radio" name="date" id="worked">已結束</label>
+                        </div>
+                    </ul>                   
+                    <div class="back-insert-btn">
+                        <button class="back-insert_save">儲存</button>
+                        <button class="back-insert_close">關閉</button>
+                    </div>
+                </div>
+            </article>`,
+        
+    })
     Vue.component('datatable',{
+        data(){
+            return{
+                box:null,
+            }
+        },
+        methods:{
+        },
         template:`
         <article class="-margin0auto pt-10 table_outer">
-        <button class="backstage_add backstage_btn backstage_btn_add mb-15">新增</button>
+        <button @click="box='backstage_info1_add'" class="backstage_add backstage_btn backstage_btn_add mb-15">新增</button>
         <h3 class="bg-color pall-15">講師介紹</h3>
         <table id="table" class="table"></table>
+        <component :is="box"></component>
         </article>`,
         mounted: function () {
             $('#table').DataTable({
@@ -71,12 +113,13 @@ $(document).ready( function () {
         data() {
             return {
                 aside_btn: false,
+                box: null,
             };
           },
         methods: {
-        aside_toggle() {
-            this.aside_btn = !this.aside_btn
-        }
+            aside_toggle() {
+                this.aside_btn = !this.aside_btn
+            },
         },
     })
     

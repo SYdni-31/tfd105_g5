@@ -193,28 +193,17 @@
         display: block;
     }
 }
-// =====新增彈窗=====
-.backstage_add_box{
-    z-index: 100;
-    background-color: $backmain-color;
-    @include absolute(50px, null, null, 50px);
-    outline: 1px solid red;
-}
-
-
-// 新增頁面
-// 改為自己的名稱 ex:backstage_info?
-.backstage_info3 {
+// =====彈窗=====
+.backstage_box {
     @include fixed(50%, null, null, 50%, 100);
     width: 70%;
     background-color: #eeeeee;
     border-radius: 5px;
-    margin: 0 auto;
     height: 75%;
     transform: translate(-50%, -50%);
     border-radius: 20px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $black-color;
-    display: none;
+    // display: none;
     // 標題
     h2 {
       background-color: $backmain-color;
@@ -224,7 +213,7 @@
       border-radius: 20px 20px 0px 0px;
     }
     // 出現卷軸的區塊
-    .backstage_info3-content {
+    .backstage_box-content {
       overflow-y: auto;
       height: calc(90% - 60px);
       // 右側捲動軸效果變更
@@ -237,44 +226,41 @@
       }
       // 輸入區塊
       ul {
-        @include flex-box-center(50%, space-between);
+        @include flex-box-center(80%, space-between);
         flex-wrap: wrap;
         margin: 0 auto;
-        @include laptop(1200px) {
-          @include flex-box-center(80%, space-between);
+        // 小標題
+        label {
+          font-size: 16px;
+          padding-left: 6px;
+          text-align: left;
+          color: $black-color;
+          margin-bottom: 6px;
         }
-  
         li {
           display: flex;
           flex-direction: column;
-          // 小標題
-          label {
-            font-size: 16px;
-            padding-left: 6px;
-            text-align: left;
-            color: $black-color;
-            margin-bottom: 6px;
-          }
-          // 一般
-          input {
-            padding: 0 16px;
-            height: 45px;
-            color: $black-color;
-            @include font(16px, 300, left, 1.6);
-            @include mobile() {
-              font-size: 14px;
-            }
-          }
-          // 文字方塊
-          textarea {
-            padding: 16px;
-            resize: none;
-            @include font(16px, 300, left, 1.6);
-            @include mobile() {
-              font-size: 14px;
-            }
+        // 一般
+        input {
+          padding: 0 16px;
+          height: 45px;
+          color: $black-color;
+          @include font(16px, 300, left, 1.6);
+          @include mobile() {
+            font-size: 14px;
           }
         }
+      }
+        // 文字方塊
+        textarea {
+          padding: 16px;
+          resize: none;
+          @include font(16px, 300, left, 1.6);
+          @include mobile() {
+            font-size: 14px;
+          }
+        }
+        
         // 只佔一半
         .input-short {
           width: 40%;
@@ -289,7 +275,7 @@
       }
       // 檔案上傳的需要另外分出來，不要包在ul
       .input-file {
-        width: 50%;
+        width: 80%;
         position: relative;
         margin: 0 auto;
         @include laptop(1200px) {
