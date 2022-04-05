@@ -182,8 +182,9 @@ aside.companyback_layout.orange{
         width: 98%;
         .field{
             // margin-left: 50px;
-
-
+            label::before {
+                left: 156px;
+            }
             input{
                 width: 80%;
                 height: 56px;
@@ -200,14 +201,14 @@ aside.companyback_layout.orange{
         width: 98%;
         .field{
             // margin-left: 50px;
-
-
+            label::before {
+                left: 211px;
+            }
             input{
                 width: 60%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-              
             }
         }
     }
@@ -224,7 +225,10 @@ aside.companyback_layout.orange{
             justify-content: center;
             padding-top: 0px;
             margin-left: 30px;
-
+            label::before {
+                top: 62px;
+                left: 49px;
+            }
 
             input{
                 width: 80%;
