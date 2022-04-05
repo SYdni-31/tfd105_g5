@@ -177,8 +177,10 @@ aside.companyback_layout.orange{
 
 
             .input{
-                @include input(500px,$accent-color);
-                
+                width: 100px;
+                height: 56px;
+                line-height: 56px;
+                font-size: 18px;
             }
         }
     }
