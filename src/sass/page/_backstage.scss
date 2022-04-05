@@ -90,9 +90,6 @@
     }
 
 // =====中間table=====
-    .backstage_aside_btn{
-        @include absolute(10px, null, null, 10px);
-    }
     .table_outer{
         width: 95%;
         min-width: 728px;
@@ -124,11 +121,6 @@
             }
             
         }
-        // tr{
-        //     td:last-of-type{
-        //         text-align: center;
-        //     }
-        // }
     }
     .page-item{
         &.active .page-link{
@@ -200,4 +192,11 @@
     .backstage_aside_btn{
         display: block;
     }
+}
+// =====新增彈窗=====
+.backstage_add_box{
+    z-index: 100;
+    background-color: $backmain-color;
+    @include absolute(50px, null, null, 50px);
+    outline: 1px solid red;
 }
