@@ -201,3 +201,243 @@
         display: block;
     }
 }
+
+
+// 新增頁面
+// 改為自己的名稱 ex:backstage_info?
+.backstage_info3 {
+    @include fixed(50%, null, null, 50%, 100);
+    width: 70%;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    margin: 0 auto;
+    height: 75%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $black-color;
+    display: none;
+    // 標題
+    h2 {
+      background-color: $backmain-color;
+      color: $black-color;
+      text-align: center;
+      height: 60px;
+      border-radius: 20px 20px 0px 0px;
+    }
+    // 出現卷軸的區塊
+    .backstage_info3-content {
+      overflow-y: auto;
+      height: calc(90% - 60px);
+      // 右側捲動軸效果變更
+      &::-webkit-scrollbar {
+        height: 3px;
+      }
+      &::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 5px;
+      }
+      // 輸入區塊
+      ul {
+        @include flex-box-center(50%, space-between);
+        flex-wrap: wrap;
+        margin: 0 auto;
+        @include laptop(1200px) {
+          @include flex-box-center(80%, space-between);
+        }
+  
+        li {
+          display: flex;
+          flex-direction: column;
+          // 小標題
+          label {
+            font-size: 16px;
+            padding-left: 6px;
+            text-align: left;
+            color: $black-color;
+            margin-bottom: 6px;
+          }
+          // 一般
+          input {
+            padding: 0 16px;
+            height: 45px;
+            color: $black-color;
+            @include font(16px, 300, left, 1.6);
+            @include mobile() {
+              font-size: 14px;
+            }
+          }
+          // 文字方塊
+          textarea {
+            padding: 16px;
+            resize: none;
+            @include font(16px, 300, left, 1.6);
+            @include mobile() {
+              font-size: 14px;
+            }
+          }
+        }
+        // 只佔一半
+        .input-short {
+          width: 40%;
+          @include pad(768px) {
+            width: 100%;
+          }
+        }
+        // 佔整行
+        .input-long {
+          width: 100%;
+        }
+      }
+      // 檔案上傳的需要另外分出來，不要包在ul
+      .input-file {
+        width: 50%;
+        position: relative;
+        margin: 0 auto;
+        @include laptop(1200px) {
+          width: 80%;
+        }
+        // 整個檔案上傳區塊
+        .input-file-group {
+          // 檔案上傳小標題
+          label {
+            /* border: 1px solid purple; */
+            font-size: 16px;
+            font-weight: bold;
+            color: $black-color;
+          }
+          // 檔案上傳(隱藏的)
+          .file-choose {
+            position: absolute;
+            top: 40px;
+            left: 0px;
+            width: 100%;
+            height: 45px;
+            opacity: 0;
+            z-index: 2;
+            color: $black-color;
+            cursor: pointer;
+          }
+          // 「選擇檔案」文字
+          & > .file-text {
+            margin: 0;
+            padding-left: 16px;
+            line-height: 45px;
+            position: absolute;
+            top: 40px;
+            left: 0px;
+            border: 1px solid $black-color;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 100%;
+            font-size: 16px;
+            color: $black-color;
+            font-weight: bold;
+            background-color: #fff;
+          }
+          .file-text-hide {
+            display: none;
+          }
+          // 照片下方文字，會連動檔名
+          & > .photo-text {
+            font-size: 16px;
+            // padding-left: 95px;
+            color: $black-color;
+            margin: 24px auto;
+            @include mobile(375px) {
+              // padding-left: 60px;
+            }
+          }
+        }
+        // 檔案上傳下方拖曳區塊
+        .input-file-img {
+          border: 1px solid $black-color;
+          width: 260px;
+          height: 224px;
+          margin-top: 84px;
+          padding: 0;
+          position: relative;
+          background-color: #fff;
+          opacity: 0.9;
+          @include mobile(375px) {
+            width: 200px;
+          }
+          // 檔案上傳正方形拖曳區
+          img {
+            max-width: 260px;
+            max-height: 260px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+          // 拖曳區內的圖案
+          & > label {
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: $black-color;
+            & > i {
+              line-height: 40px;
+              font-size: 40px;
+            }
+            .input-p-hide {
+              display: none;
+            }
+          }
+          & > input {
+            z-index: 3;
+            width: 260px;
+            height: 224px;
+            opacity: 0;
+            cursor: pointer;
+          }
+        }
+        // 檔案上傳的「上傳」按鈕
+        button {
+          position: absolute;
+          width: 100px;
+          right: 0px;
+          font-size: 14px;
+          line-height: 45px;
+          top: 40px;
+          color: $black-color;
+          background-color: $backmain-color;
+          border: 0px;
+          border-radius: 0px 5px 5px 0px;
+          @include mobile(375px) {
+            width: 50px;
+          }
+        }
+      }
+  
+      // 新增的儲存按鈕
+      .back-insert-btn {
+        @include flex-box-center(50%);
+        margin: 24px auto;
+        @include laptop(1200px) {
+          @include flex-box-center(80%);
+        }
+        @include mobile(450px) {
+          @include flex-box-center(100%);
+        }
+        button {
+          width: 120px;
+          font-size: 14px;
+          line-height: 45px;
+          color: $black-color;
+          background-color: $backmain-color;
+          border-radius: 5px;
+          border: 0px;
+        }
+        // 關閉按鈕
+        .back-insert_close {
+          margin-left: 24px;
+          background-color: $backSecond-color;
+        }
+      }
+    }
+  }
+  

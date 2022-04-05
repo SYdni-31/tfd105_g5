@@ -17,7 +17,9 @@
   <!-- title icon -->
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
   <!-- vue -->
-  <!-- <script src="js/vue.min.js"></script> -->
+  <script src="js/vue.min.js"></script>
+  <!-- alert套件 -->
+  <script src="https://unpkg.com/vue-swal"></script>
 
   <title>聚策展-虛擬商展</title>
 </head>
@@ -56,84 +58,62 @@
     </ul>
     <section class="backstage_main">
       <img src="img/backstage/backstage_aside_btn.svg" alt="" class="backstage_aside_btn"/>
-      <data-table v-if="list !== null" :head="list.head" :data="list.body"></data-table>
 
       <article class="-margin0auto mt-10 table_outer">
-        <button class="backstage_btn backstage_btn_add mb-15">新增</button>
+        <button class="backstage_btn backstage_btn_add mb-15" @click="insert()">新增</button>
         <h3 class="bg-color pall-15">講師介紹</h3>
         <table id="table" class="table">
-           <!-- <thead>
-            <tr>
-              <th>序號</th>
-              <th>講師名稱</th>
-              <th>講師照片</th>
-              <th>議程日期</th>
-              <th>操作</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>王大明</td>
-              <td><img src="img/sample/speaker_sample.png" alt=""></td>
-              <td>2022/03/17</td>
-              <td><div class="backstage_btn_td"><button class="backstage_btn backstage_btn_short">修改</button><button class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></td>
-            </tr>
-          </tbody> -->
         </table>
       </article>
-       <!-- <article class="-margin0auto mt-10 table_outer">
-        <button class="backstage_btn backstage_btn_add mb-15">新增</button>
-        <h3 class="bg-color pall-15">直播審核表</h3>
-        <table id="table" class="table">
-          <thead>
-            <tr>
-              <th>直播ID</th>
-              <th>廠商名稱</th>
-              <th>開始時間</th>
-              <th>申請時間</th>
-              <th>狀態</th>
-              <th>操作</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>台積電股份有限公司</td>
-              <td>2022/03/17 13:00</td>
-              <td>2022/03/17 13:00</td>
-              <td class="backstage_btn_td">
-                <div class="custom-control custom-switch switch_flex">不通過
-                  <div class="custom-control custom-switch">   
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                    <label class="custom-control-label" for="customSwitch1"></label>
-                  </div>
-                通過</div> 
-              </td>
-              <td class="backstage_btn_td"><button class="backstage_btn backstage_btn_short">修改</button><button class="backstage_btn backstage_btn_bad ml-4">刪除</button></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>台積電股份有限公司</td>
-              <td>2022/03/17 13:00</td>
-              <td>2022/03/17 13:00</td>
-              <td class="backstage_btn_td">
-                <div class="custom-control custom-switch switch_flex">不通過
-                  <div class="custom-control custom-switch">   
-                    <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                    <label class="custom-control-label" for="customSwitch2"></label>
-                  </div>
-                通過</div> 
-              </td>
-              <td class="backstage_btn_td"><button class="backstage_btn backstage_btn_short">修改</button><button class="backstage_btn backstage_btn_bad ml-4">刪除</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="lookmorebox">
-  
-        </div>
-      </article> -->
     </section>
+    <section>
+      <div class="backstage_info3">
+          <h2>新增</h2>
+          <div class="backstage_info3-content pt-30">
+              <ul>
+                  <li class="mb-16 input-short"><label for="name">序號</label>
+                      <input type="text" name="name" id="name">
+                  </li>
+                  <li class="mb-16 input-short"><label for="introduce">講師姓名</label>
+                      <input type="text" name="introduce" id="introduce">
+                  </li>
+                  <li class="mb-16 input-long"><label for="time">講師介紹</label>
+                      <textarea name="time" id="time" cols="30" rows="10"></textarea>
+                  <li class="mb-16 input-long"><label for="date">議程日期</label>
+                      <input type="date" name="date" id="date">
+                  </li>
+              </ul>
+
+              <div class="mb-16 input-file">
+                  <!-- 上傳圖片一定要用form的multipart -->
+                  <form enctype="multipart/form-data">
+                  <div class="input-file-group">
+                      <label for="img">講師照片</label>
+                      <input type="file" class="file-choose" name="file-choose" id="file-choose" class="photo" @change="selectedFile">
+                      <p class="file-text">選擇檔案</p>
+                      <p class="file-text file-text-hide">{{file_name}}</p>
+                      <div class="input-file-img dropbox">
+                          <!-- <img :src='img_name.src'> -->
+                          <img id="img" class="img-update" :src="image">
+                          <input type="file" @change="selectedFile"  ref="img">
+                          <!-- <p v-if="files.length===0"><i class="fa-solid fa-image"></i></p> -->
+                          <label for="file-choose"><i class="fa-solid fa-image"></i></label>
+                      </div>
+                      <button>上傳</button>
+                      <p class="photo-text">{{file_name}}</p>
+                  </div>
+                  </form>
+              </div>
+
+
+              <div class="back-insert-btn">
+                  <button class="back-insert_save" @click="f_save">儲存</button>
+                  <button class="back-insert_close" @click="f_close">關閉</button>
+              </div>
+          </div>
+      </div>
+    </section>
+  <!-- <div id="hide" v-if="current_edit !== null"></div> -->
   </main>
 
   <!-- jQuery for datatable-->
