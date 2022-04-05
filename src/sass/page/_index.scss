@@ -285,8 +285,8 @@
     }
 }
 
-// rwd 375-576px
-@media (min-width: 375px) and (max-width: 575.98px){
+// rwd 320-576px
+@media (min-width: 320px) and (max-width: 575.98px){
     
     .index_block{
         .index_bcg_desktop {
@@ -304,7 +304,7 @@
             margin-top: 20%;
 
             h1 {
-                font-size: 5.5vw;
+                font-size: 5.4vw;
                 text-align: center;
             }
         }
