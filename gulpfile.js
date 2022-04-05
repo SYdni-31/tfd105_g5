@@ -86,7 +86,7 @@ exports.html = includeHTML;
 
 // 監聽所有檔案，使用時不可再按下watch sass，會導致系統錯亂
 function watchall(){
-    watch(['src/*.html' , 'src/layout/*.html' ,] , includeHTML);
+    watch(['src/*.html' , 'src/backstage/*.html', 'src/layout/*.html' ,] , includeHTML);
     watch(['src/sass/*.scss' , 'src/sass/**/*.scss'] , sassstyle);
  }
 exports.w = watchall
@@ -102,7 +102,7 @@ function browser(done) {
          },
         port: 3000
      });
-    watch(['src/*.html' , 'src/layout/*.html' ,] , includeHTML).on('change' , reload);
+    watch(['src/*.html' , 'src/backstage/*.html', 'src/layout/*.html' ,] , includeHTML).on('change' , reload);
     watch(['src/sass/*.scss' , 'src/sass/**/*.scss'] , minicss).on('change' , reload);
     watch(['src/js/*.js' , 'src/js/**/*.js'] , packagejs).on('change' , reload);
     watch(['src/img/*.*' ,  'src/img/**/*.*'] , package).on('change' , reload);

@@ -6,6 +6,110 @@ $(function () {
   } else {
     // alert("有直播");
   }
+  
+  // 訊息輸入完畢，enter送出
+  $(".live-text-input").on("keydown", function (e) {
+    // console.log(e.which);
+    if (e.which == 13) {
+      $(".live-submit").click();
+    }
+  });
+
+  $(".live-text-input-rwd").on("keydown", function (e) {
+    // console.log(e.which);
+    if (e.which == 13) {
+      $(".live-submit-rwd").click();
+    }
+  });
+
+  //PC版點擊 "送出"
+  $(".live-submit").on("click", function () {
+    const input_text = $(".live-text-input").val().trim();
+    // console.log(input_text);
+    if (input_text == "") {
+      alert("請輸入資料");
+    } else {
+      let html = `
+          <ul class="search-list">
+            <li class="search-li">
+            <div class="search-li-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+              <div class="item-name">
+              王大明
+              </div>
+              <div class="item-block">
+                <div class="title-block">${input_text}</div>
+              </div>
+              </div>
+            </li>
+          </ul>
+        `;
+
+      $("div.search-container").append(html);
+
+      // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
+      //console.log( $('section.result-block').prop("scrollHeight") );
+
+      // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
+      $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight});
+      $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight});
+
+
+
+    }
+    // 欄位清空
+    $(".live-text-input").val("");
+  });
+
+
+
+  // RWD點擊"送出"
+  $(".live-submit-rwd").on("click", function () {
+    const input_text = $(".live-text-input-rwd").val().trim();
+    // console.log(input_text);
+    if (input_text == "") {
+      alert("請輸入資料");
+    } else {
+      let html = `
+          <ul class="search-list">
+            <li class="search-li">
+            <div class="search-li-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+              <div class="item-name">
+              王大明
+              </div>
+              <div class="item-block">
+                <div class="title-block">${input_text}</div>
+
+              </div>
+              </div>
+            </li>
+          </ul>
+        `;
+
+      $("div.search-container").append(html);
+
+      // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
+
+      // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
+      $(".result-block").animate({ scrollTop: $('.result-block-rwd')[0].scrollHeight}, 10);
+      $(".result-block-rwd").animate({ scrollTop: $('.result-block-rwd')[0].scrollHeight}, 10);
+
+    }
+    
+    // console.log(scrollTop);
+    // 欄位清空
+    $(".live-text-input-rwd").val("");
+  });
+
+});
+
+
+
   // 點擊收合留言板
   // $("#live-icon-img").on("click", function () {
   //   $("#live-icon-img").toggleClass("-transform-180");
@@ -45,52 +149,6 @@ $(function () {
   //   $(".search-container").toggleClass("-hide");
   //   $(".result-block").toggleClass("live-height");
   // }
-  
-  $(".live-text-input").on("keydown", function (e) {
-    // console.log(e.which);
-    if (e.which == 13) {
-      $("#live-submit").click();
-    }
-  });
-
-  //PC版點擊 "送出"
-  $(".live-submit").on("click", function () {
-    const input_text = $(".live-text-input").val().trim();
-    console.log(input_text);
-    if (input_text == "") {
-      alert("請輸入資料");
-    } else {
-      let html = `
-          <ul class="search-list">
-            <li class="search-li">
-            <div class="search-li-icon">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div>
-              <div class="item-name">
-              王大明
-              </div>
-              <div class="item-block">
-                <div class="title-block">${input_text}</div>
-
-              </div>
-              </div>
-            </li>
-          </ul>
-        `;
-
-      $("div.search-container").append(html);
-
-      // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
-      //console.log( $('section.result-block').prop("scrollHeight") );
-
-      // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
-      $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight}, 9999);
-      $(".result-block").animate({ scrollTop: $('.result-block')[1].scrollHeight}, 9999);
-
-
-
-    }
 
     // // 上課測試
     // const input = $(".live-text-input");
@@ -163,51 +221,3 @@ $(function () {
 
     // }
     // fileReader.readAsBinaryString(file);
-    // 欄位清空
-    $(".live-text-input").val("");
-  });
-
-
-
-  // RWD點擊"送出"
-  $(".live-submit-rwd").on("click", function () {
-    const input_text = $(".live-text-input-rwd").val().trim();
-    // console.log(input_text);
-    if (input_text == "") {
-      alert("請輸入資料");
-    } else {
-      let html = `
-          <ul class="search-list">
-            <li class="search-li">
-            <div class="search-li-icon">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div>
-              <div class="item-name">
-              王大明
-              </div>
-              <div class="item-block">
-                <div class="title-block">${input_text}</div>
-
-              </div>
-              </div>
-            </li>
-          </ul>
-        `;
-
-      $("div.search-container").append(html);
-
-      // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
-
-      // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
-      $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight}, 10);
-      $(".result-block").animate({ scrollTop: $('.result-block')[1].scrollHeight}, 10);
-
-    }
-    
-    // console.log(scrollTop);
-    // 欄位清空
-    $(".live-text-input-rwd").val("");
-  });
-
-});

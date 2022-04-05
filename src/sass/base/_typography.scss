@@ -6,31 +6,31 @@ section{
 /* @include font(大小, 字重, 位置:預設置左, 行高:預設1.5, 字距:預設2; */
 h1 {
   @include font(36px, 700, left, 2);
-  @include mobile() {
+  @include pad() {
     font-size: 28px;
   }
 }
 h2 {
   @include font(28px, 700, left, 2);
-  @include mobile() {
+  @include pad() {
     font-size: 24px;
   }
 }
 h3 {
   @include font(20px, 700, left, 1.8);
-  @include mobile() {
+  @include pad() {
     font-size: 16px;
   }
 }
 h4 {
   @include font(16px, 300, left, 1.6);
-  @include mobile() {
+  @include pad() {
     font-size: 14px;
   }
 }
 h5 {
   @include font(14px, 300, left, 2);
-  @include mobile() {
+  @include pad() {
     font-size: 12px;
   }
 }
@@ -217,10 +217,6 @@ a {
 }
 .-hide {
   display: none;
-}
-.-margin0auto{
-  display: block;
-  margin:0 auto;
 }
 .-border_maincolor{
   border:1px solid $main-color;

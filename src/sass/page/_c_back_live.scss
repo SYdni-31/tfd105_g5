@@ -56,6 +56,7 @@ $companyback_num2 : 2 ;
     h2{
         text-shadow: $companyback_text_shadow;
         line-height:52px;
+       
     }
     .label-before {
         line-height: 20px;
@@ -153,4 +154,90 @@ aside.companyback_layout.blue{
 }               
 aside.companyback_layout.orange{
     color:rgba(243, 127, 21, 0.14);
+}
+
+@include laptop(1200px){
+    .companyback_form{
+        width: 98%;
+        .field{
+            // margin-left: 50px;
+            
+            // input{
+            //     width: 500px;
+            //     height: 56px;
+            //     line-height: 56px;
+            //     font-size: 18px;
+              
+            // }
+
+
+          
+        }
+    }
+   
+
+}
+@include pad(1052px){
+    .companyback_form{
+        width: 98%;
+        .field{
+            // margin-left: 50px;
+            label::before {
+                left: 156px;
+            }
+            input{
+                width: 80%;
+                height: 56px;
+                line-height: 56px;
+                font-size: 18px;
+              
+            }
+        }
+    }
+}
+
+@include pad(895px){
+    .companyback_form{
+        width: 98%;
+        .field{
+            // margin-left: 50px;
+            label::before {
+                left: 211px;
+            }
+            input{
+                width: 60%;
+                height: 56px;
+                line-height: 56px;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@include pad(576px){
+    .companyback_form{
+        width: 100%;
+        .field{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 0px;
+            margin-left: 30px;
+            label::before {
+                top: 62px;
+                left: 49px;
+            }
+
+            input{
+                width: 80%;
+                height: 56px;
+                line-height: 56px;
+                font-size: 18px;
+               
+              
+            }
+        }
+    }
 }
