@@ -56,6 +56,7 @@ $companyback_num2 : 2 ;
     h2{
         text-shadow: $companyback_text_shadow;
         line-height:52px;
+       
     }
     .label-before {
         line-height: 20px;
@@ -153,4 +154,32 @@ aside.companyback_layout.blue{
 }               
 aside.companyback_layout.orange{
     color:rgba(243, 127, 21, 0.14);
+}
+
+@include laptop(1200px){
+    .companyback_form{
+        width: 98%;
+        .field{
+            // margin-left: 50px;
+
+
+          
+        }
+    }
+   
+
+}
+@include pad(800px){
+    .companyback_form{
+        width: 98%;
+        .field{
+            // margin-left: 50px;
+
+
+            .input{
+                @include input(500px,$accent-color);
+                
+            }
+        }
+    }
 }
