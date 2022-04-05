@@ -67,51 +67,50 @@
       </article>
     </section>
     <section>
-      <div class="backstage_info3">
+      <div class="backstage_info3 backstage_box ">
           <h2>新增</h2>
-          <div class="backstage_info3-content pt-30">
-              <ul>
-                  <li class="mb-16 input-short"><label for="name">序號</label>
-                      <input type="text" name="name" id="name">
+          <!-- 上傳圖片一定要用form的multipart -->
+          <div class=" backstage_box-content backstage_info3-content pt-30">
+              <!-- <form enctype="multipart/form-data"> -->
+                <ul>
+                    <li class="mb-16 input-short"><label for="name">序號</label>
+                        <input type="text" name="name" id="name">
+                    </li>
+                    <li class="mb-16 input-short"><label for="introduce">講師姓名</label>
+                        <input type="text" name="introduce" id="introduce">
+                    </li>
+                    <li class="mb-16 input-long"><label for="time">講師介紹</label>
+                        <textarea name="time" id="time" cols="30" rows="10"></textarea>
+                    <li class="mb-16 input-long"><label for="date">議程日期</label>
+                        <input type="date" name="date" id="date">
+                    </li>
+                    <li class="mb-16 input-long"><label for="date">開始時間</label>
+                      <input type="time" name="start_time" id="start_time">
                   </li>
-                  <li class="mb-16 input-short"><label for="introduce">講師姓名</label>
-                      <input type="text" name="introduce" id="introduce">
-                  </li>
-                  <li class="mb-16 input-long"><label for="time">講師介紹</label>
-                      <textarea name="time" id="time" cols="30" rows="10"></textarea>
-                  <li class="mb-16 input-long"><label for="date">議程日期</label>
-                      <input type="date" name="date" id="date">
-                  </li>
-              </ul>
-
-              <div class="mb-16 input-file">
-                  <!-- 上傳圖片一定要用form的multipart -->
-                  <form enctype="multipart/form-data">
-                  <div class="input-file-group">
-                      <label for="img">講師照片</label>
-                      <input type="file" class="file-choose" name="file-choose" id="file-choose" class="photo" @change="selectedFile">
-                      <p class="file-text">選擇檔案</p>
-                      <p class="file-text file-text-hide">{{file_name}}</p>
-                      <div class="input-file-img dropbox">
-                          <!-- <img :src='img_name.src'> -->
-                          <img id="img" class="img-update" :src="image">
-                          <input type="file" @change="selectedFile"  ref="img">
-                          <!-- <p v-if="files.length===0"><i class="fa-solid fa-image"></i></p> -->
-                          <label for="file-choose"><i class="fa-solid fa-image"></i></label>
-                      </div>
-                      <button>上傳</button>
-                      <p class="photo-text">{{file_name}}</p>
-                  </div>
-                  </form>
-              </div>
-
-
+                </ul>
+                <div class="mb-16 input-file">
+                    <div class="input-file-group">
+                        <label for="img">講師照片</label>
+                        <input type="file" class="file-choose" name="file-choose" id="file-choose" class="photo" @change="selectedFile">
+                        <p class="file-text">選擇檔案</p>
+                        <p class="file-text file-text-hide">{{file_name}}</p>
+                        <div class="input-file-img dropbox">
+                            <!-- <img :src='img_name.src'> -->
+                            <img id="img" class="img-update" :src="image">
+                            <input type="file" @change="selectedFile"  ref="img">
+                            <!-- <p v-if="files.length===0"><i class="fa-solid fa-image"></i></p> -->
+                            <label for="file-choose"><i class="fa-solid fa-image"></i></label>
+                        </div>
+                        <button>上傳</button>
+                        <p class="photo-text">{{file_name}}</p>
+                    </div>
+                </div>
+              <!-- </form> -->
               <div class="back-insert-btn">
-                  <button class="back-insert_save" @click="f_save">儲存</button>
-                  <button class="back-insert_close" @click="f_close">關閉</button>
+                <button class="back-insert_save" @click="f_save">新增</button>
+                <button class="back-insert_close" @click="f_close">關閉</button>
               </div>
           </div>
-      </div>
     </section>
   <!-- <div id="hide" v-if="current_edit !== null"></div> -->
   </main>

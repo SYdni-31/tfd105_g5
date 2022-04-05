@@ -1,22 +1,30 @@
 // =====datdtable=====
 $(document).ready(function () {
-  var dataset = [
+  let dataset = [
     [
       1,
-      "王大明",
-      `<img src="img/sample/speaker_sample.png" alt="">`,
       "2022/03/17",
+      "10:00",
+      "科技大會展望",
+      "王大明",
+      "2022/03/17",
+      `<img src="img/sample/speaker_sample.png" alt="">`,
+      "https://www.youtube.com/watch?v=oxWv74OI6xA",
       // `<div class="backstage_btn_td"></div>`,
     ],
     [
       2,
+      "2022/03/17",
+      "12:00",
+      "午休時間",
       "王小明",
+      "2022/03/17",
       `<img src="img/sample/speaker_sample.png" alt="">`,
-      "2022/03/18",
+      "https://www.youtube.com/watch?v=oxWv74OI6xA",
       // `<div class="backstage_btn_td"><button class="backstage_btn backstage_btn_short" name="edit_btn">修改</button><button class="backstage_btn backstage_btn_bad ml-4">刪除</button></div>`,
     ],
   ];
-  var table = $("#table").DataTable({
+  let table = $("#table").DataTable({
     lengthMenu: [10, 20],
     dom: `<'row'<'col-6'l><'col-6'f>>
                 <'row'<'col-12'tr>>
@@ -45,9 +53,10 @@ $(document).ready(function () {
     data: dataset,
     columns: [
       { title: "序號" },
-      { title: "講師名稱" },
-      { title: "講師照片" },
       { title: "議程日期" },
+      { title: "開始時間" },
+      { title: "主題" },
+      { title: "講師名稱" },
       {
         title: "操作", // 這邊是欄位
         render: function (data, type, row) {
@@ -63,25 +72,27 @@ $(document).ready(function () {
   });
   // 點擊修改
   $("#table tbody").on("click", ".edt_btn", function () {
-    var data = table.row($(this).parents("tr")).data();
+    let data = table.row($(this).parents("tr")).data();
     // data[0]是第1筆以此類推
     let openCreatBox = document.querySelector(".backstage_info3");
     openCreatBox.style.display = "block";
     $("#name").val(data[0]);
-    $("#introduce").val(data[1]);
-    let img_url_r = data[2].replace('" alt="">', "");
+    $("#introduce").val(data[4]);
+    $("#start_time").val(data[2]);
+    let img_url_r = data[6].replace('" alt="">', "");
     let img_url = img_url_r.substring(10);
     $("#img").attr("src", img_url);
     $(".file-text").text(img_url.replace("img/sample/", ""));
     $(".photo-text").text(img_url.replace("img/sample/", ""));
-    $("#date").val(data[3]);
+    $("#date").val(data[1]);
     if (img_url != "") {
       $(".fa-image").remove();
     }
+    console.log(data);
   });
   // 點擊刪除
   $("#table tbody").on("click", ".del_btn", function () {
-    var data = table.row($(this).parents("tr")).data();
+    let data = table.row($(this).parents("tr")).data();
     // data[0]是第1筆以此類推
     swal({
       title: "是否確定刪除?",
@@ -135,7 +146,52 @@ new Vue({
     },
     // 點擊儲存
     f_save() {
-      if ($("#name").val() != "" && $("#introduce").val() != "") {
+      if ( $('#date').val() != ""
+          && $('#theme').val() != ""
+          && $('#link').val() != ""
+          && $('#name').val() != ""
+          && $('#photo').val() != ""
+          && $('#introduce').val() != ""
+      ) {
+
+        // let id = $('#id').val();
+        let date = $('#date').val();
+        // let start_time = $('#start_time').val();
+        let theme = $('#theme').val();
+        let link = $('#link').val();
+        let name = $('#name').val();
+        let photo = $('#file-choose').val();
+        let introduce = $('#introduce').val();
+        
+        $.ajax({
+          url: "add_user.php",
+          type: "post",
+          data: {
+            // id: 9,
+            date: date,
+            // start_time: start_time,
+            // end_time: "14:00",
+            theme: "theme",
+            status: 0,
+            link: "https:1234",
+            name: name,
+            photo: photo,
+            introduce:introduce,
+          },
+          success: function(data) {
+            if (data.includes("true")) {
+              mytable = $('#table').DataTable();
+              mytable.draw();
+            } else {
+              this.$swal({
+                title: "儲存失敗",
+                icon: "error",
+                text: "請檢查欄位",
+              });
+            }
+          }
+        });
+        // 跳出成功訊息
         this.$swal({
           title: "儲存成功",
           icon: "success",
