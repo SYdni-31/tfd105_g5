@@ -95,11 +95,7 @@ $companyback_num2 : 2;
             color: #F6FAFB;
             transition: 300ms all;
         }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> Brandon
         input {
             @include input(695px, $accent-color);
             height: 56px;
@@ -204,7 +200,6 @@ aside.companyback_layout.orange {
 
         .field {
             // margin-left: 50px;
-<<<<<<< HEAD
             label::before {
             left: 156px;
             }
@@ -215,11 +210,6 @@ aside.companyback_layout.orange {
             left: 156px;
             }
             input{
-=======
-
-
-            input {
->>>>>>> Brandon
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
@@ -236,7 +226,6 @@ aside.companyback_layout.orange {
 
         .field {
             // margin-left: 50px;
-<<<<<<< HEAD
             label::before {
                 left: 211px;
             }
@@ -247,25 +236,15 @@ aside.companyback_layout.orange {
                 left: 211px;
             }
             input{
-=======
-
-
-            input {
->>>>>>> Brandon
                 width: 60%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-<<<<<<< HEAD
-=======
-
->>>>>>> Brandon
             }
         }
     }
 }
 
-<<<<<<< HEAD
 @include pad(768px){
     .companyback_form{
         margin-top: 50px;
@@ -279,13 +258,6 @@ aside.companyback_layout.orange {
         width: 100%;
      
         .field{
-=======
-@include pad(576px) {
-    .companyback_form {
-        width: 100%;
-
-        .field {
->>>>>>> Brandon
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
@@ -293,7 +265,6 @@ aside.companyback_layout.orange {
             justify-content: center;
             padding-top: 0px;
             margin-left: 30px;
-<<<<<<< HEAD
             label::before {
                 top: 62px;
                 left: 49px;
@@ -307,20 +278,10 @@ aside.companyback_layout.orange {
                 left: 83px;
             }
             input{
-=======
-
-
-            input {
->>>>>>> Brandon
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> Brandon
             }
         }
     }
