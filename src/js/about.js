@@ -56,4 +56,5 @@ for (let i = 0; i < speaker_.length; i++) {
 
 
 
-
+// aos
+AOS.init();
