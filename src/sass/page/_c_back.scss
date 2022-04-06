@@ -1,8 +1,5 @@
-
-
-
-.company_wrapper{
-    .companyback_dateform{
+.company_wrapper {
+    .companyback_dateform {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -21,7 +18,7 @@
             top: 58px;
             left: 55px;
         }
-        
+
         .label-before {
             line-height: 20px;
             font-size: 16px;
@@ -31,9 +28,11 @@
             left: 15px;
             // margin: 0 auto;
         }
+
         .field {
             position: relative;
             display: flex;
+
             // order: 2;
             // margin-bottom: 15px;
             // margin: 0 auto;
@@ -48,13 +47,15 @@
                 color: #F6FAFB;
                 transition: 300ms all;
             }
+
             input {
-                @include input(391px,$accent-color);
+                @include input(391px, $accent-color);
                 height: 64px;
                 line-height: 64px;
                 font-size: 18px;
                 box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
             }
+
             // input:not(:focus) + label{
             //     color: rgba(0,0,0,0);
             // }
@@ -68,14 +69,15 @@
 
 
 //下面兩個都是第一部分右半邊的input
-.time_tech{
+.time_tech {
     display: flex;
     // justify-content: flex-end;
     flex-direction: row-reverse;
+
     //timepicker的input
-            //年月日的input
-    .form-contril{
-    @include input_Date();
+    //年月日的input
+    .form-contril {
+        @include input_Date();
         text-align: center;
         padding: 5px;
         border: 1px solid #F37F15;
@@ -85,50 +87,52 @@
         // order: 2;
         margin-right: 52px;
         box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
-            }
+    }
+
     .timepicker {
         // width: 391px;
         border-radius: 10px;
         @include input($width: 391px, $mc:#F37F15, $sc: #F6FAFB, $bc:#040F15);
         height: 64px;
         margin: 0;
-        border:1px solid #F37F15;
+        border: 1px solid #F37F15;
         font-size: 20px;
         text-align: center;
         background-color: black;
         box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
     }
-    
+
 }
 
-.form_under{
+.form_under {
     display: flex;
     flex-direction: row-reverse;
-    
-   .companyback_submit{
-    margin-left: 39px;
-    width: 213px;
-    height: 64px;
-    font-size: 23px;
-    border: 1px solid #F37F15;
-    filter: drop-shadow(0px 4px 4px rgba(0, 209, 255, 0.25));
-    border-radius: 10px;
-    color: $second-color;
-    background-color: black;
-   }
+
+    .companyback_submit {
+        margin-left: 39px;
+        width: 213px;
+        height: 64px;
+        font-size: 23px;
+        border: 1px solid #F37F15;
+        filter: drop-shadow(0px 4px 4px rgba(0, 209, 255, 0.25));
+        border-radius: 10px;
+        color: $second-color;
+        background-color: black;
+    }
 }
 
 
 
 
 //第二層
-.chatboard{
+.chatboard {
     padding-top: 80px;
 }
 
-.chat1_company{
+.chat1_company {
     overflow-y: auto;
-    .sechtion_chat2{
+
+    .sechtion_chat2 {
         overflow-y: auto;
     }
 }
@@ -137,33 +141,33 @@
 
 
 
-.companyback_search{
-    .companyback_searchinput{
-    background: #0D0D0D;
-    color:$second-color;
-    box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
-    border-radius: 20px;
-    display: inline-block;
-    width: 427px;
-    height: 59px;
-    border: none ;
-    text-align: center;
-    padding: 10px;
-    font-size: 20px;
-    // &::before{
-    //     content:"abc";
-    //     font-size: 20px;
-    //     color: white;
-    //              }
+.companyback_search {
+    .companyback_searchinput {
+        background: #0D0D0D;
+        color: $second-color;
+        box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+        border-radius: 20px;
+        display: inline-block;
+        width: 427px;
+        height: 59px;
+        border: none;
+        text-align: center;
+        padding: 10px;
+        font-size: 20px;
+        // &::before{
+        //     content:"abc";
+        //     font-size: 20px;
+        //     color: white;
+        //              }
 
-        }
+    }
 }
 
 
 
 
 // 第一個聊天室
-.companyback_main_chatbox{
+.companyback_main_chatbox {
     display: flex;
 
 }
@@ -172,7 +176,7 @@
 
 
 
-section.companyback_chat1{
+section.companyback_chat1 {
     width: 427px;
     // height: 347px;
     background-color: #0D0D0D;
@@ -184,37 +188,43 @@ section.companyback_chat1{
 
 
 
-.chat1_company{
-     i{
-            font-size: 65px;
-            color: #F37F15;
-        }
-    li.variouscompany{
+.chat1_company {
+    i {
+        font-size: 65px;
+        color: #F37F15;
+    }
+
+    li.variouscompany {
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 10px 2px;
-       
+
         display: flex;
         flex-wrap: wrap;
-        i.-main_color{
+
+        i.-main_color {
             color: $main-color;
-           }
-    div{
-        display: flex;
-        width: 100%;
-            .company_receive{
-            padding-left: 115px;
-            text-align: center;
-            line-height: 60px;
+        }
+
+        div {
+            display: flex;
+            width: 100%;
+
+            .company_receive {
+                margin-left: auto;
+                text-align: center;
+                line-height: 60px;
             }
-            p{
-            font-size: 12px;
-            
+
+            p {
+                font-size: 12px;
+
             }
-            span{
+
+            span {
                 padding: 0 14px;
             }
         }
-    
+
     }
 }
 
@@ -224,13 +234,14 @@ section.companyback_chat1{
 
 
 
-li.variouscompany{
-    div{
-    span.variouscompany_span{
-    padding-left: 115px;
-        i{
-        font-size:18px;
-         }
+li.variouscompany {
+    div {
+        span.variouscompany_span {
+            margin-left: auto;
+
+            i {
+                font-size: 18px;
+            }
         }
     }
 }
@@ -241,29 +252,33 @@ li.variouscompany{
 //聊天版
 
 .companyback_back_chatbox {
-   width: 666px;
-   padding:30px;
-   background-color: #0D0D0D;
-//    border: 2px solid sandybrown;
-   border-radius: 20px;
-   box-shadow: 0px 4px 4px rgb(0 209 255 / 25%);
-       .chat_title{
+    width: 666px;
+    padding: 30px;
+    background-color: #0D0D0D;
+    //    border: 2px solid sandybrown;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgb(0 209 255 / 25%);
+
+    .chat_title {
         padding: 10px 25px 35px;
-           display: flex;
-           align-items: center;
-           border-bottom:1px solid rgba(255, 255, 255, 0.25);
-           i{
-            font-size: 65px; 
-            color: $accent-color; 
-             }
-       }
-       .chat_input{
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+
+        i {
+            font-size: 65px;
+            color: $accent-color;
+        }
+    }
+
+    .chat_input {
         display: flex;
         border-top: 1px solid rgba(255, 255, 255, 0.25);
         padding-top: 32px;
         justify-content: space-between;
         align-items: center;
-        input{
+
+        input {
             width: 90%;
             height: 45px;
             border-radius: 10px;
@@ -271,51 +286,58 @@ li.variouscompany{
             border: 1px solid $accent-color;
             outline: none;
             color: $second-color;
-            &::selection{
+
+            &::selection {
                 background-color: #212121;
                 color: $accent-color;
             }
         }
-        .btn-short{
+
+        .btn-short {
             color: $accent-color;
             border: 1px solid $accent-color;
             -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px $accent-color;
             box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px $accent-color;
-            &:hover{
+
+            &:hover {
                 background-color: $accent-color;
                 color: $black-color;
             }
         }
-        .chat_input_button{
+
+        .chat_input_button {
             background-color: $accent-color;
-            border:none ;
+            border: none;
             border-radius: 10px;
-            i{
+
+            i {
                 font-size: 30px;
-                color:#212121 ;
+                color: #212121;
             }
         }
     }
 }
 
 //聊天室內部
-.companyback_chated{
+.companyback_chated {
     padding: 10px;
     overflow-y: auto;
-    
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
         // height:3px;
         width: 8px;
     }
+
     // &::-webkit-scrollbar-track{
     //     background-color: #F6FAFB;
     // }
-    &::-webkit-scrollbar-thumb{
+    &::-webkit-scrollbar-thumb {
         // background-color: #F37F15;
         box-shadow: inset 0 0 4px $accent-color;
-        border-radius: 5px; 
-        
+        border-radius: 5px;
+
     }
+
     // &::-webkit-scrollbar-track-piece{
 
     // }
@@ -329,38 +351,45 @@ li.variouscompany{
         padding: 15px;
         width: fit-content;
     }
+
     p.chat_content_me {
-        border-bottom-left-radius: 0;    
-        span{
+        border-bottom-left-radius: 0;
+
+        span {
             position: absolute;
             bottom: -20px;
             left: 4px;
             color: #f6fafb78;
             font-size: 12px;
-            min-width: 110px; 
-            };
-        &::before{
-            content: "";
-        position: absolute;
-        bottom: 0;
-        left: -10px;
-        border-color: transparent transparent  #1B1B1B transparent;
-        border-style: solid solid solid solid;
-        border-width: 20px 0px 10px 10px;
-        height: 0px;
-        width: 0px;    
-   
+            min-width: 110px;
         }
-        
+
+        ;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            border-color: transparent transparent #1B1B1B transparent;
+            border-style: solid solid solid solid;
+            border-width: 20px 0px 10px 10px;
+            height: 0px;
+            width: 0px;
+
+        }
+
     }
-    p.chat_content_you{
+
+    p.chat_content_you {
         margin-left: auto;
-        background-color:$accent-color;
+        background-color: $accent-color;
         color: $black-color;
         border-bottom-right-radius: 0;
-        &::before{
+
+        &::before {
             content: '';
-            @include absolute(null,-10px,0);
+            @include absolute(null, -10px, 0);
             border-color: transparent transparent $accent-color transparent;
             border-style: solid solid solid solid;
             border-width: 20px 10px 10px 0px;
@@ -368,12 +397,736 @@ li.variouscompany{
             width: 0px;
 
         }
-        span{
-            @include absolute(null,5px,-20px);
-            color:#f6fafb78;
+
+        span {
+            @include absolute(null, 5px, -20px);
+            color: #f6fafb78;
             font-size: 12px;
-            word-wrap:nowrap
+            word-wrap: nowrap
         }
     }
 
+}
+
+
+
+
+//================RWB=================//
+@include laptop (1300px) {
+
+    section.company_wrapper {
+        padding: 40px 2% 20px 8%;
+
+        .companyback_dateform {
+
+            .flatpickr-calendar.inline {
+                top: 20%;
+                left: 7%;
+            }
+
+            .label-before {
+
+                top: -10px;
+                padding: 0 6px;
+                left: 15px;
+            }
+
+            .field {}
+        }
+
+
+    }
+
+
+
+
+    //下面兩個都是第一部分右半邊的input
+    .time_tech {
+
+        .form-contril {
+            margin-right: 3%;
+        }
+
+        .timepicker {
+            margin: 0;
+
+        }
+
+    }
+
+    .form_under {
+
+        .companyback_submit {
+            margin-left: 3%;
+            width: 200px;
+            font-size: 20px;
+
+        }
+    }
+
+
+
+
+    //第二層
+    .chatboard {
+        padding-top: 80px;
+    }
+
+    .chat1_company {
+
+
+        .sechtion_chat2 {}
+    }
+
+    //以下兩個li
+    ul.companyback_main_chatbox {
+        .one {
+            width: 40%;
+        }
+
+        .two {
+            width: 60%;
+        }
+    }
+
+
+
+    .companyback_search {
+        .companyback_searchinput {
+
+            width: 90%;
+        }
+    }
+
+
+
+
+    // 第一個聊天室
+    .companyback_main_chatbox {}
+
+
+
+
+
+    section.companyback_chat1 {
+        width: 90%;
+        padding: 4%;
+    }
+
+
+
+    .chat1_company {
+        i {
+            font-size: 60px;
+        }
+
+        li.variouscompany {
+            padding: 2% 2px;
+
+
+            i.-main_color {}
+
+            div {
+
+                .company_receive {
+                    margin-left: auto;
+
+                }
+
+                p {}
+
+                span {
+                    padding: 0 4%;
+                    min-width: 50px;
+                }
+            }
+
+        }
+    }
+
+
+    // 第二個聊天室
+
+
+
+
+    li.variouscompany {
+        div {
+            span.variouscompany_span {
+                i {}
+            }
+        }
+    }
+
+
+
+
+    //聊天版
+
+    .companyback_back_chatbox {
+        width: 100%;
+        padding: 5% 3%;
+
+        .chat_title {
+            padding: 0 4% 4%;
+
+            i {
+                font-size: 60px;
+
+            }
+        }
+
+        .chat_input {
+            padding-top: 5%;
+
+            input {
+                width: 90%;
+                height: 45px;
+
+                &::selection {}
+            }
+
+            .btn-short {
+
+                &:hover {}
+            }
+
+            .chat_input_button {
+
+                i {}
+            }
+        }
+    }
+
+    //聊天室內部
+    .mt-41 {
+        margin-top: 5%;
+    }
+
+    .mt-35 {
+        margin-top: 32px;
+    }
+
+    .ml-30 {
+        margin-left: 12px;
+    }
+
+    .companyback_chated {
+        padding: 2%;
+
+
+
+        &::-webkit-scrollbar {}
+
+
+        &::-webkit-scrollbar-thumb {}
+
+        p.chat_content {
+            padding: 12px;
+
+        }
+
+        p.chat_content_me {
+            span {}
+
+            ;
+
+            &::before {
+                content: "";
+
+            }
+
+        }
+
+        p.chat_content_you {
+
+            &::before {
+                content: '';
+                @include absolute(null, -10px, 0);
+                border-color: transparent transparent $accent-color transparent;
+                border-style: solid solid solid solid;
+                border-width: 20px 10px 10px 0px;
+                height: 0px;
+                width: 0px;
+
+            }
+
+            span {
+                @include absolute(null, 5px, -20px);
+                color: #f6fafb78;
+                font-size: 12px;
+                word-wrap: nowrap
+            }
+        }
+
+    }
+
+
+}
+
+@include laptop (1160px) {
+    section.company_wrapper {
+
+        .companyback_dateform {
+            .time_tech {
+                padding-right: 4%;
+
+                .form-contril {
+                    width: 180px;
+                }
+
+                .timepicker {
+                    width: 270px;
+                }
+            }
+
+            .form_under {
+                padding-right: 4%;
+
+                input {
+                    width: 180px;
+                }
+
+                .field input {
+                    width: 100%;
+                }
+            }
+
+            .flatpickr-calendar.inline {
+                top: 20%;
+                left: 3%;
+            }
+        }
+    }
+}
+
+
+@include pad(992px) {
+
+    section.company_wrapper {
+        padding: 2% 1% 20px 9%;
+
+        .companyback_dateform {
+            padding: 9% 1% 0 0;
+
+            .time_tech {
+                padding-right: 0%;
+                flex-direction: column-reverse;
+                align-items: flex-end;
+
+
+                .timepicker,
+                .form-contril {
+                    margin-bottom: 2%;
+                    width: 45%;
+                    margin-left: auto;
+                    margin-right: 0;
+                    height: 55px;
+                }
+            }
+
+            .pt-58 {
+                padding-top: 0;
+            }
+
+            .form_under {
+                padding-right: 0%;
+                flex-direction: column-reverse;
+                align-items: flex-end;
+
+                input {
+                    width: 15%;
+                }
+
+                .field {
+                    width: 45%;
+                    margin-bottom: 0;
+
+
+                }
+            }
+
+
+
+            .flatpickr-calendar.inline {}
+
+            .label-before {}
+
+            .field {
+
+                label::before {}
+            }
+        }
+
+
+    }
+
+
+
+
+
+    //第二層
+    .chatboard {
+        padding-top: 6%;
+    }
+
+    .chat1_company {
+
+
+        .sechtion_chat2 {}
+    }
+
+    //以下兩個li
+    ul.companyback_main_chatbox {
+        padding: 0 1%;
+
+        .one {}
+
+        .two {}
+    }
+
+    .mt-43 {
+        margin-top: 7%;
+    }
+
+    .mt-44 {
+        margin-top: 7%
+    }
+
+
+    .companyback_search {
+        .companyback_searchinput {}
+    }
+
+
+
+
+    // 第一個聊天室
+    .companyback_main_chatbox {}
+
+
+
+
+
+    section.companyback_chat1 {}
+
+
+
+    .chat1_company {
+        i {}
+
+        li.variouscompany {
+
+
+            i.-main_color {}
+
+            div {
+
+                .company_receive {}
+
+                p {}
+
+                span {
+                    padding: 0;
+                    min-width: 45px;
+                }
+            }
+
+        }
+    }
+
+
+    // 第二個聊天室
+
+
+
+
+    li.variouscompany {
+        div {
+            span.variouscompany_span {
+                i {}
+            }
+        }
+    }
+}
+
+
+@include pad(768px) {
+    nav {
+        ul#company_menu {
+            display: none;
+        }
+    }
+
+    section.company_wrapper {
+        padding: 2%;
+
+        .companyback_dateform {
+            padding: 5% 1%;
+
+            .flatpickr-calendar.inline {
+                position: relative;
+                margin: 0 auto;
+                left: 0;
+            }
+
+            //下面兩個都是第一部分右半邊的input
+            .time_tech {
+
+                .form-contril,
+                .timepicker {
+                    margin: 0 auto;
+                    margin-top: 5%;
+                    min-width: 250px;
+                }
+            }
+
+            .form_under {
+                #email {
+                    margin-bottom: 0;
+                    height: 55px;
+                    line-height: 55px;
+                }
+
+                .field,
+                .companyback_submit {
+                    margin: 0 auto;
+                    margin-top: 5%;
+                    height: 55px;
+                }
+
+                .companyback_submit {
+                    width: 25%;
+                }
+
+                label::before {
+                    line-height: 28px;
+                }
+            }
+        }
+
+    }
+
+    //第二層
+    .chatboard {
+        padding-top: 5%;
+    }
+
+    .chat1_company {
+        .sechtion_chat2 {}
+    }
+
+    //以下兩個li
+    ul.companyback_main_chatbox {
+        .one {
+            width: 80%;
+            margin: 0 auto;
+            min-width: 300px;
+            display: none;
+        }
+
+        .two {
+            display: inline-block;
+            width: 80%;
+            min-width: 300px;
+            margin: 0 auto;
+        }
+    }
+
+
+
+    .companyback_search {
+        .companyback_searchinput {
+
+            width: 100%;
+        }
+    }
+
+
+
+
+    // 第一個聊天室
+    .companyback_main_chatbox {}
+
+    section.companyback_chat1 {
+        width: 100%;
+    }
+
+
+
+    .chat1_company {
+        i {}
+
+        li.variouscompany {
+
+
+
+            i.-main_color {}
+
+            div {
+
+                .company_receive {}
+
+                p {}
+
+                span {
+
+                    min-width: 50px;
+                }
+            }
+
+        }
+    }
+
+
+    // 第二個聊天室
+
+
+
+
+    li.variouscompany {
+        div {
+            span.variouscompany_span {
+                i {}
+            }
+        }
+    }
+
+
+
+
+    //聊天版
+
+    .companyback_back_chatbox {
+
+        .chat_title {
+            padding: 0 4% 4%;
+
+            i {}
+        }
+
+        .chat_input {
+            padding-top: 5%;
+
+            input {
+
+                &::selection {}
+            }
+
+            .btn-short {
+
+                &:hover {}
+            }
+
+            .chat_input_button {
+
+                i {}
+            }
+        }
+    }
+
+    //聊天室內部
+
+
+    .mt-35 {
+        margin-top: 5%;
+    }
+
+    .ml-30 {
+        margin-left: 2%;
+    }
+
+    .mr-30 {
+        margin-right: 2%;
+    }
+
+    .companyback_chated {
+        padding: 2%;
+
+
+
+        &::-webkit-scrollbar {}
+
+
+        &::-webkit-scrollbar-thumb {}
+
+        p.chat_content {
+            padding: 3%;
+
+        }
+
+        p.chat_content_me {
+            span {}
+
+            ;
+
+            &::before {
+                content: "";
+
+            }
+
+        }
+
+        p.chat_content_you {}
+    }
+}
+
+
+@include mobile(576px) {
+    section.company_wrapper {
+        .companyback_dateform {
+            padding: 2% 1%;
+
+            .form_under {
+                label::before {
+                    font-size: 12px;
+                }
+
+                .companyback_submit {
+                    width: 30%;
+                    border-radius: 30px;
+                    min-width: 180px;
+                }
+
+
+                .time_tech {
+                    .form-contril {}
+
+                    .timepicker {}
+                }
+
+                .field {
+                    min-width: 250px;
+                }
+            }
+
+            .label-before {
+                font-size: 10px;
+            }
+        }
+
+        .companyback_chated {
+            p.chat_content {
+                font-size: 14px;
+                max-width: 70%;
+            }
+        }
+
+
+    }
+
+    .btn-short {
+        padding: 1% 3%;
+    }
+
+    div.company_title {
+        margin: 0 auto;
+        display: block;
+        width: 40%;
+        min-width: 204px;
+
+        a {
+            border-radius: 35px;
+        }
+    }
 }

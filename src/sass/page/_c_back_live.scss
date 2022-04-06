@@ -1,25 +1,29 @@
-$companyback_num2 : 2 ;
+$companyback_num2 : 2;
 
 
 
-.company_wrapper{
-    padding: 40px 20px 20px 20px;
+.company_wrapper {
+    padding: 40px 0px 20px 50px;
 }
-.company_title{
+
+
+
+.company_title {
     display: inline-block;
-    .title_skill{
+
+    .title_skill {
         display: block;
         color: $second-color;
-        border: 1px solid rgba($accent-color,0.5);
+        border: 1px solid rgba($accent-color, 0.5);
         padding: 15px 50px;
         text-align: center;
         //  line-height: 57px;
-        box-shadow: 0px 4px 4px rgba($accent-color,0.25);
+        box-shadow: 0px 4px 4px rgba($accent-color, 0.25);
     }
- 
+
 }
 
-.companyback_form{
+.companyback_form {
     background-color: #0D0D0D;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(87, 255, 245, 0.25);
@@ -29,35 +33,40 @@ $companyback_num2 : 2 ;
     margin-top: 86px;
     position: relative;
 
-    .companyback_layout{
+    .companyback_layout {
         font-size: 300px;
-        cursor:default;
+        cursor: default;
         position: absolute;
         color: rgba(255, 255, 255, 0.2);
-        top:-80px;
+        top: -80px;
     }
 
-    .company_iive_li{
+    .company_iive_li {
         display: flex;
-    } 
-    .companyback_icon{
+    }
+
+    .companyback_icon {
         display: flex;
         justify-content: flex-end;
-        i{
+
+        i {
             color: $accent-color;
             font-size: 30px;
             padding: 15px;
             transition: 300ms all;
-            &:hover{
-                transform: scale(1.1,1.1);
+
+            &:hover {
+                transform: scale(1.1, 1.1);
             }
         }
     }
-    h2{
+
+    h2 {
         text-shadow: $companyback_text_shadow;
-        line-height:52px;
-       
+        line-height: 52px;
+
     }
+
     .label-before {
         line-height: 20px;
         font-size: 14px;
@@ -67,12 +76,14 @@ $companyback_num2 : 2 ;
         left: 236px;
         // margin: 0 auto;
     }
+
     .field {
         position: relative;
         display: flex;
         // margin-bottom: 15px;
         margin: 0 auto;
         margin-left: 105px;
+
         // border: 1px solid red;
         label::before {
             content: attr(title);
@@ -84,8 +95,9 @@ $companyback_num2 : 2 ;
             color: #F6FAFB;
             transition: 300ms all;
         }
+
         input {
-            @include input(695px,$accent-color);
+            @include input(695px, $accent-color);
             height: 56px;
             line-height: 56px;
             font-size: 18px;
@@ -122,11 +134,13 @@ $companyback_num2 : 2 ;
             //     color: $accent-color;
             // }
         }
+
         // input:not(:focus) + label{
         //     color: rgba(0,0,0,0);
         // }
     }
-    .companyback_save{
+
+    .companyback_save {
         width: 177px;
         margin: 0 auto;
         margin-top: 22px;
@@ -136,12 +150,12 @@ $companyback_num2 : 2 ;
 
 
 //下方按鈕
-.companyback_add{
-.btn_company_back{
-    border: 1px solid rgba($accent-color,0.5);
-    display: inline-block;
-    float: right;
-   }
+.companyback_add {
+    .btn_company_back {
+        border: 1px solid rgba($accent-color, 0.5);
+        display: inline-block;
+        float: right;
+    }
 }
 
 
@@ -149,74 +163,80 @@ $companyback_num2 : 2 ;
 
 
 //layout顏色
-aside.companyback_layout.blue{
+aside.companyback_layout.blue {
     color: rgba(87, 255, 245, 0.14);
-}               
-aside.companyback_layout.orange{
-    color:rgba(243, 127, 21, 0.14);
 }
 
-@include laptop(1200px){
-    .companyback_form{
+aside.companyback_layout.orange {
+    color: rgba(243, 127, 21, 0.14);
+}
+
+@include laptop(1200px) {
+    .companyback_form {
         width: 98%;
-        .field{
+
+        .field {
             // margin-left: 50px;
-            
+
             // input{
             //     width: 500px;
             //     height: 56px;
             //     line-height: 56px;
             //     font-size: 18px;
-              
+
             // }
 
 
-          
+
         }
     }
-   
+
 
 }
-@include pad(1052px){
-    .companyback_form{
+
+@include pad(1052px) {
+    .companyback_form {
         width: 98%;
-        .field{
+
+        .field {
             // margin-left: 50px;
 
 
-            input{
+            input {
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-              
+
             }
         }
     }
 }
 
-@include pad(895px){
-    .companyback_form{
+@include pad(895px) {
+    .companyback_form {
         width: 98%;
-        .field{
+
+        .field {
             // margin-left: 50px;
 
 
-            input{
+            input {
                 width: 60%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-              
+
             }
         }
     }
 }
 
-@include pad(576px){
-    .companyback_form{
+@include pad(576px) {
+    .companyback_form {
         width: 100%;
-        .field{
+
+        .field {
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
@@ -226,13 +246,13 @@ aside.companyback_layout.orange{
             margin-left: 30px;
 
 
-            input{
+            input {
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-               
-              
+
+
             }
         }
     }
