@@ -186,6 +186,9 @@ aside.companyback_layout.orange{
             label::before {
             left: 156px;
             }
+            .label-before{
+                left: 156px;
+            }
             input:focus+label::before{
             left: 156px;
             }
@@ -208,6 +211,9 @@ aside.companyback_layout.orange{
             label::before {
                 left: 211px;
             }
+            .label-before{
+                left: 211px;
+            }
             input:focus+label::before{
                 left: 211px;
             }
@@ -221,9 +227,18 @@ aside.companyback_layout.orange{
     }
 }
 
+@include pad(768px){
+    .companyback_form{
+        margin-top: 50px;
+    }
+    .title_skill {
+        margin-top: 60px;
+    }
+}
 @include pad(576px){
     .companyback_form{
         width: 100%;
+     
         .field{
             display: flex;
             flex-wrap: wrap;
@@ -235,6 +250,10 @@ aside.companyback_layout.orange{
             label::before {
                 top: 62px;
                 left: 49px;
+            }
+            .label-before{
+                left: 83px;
+                top:46px;
             }
             input:focus+label::before{
                 top:46px;
