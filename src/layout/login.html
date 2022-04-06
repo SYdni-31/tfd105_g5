@@ -2,19 +2,18 @@
     <div class="member tab-demo" id="">
         <a class="btn login_btn-close" id="BtnClose"><i class="fa-solid fa-xmark"></i></a>
         <ul class="tab-title">
-            <li class="login_tab_company"><a href="#company-sign-in-container">廠商</a></li>
+            <li class="login_tab_company"><a href="#company_sign_in_container">廠商</a></li>
             <li class="login_tab_guest"><a href="#tab02">訪客</a></li>
         </ul>
         <!-- 廠商登入(右) 預設一開始顯示-->
-        <form class="form-container company-sign-in-container tab-inner" id="company-sign-in-container">
+        <form class="form-container company-sign-in-container tab-inner" id="company_sign_in_container">
             <h2 class="mb-30 h2-white">廠商登入</h2>
             <div class="field">
                 <input type="text" id="email_1" required autocomplete="off" placeholder="" class="login_signup" />
                 <label for="email_1" title="電子郵件" data-title="email"></label>
             </div>
             <div class="field">
-                <input type="password" id="password_1" required autocomplete="off" placeholder=""
-                    class="login_signup" />
+                <input type="password" id="password_1" required autocomplete="off" placeholder="" class="login_signup" />
                 <label for="password_1" title="密碼" data-title="password"></label>
             </div>
             <div class="login-group">
@@ -39,7 +38,7 @@
                 <input type="text" id="Company_1" required autocomplete="off" class="login_signup" placeholder="" />
                 <label for="Company_1" title="貴公司單位" data-title="Company"></label>
             </div>
-            <button type="button" class="btn-short btn-2 login_btn-visit">參觀</button>
+            <button type="submit" class="btn-short btn-2 login_btn-visit">參觀</button>
         </form>
         <!-- 廠商註冊 (右) 點擊"註冊"，滑動後顯示-->
         <form class="form-signup company-sign-up-container">
@@ -53,18 +52,17 @@
                 <label for="email_3" title="電子郵件" data-title="email"></label>
             </div>
             <div class="field">
-                <input type="password" id="password_2" required autocomplete="off" class="login_signup"
-                    placeholder="" />
+                <input type="password" id="password_2" required autocomplete="off" class="login_signup" placeholder="" />
                 <label for="password_2" title="密碼" data-title="password"></label>
             </div>
             <div class="field">
-                <input type="text" id="Company_2" required autocomplete="off" class="login_signup" placeholder="" />
-                <label for="Company_2" title="貴公司單位" data-title="Company"></label>
+                <input type="text" id="company_2" required autocomplete="off" class="login_signup" placeholder="" />
+                <label for="company_2" title="貴公司單位" data-title="company"></label>
             </div>
 
-            <select name="" id="exb_dropdown">
-                <option value="">展覽類型</option>
-                <option value="">Tián lám 2022智慧全球科技聚策展</option>
+            <select name="" id="exb_dropdown" >
+                <option value="0" disabled>展覽類型</option>
+                <option value="1">Tián lám 2022智慧全球科技聚策展</option>
             </select>
             <div class="btn_group2">
                 <button type="submit" class="btn-short btn-2 login_btn_submitinfo">送出資料</button>
