@@ -852,12 +852,6 @@ li.variouscompany {
 
 
 @include pad(768px) {
-    nav {
-        ul#company_menu {
-            display: none;
-        }
-    }
-
     section.company_wrapper {
         padding: 2%;
 
