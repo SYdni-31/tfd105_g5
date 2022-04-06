@@ -16,7 +16,17 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+  <!-- aos -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+  <script type="text/javascript">
+      (function () {
+          emailjs.init("VmKwawpbImHtur7aa");
+      })();
+  </script>
+  <!-- is.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
 
   <title>About</title>
 </head>
@@ -31,7 +41,7 @@
     @@include('layout/login.html')
   </header>
   <!-- content，各自頁面的html寫在這邊以下都是範例 大區塊外面包section  -->
-  <main>
+  <main class="about_main">
     <section class="about_banner">
       <img src="img/about/about_banner.png">
       <div class="about_slogan pd-10">
@@ -50,13 +60,13 @@
         <!-- <h2 class="about_date">04.01 - 06.30</h2> -->
       </div>
     </section>
-    <section class="wrapper about_brief wrapper_about">
+    <section class="wrapper about_brief wrapper_about" data-aos="slide-left" data-aos-duration="2000">
       <div class="mb-10 about_title">會議簡介</div>
       <h3>疫情翻轉新常態．加速智慧轉型~~~~<br>
         新冠肺炎疫情自2020年爆發以來，徹底翻轉人類生活、工作與娛樂型態。遠距、零接觸成為「新常態」，促使國家、企業乃至個人，都要展開「智慧轉型」，以迎向後疫情時代，並緊緊握住復甦商機。在疫情期間展現優異的經濟韌性。疫情過後，全球更應該積極推動經濟轉型，邁入新形態市場，要強化數位轉型，更要提升民眾數位化能力。
       </h3>
     </section>
-    <section class="about_agenda ">
+    <section class="about_agenda " data-aos="slide-left" data-aos-duration="2000">
       <!-- <img src="img/about/abou_middleimg.png"> -->
       <div class="about_schedule wrapper wrapper_about">
         <div class="about_scheduleText">
@@ -98,7 +108,7 @@
         </div>
       </div>
     </section>
-    <section class="wrapper about_lecturer wrapper_about">
+    <section class="wrapper about_lecturer wrapper_about" data-aos="fade-up" data-aos-duration="2000">
       <div class="mb-10 about_title">講師介紹</div>
       <div class="about_speakers">
         <div class="about_speaker mt-20">
@@ -183,6 +193,8 @@
   </footer>
 
   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <!-- aos -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- 先連結main再連結各自設的js -->
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>

@@ -17,6 +17,8 @@
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
   <!-- vue -->
   <script src="js/vue.min.js"></script>
+<!-- alert套件 -->
+<script src="https://unpkg.com/vue-swal"></script>
 
   <title>聚策展-虛擬商展</title>
 </head>
@@ -56,37 +58,6 @@
         <section class="backstage_main">
             <img src="img/backstage/backstage_aside_btn.svg" alt="" @click="aside_toggle()" class="backstage_aside_btn pt-10 pl-10"/>
             <datatable></datatable>
-            <!-- 彈窗 -->
-            <!-- <article class="backstage_box backstage_info1_add">
-                <h2>新增</h2>
-                <div class="backstage_box-content pt-30">
-                    <ul>
-                        <li class="mb-16 input-short"><label for="name">策展ID</label>
-                            <input type="text" name="name" id="name">
-                        </li>
-                        <li class="mb-16 input-short"><label for="introduce">展會名稱</label>
-                            <input type="text" name="introduce" id="introduce">
-                        </li>
-                        <li class="mb-16 input-long"><label for="time">會議簡介</label>
-                            <textarea name="time" id="time" cols="30" rows="10"></textarea>
-                        <li class="mb-16 input-short"><label for="startdate">活動開始</label>
-                            <input type="date" name="date" id="startdate">
-                        </li>
-                        <li class="mb-16 input-short"><label for="enddate">活動結束</label>
-                            <input type="date" name="date" id="enddate">
-                        </li>
-                        <div class="mb-16 input-short"><label>進行狀態</label><br>
-                            <label for="notwork"><input type="radio" name="date" id="notwork">尚未開始</label>
-                            <label for="working"><input type="radio" name="date" id="working">進行中</label>
-                            <label for="worked"><input type="radio" name="date" id="worked">已結束</label>
-                        </div>
-                    </ul>                   
-                    <div class="back-insert-btn">
-                        <button class="back-insert_save" @click="f_save">儲存</button>
-                        <button class="back-insert_close" @click="f_close">關閉</button>
-                    </div>
-                </div>
-            </article> -->
         </section>
     </main>
 

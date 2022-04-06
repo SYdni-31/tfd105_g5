@@ -66,5 +66,7 @@ the_form_el.addEventListener("submit", function (e) {    //針對送出事建綁
   }else{
     swal("送出成功", "此為學習、展示之用，無法幫忙製作網頁", "success");
   }
-
 });
+
+// aos
+AOS.init();

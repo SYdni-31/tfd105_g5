@@ -46,7 +46,7 @@
         }
         .company-sign-in-container,
         .guest-sign-in-container,
-        .company-sign-up-container {
+        .company-sign-up-container {    
             width: 410px;
             height: 508px;
             border: 1px solid #57fff5;
@@ -318,9 +318,7 @@
         .js-block3 {
             display: block;
         }
-        .js-block3{
-
-        }
+        
         .overlay-container {
             width: 410px;
             height: 508px;
@@ -389,6 +387,10 @@
 .login-rwd{
     display: none;
 }
+
+// .login-error{
+//     border: 1px solid red;
+// }
 
 @include pad(880px) {
     // .login{
