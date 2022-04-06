@@ -59,6 +59,156 @@
     }
 }
 
+
+// 右側bar條變動
+.index_right_side {
+    width: 11vw;
+    @include absolute (29vw, 1.5vw);
+    // transition: all 2s;
+    
+    img {
+        width: 100%;
+    }
+    .index_bar_img1 {
+        animation: barHopping1 2.5s linear infinite;
+    }
+    .index_bar_img2 {
+        animation: barHopping2 2.5s linear infinite;
+    }
+    .index_bar_img3 {
+        animation: barHopping3 2.5s linear infinite; 
+    }
+    .index_bar_img4 {
+        animation: barHopping4 2.5s linear infinite;
+    }
+    .index_bar_img5 {
+        animation: barHopping5 2.5s linear infinite;
+    }
+    .index_bar_img6 {
+        animation: barHopping1 6s linear infinite;
+        display: none;
+    }
+
+}
+
+
+
+@keyframes barHopping1 {
+    0% {
+        opacity: 1;
+    }
+    18%{
+        opacity: 1;
+    }
+    19%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes barHopping2 {
+    0% {
+        opacity: 0;
+    }
+    17% {
+        opacity: 0;
+    }
+    18%{
+        opacity: 1;
+    }
+    36%{
+        opacity: 1;
+    }
+    37%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes barHopping3 {
+    0% {
+        opacity: 0;
+    }
+    35% {
+        opacity: 0;
+    }
+    36%{
+        opacity: 1;
+    }
+    54%{
+        opacity: 1;
+    }
+    55%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes barHopping4 {
+    0% {
+        opacity: 0;
+    }
+    53% {
+        opacity: 0;
+    }
+    54%{
+        opacity: 1;
+    }
+    72%{
+        opacity: 1;
+    }
+    73%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes barHopping5 {
+    0% {
+        opacity: 0;
+    }
+    71% {
+        opacity: 0;
+    }
+    72%{
+        opacity: 1;
+    }
+    99%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+// @keyframes barHopping6 {
+//     0% {
+//         opacity: 0;
+//     }
+//     98%{
+//         opacity: 0;
+//     }
+//     99% {
+//         opacity: 1;
+//     }
+//     100% {
+//         opacity: 1;
+//     }
+// }
+
+
+
+
+
+
 // 輪播設定
 .index_block {
     @include relative();
@@ -287,7 +437,6 @@
 
 // rwd 320-576px
 @media (min-width: 320px) and (max-width: 575.98px){
-    
     .index_block{
         .index_bcg_desktop {
             display: none;
@@ -297,6 +446,13 @@
             width: 100%;
         }
     }
+
+    .index_right_side {
+        width: 23vw;
+        @include absolute (auto, auto, 20vw, 23vw);
+        transform: rotate(90deg);    
+    }
+        
 
     .index_block{
 
