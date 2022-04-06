@@ -84,6 +84,7 @@ $companyback_num2 : 2 ;
             color: #F6FAFB;
             transition: 300ms all;
         }
+    
         input {
             @include input(695px,$accent-color);
             height: 56px;
@@ -183,7 +184,10 @@ aside.companyback_layout.orange{
         .field{
             // margin-left: 50px;
             label::before {
-                left: 156px;
+            left: 156px;
+            }
+            input:focus+label::before{
+            left: 156px;
             }
             input{
                 width: 80%;
@@ -202,6 +206,9 @@ aside.companyback_layout.orange{
         .field{
             // margin-left: 50px;
             label::before {
+                left: 211px;
+            }
+            input:focus+label::before{
                 left: 211px;
             }
             input{
@@ -229,14 +236,15 @@ aside.companyback_layout.orange{
                 top: 62px;
                 left: 49px;
             }
-
+            input:focus+label::before{
+                top:46px;
+                left: 83px;
+            }
             input{
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-               
-              
             }
         }
     }
