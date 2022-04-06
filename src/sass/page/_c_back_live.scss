@@ -95,11 +95,8 @@ $companyback_num2 : 2;
             color: #F6FAFB;
             transition: 300ms all;
         }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> Brandon
+
         input {
             @include input(695px, $accent-color);
             height: 56px;
@@ -203,23 +200,21 @@ aside.companyback_layout.orange {
         width: 98%;
 
         .field {
+
             // margin-left: 50px;
-<<<<<<< HEAD
             label::before {
-            left: 156px;
-            }
-            .label-before{
                 left: 156px;
             }
-            input:focus+label::before{
-            left: 156px;
-            }
-            input{
-=======
 
+            .label-before {
+                left: 156px;
+            }
+
+            input:focus+label::before {
+                left: 156px;
+            }
 
             input {
->>>>>>> Brandon
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
@@ -235,57 +230,46 @@ aside.companyback_layout.orange {
         width: 98%;
 
         .field {
+
             // margin-left: 50px;
-<<<<<<< HEAD
             label::before {
                 left: 211px;
             }
-            .label-before{
-                left: 211px;
-            }
-            input:focus+label::before{
-                left: 211px;
-            }
-            input{
-=======
 
+            .label-before {
+                left: 211px;
+            }
+
+            input:focus+label::before {
+                left: 211px;
+            }
 
             input {
->>>>>>> Brandon
                 width: 60%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-<<<<<<< HEAD
-=======
 
->>>>>>> Brandon
             }
         }
     }
 }
 
-<<<<<<< HEAD
-@include pad(768px){
-    .companyback_form{
+@include pad(768px) {
+    .companyback_form {
         margin-top: 50px;
     }
+
     .title_skill {
         margin-top: 60px;
     }
 }
-@include pad(576px){
-    .companyback_form{
-        width: 100%;
-     
-        .field{
-=======
+
 @include pad(576px) {
     .companyback_form {
         width: 100%;
 
         .field {
->>>>>>> Brandon
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
@@ -293,34 +277,29 @@ aside.companyback_layout.orange {
             justify-content: center;
             padding-top: 0px;
             margin-left: 30px;
-<<<<<<< HEAD
+
             label::before {
                 top: 62px;
                 left: 49px;
             }
-            .label-before{
-                left: 83px;
-                top:46px;
-            }
-            input:focus+label::before{
-                top:46px;
-                left: 83px;
-            }
-            input{
-=======
 
+            .label-before {
+                left: 83px;
+                top: 46px;
+            }
+
+            input:focus+label::before {
+                top: 46px;
+                left: 83px;
+            }
 
             input {
->>>>>>> Brandon
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-<<<<<<< HEAD
-=======
 
 
->>>>>>> Brandon
             }
         }
     }

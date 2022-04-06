@@ -110,6 +110,9 @@
     .introduce {
         align-items: flex-start;
 
+        h2 {
+            min-width: 130px;
+        }
 
         textarea {
             margin-left: 81px;
@@ -222,6 +225,233 @@
         background: rgba(31, 31, 31, 0.69);
         box-shadow: 0px 4px 4px rgba(243, 127, 21, 0.33);
         border-radius: 10px;
+    }
+
+}
+
+
+
+// =================RWD================== //
+
+@include laptop(1200px) {
+    .companyback_info_form {
+        input[type='radio']:after {
+            width: 20px;
+            height: 20px;
+            border-radius: 15px;
+            top: -6px;
+            left: 1px;
+            position: relative;
+            background-color: $black-color;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            outline: 3px solid $accent-color;
+        }
+
+        input[type='radio']:checked:after {
+            width: 20px;
+            height: 20px;
+            border-radius: 15px;
+            top: -2px;
+            left: -1px;
+            position: relative;
+            background-color: $accent-color;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            border: 3px solid;
+        }
+
+        input[type="radio"] {
+            margin-top: 20px;
+            width: 20px;
+            height: 20px;
+
+
+        }
+
+
+        .field {
+            position: relative;
+            // @include flex-box-between(100%);
+            display: flex;
+            align-items: center;
+
+            .label-before {
+                line-height: 20px;
+                font-size: 14px;
+                top: 35%;
+                background: #040F15;
+                padding: 0 6px;
+                left: 32%;
+                // margin: 0 auto;
+            }
+
+            label::before {
+                content: attr(title);
+                position: absolute;
+                top: 52%;
+                left: 33%;
+                line-height: 36px;
+                font-size: 16px;
+                color: #F6FAFB;
+                transition: 300ms all;
+            }
+
+            input {
+                @include input(480px, $accent-color);
+                border: 2px solid $second-color;
+                height: 56px;
+                line-height: 56px;
+                font-size: 18px;
+                box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+                margin: 0 0 0 81px;
+                transition: 300ms all;
+            }
+
+            // input:not(:focus) + label{
+            //     color: rgba(0,0,0,0);
+            // }
+        }
+
+        .all_input {
+            display: grid;
+            grid-template-columns: 2.9fr 1fr;
+            grid-gap: 5%;
+
+            .company_logo {
+                height: 257px;
+                background-color: rgba(196, 196, 196, 0.1);
+                box-shadow: 0px 4px 4px rgba(87, 255, 245, 0.25);
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    font-size: 18px;
+                    color: $second-color;
+                    background: rgba(0, 0, 0, 0.76);
+                    border: 1px solid rgba(243, 127, 21, 0.33);
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    padding: 10px 20px;
+                }
+            }
+        }
+
+        .introduce {
+            align-items: flex-start;
+
+            h2 {
+                min-width: 130px;
+            }
+
+            textarea {
+                margin-left: 81px;
+                border-radius: 10px;
+                color: $second-color;
+                @include input_Date();
+                width: 80.5%;
+                border: 2px solid $second-color;
+                background-color: $black-color;
+                font-size: 18px;
+                padding: 10px 20px;
+                transition: .5s all;
+            }
+
+            label::before {
+                top: 11%;
+                left: 24%;
+                background-color: #040F15;
+                padding: 0 20px;
+
+            }
+
+
+
+        }
+
+        //環境
+        .environment {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 80px;
+
+            span {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h5 {
+                    color: $main-color;
+                }
+            }
+
+            li:not(:first-child) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+
+
+        //最後按鈕
+        .save {
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px $accent-color;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px $accent-color;
+            color: $accent-color;
+            border: 1px solid $accent-color;
+            margin: 100px auto 0;
+
+            >a {
+                @include font(14px, 700, left, 2);
+                color: $accent-color;
+            }
+
+            &:hover {
+                background-color: $accent-color;
+                color: $black-color;
+
+                >a {
+                    @include font(14px, 1000, left, 2);
+                    color: $black-color;
+                }
+            }
+        }
+
+    }
+
+    .robot {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 80px;
+
+        span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h5 {
+                color: $main-color;
+            }
+        }
+
+        li:not(:first-child) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 45px 80px;
+            background: rgba(31, 31, 31, 0.69);
+            box-shadow: 0px 4px 4px rgba(243, 127, 21, 0.33);
+            border-radius: 10px;
+        }
+
     }
 
 }
