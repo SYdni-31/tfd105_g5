@@ -205,8 +205,64 @@
 // }
 
 
+// 下方圓盤
+.index_block {
+    .index_disk {
+        width: 90vw;
+        @include absolute( auto, 2vw, -1vw, auto);
+        // transform: translateY(10px);
+        animation: diskMove 1s ease-in-out 1s infinite;
+    }
+}
 
+@keyframes diskMove {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(2vw);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
 
+.index_block{
+    .index_dark_point1 {
+        background-color: #153e3c;
+        width: 2.5vw;
+        height: 2.5vw;
+        border-radius: 50%;
+        @include absolute(auto, auto, 18.7vw, 6.6vw);
+        animation: mask 1s linear 1.5s infinite;
+    }
+    .index_dark_point2 {
+        background-color: #153e3c;
+        width: 2.5vw;
+        height: 2.5vw;
+        border-radius: 50%;
+        @include absolute(auto, auto, 21.3vw, 10.4vw);
+        animation: mask 1s linear 1.5s infinite;
+    }
+    .index_dark_point3 {
+        background-color: #153e3c;
+        width: 2.5vw;
+        height: 2.5vw;
+        border-radius: 50%;
+        @include absolute(auto, auto, 14.1vw, 10.3vw);
+        animation: mask 1s linear 1.5s infinite;
+    }
+
+}
+
+@keyframes mask {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 
 // 輪播設定
@@ -452,10 +508,23 @@
         @include absolute (auto, auto, 20vw, 23vw);
         transform: rotate(90deg);    
     }
+
+    .index_block {
+        .index_disk {
+            display: none;
+        }
+    }
+
+    .index_block{
+        .index_dark_point1, .index_dark_point2, .index_dark_point3 {
+            display: none;
+        }
+    }
+    
+    
         
 
     .index_block{
-
         .index_title {
             margin-top: 20%;
 
