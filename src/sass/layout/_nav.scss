@@ -24,6 +24,9 @@
     .fa-user,
     .fa-bars {
       line-height: 60px;
+      @include mobile(568px) {
+        font-size: 14px;
+      }
     }
   }
   .logo {
@@ -68,7 +71,7 @@
     .nav-login {
       // display: none;
       a {
-        i{
+        i {
           font-size: 20px;
           @include mobile(568px) {
             font-size: 14px;
@@ -94,10 +97,10 @@
         }
       }
     }
-    .login-icon-hide{
+    .login-icon-hide {
       display: none;
     }
-    .login-icon-show{
+    .login-icon-show {
       display: block;
     }
   }
@@ -194,13 +197,12 @@
     width: 0%;
     left: 50%;
   }
-  .logo-icon-show{
+  .logo-icon-show {
     display: block;
   }
-  .logo-icon-hide{
+  .logo-icon-hide {
     display: none;
   }
-  
 }
 /*  -----漢堡MENU----- */
 .menu {
@@ -260,34 +262,52 @@
 .-blur {
   display: none;
 }
-.bg-null{
-  background-color:rgba(0, 0, 0, 0.075)
+.bg-null {
+  background-color: rgba(0, 0, 0, 0.075);
 }
-.company-menu{
-  @include fixed(60px, null, null, 0,100);
+.company-menu {
+  @include fixed(60px, null, null, 0, 100);
   @include flex-box-column(70px);
   background-color: $black-color;
   height: calc(100vh - 60px);
-  li{
+  li {
     margin-bottom: 60px;
     height: 75px;
-    a{
+    a {
       margin-top: 15px;
       margin-left: 15px;
       margin-right: 15px;
       width: 40px;
       height: 40px;
     }
-
   }
-  .company-menu-border{
+  .company-menu-border {
     border-right: 3px solid $accent-color;
   }
-
+  @include pad(768px) {
+    flex-direction: row;
+    @include flex-box-center(100%);
+    height: 70px;
+    background-color: $black-color;
+    li {
+      margin: 0 auto;
+      width: 40px;
+      height: 70px;
+      a {
+        margin: 15px 0px 0px 0px;
+      }
+    }
+    .company-menu-border {
+      border-right: 0px;
+      border-bottom: 3px solid $accent-color;
+      width: 40px;
+      margin: 0 auto;
+    }
+  }
 }
-.company-menu-hide{
+.company-menu-hide {
   display: none;
 }
-.company-menu-show{
+.company-menu-show {
   display: block;
 }
