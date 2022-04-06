@@ -208,8 +208,8 @@
 // 下方圓盤
 .index_block {
     .index_disk {
-        width: 90vw;
-        @include absolute( auto, 2vw, -1vw, auto);
+        width: 70vw;
+        @include absolute( auto, 14.8vw, -1.5vw, auto);
         // transform: translateY(10px);
         animation: diskMove 1s ease-in-out 1s infinite;
     }
@@ -220,7 +220,7 @@
         transform: translateY(0);
     }
     50% {
-        transform: translateY(2vw);
+        transform: translateY(1.5vw);
     }
     100% {
         transform: translateY(0);
