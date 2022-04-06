@@ -1,4 +1,6 @@
-
+.contect_main{
+    overflow: hidden;
+}
 .contect_wrapper{
     max-width: 1280px;
     padding:0 40px;
@@ -61,11 +63,11 @@
     resize: none;
 }
 .contect_box:focus {
-    border: 2px solid #57fff5;
+    outline: 2px solid #57fff5;
 }
 
 .-error {
-    border: 2px solid  $accent-color;
+    outline: 2px solid  $accent-color;
 }
 //為了和右邊聯絡資訊同高度 調整textarea高度
 @media (min-width:614px) and (max-width:956px){

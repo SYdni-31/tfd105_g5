@@ -84,6 +84,7 @@ $companyback_num2 : 2 ;
             color: #F6FAFB;
             transition: 300ms all;
         }
+    
         input {
             @include input(695px,$accent-color);
             height: 56px;
@@ -183,7 +184,13 @@ aside.companyback_layout.orange{
         .field{
             // margin-left: 50px;
             label::before {
+            left: 156px;
+            }
+            .label-before{
                 left: 156px;
+            }
+            input:focus+label::before{
+            left: 156px;
             }
             input{
                 width: 80%;
@@ -204,6 +211,12 @@ aside.companyback_layout.orange{
             label::before {
                 left: 211px;
             }
+            .label-before{
+                left: 211px;
+            }
+            input:focus+label::before{
+                left: 211px;
+            }
             input{
                 width: 60%;
                 height: 56px;
@@ -214,9 +227,18 @@ aside.companyback_layout.orange{
     }
 }
 
+@include pad(768px){
+    .companyback_form{
+        margin-top: 50px;
+    }
+    .title_skill {
+        margin-top: 60px;
+    }
+}
 @include pad(576px){
     .companyback_form{
         width: 100%;
+     
         .field{
             display: flex;
             flex-wrap: wrap;
@@ -229,14 +251,19 @@ aside.companyback_layout.orange{
                 top: 62px;
                 left: 49px;
             }
-
+            .label-before{
+                left: 83px;
+                top:46px;
+            }
+            input:focus+label::before{
+                top:46px;
+                left: 83px;
+            }
             input{
                 width: 80%;
                 height: 56px;
                 line-height: 56px;
                 font-size: 18px;
-               
-              
             }
         }
     }
