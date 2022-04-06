@@ -49,8 +49,27 @@
 
 }
 
+@media (min-width:420px) and (max-width:576px){
+    .about_slogan {
+        right: 14px;
+        bottom: 22px
+    }
+    .about_subtitle {
+        display: none;
+    }
+    .about_slogan h2 {
+        font-size: 14px;
+    }
+    .about_rwd_title{
+        display: block;
+        font-size: 24px;
+    }
+    .about_slogan h1{
+        display: none;
+    }
+}
 
-@media screen and (max-width:576px){
+@media screen and (max-width:420px){
     .about_slogan {
         right: 14px;
         bottom: 22px
@@ -83,6 +102,7 @@
         line-height: 32px;
     }
 }
+
 .about_agenda {
     // background-image: url("/img/about/middle_2.png");
     background-image: url("/img/about/abou_middleimg.png");
