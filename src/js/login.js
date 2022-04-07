@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 overlayContainer.classList.remove("js-slide-right2");
             }, 700);
         }
-        
+
     });
 
     // 點擊出現 忘記密碼區塊
@@ -147,14 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let password_2 = document.getElementById('password_2');
     let company_2 = document.getElementById('company_2');
     let exb_dropdown = document.getElementById('exb_dropdown');
-    loginBtnSubmitinfo.addEventListener("click", function () {
+    loginBtnSubmitinfo.addEventListener("click", function (e) {
         let companySignUp_name = name_2.value.trim();
         let companySignUp_email = email_3.value.trim();
         let companySignUp_password = password_2.value.trim();
         let companySignUp_company = company_2.value.trim();
         let companySignUp_dropdown = exb_dropdown.value;
         let send_data = true;
-        // send_data = false;
 
         // 姓名欄位不得為空值
         if (companySignUp_name === "") {
@@ -165,6 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 電子郵件不得為空值且符合格式
+        // console.log(companySignUp_email);
+        // console.log(is.email(companySignUp_email));
         if (is.email(companySignUp_email)) {
             // console.log("1");
             email_3.classList.remove("login-error");
@@ -172,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
             send_data = false;
             // console.log("2");
             email_3.classList.add("login-error");
+            // alert('email錯誤!');
         }
 
         // 密碼欄位不得為空值
@@ -208,26 +210,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 參展類型不得為空值
-        if(companySignUp_dropdown !== 0){
-            send_data = true;
-        }else{
+        if (companySignUp_dropdown !== 0) {
+
+        } else {
             send_data = false;
         }
 
         // 各欄位不得為空值
-        if(companySignUp_name === "" && companySignUp_password === "" && companySignUp_company === "") {
+        if (companySignUp_name === "" && companySignUp_password === "" && companySignUp_company === "" && !is.email(companySignUp_email)) {
             send_data = false;
-        }else if(companySignUp_email === ""){ 
+        } else if (companySignUp_password === "") {
             send_data = false;
-        }else if(companySignUp_password === ""){
+        } else if (companySignUp_company === "") {
             send_data = false;
-        }else if(companySignUp_company === ""){
-            send_data = false;
-        }else{
-            
+        } else {
+
         }
 
         // 判斷是否成功送出資料
+        // console.log(send_data);
         if (!send_data) {
             alert('格式錯誤或是必填欄位未輸入!');
             e.preventDefault();
@@ -267,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //點擊登入會員按鈕 返回顯示廠商登入頁面
-    signIn.addEventListener("click", function () {
+    signIn.addEventListener("click", function (e) {
         overlayContainer.classList.add("js-slide-right2");
         guestSignInContainer.classList.remove("js-block2");
         guestSignInContainer.classList.remove("js-none");
@@ -282,6 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
             overlayContainer.classList.remove("js-block");
             overlayContainer.classList.add("js-none2");
         }, 500);
+
+
     });
 
     // 點擊寄送驗證信 出現提示字
@@ -485,10 +488,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 輸入正確電郵地址及密碼，成功登入廠商後台
-        // if(companySignIn_email === "tfd105.group5@gmail.com" && companySignIn_password === 'Wed34!""'){
-        //     send_data = true;
-        //     location.replace("url")
-        // }
+        if (companySignIn_email === "tfd105.group5@gmail.com" && companySignIn_password === 'Wed34!""') {
+            e.preventDefault();
+            document.location.href = "backstage_info1.html";
+        }
     });
 
 
