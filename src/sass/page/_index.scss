@@ -209,7 +209,7 @@
 .index_block {
     .index_disk {
         width: 70vw;
-        @include absolute( auto, 14.8vw, -1.5vw, auto);
+        @include absolute( null, 14.8vw, -2.2vw);
         // transform: translateY(10px);
         animation: diskMove 1s ease-in-out 1s infinite;
     }
@@ -228,28 +228,19 @@
 }
 
 .index_block{
-    .index_dark_point1 {
-        background-color: #153e3c;
-        width: 2.5vw;
-        height: 2.5vw;
-        border-radius: 50%;
-        @include absolute(auto, auto, 18.7vw, 6.6vw);
+    .index_top_light {
+        width: 7vw;
+        @include absolute(null, null, 18.8vw, 8.2vw);
         animation: mask 1s linear 1.5s infinite;
     }
-    .index_dark_point2 {
-        background-color: #153e3c;
-        width: 2.5vw;
-        height: 2.5vw;
-        border-radius: 50%;
-        @include absolute(auto, auto, 21.3vw, 10.4vw);
+    .index_mid_light {
+        width: 6vw;
+        @include absolute(null, null, 16.6vw, 4.5vw);
         animation: mask 1s linear 1.5s infinite;
     }
-    .index_dark_point3 {
-        background-color: #153e3c;
-        width: 2.5vw;
-        height: 2.5vw;
-        border-radius: 50%;
-        @include absolute(auto, auto, 14.1vw, 10.3vw);
+    .index_bot_light {
+        width: 6.5vw;
+        @include absolute(null, null, 12.3vw, 8.3vw);
         animation: mask 1s linear 1.5s infinite;
     }
 
@@ -257,10 +248,10 @@
 
 @keyframes mask {
     0% {
-        opacity: 1;
+        opacity: 0;
     }
     100% {
-        opacity: 0;
+        opacity: 1;
     }
 }
 
@@ -516,7 +507,7 @@
     }
 
     .index_block{
-        .index_dark_point1, .index_dark_point2, .index_dark_point3 {
+        .index_top_light, .index_mid_light, .index_bot_light {
             display: none;
         }
     }
