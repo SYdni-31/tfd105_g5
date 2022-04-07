@@ -1,3 +1,33 @@
+new Vue({
+  el: '#live_pc', //在這講是給誰執行
+  data() {
+    return {
+      pcOpen: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.pcOpen = !this.pcOpen;
+    }
+  },
+}); //給初值，在裡面描述屬性跟方法，包在物件{}裡
+new Vue({
+  el: '#live_rwd', //在這講是給誰執行
+  data() {
+    return {
+      rwdOpen: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.rwdOpen = !this.rwdOpen
+    }
+  },
+}); //給初值，在裡面描述屬性跟方法，包在物件{}裡
+
+// aos
+AOS.init();
+
 $(function () {
   // 影片判斷
   if ($(".live-viedo").attr("src") == "") {
