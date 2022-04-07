@@ -79,96 +79,90 @@
     width: calc(100% - 250px);
     margin-left:250px;
     min-height: calc(100vh - 60px);
-    margin-bottom: 0;
-    @include relative();
-    &::-webkit-scrollbar{
-        height: 3px;
-    }
-    &::-webkit-scrollbar-thumb{
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 5px; 
-    }
+    margin-bottom: 0; 
 
 // =====中間table=====
     .table_outer{
-        width: 95%;
-        min-width: 728px;
+      width: 95%;
+      min-width: 728px;
     }
     h3{
-        background-color: $backmain-color;  
+      background-color: $backmain-color;  
     }
-    .dataTables_wrapper{
-        background-color: $black-color;
-        padding:5px;
-        font-size: 16px;
+    .backstage-grid{
+      display: grid;
+      width: 95%;
+      &.backstage-grid_info1{
+        grid-template-columns: 10% 30% 20% 15% 25%;
+      }
+      &.title{
+        li{
+        // justify-content: center;
+        align-items: center;
+        }
+      }
+      li {
+        display: flex;
+        flex-direction: column;
+        outline: 1px solid $black-color;
         padding: 5px;
-        a{
-            font-size: 14px;
-        }
-    }
-    table{
-        width: 99%;
-        margin: 0 auto;
-        background-color: $second-color;
-        border-collapse:collapse;
-        border:1px solid rgb($black-color, .5);
-        th, tr, td{
-            border:1px solid rgb($black-color, .5);
-            vertical-align: middle;
-            padding: 5px;
-            img{
-                max-height: 100px;
-            }
-            
-        }
-    }
-    .page-item{
-        &.active .page-link{
-            background-color: $backmain-color;
-            border-color: $backmain-color;
-            color: $second-color;
-        }
-        a{
-            color: $backmain-color;
-        }
+        justify-content: center;
+      }
+      img{
+        max-height: 100px;
+      }
 
     }
-}
-.backstage_btn_td{
-    white-space: nowrap;
-    text-align: center;
-    .switch_flex{
-        display: flex;
-        padding-left:0;
-        .custom-control-input:checked~.custom-control-label::before{
-            border-color: $backmain-color;
-            background-color: $backmain-color;
-        }
+// =====表格內按鈕排版=====
+    .backstage_btn_td{
+      align-self: center;
+    //     white-space: nowrap;;
+    //     .switch_flex{
+    //         display: flex;
+    //         padding-left:0;
+    //     }
     }
+// =====所有按鈕外觀=====
+.backstage_btn{
+  border: 0;
+  border-radius: 10px;
+  color: $black-color;
+  &_add{
+      background-color: $backmain-color;
+      display: block;
+      margin-left: auto;
+      width: 110px;
+  }
+  &_short{
+      background-color: $backmain-color;
+      width: 60px;
+  }
+  &_bad{
+      
+      background-color: #9B9797;
+      width: 60px;
+  }
+  &:hover{
+      font-weight: bold;
+  }
 }
-    .backstage_btn{
-        border: 0;
-        border-radius: 10px;
-        color: $black-color;
-        &_add{
-            background-color: $backmain-color;
-            display: block;
-            margin-left: auto;
-            width: 110px;
-        }
-        &_short{
-            background-color: $backmain-color;
-            width: 60px;
-        }
-        &_bad{
-            
-            background-color: #9B9797;
-            width: 60px;
-        }
-        &:hover{
-            font-weight: bold;
-        }
-    }
+
+
+
+
+
+  // .page-item{
+  //     &.active .page-link{
+  //         background-color: $backmain-color;
+  //         border-color: $backmain-color;
+  //         color: $second-color;
+  //     }
+  //     a{
+  //         color: $backmain-color;
+  //     }
+
+  // }
+}
 
 // =====RWD=====
 .backstage_aside_btn{
@@ -203,7 +197,6 @@
     transform: translate(-50%, -50%);
     border-radius: 20px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $black-color;
-    // display: none;
     // 標題
     h2 {
       background-color: $backmain-color;
