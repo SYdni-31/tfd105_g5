@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function CloseLightBox() {
         login.classList.remove("-login_page_icon");
         login.classList.remove("js-block");
+        promptMessage.classList.remove("js-block");
         document.body.style.overflow = "";
     }
 
@@ -188,13 +189,13 @@ document.addEventListener("DOMContentLoaded", function () {
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_2.value.length > 20) {
             send_data = false;
-            // alert('密碼長度不得大於20碼');
+            alert('密碼長度不得大於20碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
         } else if (password_2.value.length < 8) {
             send_data = false;
-            // alert('密碼長度不得小於8碼');
+            alert('密碼長度不得小於8碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
@@ -294,7 +295,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let give = document.getElementsByClassName("give")[0];
     // console.log(give);
     let promptMessage = document.getElementById("prompt_message");
-    give.addEventListener("click", function () {
+    let changeEmail = document.getElementById("changeemail");
+    give.addEventListener("click", function (e) {
+        let forget_changeEmail = changeEmail.value.trim();
+        let send_data = true;
         //發信，有信件數量限制，故暫時不發信
         //   var templateParams = {
         //      user: "台積電",
@@ -310,12 +314,28 @@ document.addEventListener("DOMContentLoaded", function () {
         //       console.log("FAILED...", error);
         //     }
         //   );
-
-
-        promptMessage.classList.add("js-block");
-        if ($("#form-forget-password").hasClass("js-block")) {
+        if (is.email(forget_changeEmail)) {
+            // console.log("1");
+            email_el.classList.remove("login-error");
+        } else {
+            email_el.classList.add("login-error");
+            send_data = false;
+        }
+        // if ($("#form-forget-password").hasClass("js-block")) {
+        //     promptMessage.classList.remove("js-none");
+        //     promptMessage.classList.add("js-block");
+        // }
+        // 登入成功與登入失敗
+        if (!send_data) {
+            if ($("#form-forget-password").hasClass("js-block")) {
+                swal('寄送失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+                e.preventDefault();
+            }
+        } else {
             promptMessage.classList.remove("js-none");
             promptMessage.classList.add("js-block");
+            swal('成功寄出!', '', 'success');
+            changeEmail.value = "";
         }
     });
 
@@ -371,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loginBtnBack.addEventListener("click", function () {
         formForgetPassword.classList.remove("js-block");
         companySignInContainer.classList.remove("js-none");
-        setTimeout(function () { });
+        promptMessage.classList.remove("js-block");
     });
 
     // RWD 點擊註冊鈕，出現廠商登入頁
@@ -456,14 +476,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_el.value.length > 20) {
-            // alert('輸入密碼長度不得大於20碼');
+            alert('輸入密碼長度不得大於20碼');
             password_el.focus();
             password_el.classList.add("login-error");
             // password_el.value = "";
             send_data = false;
         } else if (password_el.value.length < 8) {
             send_data = false;
-            // alert('輸入密碼長度不得小於8碼');
+            alert('輸入密碼長度不得小於8碼');
             // swal('登入失敗', '輸入密碼長度不得小於8碼', 'warning');
             password_el.focus();
             password_el.classList.add("login-error");
