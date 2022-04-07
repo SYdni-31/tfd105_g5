@@ -61,10 +61,10 @@ the_form_el.addEventListener("submit", function (e) {    //針對送出事建綁
 
   if (!send_data) {            //if(send_data == false) 一樣
       e.preventDefault();
-    swal("送出失敗，必填欄位未輸入或未填正確格式", "此為學習、展示之用，無法幫忙製作網頁", "error");
+    swal("送出失敗", "格式錯誤或是必填欄位未輸入!", "error");
  
   }else{
-    swal("送出成功", "此為學習、展示之用，無法幫忙製作網頁", "success");
+    swal("送出成功", " ", "success");
   }
 });
 
