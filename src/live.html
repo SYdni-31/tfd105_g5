@@ -14,8 +14,8 @@
   <link rel="icon" href="img/tianlam-logo-mainblack.svg" />
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- aos動畫 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- aos -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">   
   <!-- VUE -->
   <script src="js/vue.min.js"></script>
   <!-- EmailJS -->
@@ -47,7 +47,7 @@
           <h2>
             抱歉，目前無直播<br />下一次直播時間 : <br />2022/03/14 09:00
           </h2>
-          <iframe width="900" height="500" src="" title="video" frameborder="0" class="live-video"
+          <iframe width="900" height="500" src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ" title="video" frameborder="0" class="live-video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
@@ -122,35 +122,10 @@
   <!-- footer -->
   <footer>@@include('layout/footer.html')</footer>
   <script>
-    new Vue({
-      el: '#live_pc', //在這講是給誰執行
-      data() {
-        return {
-          pcOpen: false,
-        };
-      },
-      methods: {
-        toggle() {
-          this.pcOpen = !this.pcOpen;
-        }
-      },
-    }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
-    new Vue({
-      el: '#live_rwd', //在這講是給誰執行
-      data() {
-        return {
-          rwdOpen: false,
-        };
-      },
-      methods: {
-        toggle() {
-          this.rwdOpen = !this.rwdOpen
-        }
-      },
-    }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
-
 
   </script>
+  <!-- aos -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- 先連結main再連結各自設的js -->
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>

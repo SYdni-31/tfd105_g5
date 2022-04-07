@@ -51,11 +51,17 @@ a {
 .bg-color {
   color: $black-color;
 }
+.bg-in-bgcolor{
+  background-color: $black-color;
+}
 .main-color {
   color: $main-color;
 }
 .second-color {
   color: $second-color;
+}
+.bg-in-secondcolor{
+  background-color: $second-color;
 }
 .accent-color {
   color: $accent-color;

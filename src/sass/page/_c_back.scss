@@ -246,6 +246,15 @@ li.variouscompany {
     }
 }
 
+li.two {
+    article.companyback_back_chatbox {
+        div.chat_title {
+            i.fa-xmark {
+                display: none;
+            }
+        }
+    }
+}
 
 
 
@@ -411,7 +420,7 @@ li.variouscompany {
 
 
 
-//================RWB=================//
+//================RWD=================//
 @include laptop (1300px) {
 
     section.company_wrapper {
@@ -431,7 +440,6 @@ li.variouscompany {
                 left: 15px;
             }
 
-            .field {}
         }
 
 
@@ -472,11 +480,6 @@ li.variouscompany {
         padding-top: 80px;
     }
 
-    .chat1_company {
-
-
-        .sechtion_chat2 {}
-    }
 
     //以下兩個li
     ul.companyback_main_chatbox {
@@ -502,7 +505,6 @@ li.variouscompany {
 
 
     // 第一個聊天室
-    .companyback_main_chatbox {}
 
 
 
@@ -524,7 +526,6 @@ li.variouscompany {
             padding: 2% 2px;
 
 
-            i.-main_color {}
 
             div {
 
@@ -533,7 +534,6 @@ li.variouscompany {
 
                 }
 
-                p {}
 
                 span {
                     padding: 0 4%;
@@ -550,13 +550,6 @@ li.variouscompany {
 
 
 
-    li.variouscompany {
-        div {
-            span.variouscompany_span {
-                i {}
-            }
-        }
-    }
 
 
 
@@ -583,18 +576,9 @@ li.variouscompany {
                 width: 90%;
                 height: 45px;
 
-                &::selection {}
             }
 
-            .btn-short {
 
-                &:hover {}
-            }
-
-            .chat_input_button {
-
-                i {}
-            }
         }
     }
 
@@ -616,10 +600,6 @@ li.variouscompany {
 
 
 
-        &::-webkit-scrollbar {}
-
-
-        &::-webkit-scrollbar-thumb {}
 
         p.chat_content {
             padding: 12px;
@@ -627,9 +607,8 @@ li.variouscompany {
         }
 
         p.chat_content_me {
-            span {}
 
-            ;
+            
 
             &::before {
                 content: "";
@@ -748,14 +727,7 @@ li.variouscompany {
 
 
 
-            .flatpickr-calendar.inline {}
 
-            .label-before {}
-
-            .field {
-
-                label::before {}
-            }
         }
 
 
@@ -770,19 +742,11 @@ li.variouscompany {
         padding-top: 6%;
     }
 
-    .chat1_company {
-
-
-        .sechtion_chat2 {}
-    }
 
     //以下兩個li
     ul.companyback_main_chatbox {
         padding: 0 1%;
 
-        .one {}
-
-        .two {}
     }
 
     .mt-43 {
@@ -794,37 +758,23 @@ li.variouscompany {
     }
 
 
-    .companyback_search {
-        .companyback_searchinput {}
-    }
 
 
 
 
     // 第一個聊天室
-    .companyback_main_chatbox {}
-
-
-
-
-
-    section.companyback_chat1 {}
 
 
 
     .chat1_company {
-        i {}
 
         li.variouscompany {
 
 
-            i.-main_color {}
 
             div {
 
-                .company_receive {}
 
-                p {}
 
                 span {
                     padding: 0;
@@ -841,23 +791,10 @@ li.variouscompany {
 
 
 
-    li.variouscompany {
-        div {
-            span.variouscompany_span {
-                i {}
-            }
-        }
-    }
 }
 
 
 @include pad(768px) {
-    nav {
-        ul#company_menu {
-            display: none;
-        }
-    }
-
     section.company_wrapper {
         padding: 2%;
 
@@ -912,28 +849,44 @@ li.variouscompany {
         padding-top: 5%;
     }
 
-    .chat1_company {
-        .sechtion_chat2 {}
-    }
 
     //以下兩個li
     ul.companyback_main_chatbox {
+        @include relative();
         .one {
             width: 80%;
             margin: 0 auto;
             min-width: 300px;
-            display: none;
+            cursor: pointer;
         }
-
+        
         .two {
-            display: inline-block;
-            width: 80%;
+            width: 100%;
             min-width: 300px;
             margin: 0 auto;
+            // height: 100vh;
+
+            display: none;
+            // @include absolute(0, 0, auto, auto, 10);
+            @include fixed(0, 0, auto, auto, 100);
+            height: calc(100vh - 70px);
+            // @include sticky(0, 0, auto, auto, 10);
+            .companyback_chated{
+                // height: calc(100vh - 350px);
+            }
         }
+        
     }
 
-
+    // .c_bank_mask{
+    //     position: fixed;
+    //     top: 0;
+    //     z-index: 10000000;
+    //     display: none;
+    //     background-color: rgba(0, 0, 0, .7);
+    //     width: 100%;
+    //     height: 100%;
+    // }
 
     .companyback_search {
         .companyback_searchinput {
@@ -946,7 +899,6 @@ li.variouscompany {
 
 
     // 第一個聊天室
-    .companyback_main_chatbox {}
 
     section.companyback_chat1 {
         width: 100%;
@@ -955,19 +907,15 @@ li.variouscompany {
 
 
     .chat1_company {
-        i {}
 
         li.variouscompany {
 
 
 
-            i.-main_color {}
 
             div {
 
-                .company_receive {}
 
-                p {}
 
                 span {
 
@@ -980,17 +928,25 @@ li.variouscompany {
 
 
     // 第二個聊天室
-
-
-
-
-    li.variouscompany {
-        div {
-            span.variouscompany_span {
-                i {}
+    li.two {
+        article.companyback_back_chatbox {
+            div.chat_title {
+                i.fa-xmark {
+                    display: block;
+                    margin-left: auto;
+                    font-size: 8vw;
+                    cursor: pointer;
+                }
             }
         }
     }
+
+
+
+
+
+
+
 
 
 
@@ -1002,26 +958,12 @@ li.variouscompany {
         .chat_title {
             padding: 0 4% 4%;
 
-            i {}
         }
 
         .chat_input {
             padding-top: 5%;
 
-            input {
 
-                &::selection {}
-            }
-
-            .btn-short {
-
-                &:hover {}
-            }
-
-            .chat_input_button {
-
-                i {}
-            }
         }
     }
 
@@ -1045,10 +987,6 @@ li.variouscompany {
 
 
 
-        &::-webkit-scrollbar {}
-
-
-        &::-webkit-scrollbar-thumb {}
 
         p.chat_content {
             padding: 3%;
@@ -1056,9 +994,7 @@ li.variouscompany {
         }
 
         p.chat_content_me {
-            span {}
 
-            ;
 
             &::before {
                 content: "";
@@ -1067,7 +1003,6 @@ li.variouscompany {
 
         }
 
-        p.chat_content_you {}
     }
 }
 
@@ -1089,11 +1024,6 @@ li.variouscompany {
                 }
 
 
-                .time_tech {
-                    .form-contril {}
-
-                    .timepicker {}
-                }
 
                 .field {
                     min-width: 250px;
@@ -1106,6 +1036,7 @@ li.variouscompany {
         }
 
         .companyback_chated {
+            // height: calc(100vh - 190px);
             p.chat_content {
                 font-size: 14px;
                 max-width: 70%;

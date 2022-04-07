@@ -44,6 +44,10 @@
         display: flex;
         align-items: center;
 
+        h2 {
+            min-width: 130px;
+        }
+
         .label-before {
             line-height: 20px;
             font-size: 14px;
@@ -88,6 +92,7 @@
 
         .company_logo {
             height: 257px;
+            min-width: 256px;
             background-color: rgba(196, 196, 196, 0.1);
             box-shadow: 0px 4px 4px rgba(87, 255, 245, 0.25);
             border-radius: 10px;
@@ -99,17 +104,16 @@
                 font-size: 18px;
                 color: $second-color;
                 background: rgba(0, 0, 0, 0.76);
-                border: 1px solid rgba(243, 127, 21, 0.33);
+                border: 1px solid $accent-color;
                 box-sizing: border-box;
                 border-radius: 10px;
-                padding: 10px 20px;
+                padding: 5% 10%;
             }
         }
     }
 
     .introduce {
         align-items: flex-start;
-
 
         textarea {
             margin-left: 81px;
@@ -224,4 +228,333 @@
         border-radius: 10px;
     }
 
+}
+
+
+
+// =================RWD================== //
+
+@include laptop(1200px) {
+
+    //以下是radio button
+    .companyback_info_form {
+        input[type='radio']:after {
+            width: 20px;
+            height: 20px;
+            top: -6px;
+            left: 1px;
+        }
+
+        input[type='radio']:checked:after {
+            width: 20px;
+            height: 20px;
+            top: -6px;
+            left: 1px;
+        }
+
+
+        //這是input大小
+        .field {
+            input {
+                margin: 0 0 0 30px;
+                width: 80%;
+                min-width: 350px;
+            }
+        }
+
+        .all_input {
+            grid-template-columns: 2.2fr 1fr;
+            grid-gap: 3%;
+
+            .company_logo {
+                height: 84%;
+            }
+        }
+
+        .introduce {
+            h2 {
+                min-width: 130px;
+            }
+
+            textarea {
+                margin-left: 30px;
+                width: 84%;
+                padding: 2%;
+            }
+
+            label::before {
+                top: 11%;
+                left: 24%;
+                padding: 0 2%;
+            }
+        }
+
+        //最後按鈕
+        .save {
+            margin: 12% auto 0;
+        }
+
+
+        //環境
+        ul.environment {
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+
+            li:first-child {
+                order: 1;
+                padding-bottom: 5%;
+            }
+
+            li:not(:first-child) {
+                flex-grow: 1;
+                min-width: 30%;
+            }
+        }
+    }
+
+    .robot {
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+
+        li:first-child {
+            order: 1;
+            padding-bottom: 5%;
+        }
+
+        li:not(:first-child) {
+            padding: 6% 10%;
+            margin: 0 6%;
+            // flex-grow: 1;
+        }
+
+
+    }
+
+}
+
+
+//這裡是重打的
+@include pad(960px) {
+
+    .companyback_info_form {
+        .all_input {
+            grid-template-columns: 2fr 1.5fr;
+            grid-gap: 0;
+
+            .field {
+                flex-direction: column;
+                align-items: flex-start;
+
+                input {
+                    margin: 0;
+                }
+
+                .label-before {
+                    line-height: 20px;
+
+                    top: 40%;
+
+                    padding: 0 2%;
+                    left: 5%;
+
+                }
+
+                label::before {
+
+                    top: 57%;
+                    left: 6%;
+                }
+
+            }
+
+
+
+            .pt-45 {
+                padding-top: 0;
+            }
+
+        }
+
+        //廠商介紹
+        .introduce {
+            flex-wrap: wrap;
+
+            label::before {
+                top: 19%;
+                left: 77%;
+                font-size: 18px;
+            }
+
+            textarea {
+                margin-left: 0;
+                width: 100%;
+            }
+
+        }
+
+        .pt-60 {
+            padding-top: 8%;
+        }
+
+        ul.environment {
+            display: block;
+
+            li:not(:first-child) {
+                padding-bottom: 5%;
+            }
+        }
+
+        .save {
+            margin: 2% auto 0;
+        }
+    }
+
+    .robot {
+        padding-top: 8%;
+    }
+}
+
+//
+@include pad(768px) {
+    .company_title {
+        display: block;
+        width: 35%;
+        margin: 0 auto;
+
+        a {
+            border-radius: 30px;
+        }
+    }
+
+    .companyback_info_form {
+
+        //field introduct
+        .field {
+            align-items: center;
+        }
+
+        .introduce {
+            flex-direction: column;
+
+            label::before {
+                top: calc(100% - 82%);
+                left: 15%;
+            }
+
+            textarea {
+                width: 80%;
+                margin: 5% 0 auto;
+            }
+        }
+
+        .pt-60 {
+            padding-top: 5%;
+        }
+
+        .all_input {
+            grid-template-columns: 1fr;
+
+            //pt-45
+            .pt-45 {
+                padding-top: 5%;
+            }
+
+            li:nth-child(1) {
+                order: 2;
+                width: 60%;
+                margin: 0 auto;
+
+                .field {
+                    align-items: center;
+
+                    label::before {
+                        top: 66%;
+                        left: 12%;
+                    }
+
+                    .label-before {
+                        top: 54%;
+                        left: 10%;
+                    }
+
+                    input {
+                        margin-top: 5%;
+                    }
+                }
+            }
+
+            li:nth-child(2) {
+                width: 50%;
+                min-width: 260px;
+                order: 1;
+                margin: 0 auto;
+            }
+
+            .mt-45 {
+                margin-top: 2%;
+            }
+
+            .company_logo {
+                padding: 5%;
+                min-height: 260px;
+            }
+        }
+
+        .environment {
+            padding-top: 10%;
+        }
+    }
+
+    .robot {
+        display: block;
+
+        li:first-child {
+            padding-bottom: 0;
+        }
+
+        li:not(:first-child) {
+            width: 70%;
+            margin: 0 auto;
+            margin-top: 8%;
+        }
+    }
+
+
+}
+
+@include mobile(375px) {
+    .companyback_info_form {
+        .all_input {
+            li:nth-child(1) {
+                width: 100%;
+
+                .field {
+                    label::before {
+                        left: 17%;
+
+                    }
+
+                    .label-before {
+                        top: 51%;
+                        left: 16%;
+                    }
+                }
+            }
+        }
+
+        .field {
+            input {
+                min-width: 0;
+            }
+
+            ;
+        }
+
+        .introduce {
+            label::before {
+                top: 15%;
+                left: 17%;
+            }
+        }
+    }
 }

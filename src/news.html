@@ -14,8 +14,8 @@
     <link rel="icon" href="img/tianlam-logo-mainblack.svg" />
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- aos動畫 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- aos -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">   
     <!-- VUE -->
     <script src="js/vue.min.js"></script>
     <!-- EmailJS -->
@@ -45,18 +45,18 @@
                 <h2 class="news_subtitle"><span class="news_span">--------- </span>新聞資訊 <span class="news_span">---------</span></h2>
             </div>
         </section>
-        <section>
+        <section class="news-over-hidden">
             <!-- <row class="row wrapper">
                 <div class="col-12 col-md-6">test</div>
                 <div class="col-12 col-md-6">test</div>
             </row> -->
             <div class="news wrapper">
 
-                <div class="news-card">
+                <div class="news-card" data-aos="fade-right" data-aos-duration="1500" >
                     <div class="news-date">
                         <h2>2022.03.15</h2>
                     </div>
-                    <div class="news-content">
+                    <div class="news-content" >
                         <a href="https://finance.ettoday.net/news/2208861"  target="_blank">
                             <img src="img/news/news_1.jpg" alt="新聞資訊">
                             <h3>3M「大未來」平台登場！輕鬆掌握5大全球科技趨勢</h3>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="news-card">
+                <div class="news-card"  data-aos="fade-left" data-aos-duration="1500" >
                     <div class="news-date">
                         <h2>2022.03.15</h2>
                     </div>
@@ -78,11 +78,11 @@
                     </div>
                 </div>
 
-                <div class="news-card">
+                <div class="news-card" data-aos="fade-right" data-aos-duration="1500">
                     <div class="news-date">
                         <h2>2022.03.12</h2>
                     </div>
-                    <div class="news-content">
+                    <div class="news-content" >
                         <a href="https://news.tvbs.com.tw/tech/1738064"  target="_blank">
                             <img src="img/news/news_3.jpg" alt="新聞資訊">
                             <h3>資安即國安！電信推「網路計畫」　AI惹議：出錯誰負責</h3>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
 
-                <div class="news-card">
+                <div class="news-card"  data-aos="fade-left" data-aos-duration="1500">
                     <div class="news-date">
                         <h2>2022.01.06</h2>
                     </div>
@@ -111,6 +111,8 @@
     <script>
 
     </script>
+    <!-- aos -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- 先連結main再連結各自設的js -->
     <script src="js/main.min.js"></script>
     <script src="js/login.min.js"></script>

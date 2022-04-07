@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var companySignUpContainer = document.getElementsByClassName("company-sign-up-container")[0];
     var guestSignInContainer = document.getElementsByClassName("guest-sign-in-container")[0];
     let overlayContainer = document.getElementsByClassName("overlay-container")[0];
+    var loginConpanySignInAlert = document.getElementsByClassName('login_conpanySignIn_alert')[0];
 
     // 點擊註冊
     login_btn_signup.addEventListener("click", function () {
@@ -104,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 overlayContainer.classList.remove("js-slide-right2");
             }, 700);
         }
-        
+
     });
 
     // 點擊出現 忘記密碼區塊
@@ -147,14 +148,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let password_2 = document.getElementById('password_2');
     let company_2 = document.getElementById('company_2');
     let exb_dropdown = document.getElementById('exb_dropdown');
-    loginBtnSubmitinfo.addEventListener("click", function () {
+    loginBtnSubmitinfo.addEventListener("click", function (e) {
         let companySignUp_name = name_2.value.trim();
         let companySignUp_email = email_3.value.trim();
         let companySignUp_password = password_2.value.trim();
         let companySignUp_company = company_2.value.trim();
         let companySignUp_dropdown = exb_dropdown.value;
         let send_data = true;
-        // send_data = false;
 
         // 姓名欄位不得為空值
         if (companySignUp_name === "") {
@@ -165,6 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 電子郵件不得為空值且符合格式
+        // console.log(companySignUp_email);
+        // console.log(is.email(companySignUp_email));
         if (is.email(companySignUp_email)) {
             // console.log("1");
             email_3.classList.remove("login-error");
@@ -172,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
             send_data = false;
             // console.log("2");
             email_3.classList.add("login-error");
+            // alert('email錯誤!');
         }
 
         // 密碼欄位不得為空值
@@ -185,13 +188,13 @@ document.addEventListener("DOMContentLoaded", function () {
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_2.value.length > 20) {
             send_data = false;
-            alert('密碼長度不得大於20碼');
+            // alert('密碼長度不得大於20碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
         } else if (password_2.value.length < 8) {
             send_data = false;
-            alert('密碼長度不得小於8碼');
+            // alert('密碼長度不得小於8碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
@@ -208,28 +211,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 參展類型不得為空值
-        if(companySignUp_dropdown !== 0){
-            send_data = true;
-        }else{
+        if (companySignUp_dropdown !== 0) {
+
+        } else {
             send_data = false;
         }
 
         // 各欄位不得為空值
-        if(companySignUp_name === "" && companySignUp_password === "" && companySignUp_company === "") {
+        if (companySignUp_name === "" && companySignUp_password === "" && companySignUp_company === "" && !is.email(companySignUp_email)) {
             send_data = false;
-        }else if(companySignUp_email === ""){ 
+        } else if (companySignUp_password === "") {
             send_data = false;
-        }else if(companySignUp_password === ""){
+        } else if (companySignUp_company === "") {
             send_data = false;
-        }else if(companySignUp_company === ""){
-            send_data = false;
-        }else{
-            
+        } else {
+
         }
 
         // 判斷是否成功送出資料
+        // console.log(send_data);
         if (!send_data) {
-            alert('格式錯誤或是必填欄位未輸入!');
+            // alert('格式錯誤或是必填欄位未輸入!');
+            swal('送出失敗', '格式錯誤或是必填欄位未輸入!', 'error');
             e.preventDefault();
         } else {
             companySignUpContainer.classList.add("js-none");
@@ -238,7 +241,8 @@ document.addEventListener("DOMContentLoaded", function () {
             companySignInContainer.classList.remove("js-block");
             guestSignInContainer.classList.add("js-none");
             guestSignInContainer.classList.remove("js-block");
-            alert('資料送出成功');
+            // alert('資料送出成功');
+            swal('送出成功', '', 'success');
             name_2.value = "";
             email_3.value = "";
             password_2.value = "";
@@ -267,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //點擊登入會員按鈕 返回顯示廠商登入頁面
-    signIn.addEventListener("click", function () {
+    signIn.addEventListener("click", function (e) {
         overlayContainer.classList.add("js-slide-right2");
         guestSignInContainer.classList.remove("js-block2");
         guestSignInContainer.classList.remove("js-none");
@@ -282,6 +286,8 @@ document.addEventListener("DOMContentLoaded", function () {
             overlayContainer.classList.remove("js-block");
             overlayContainer.classList.add("js-none2");
         }, 500);
+
+
     });
 
     // 點擊寄送驗證信 出現提示字
@@ -346,12 +352,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 參觀成功與參觀失敗
         if (!send_data) {
-            alert('格式錯誤或是必填欄位未輸入!');
+            // alert('格式錯誤或是必填欄位未輸入!');
+            swal('失敗', '格式錯誤或是必填欄位未輸入!', 'error');
             e.preventDefault();
         } else {
             send_data = true;
+            swal('成功', '歡迎參觀聚策展!', 'success');
             CloseLightBox();
-            alert('歡迎參觀聚策展!');
+            // alert('歡迎參觀聚策展!');
             name_1.value = "";
             email_2.value = "";
             Company_1.value = "";
@@ -435,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let send_data = true;
 
         // 電子郵件欄位不得輸入中文
-        // let strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
+        // var strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
         // companySignIn_email = strNOCn_1;    
         // email符合格式
         if (is.email(companySignIn_email)) {
@@ -448,17 +456,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_el.value.length > 20) {
-            alert('輸入密碼長度不得大於20碼');
+            // alert('輸入密碼長度不得大於20碼');
             password_el.focus();
             password_el.classList.add("login-error");
             // password_el.value = "";
             send_data = false;
         } else if (password_el.value.length < 8) {
-            alert('輸入密碼長度不得小於8碼');
+            send_data = false;
+            // alert('輸入密碼長度不得小於8碼');
+            // swal('登入失敗', '輸入密碼長度不得小於8碼', 'warning');
             password_el.focus();
             password_el.classList.add("login-error");
             // password_el.value = "";
-            send_data = false;
         } else {
             password_el.classList.remove("login-error");
         }
@@ -475,20 +484,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 登入成功與登入失敗
         if (!send_data) {
-            alert('格式錯誤或是必填欄位未輸入!');
+            // alert('格式錯誤或是必填欄位未輸入!');
+            swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+            // loginConpanySignInAlert.classList.add('js-block');
             e.preventDefault();
         } else {
-            send_data = true;
-            alert("登入成功");
+            // send_data = true;
+            // alert("登入成功");
+            swal('登入成功', '', 'success');
             email_el.value = "";
             password_el.value = "";
         }
 
         // 輸入正確電郵地址及密碼，成功登入廠商後台
-        // if(companySignIn_email === "tfd105.group5@gmail.com" && companySignIn_password === 'Wed34!""'){
-        //     send_data = true;
-        //     location.replace("url")
-        // }
+        if (companySignIn_email === "tfd105.group5@gmail.com" && companySignIn_password === 'Wed34!""') {
+            e.preventDefault();
+            document.location.href = "backstage_index.html";
+        }
     });
 
 
