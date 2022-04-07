@@ -1,7 +1,7 @@
 .login {
     position: fixed;
     top: 0;
-    z-index: 10000000;
+    z-index: 300;
     display: none;
     background-color: rgba(0, 0, 0, .7);
     width: 100%;
@@ -126,7 +126,10 @@
                     font-size: 14px;
                 }
                 margin-top: 20px;
-                color: $accent-color;
+                color: $second-color;
+                &:hover{
+                    color: $accent-color;
+                }
             }
             button {
                 transition: transform 80ms ease-in;
@@ -154,7 +157,11 @@
                     display: block;
                 }
             }
-           
+            p{
+                color: $accent-color;
+                @include font(14px, 300, center, 2);
+                display: none;
+            }
         }
         // .js-block {
         //     display: block;
@@ -532,6 +539,13 @@
                 }
                 .label-before {
                     left: 90px;
+                }
+                .js-block{
+                    display: block;
+                }
+                p{
+                    color: $accent-color;
+                    display: none;
                 }
             }
             .js-none {

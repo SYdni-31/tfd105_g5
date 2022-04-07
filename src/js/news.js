@@ -1,0 +1,2 @@
+// aos
+AOS.init();
