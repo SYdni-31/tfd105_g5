@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var companySignUpContainer = document.getElementsByClassName("company-sign-up-container")[0];
     var guestSignInContainer = document.getElementsByClassName("guest-sign-in-container")[0];
     let overlayContainer = document.getElementsByClassName("overlay-container")[0];
+    var loginConpanySignInAlert = document.getElementsByClassName('login_conpanySignIn_alert')[0];
 
     // 點擊註冊
     login_btn_signup.addEventListener("click", function () {
@@ -187,13 +188,13 @@ document.addEventListener("DOMContentLoaded", function () {
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_2.value.length > 20) {
             send_data = false;
-            alert('密碼長度不得大於20碼');
+            // alert('密碼長度不得大於20碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
         } else if (password_2.value.length < 8) {
             send_data = false;
-            alert('密碼長度不得小於8碼');
+            // alert('密碼長度不得小於8碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
@@ -230,7 +231,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // 判斷是否成功送出資料
         // console.log(send_data);
         if (!send_data) {
-            alert('格式錯誤或是必填欄位未輸入!');
+            // alert('格式錯誤或是必填欄位未輸入!');
+            swal('送出失敗', '格式錯誤或是必填欄位未輸入!', 'error');
             e.preventDefault();
         } else {
             companySignUpContainer.classList.add("js-none");
@@ -239,7 +241,8 @@ document.addEventListener("DOMContentLoaded", function () {
             companySignInContainer.classList.remove("js-block");
             guestSignInContainer.classList.add("js-none");
             guestSignInContainer.classList.remove("js-block");
-            alert('資料送出成功');
+            // alert('資料送出成功');
+            swal('送出成功', '', 'success');
             name_2.value = "";
             email_3.value = "";
             password_2.value = "";
@@ -349,12 +352,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 參觀成功與參觀失敗
         if (!send_data) {
-            alert('格式錯誤或是必填欄位未輸入!');
+            // alert('格式錯誤或是必填欄位未輸入!');
+            swal('失敗', '格式錯誤或是必填欄位未輸入!', 'error');
             e.preventDefault();
         } else {
             send_data = true;
+            swal('成功', '歡迎參觀聚策展!', 'success');
             CloseLightBox();
-            alert('歡迎參觀聚策展!');
+            // alert('歡迎參觀聚策展!');
             name_1.value = "";
             email_2.value = "";
             Company_1.value = "";
@@ -438,8 +443,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let send_data = true;
 
         // 電子郵件欄位不得輸入中文
-        // let strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
-        // companySignIn_email = strNOCn_1;    
+        var strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
+        companySignIn_email = strNOCn_1;    
         // email符合格式
         if (is.email(companySignIn_email)) {
             // console.log("1");
@@ -451,17 +456,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_el.value.length > 20) {
-            alert('輸入密碼長度不得大於20碼');
+            // alert('輸入密碼長度不得大於20碼');
             password_el.focus();
             password_el.classList.add("login-error");
             // password_el.value = "";
             send_data = false;
         } else if (password_el.value.length < 8) {
-            alert('輸入密碼長度不得小於8碼');
+            send_data = false;
+            // alert('輸入密碼長度不得小於8碼');
+            // swal('登入失敗', '輸入密碼長度不得小於8碼', 'warning');
             password_el.focus();
             password_el.classList.add("login-error");
             // password_el.value = "";
-            send_data = false;
         } else {
             password_el.classList.remove("login-error");
         }
@@ -478,11 +484,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 登入成功與登入失敗
         if (!send_data) {
-            alert('格式錯誤或是必填欄位未輸入!');
+            // alert('格式錯誤或是必填欄位未輸入!');
+            swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+            // loginConpanySignInAlert.classList.add('js-block');
             e.preventDefault();
         } else {
-            send_data = true;
-            alert("登入成功");
+            // send_data = true;
+            // alert("登入成功");
+            swal('登入成功', '', 'success');
             email_el.value = "";
             password_el.value = "";
         }
