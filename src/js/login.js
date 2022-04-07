@@ -499,7 +499,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 輸入正確電郵地址及密碼，成功登入廠商後台
         if (companySignIn_email === "tfd105.group5@gmail.com" && companySignIn_password === 'Wed34!""') {
             e.preventDefault();
-            document.location.href = "backstage_info1.html";
+            document.location.href = "backstage_index.html";
         }
     });
 
