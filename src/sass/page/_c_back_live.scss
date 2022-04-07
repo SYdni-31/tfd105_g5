@@ -255,6 +255,13 @@ aside.companyback_layout.orange {
 }
 
 @include pad(768px) {
+    .company_title {
+        .title_skill {
+            padding: 15px 30px;
+            margin-top: 90px;
+        }
+    }
+
     .companyback_form {
         margin-top: 50px;
     }

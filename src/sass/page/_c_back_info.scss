@@ -522,6 +522,30 @@
 
 }
 
+@include mobile(576px) {
+    .companyback_info_form {
+        .all_input {
+            justify-content: center;
+        }
+
+        input[type='radio']:after {
+
+            top: -1px;
+            left: 1px;
+        }
+
+        input[type='radio']:checked:after {
+
+            top: -1px;
+            left: 1px;
+        }
+    }
+}
+
+
+
+
+
 @include mobile(375px) {
     .companyback_info_form {
         .all_input {
@@ -531,7 +555,7 @@
                 .field {
                     label::before {
                         left: 17%;
-
+                        top: 64%;
                     }
 
                     .label-before {
@@ -555,6 +579,10 @@
                 top: 15%;
                 left: 17%;
             }
+        }
+
+        .save {
+            margin: 5% auto 0;
         }
     }
 }

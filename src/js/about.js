@@ -7,6 +7,7 @@ var swiper = new Swiper(".mySwiper", {
     el: ".swiper-scrollbar",
     hide: false,
     draggable: true,
+    dragSize: 10,
 
   },
   breakpoints: {
