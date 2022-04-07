@@ -443,8 +443,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let send_data = true;
 
         // 電子郵件欄位不得輸入中文
-        var strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
-        companySignIn_email = strNOCn_1;    
+        // var strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
+        // companySignIn_email = strNOCn_1;    
         // email符合格式
         if (is.email(companySignIn_email)) {
             // console.log("1");
