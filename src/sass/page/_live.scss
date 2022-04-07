@@ -15,8 +15,12 @@
     padding-top: calc(70% * 9 / 16);
     position: relative;
     @include laptop(1100px) {
-      width: 100%;
-      padding-top: calc(100% * 9 / 16);
+      width: 90%;
+      padding-top: calc(90% * 9 / 16);
+    }
+    @include laptop(768px) {
+      width: 98%;
+      padding-top: calc(98% * 9 / 16);
     }
     h2 {
       position: absolute;
@@ -221,6 +225,10 @@
     // 當瀏覽器小於1100px時顯示
     @include laptop(1100px) {
       display: block;
+      width: 90%;
+    }
+    @include laptop(768px) {
+      width: 98%;
     }
     @include flex-box-column(100%);
     // width: 100%;
