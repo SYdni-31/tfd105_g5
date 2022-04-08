@@ -300,20 +300,21 @@ document.addEventListener("DOMContentLoaded", function () {
         let forget_changeEmail = changeEmail.value.trim();
         let send_data = true;
         //發信，有信件數量限制，故暫時不發信
-        //   var templateParams = {
-        //      user: "台積電",
-        //     from_name:"聚策展",
-        //     message: "您的密碼已變更為password!''",
-        //   };
+        var templateParams = {
+            user: "台積電",
+            from_name:"聚策展",
+            message: "您的密碼已變更為password!''",
+            To_Email: forget_changeEmail,
+          };
+          emailjs.send("service_gos3kx1", "template_a1m2ysc", templateParams).then(
+            function (response) {
+              console.log("SUCCESS!", response.status, response.text);
+            },
+            function (error) {
+              console.log("FAILED...", error);
+            }
+        );
 
-        //   emailjs.send("service_gos3kx1", "template_a1m2ysc", templateParams).then(
-        //     function (response) {
-        //       console.log("SUCCESS!", response.status, response.text);
-        //     },
-        //     function (error) {
-        //       console.log("FAILED...", error);
-        //     }
-        //   );
         if (is.email(forget_changeEmail)) {
             // console.log("1");
             email_el.classList.remove("login-error");
