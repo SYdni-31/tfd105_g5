@@ -512,7 +512,7 @@
             <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
         </article>`,
         mounted(){
-            fetch('../php/backstage_info1_selsct.php')
+            fetch('php/backstage_info1_selsct.php')
             .then(resp =>resp.json())
             .then(resp =>this.datas=resp)
         },  
