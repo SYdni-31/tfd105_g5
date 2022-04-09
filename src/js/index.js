@@ -20,7 +20,7 @@ var swiper = new Swiper(".mySwiper", {
     slideShadows: false,
   },
   breakpoints: {
-    320: {
+    0: {
       slidesPerView: 1,
       // width: 300,
       // spaceBetween: 10,
@@ -47,7 +47,7 @@ var swiper = new Swiper(".mySwiper", {
 
 
 // parallax.js
-// var scene = document.getElementById('scene');
-// var parallaxInstance = new Parallax(scene, {
-//   relativeInput: true
-// });
+var scene = document.getElementById('scene');
+var parallaxInstance = new Parallax(scene, {
+  relativeInput: true
+});

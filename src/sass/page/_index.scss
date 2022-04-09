@@ -209,9 +209,9 @@
 .index_block {
     .index_disk {
         width: 70vw;
-        @include absolute( null, 14.8vw, -2.2vw);
+        @include absolute( null, 14vw, -2.2vw);
         // transform: translateY(10px);
-        animation: diskMove 1s ease-in-out 1s infinite;
+        animation: diskMove 2s ease-in-out 1s infinite;
     }
 }
 
@@ -236,12 +236,12 @@
     .index_mid_light {
         width: 6vw;
         @include absolute(null, null, 16.6vw, 4.5vw);
-        animation: mask 1s linear 1.5s infinite;
+        animation: mask 1.5s linear 1.5s infinite;
     }
     .index_bot_light {
         width: 6.5vw;
         @include absolute(null, null, 12.3vw, 8.3vw);
-        animation: mask 1s linear 1.5s infinite;
+        animation: mask 2s linear 1.5s infinite;
     }
 
 }
@@ -483,7 +483,7 @@
 }
 
 // rwd 320-576px
-@media (min-width: 320px) and (max-width: 575.98px){
+@media (max-width: 575.98px){
     .index_block{
         .index_bcg_desktop {
             display: none;
