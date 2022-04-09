@@ -145,6 +145,20 @@ body {
   color: $second-color;
   background-color: $black-color;
   // overflow: hidden;
+          // 右側捲動軸效果變更
+          &::-webkit-scrollbar {
+            height: 1px;
+            width: 5px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-image: -webkit-gradient(linear,
+            left bottom,
+            left top,
+            color-stop(0.4, #0b2736),
+            color-stop(0.72, $main-color),
+            color-stop(0.86, $main-color));
+            border-radius: 10px;
+          }
 }
 /* 讓圖片自適應 */
 img {
