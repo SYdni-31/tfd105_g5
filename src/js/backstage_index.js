@@ -1,102 +1,102 @@
 // ========info2_大會講師_修改按鈕========
-Vue.component('backstage_info2_edit',{
-    props:['row_data'],
-    data(){
-        return{
-            newdata:'',
-            image: "",
-            file_name: "",
-        }
-    },
-    methods: {
-        f_save(){
-            this.$swal({
-                title: "儲存成功",
-                icon: "success",
+    Vue.component('backstage_info2_edit',{
+        props:['row_data'],
+        data(){
+            return{
+                newdata:'',
                 image: "",
-            }).then((willInsert) => {
-                if(willInsert){
-                    this.$emit('editsave', this.newdata)
-                }
-            })
+                file_name: "",
+            }
         },
-        f_close(){
-            this.$swal({
-                title: "尚未存檔，是否關閉?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willInsert) => {
-                if(willInsert){
-                    this.$emit('editclose')
-                }
-            })
+        methods: {
+            f_save(){
+                this.$swal({
+                    title: "儲存成功",
+                    icon: "success",
+                    image: "",
+                }).then((willInsert) => {
+                    if(willInsert){
+                        this.$emit('editsave', this.newdata)
+                    }
+                })
+            },
+            f_close(){
+                this.$swal({
+                    title: "尚未存檔，是否關閉?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willInsert) => {
+                    if(willInsert){
+                        this.$emit('editclose')
+                    }
+                })
+            },
+            choosephoto(){
+                let filechoose= document.querySelector(".filechoose")
+                filechoose.click()
+            },
+            selectedFile(e) {
+                let file = e.target.files[0];
+                let readFiles = new FileReader();
+                readFiles.readAsDataURL(file);
+                readFiles.addEventListener("load", this.loadImage);
+                this.file_name = file.name;
+                this.newdata[9] = URL.createObjectURL(file)
+            },
+            loadImage(e) {
+            this.image = e.target.result;
+            },
         },
-        choosephoto(){
-            let filechoose= document.querySelector(".filechoose")
-            filechoose.click()
-        },
-        selectedFile(e) {
-            let file = e.target.files[0];
-            let readFiles = new FileReader();
-            readFiles.readAsDataURL(file);
-            readFiles.addEventListener("load", this.loadImage);
-            this.file_name = file.name;
-            this.newdata[9] = URL.createObjectURL(file)
-        },
-        loadImage(e) {
-        this.image = e.target.result;
-        },
-    },
-    template:`
-    <article class="backstage_box">
-                <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
-                <div class="backstage_box-content pt-30">
-                    <ul>
-                        <li class="mb-16 input-short"><label for="id">議程ID</label>
-                            <input type="text" name="id" id="id" v-model="newdata[0]" disabled>
-                        </li>
-                        <li class="mb-16 input-short"><label for="date">議程日期</label>
-                            <input type="date" name="date" id="date" v-model="newdata[1]">
-                        </li>
-                        <li class="mb-16 input-short"><label for="starttime">開始時間</label>
-                        <input type="time" name="starttime" id="starttime" v-model="newdata[2]">
-                        </li>
-                        <li class="mb-16 input-short"><label for="endtime">結束時間</label>
-                            <input type="time" name="endtime" id="endtime" v-model="newdata[3]">
-                        </li>
-                        <li class="mb-16 input-short"><label for="theme">主題</label>
-                        <input type="text" name="theme" id="theme" v-model="newdata[4]">
-                        </li>
-                        <li class="mb-16 input-short"><label for="name">講師名稱</label>
-                        <input type="text" name="name" id="name" v-model="newdata[9]">
-                        </li>
-                        <li class="mb-16 input-long"><label for="link">直播連結</label>
-                        <input type="text" name="link" id="link" v-model="newdata[5]">
-                        </li>
-                        <li class="mb-16 input-long"><label for="introduce">講師介紹</label>
-                            <textarea name="introduce" id="introduce" cols="30" rows="10" v-model="newdata[10]"></textarea>
-                        </li>
-                    </ul> 
-                    <div class="mb-16 input-file">
-                        <label>講師照片</label>
-                        <input type="file" class="filechoose -hide" name="filechoose" id="filechoose" @change="selectedFile">
-                        <input type="text" class="filename" name="filename" id="filename" :value="file_name" disabled>
-                        <button @click="choosephoto">上傳</button>
-                        <div class="backstage_input-file-img">
-                            <img id="img" class="img-update" :src="newdata[9]">
+        template:`
+        <article class="backstage_box">
+                    <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
+                    <div class="backstage_box-content pt-30">
+                        <ul>
+                            <li class="mb-16 input-short"><label for="id">議程ID</label>
+                                <input type="text" name="id" id="id" v-model="newdata[0]" disabled>
+                            </li>
+                            <li class="mb-16 input-short"><label for="date">議程日期</label>
+                                <input type="date" name="date" id="date" v-model="newdata[1]">
+                            </li>
+                            <li class="mb-16 input-short"><label for="starttime">開始時間</label>
+                            <input type="time" name="starttime" id="starttime" v-model="newdata[2]">
+                            </li>
+                            <li class="mb-16 input-short"><label for="endtime">結束時間</label>
+                                <input type="time" name="endtime" id="endtime" v-model="newdata[3]">
+                            </li>
+                            <li class="mb-16 input-short"><label for="theme">主題</label>
+                            <input type="text" name="theme" id="theme" v-model="newdata[4]">
+                            </li>
+                            <li class="mb-16 input-short"><label for="name">講師名稱</label>
+                            <input type="text" name="name" id="name" v-model="newdata[8]">
+                            </li>
+                            <li class="mb-16 input-long"><label for="link">直播連結</label>
+                            <input type="text" name="link" id="link" v-model="newdata[5]">
+                            </li>
+                            <li class="mb-16 input-long"><label for="introduce">講師介紹</label>
+                                <textarea name="introduce" id="introduce" cols="30" rows="10" v-model="newdata[10]"></textarea>
+                            </li>
+                        </ul> 
+                        <div class="mb-16 input-file">
+                            <label>講師照片</label>
+                            <input type="file" class="filechoose -hide" name="filechoose" id="filechoose" @change="selectedFile">
+                            <input type="text" class="filename" name="filename" id="filename" :value="file_name" disabled>
+                            <button @click="choosephoto">上傳</button>
+                            <div class="backstage_input-file-img">
+                                <img id="img" class="img-update" :src="newdata[9]">
+                            </div>
+                        </div>                  
+                        <div class="backstage-insert-btn">
+                            <button class="backstage-insert_save" @click="f_save">儲存</button>
+                            <button class="backstage-insert_close" @click="f_close">關閉</button>
                         </div>
-                    </div>                  
-                    <div class="backstage-insert-btn">
-                        <button class="backstage-insert_save" @click="f_save">儲存</button>
-                        <button class="backstage-insert_close" @click="f_close">關閉</button>
                     </div>
-                </div>
-            </article>`,
-    created () {
-        this.newdata = JSON.parse(JSON.stringify(this.row_data)) 
-        },
-})
+                </article>`,
+        created () {
+            this.newdata = JSON.parse(JSON.stringify(this.row_data)) 
+            },
+    })
 // ========info2_大會講師_後台新增按鈕========
     Vue.component('backstage_info2_add',{
         data(){
@@ -345,7 +345,7 @@ Vue.component('backstage_info2_edit',{
         },
         template:`
         <article class="backstage_box">
-                <h2>修改</h2>
+                <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
                 <div class="backstage_box-content pt-30">
                     <ul>
                         <li class="mb-16 input-short"><label for="id">策展ID</label>
@@ -369,9 +369,9 @@ Vue.component('backstage_info2_edit',{
                             <label for="worked"><input type="radio" name="open" id="worked"  value="已結束" v-model="newdata[4]">已結束</label>
                         </div>
                     </ul>                  
-                    <div class="back-insert-btn">
-                        <button class="back-insert_save" @click="f_save">儲存</button>
-                        <button class="back-insert_close" @click="f_close">關閉</button>
+                    <div class="backstage-insert-btn">
+                        <button class="backstage-insert_save" @click="f_save">儲存</button>
+                        <button class="backstage-insert_close" @click="f_close">關閉</button>
                     </div>
                 </div>
             </article>`,
@@ -411,7 +411,7 @@ Vue.component('backstage_info2_edit',{
         },
         template:`
         <article class="backstage_box">
-                <h2>新增</h2>
+                <h2>新增<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
                 <div class="backstage_box-content pt-30">
                     <ul>
                         <li class="mb-16 input-short"><label for="id">策展ID</label>
@@ -435,9 +435,9 @@ Vue.component('backstage_info2_edit',{
                             <label for="worked"><input type="radio" name="open" id="worked" value="已結束" v-model="newdata[4]">已結束</label>
                         </div>
                     </ul>                   
-                    <div class="back-insert-btn">
-                        <button class="back-insert_save" @click="f_save">儲存</button>
-                        <button class="back-insert_close" @click="f_close">關閉</button>
+                    <div class="backstage-insert-btn">
+                        <button class="backstage-insert_save" @click="f_save">儲存</button>
+                        <button class="backstage-insert_close" @click="f_close">關閉</button>
                     </div>
                 </div>
             </article>`,
@@ -450,31 +450,7 @@ Vue.component('backstage_info2_edit',{
             return{
                 box:null,
                 titles:["策展ID", "策展名稱", "活動開始", "狀態", "操作"],
-                datas:[
-                    [
-                        1,
-                        "Tián lám 2022智慧全球科技聚策展",
-                        "2022-03-17",
-                        "2022-03-20",
-                        "進行中",
-                        "會議簡介1",
-                    ],
-                    [
-                        2,
-                        "想不出名字的展會",
-                        "2022-03-19",
-                        "2022-03-20",
-                        "進行中",
-                        "會議簡介2",
-                    ],
-                    [
-                        3,
-                        "台北科技展",
-                        "2022-03-18",
-                        "2022-03-20",
-                        "已結束",
-                        "會議簡介3",
-                    ],],
+                datas:'',
                 row_data:null,
                 row_index:null,
             }
@@ -534,7 +510,12 @@ Vue.component('backstage_info2_edit',{
 
             </div>
             <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
-        </article>`,      
+        </article>`,
+        mounted(){
+            fetch('../php/backstage_info1_selsct.php')
+            .then(resp =>resp.json())
+            .then(resp =>this.datas=resp)
+        },  
     })
 
 // ========頁面vue========
