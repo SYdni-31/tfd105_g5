@@ -46,18 +46,51 @@
     <main>
         <div class="index_block">
             <!-- 背景圖 -->
-            <img src="./img/index/011.jpg" class="-margin0auto index_bcg_desktop">
+            <img src="./img/index/index_background.jpg" class="-margin0auto index_bcg_desktop">
             
-            <!-- parallax兩側景 -->
-            <div id="scene">
-                <div data-depth="0.1">
-                    <!-- <img src="./img/index/011.jpg" class="-margin0auto index_bcg_desktop"> -->
+            <!-- parallax物件 -->
+            <div class="index_parallax_container index_bcg_desktop">
+                <div class="index_parallax_items">
+                    <div id="scene">
+                        <!-- 左上巧拼 -->
+                        <div data-depth="0.3" class="index_paraItems_left_top">
+                            <img src="./img/index/move_bot_part.png" class="index_left_top_fixed">
+                            <img src="./img/index/move_top_part.png" class="index_left_top_move">
+                        </div>
+                        <!-- 左下光點 -->
+                        <div data-depth="0.3" class="index_paraItems_left_bot">
+                            <img src="./img/index/left_bot_chessboard.png" class="index_left_bot_bcg">
+                            <img src="./img/index/top_light.png" class="index_left_bot_topLight">
+                            <img src="./img/index/mid_light.png" class="index_left_bot_midLight">
+                            <img src="./img/index/bot_light.png" class="index_left_bot_botLight">
+                        </div>   
+                         <!--中下圓盤  -->
+                        <div data-depth="0.5" class="index_paraItems_center_bot">
+                            <img src="./img/index/disk.png" class="index_center_bot_disk_platform">
+                            <img src="./img/index/disk_light.png" class="index_center_bot_disk_light">
+                            <img src="./img/index/041.png" class="index_center_bot_disk">
+                        </div>  
+                        <!-- 中上主要區塊 -->
+                        <div data-depth="0.5" class="index_paraItems_center_top">
+                            <img src="./img/index/mid_area.png" class="index_center_top_area">
+                        </div>        
+                        <!-- 右側區塊 -->
+                        <div data-depth="0.3" class="index_paraItems_right">
+                            <img src="./img/index/right_side_monitor.png" class="index_right_monitor">
+                            <img src="./img/index/123.png" class="index_right_bar1">
+                            <img src="./img/index/132.png" class="index_right_bar2">
+                            <img src="./img/index/213.png" class="index_right_bar3">
+                            <img src="./img/index/231.png" class="index_right_bar4">
+                            <img src="./img/index/312.png" class="index_right_bar5">
+                        </div>                                        
+                    </div>
                 </div>
-                <!-- <div data-depth="0.8">
-                    <img src="./img/index/011_left.jpg" class="-margin0auto index_bcg_desktop">
-                </div> -->
             </div>
-            <!-- 右側進度條跳動 -->
+
+
+                <!-- mobile背景+barHopping -->
+                <img src="./img/index/031.jpg" class="=margin0auto index_bcg_mobile">
+
                 <div class="index_right_side">
                     <img src="./img/index/123.png" class="index_bar_img1">
                 </div>
@@ -73,26 +106,8 @@
                 <div class="index_right_side">
                     <img src="./img/index/312.png" class="index_bar_img5">
                 </div>
-                <div class="index_right_side">
-                    <img src="./img/index/321.png" class="index_bar_img6">
-                </div>
 
-                <!-- 下方圓盤 -->
-                <img src="./img/index/041.png" class="index_disk">
-
-                <!-- 左下暗點 -->
-                <!-- <span class="index_dark_point1"></span>
-                <span class="index_dark_point2"></span>
-                <span class="index_dark_point3"></span> -->
-
-                <!-- 左下亮點 -->
-                <img src="./img/index/top_light.png" class="index_top_light">
-                <img src="./img/index/mid_light.png" class="index_mid_light">
-                <img src="./img/index/bot_light.png" class="index_bot_light">
-
-
-                <!-- mobile背景 -->
-                <img src="./img/index/031.jpg" class="=margin0auto index_bcg_mobile">
+           
 
 
             <div class="index_title">

@@ -60,207 +60,276 @@
 }
 
 
-// 右側bar條變動
-.index_right_side {
-    width: 11vw;
-    @include absolute (29vw, 1.5vw);
-    // transition: all 2s;
+// parallax元件定位
+.index_parallax_container {
+    width: 100%;
+    height: 100%;
+    @include absolute (0,0);
     
-    img {
-        width: 100%;
-    }
-    .index_bar_img1 {
-        animation: barHopping1 2.5s linear infinite;
-    }
-    .index_bar_img2 {
-        animation: barHopping2 2.5s linear infinite;
-    }
-    .index_bar_img3 {
-        animation: barHopping3 2.5s linear infinite; 
-    }
-    .index_bar_img4 {
-        animation: barHopping4 2.5s linear infinite;
-    }
-    .index_bar_img5 {
-        animation: barHopping5 2.5s linear infinite;
-    }
-    .index_bar_img6 {
-        animation: barHopping1 6s linear infinite;
-        display: none;
-    }
+    .index_parallax_items {
+        
+            // 左上巧拼
+            .index_paraItems_left_top {
+                @include relative();
+                
+                .index_left_top_fixed {
+                    width: 14vw;
+                    @include absolute(11vw, null, null, 2.5vw);
+                }
+                .index_left_top_move {
+                    width: 96vw;
+                    @include absolute(0.5vw, null, null, 1vw);
+                    animation: moving 2s ease-in-out 1s infinite;
+                }
+            }
+            
+            // 左下光點
+            .index_paraItems_left_bot {
+                @include relative();
+                width: 100%;
 
-}
+                .index_left_bot_bcg {
+                    width: 14vw;
+                    @include absolute(34vw, null, null, 2.5vw);
+                }
+            
+                .index_left_bot_topLight {
+                    width: 5vw;
+                    @include absolute(35.5vw, null, null, 9.5vw);
+                    animation: mask 1s linear 1.5s infinite;
+                }
 
+                .index_left_bot_midLight {
+                    width: 5vw;
+                    @include absolute(38.5vw, null, null, 5.5vw);
+                    animation: mask 1.5s linear 1.5s infinite;
+                }
 
+                .index_left_bot_botLight {
+                    width: 4vw;
+                    @include absolute(43vw, null, null, 10vw);
+                    animation: mask 2s linear 1.5s infinite;
+                }
+            }
 
-@keyframes barHopping1 {
-    0% {
-        opacity: 1;
-    }
-    18%{
-        opacity: 1;
-    }
-    19%{
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
-}
+            // 中下圓盤
+            .index_paraItems_center_bot {
+                @include relative();
+                width: 100%;
 
-@keyframes barHopping2 {
-    0% {
-        opacity: 0;
-    }
-    17% {
-        opacity: 0;
-    }
-    18%{
-        opacity: 1;
-    }
-    36%{
-        opacity: 1;
-    }
-    37%{
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes barHopping3 {
-    0% {
-        opacity: 0;
-    }
-    35% {
-        opacity: 0;
-    }
-    36%{
-        opacity: 1;
-    }
-    54%{
-        opacity: 1;
-    }
-    55%{
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes barHopping4 {
-    0% {
-        opacity: 0;
-    }
-    53% {
-        opacity: 0;
-    }
-    54%{
-        opacity: 1;
-    }
-    72%{
-        opacity: 1;
-    }
-    73%{
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes barHopping5 {
-    0% {
-        opacity: 0;
-    }
-    71% {
-        opacity: 0;
-    }
-    72%{
-        opacity: 1;
-    }
-    99%{
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-// @keyframes barHopping6 {
-//     0% {
-//         opacity: 0;
-//     }
-//     98%{
-//         opacity: 0;
-//     }
-//     99% {
-//         opacity: 1;
-//     }
-//     100% {
-//         opacity: 1;
-//     }
-// }
+                .index_center_bot_disk_platform {
+                    width: 31vw;
+                    @include absolute(47.5vw, null, null, 35.5vw);
+                }
+                .index_center_bot_disk_light {
+                    width: 58vw;
+                    @include absolute(20.5vw, null, null, 21.5vw);
+                    transition: diskLight 1.5s;
+                    animation: diskLight 1.5s ease-in-out 1s infinite;
+                }
+                .index_center_bot_disk {
+                    width: 70vw;
+                    @include absolute(36.5vw, null, null, 16.5vw);
+                    animation: diskMove 5s ease-in-out 1s infinite;
+                }
+            }
 
 
-// 下方圓盤
-.index_block {
-    .index_disk {
-        width: 70vw;
-        @include absolute( null, 14vw, -2.2vw);
-        // transform: translateY(10px);
-        animation: diskMove 2s ease-in-out 1s infinite;
-    }
-}
+            // 中上主要區塊
+            .index_paraItems_center_top {
+                @include relative();
+                width: 100%;
 
-@keyframes diskMove {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(1.5vw);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
+                .index_center_top_area {
+                    width: 75vw;
+                    @include absolute(2.5vw, null, null, 14.5vw);
+                }
+            }
 
-.index_block{
-    .index_top_light {
-        width: 7vw;
-        @include absolute(null, null, 18.8vw, 8.2vw);
-        animation: mask 1s linear 1.5s infinite;
-    }
-    .index_mid_light {
-        width: 6vw;
-        @include absolute(null, null, 16.6vw, 4.5vw);
-        animation: mask 1.5s linear 1.5s infinite;
-    }
-    .index_bot_light {
-        width: 6.5vw;
-        @include absolute(null, null, 12.3vw, 8.3vw);
-        animation: mask 2s linear 1.5s infinite;
-    }
+            // 右側區塊
+            .index_paraItems_right {
+                @include relative();
+                width: 100%;
 
-}
-
-@keyframes mask {
-    0% {
-        opacity: 0;
+                .index_right_monitor {
+                    width: 13vw;
+                    @include absolute(10.5vw, 1vw, null, null);
+                }
+                .index_right_bar1 {
+                    width: 11vw;
+                    @include absolute (29vw, 1.5vw);
+                    animation: barHopping1 2.5s linear infinite;
+                }
+                .index_right_bar2 {
+                    width: 11vw;
+                    @include absolute (29vw, 1.5vw);
+                    animation: barHopping2 2.5s linear infinite;
+                }
+                .index_right_bar3 {
+                    width: 11vw;
+                    @include absolute (29vw, 1.5vw);
+                    animation: barHopping3 2.5s linear infinite; 
+                }
+                .index_right_bar4 {
+                    width: 11vw;
+                    @include absolute (29vw, 1.5vw);
+                    animation: barHopping4 2.5s linear infinite;
+                }
+                .index_right_bar5 {
+                    width: 11vw;
+                    @include absolute (29vw, 1.5vw);
+                    animation: barHopping5 2.5s linear infinite;
+                }
+            }
+            
+        }
+        
     }
-    100% {
-        opacity: 1;
+    
+    
+
+        
+
+    // 左上巧拼
+    @keyframes moving {
+            0% {
+                transform: translate(0);
+            }
+        50% {
+            transform: translate(1vw, -1vw)
+        }
+        100% {
+            transform: translate(0);
+        }
     }
-}
-
-
+    // 左下光點
+    @keyframes mask {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    // 下方圓盤    
+    @keyframes diskMove {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(1.5vw);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    // 下方圓盤燈光
+    @keyframes diskLight {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    // 右側區塊
+    @keyframes barHopping1 {
+        0% {
+            opacity: 1;
+        }
+        18%{
+            opacity: 1;
+        }
+        19%{
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @keyframes barHopping2 {
+        0% {
+            opacity: 0;
+        }
+        17% {
+            opacity: 0;
+        }
+        18%{
+            opacity: 1;
+        }
+        36%{
+            opacity: 1;
+        }
+        37%{
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @keyframes barHopping3 {
+        0% {
+            opacity: 0;
+        }
+        35% {
+            opacity: 0;
+        }
+        36%{
+            opacity: 1;
+        }
+        54%{
+            opacity: 1;
+        }
+        55%{
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @keyframes barHopping4 {
+        0% {
+            opacity: 0;
+        }
+        53% {
+            opacity: 0;
+        }
+        54%{
+            opacity: 1;
+        }
+        72%{
+            opacity: 1;
+        }
+        73%{
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    @keyframes barHopping5 {
+        0% {
+            opacity: 0;
+        }
+        71% {
+            opacity: 0;
+        }
+        72%{
+            opacity: 1;
+        }
+        99%{
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
 // 輪播設定
-.index_block {
-    @include relative();
-}
-
 .index_swiper_wrapper{
     @include absolute(25%, null, null, 50%);
     transform: translateX(-48%);
@@ -482,7 +551,7 @@
     }
 }
 
-// rwd 320-576px
+// rwd <576px
 @media (max-width: 575.98px){
     .index_block{
         .index_bcg_desktop {
@@ -497,23 +566,23 @@
     .index_right_side {
         width: 23vw;
         @include absolute (auto, auto, 20vw, 23vw);
-        transform: rotate(90deg);    
-    }
-
-    .index_block {
-        .index_disk {
-            display: none;
+        transform: rotate(90deg);
+        .index_bar_img1 {
+            animation: barHopping1 2.5s linear infinite;
         }
-    }
-
-    .index_block{
-        .index_top_light, .index_mid_light, .index_bot_light {
-            display: none;
+        .index_bar_img2 {
+            animation: barHopping2 2.5s linear infinite;
         }
+        .index_bar_img3 {
+            animation: barHopping3 2.5s linear infinite; 
+        }
+        .index_bar_img4 {
+            animation: barHopping4 2.5s linear infinite;
+        }
+        .index_bar_img5 {
+            animation: barHopping5 2.5s linear infinite;
+        }    
     }
-    
-    
-        
 
     .index_block{
         .index_title {
