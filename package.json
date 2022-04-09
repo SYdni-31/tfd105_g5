@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "打包上線": "gulp online",
     "安裝套件": "npm install",
     "開發": "gulp"
   },

@@ -43,6 +43,9 @@
         transform: rotate(-180deg);
     }
     div{
+      div{
+        width:100%;
+      }
         width: 60%;
     }
     a{
@@ -53,10 +56,16 @@
         align-items: center;
         color: $black-color !important;
         &:hover{
-            h4{
-                font-weight: bold;
-            }
+          h4{
+              font-weight: bold;
+          }
         }
+    }
+    .-onpage{
+      h4{
+        font-weight: bold;
+        color: $backmain-color;
+      }
     }
     .backstage_menu_btn{
         background-color: $backmain-color;
@@ -83,7 +92,7 @@
 
 // =====中間table=====
     .table_outer{
-      width: 95%;
+      width: 98%;
       min-width: 728px;
     }
     h3{
@@ -91,13 +100,15 @@
     }
     .backstage-grid{
       display: grid;
-      width: 95%;
+      width: 96%;
       &.backstage-grid_info1{
         grid-template-columns: 10% 30% 20% 15% 25%;
       }
+      &.backstage-grid_info2{
+        grid-template-columns: 10% 20% 16% 10% 12% 12% 20%;
+      }
       &.title{
         li{
-        // justify-content: center;
         align-items: center;
         }
       }
@@ -116,6 +127,7 @@
 // =====表格內按鈕排版=====
     .backstage_btn_td{
       align-self: center;
+      display: flex;
     //     white-space: nowrap;;
     //     .switch_flex{
     //         display: flex;
@@ -147,21 +159,6 @@
   }
 }
 
-
-
-
-
-  // .page-item{
-  //     &.active .page-link{
-  //         background-color: $backmain-color;
-  //         border-color: $backmain-color;
-  //         color: $second-color;
-  //     }
-  //     a{
-  //         color: $backmain-color;
-  //     }
-
-  // }
 }
 
 // =====RWD=====
@@ -169,7 +166,7 @@
     display: none;
     cursor: pointer;
 }
-@media (max-width: 991.98px){
+@media (max-width: 1199.98px){
     .backstage_menu{
         height: 100%;
         transition: all .5s;
@@ -191,6 +188,7 @@
 .backstage_box {
     @include fixed(50%, null, null, 50%, 100);
     width: 70%;
+    min-width: 537px;
     background-color: #eeeeee;
     border-radius: 5px;
     height: 75%;
@@ -205,6 +203,15 @@
       height: 60px;
       border-radius: 20px 20px 0px 0px;
     }
+    // 關閉按鈕
+    .backstage_close_icon{
+      @include absolute(10px,20px);
+      font-size:40px;
+      color: #eeeeee;
+      &:hover{
+        color: $black-color;
+      }
+    }
     // 出現卷軸的區塊
     .backstage_box-content {
       overflow-y: auto;
@@ -216,6 +223,9 @@
       &::-webkit-scrollbar-thumb {
         box-shadow: inset 0 0 5px grey;
         border-radius: 5px;
+      }
+      button:hover{
+        font-weight: bold;
       }
       // 輸入區塊
       ul {
@@ -239,9 +249,6 @@
           height: 45px;
           color: $black-color;
           @include font(16px, 300, left, 1.6);
-          @include mobile() {
-            font-size: 14px;
-          }
         }
       }
         // 文字方塊
@@ -249,9 +256,6 @@
           padding: 16px;
           resize: none;
           @include font(16px, 300, left, 1.6);
-          @include mobile() {
-            font-size: 14px;
-          }
         }
         
         // 只佔一半
@@ -271,75 +275,37 @@
         width: 80%;
         position: relative;
         margin: 0 auto;
-        @include laptop(1200px) {
-          width: 80%;
-        }
-        // 整個檔案上傳區塊
-        .input-file-group {
           // 檔案上傳小標題
           label {
-            /* border: 1px solid purple; */
             font-size: 16px;
             font-weight: bold;
             color: $black-color;
           }
-          // 檔案上傳(隱藏的)
-          .file-choose {
-            position: absolute;
-            top: 40px;
-            left: 0px;
-            width: 100%;
-            height: 45px;
-            opacity: 0;
-            z-index: 2;
-            color: $black-color;
-            cursor: pointer;
+          // 檔案名稱input
+          .filename{
+            height: 42px;
           }
-          // 「選擇檔案」文字
-          & > .file-text {
-            margin: 0;
-            padding-left: 16px;
-            line-height: 45px;
-            position: absolute;
-            top: 40px;
-            left: 0px;
-            border: 1px solid $black-color;
-            border-radius: 5px;
-            overflow: hidden;
-            width: 100%;
-            font-size: 16px;
-            color: $black-color;
-            font-weight: bold;
-            background-color: #fff;
+          // 檔案上傳的「上傳」按鈕
+          button {
+          @include absolute(0,);
+          width: 70px;
+          font-size: 14px;
+          line-height: 40px;
+          color: $black-color;
+          background-color: $backmain-color;
+          border: 0px;
+          border-radius: 0px 5px 5px 0px;
           }
-          .file-text-hide {
-            display: none;
-          }
-          // 照片下方文字，會連動檔名
-          & > .photo-text {
-            font-size: 16px;
-            // padding-left: 95px;
-            color: $black-color;
-            margin: 24px auto;
-            @include mobile(375px) {
-              // padding-left: 60px;
-            }
-          }
-        }
-        // 檔案上傳下方拖曳區塊
-        .input-file-img {
+        // 檔案上傳下方預覽區塊
+        .backstage_input-file-img {
           border: 1px solid $black-color;
           width: 260px;
           height: 224px;
-          margin-top: 84px;
+          margin-top:20px;
           padding: 0;
           position: relative;
           background-color: #fff;
           opacity: 0.9;
-          @include mobile(375px) {
-            width: 200px;
-          }
-          // 檔案上傳正方形拖曳區
           img {
             max-width: 260px;
             max-height: 260px;
@@ -348,58 +314,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
           }
-          // 拖曳區內的圖案
-          & > label {
-            z-index: 1;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 16px;
-            color: $black-color;
-            & > i {
-              line-height: 40px;
-              font-size: 40px;
-            }
-            .input-p-hide {
-              display: none;
-            }
-          }
-          & > input {
-            z-index: 3;
-            width: 260px;
-            height: 224px;
-            opacity: 0;
-            cursor: pointer;
-          }
         }
-        // 檔案上傳的「上傳」按鈕
-        button {
-          position: absolute;
-          width: 100px;
-          right: 0px;
-          font-size: 14px;
-          line-height: 45px;
-          top: 40px;
-          color: $black-color;
-          background-color: $backmain-color;
-          border: 0px;
-          border-radius: 0px 5px 5px 0px;
-          @include mobile(375px) {
-            width: 50px;
-          }
-        }
+        
       }
-  
       // 新增的儲存按鈕
-      .back-insert-btn {
+      .backstage-insert-btn {
         @include flex-box-center(50%);
         margin: 24px auto;
         @include laptop(1200px) {
           @include flex-box-center(80%);
-        }
-        @include mobile(450px) {
-          @include flex-box-center(100%);
         }
         button {
           width: 120px;
@@ -411,7 +334,7 @@
           border: 0px;
         }
         // 關閉按鈕
-        .back-insert_close {
+        .backstage-insert_close {
           margin-left: 24px;
           background-color: $backSecond-color;
         }
