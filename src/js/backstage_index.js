@@ -383,18 +383,54 @@
     Vue.component('backstage_info1_add',{
         data(){
             return{
-                newdata:[],
+                newdata:{},
             }
         },
         methods: {
             f_save(){
-                this.$swal({
-                    title: "儲存成功",
-                    icon: "success",
-                    image: "",
-                }).then((willInsert) => {
-                    this.$emit('addsave', this.newdata)
-                })
+                if(this.newdata.NAME && this.newdata.NAME !=""
+                && this.newdata.START_TIME && this.newdata.START_TIME !=""
+                && this.newdata.END_TIME && this.newdata.END_TIME !=""
+                && this.newdata.OPEN && this.newdata.OPEN !=""
+                && this.newdata.INTRODUCE && this.newdata.INTRODUCE !=""){
+                    fetch('php/backstage_info1_insert_expo.php', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        body:JSON.stringify({
+                            NAME:this.newdata.NAME,
+                            START_TIME:this.newdata.START_TIME,
+                            END_TIME:this.newdata.END_TIME,
+                            OPEN:this.newdata.OPEN,
+                            INTRODUCE:this.newdata.INTRODUCE,
+                        })
+                    }).then(resp =>resp.json())
+                    .then(body =>{
+                        let {successful} =body
+                        if(successful){
+                            this.$swal({
+                                title: "儲存成功",
+                                icon: "success",
+                                image: "",
+                            }).then((willInsert) => {
+                                this.$emit('addsave', this.newdata)
+                            })
+                        }else{
+                            this.$swal({
+                                title: "儲存失敗",
+                                icon: "error",
+                                text: "請檢查欄位",
+                            });
+                        } 
+                    })
+                }else{
+                    this.$swal({
+                        title: "儲存失敗",
+                        icon: "error",
+                        text: "所有欄位皆須填寫",
+                      });
+                }
             },
             f_close(){
                 this.$swal({
@@ -415,24 +451,24 @@
                 <div class="backstage_box-content pt-30">
                     <ul>
                         <li class="mb-16 input-short"><label for="id">策展ID</label>
-                            <input type="text" name="id" id="id" disabled>
+                            <input type="text" name="id" id="id" value="自動編號" disabled>
                         </li>
-                        <li class="mb-16 input-short"><label for="name">展會名稱</label>
-                            <input type="text" name="name" id="name" v-model="newdata[1]">
+                        <li class="mb-16 input-short"><label for="NAME">展會名稱</label>
+                            <input type="text" name="NAME" id="NAME" v-model.trim="newdata.NAME">
                         </li>
-                        <li class="mb-16 input-long"><label for="introduce">會議簡介</label>
-                            <textarea name="introduce" id="introduce" cols="30" rows="10" v-model="newdata[5]"></textarea>
+                        <li class="mb-16 input-long"><label for="INTRODUCE">會議簡介</label>
+                            <textarea name="INTRODUCE" id="INTRODUCE" cols="30" rows="10" v-model.trim="newdata.INTRODUCE"></textarea>
                         </li>
-                        <li class="mb-16 input-short"><label for="starttime">活動開始</label>
-                            <input type="date" name="starttime" id="starttime" v-model="newdata[2]">
+                        <li class="mb-16 input-short"><label for="START_TIME">活動開始</label>
+                            <input type="date" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
                         </li>
-                        <li class="mb-16 input-short"><label for="endtime">活動結束</label>
-                            <input type="date" name="endtime" id="endtime" v-model="newdata[3]">
+                        <li class="mb-16 input-short"><label for="END_TIME">活動結束</label>
+                            <input type="date" name="END_TIME" id="END_TIME" v-model="newdata.END_TIME">
                         </li>
                         <div class="mb-16"><label>進行狀態</label><br>
-                            <label for="notwork"><input type="radio" name="open" id="notwork" value="尚未開始" v-model="newdata[4]">尚未開始</label>
-                            <label for="working"><input type="radio" name="open" id="working" value="進行中" v-model="newdata[4]">進行中</label>
-                            <label for="worked"><input type="radio" name="open" id="worked" value="已結束" v-model="newdata[4]">已結束</label>
+                            <label for="notwork"><input type="radio" name="OPEN" id="notwork" value="尚未開始" v-model="newdata.OPEN">尚未開始</label>
+                            <label for="working"><input type="radio" name="OPEN" id="working" value="進行中" v-model="newdata.OPEN">進行中</label>
+                            <label for="worked"><input type="radio" name="OPEN" id="worked" value="已結束" v-model="newdata.OPEN">已結束</label>
                         </div>
                     </ul>                   
                     <div class="backstage-insert-btn">
@@ -512,14 +548,14 @@
             <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
         </article>`,
         mounted(){
-            fetch('php/backstage_info1_selsct.php')
+            fetch('php/backstage_info1_select_expo.php')
             .then(resp =>resp.json())
             .then(resp =>this.datas=resp)
         },  
     })
 
 // ========頁面vue========
-    new Vue({
+    const vm=new Vue({
         el:"#page",
         data: {
             aside_btn: false,
