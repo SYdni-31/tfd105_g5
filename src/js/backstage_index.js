@@ -414,7 +414,7 @@
                                 icon: "success",
                                 image: "",
                             }).then((willInsert) => {
-                                this.$emit('addsave', this.newdata)
+                                this.$emit('addsave')
                             })
                         }else{
                             this.$swal({
@@ -523,9 +523,11 @@
             addclose(){
                 this.box=null
             },
-            addsave(newdata){
-                this.datas.push(newdata)
+            addsave(){
                 this.box=null
+                fetch('php/backstage_info1_select_expo.php')
+                .then(resp =>resp.json())
+                .then(resp =>this.datas=resp)
             }
         },
         template:`
@@ -551,7 +553,7 @@
             fetch('php/backstage_info1_select_expo.php')
             .then(resp =>resp.json())
             .then(resp =>this.datas=resp)
-        },  
+        },
     })
 
 // ========頁面vue========
