@@ -224,15 +224,65 @@
   li {
     border-bottom: 1px solid $main-color;
     height: 60px;
+
+    overflow: hidden;
+    @include relative();
+    transition: 0.5s all;
+    animation-fill-mode: forwards;
+    &:first-child:hover a{
+      color: $accent-color;
+    }
+    &:hover a{
+      color: $main-color;
+    }
+    &:last-child:hover a{
+      color: $accent-color;
+      animation-name: slideRight;
+    }
     a {
       text-align: center;
       width: 100%;
       display: block;
       line-height: 60px;
       color: $second-color;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      img{
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+      }
+    }
+    @keyframes slideRight {
+      0% {
+        transform-origin: 0 0;
+        transform: translateX(0%);
+      }
+      100% {
+        transform-origin: 0 0;
+        transform: translateX(5%);
+      }
     }
     .accent-color {
       color: $accent-color;
+    }
+    @keyframes rotation {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(359deg);
+      }
+    }
+    > .now_page {
+      @include absolute();
+      width: 100px;
+      top: 13px;
+      right: 20px;
+      z-index: -1;
+      transform: rotate(90deg);
+      animation: 1s all;
+      animation: rotation 20s infinite linear;
+      // display: none;
     }
   }
   // 廠商後台頁面
