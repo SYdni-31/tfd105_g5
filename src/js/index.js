@@ -24,7 +24,7 @@ var swiper = new Swiper(".mySwiper", {
       slidesPerView: 1,
       // width: 300,
       // spaceBetween: 10,
-      // depth: 200,
+      // depth: 50,
     },
     576: {
       slidesPerView: "auto",
@@ -38,10 +38,14 @@ var swiper = new Swiper(".mySwiper", {
     //   slidesPerView: 7,
     //   spaceBetween: 50,
     // },
-  }
-  // pagination: {
-  //   el: ".swiper-pagination",
-  // },
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+},
+  pagination: {
+    el: ".swiper-pagination",
+  },
 });
 
 
