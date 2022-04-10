@@ -13,12 +13,12 @@ $companyback_num2 : 2;
 
     .title_skill {
         display: block;
-        color: $second-color;
-        border: 1px solid rgba($accent-color, 0.5);
+        color: #f6fafb;
+        border-bottom: 3px solid;
+        border-image-source: linear-gradient(to left, #57fff5, #f37f15);
         padding: 15px 50px;
+        border-image-slice: 1;
         text-align: center;
-        //  line-height: 57px;
-        box-shadow: 0px 4px 4px rgba($accent-color, 0.25);
     }
 
 }

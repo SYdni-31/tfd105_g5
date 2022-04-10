@@ -126,7 +126,7 @@
 
 //第二層
 .chatboard {
-    padding-top: 80px;
+    padding-top: 160px;
 }
 
 .chat1_company {
@@ -608,7 +608,7 @@ li.two {
 
         p.chat_content_me {
 
-            
+
 
             &::before {
                 content: "";
@@ -705,7 +705,7 @@ li.two {
             }
 
             .pt-58 {
-                padding-top: 0;
+                padding-top: 2%;
             }
 
             .form_under {
@@ -803,7 +803,7 @@ li.two {
 
             .flatpickr-calendar.inline {
                 position: relative;
-                margin: 0 auto;
+                margin: 10% auto 0;
                 left: 0;
             }
 
@@ -813,7 +813,7 @@ li.two {
                 .form-contril,
                 .timepicker {
                     margin: 0 auto;
-                    margin-top: 5%;
+                    margin-top: 8%;
                     min-width: 250px;
                 }
             }
@@ -828,7 +828,7 @@ li.two {
                 .field,
                 .companyback_submit {
                     margin: 0 auto;
-                    margin-top: 5%;
+                    margin-top: 7%;
                     height: 55px;
                 }
 
@@ -853,13 +853,14 @@ li.two {
     //以下兩個li
     ul.companyback_main_chatbox {
         @include relative();
+
         .one {
             width: 80%;
             margin: 0 auto;
             min-width: 300px;
             cursor: pointer;
         }
-        
+
         .two {
             width: 100%;
             min-width: 300px;
@@ -870,12 +871,13 @@ li.two {
             // @include absolute(0, 0, auto, auto, 10);
             @include fixed(0, 0, auto, auto, 100);
             height: calc(100vh - 70px);
+
             // @include sticky(0, 0, auto, auto, 10);
-            .companyback_chated{
+            .companyback_chated {
                 // height: calc(100vh - 350px);
             }
         }
-        
+
     }
 
     // .c_bank_mask{
@@ -1036,6 +1038,7 @@ li.two {
         }
 
         .companyback_chated {
+
             // height: calc(100vh - 190px);
             p.chat_content {
                 font-size: 14px;
