@@ -4,7 +4,7 @@
     input[type='radio']:after {
         width: 25px;
         height: 25px;
-        border-radius: 15px;
+        border-radius: 50%;
         top: -2px;
         left: -1px;
         position: relative;
@@ -18,7 +18,7 @@
     input[type='radio']:checked:after {
         width: 25px;
         height: 25px;
-        border-radius: 15px;
+        border-radius: 50%;
         top: -2px;
         left: -1px;
         position: relative;
@@ -526,6 +526,20 @@
     .companyback_info_form {
         .all_input {
             justify-content: center;
+
+            li:nth-child(1) {
+                .field {
+                    label::before {
+                        left: -20%;
+                        top: 64%;
+                    }
+
+                    .label-before {
+                        top: 49%;
+                        left: -20%;
+                    }
+                }
+            }
         }
 
         input[type='radio']:after {
@@ -538,6 +552,12 @@
 
             top: -1px;
             left: 1px;
+        }
+
+        .introduce {
+            label::before {
+                top: 16%;
+            }
         }
     }
 }
