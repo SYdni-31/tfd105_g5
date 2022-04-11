@@ -55,3 +55,12 @@ var scene = document.getElementById('scene');
 var parallaxInstance = new Parallax(scene, {
   relativeInput: true
 });
+
+
+// loading page #preloader
+window.addEventListener('load', ()=>{
+  window.setTimeout(()=>{
+    $('#preloader').remove();
+  }, 3000);
+})
+
