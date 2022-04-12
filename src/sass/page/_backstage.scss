@@ -46,7 +46,7 @@
       div{
         width:100%;
       }
-        width: 60%;
+        width: 80%;
     }
     a{
         border-radius: 10px;
@@ -92,15 +92,16 @@
 
 // =====中間table=====
     .table_outer{
-      width: 98%;
+      width: 96%;
       min-width: 728px;
+      font-size: 16px;
     }
     h3{
       background-color: $backmain-color;  
     }
     .backstage-grid{
       display: grid;
-      width: 96%;
+      width: 100%;
       &.backstage-grid_info1{
         grid-template-columns: 10% 30% 20% 15% 25%;
       }
@@ -135,30 +136,57 @@
     //     }
     }
 // =====所有按鈕外觀=====
-.backstage_btn{
-  border: 0;
-  border-radius: 10px;
-  color: $black-color;
-  &_add{
-      background-color: $backmain-color;
-      display: block;
-      margin-left: auto;
-      width: 110px;
+  .backstage_btn{
+    border: 0;
+    border-radius: 10px;
+    color: $black-color;
+    &_add{
+        background-color: $backmain-color;
+        display: block;
+        margin-left: auto;
+        width: 110px;
+    }
+    &_short{
+        background-color: $backmain-color;
+        width: 60px;
+    }
+    &_bad{
+        background-color: #9B9797;
+        width: 60px;
+    }
+    &:hover{
+        font-weight: bold;
+    }
   }
-  &_short{
-      background-color: $backmain-color;
-      width: 60px;
+  .backstage_pages{
+    display: flex;
+    justify-content: flex-end;
+    button{
+      border: 0;
+      &:hover{
+        font-weight: bold;
+      }
+    }
+    &_btn{
+      &:hover{
+        color: $backmain-color;
+      }
+      &.action{
+        background-color:$backmain-color;
+        &:hover{
+          color: $black-color;
+        }
+      }
+    }
+    &_btn_left{
+      border-radius: 10px 0 0 10px; 
+      background-color:$backmain-color;
+    }
+    &_btn_right{
+      border-radius: 0 10px 10px 0;
+      background-color:$backmain-color;
+    }
   }
-  &_bad{
-      
-      background-color: #9B9797;
-      width: 60px;
-  }
-  &:hover{
-      font-weight: bold;
-  }
-}
-
 }
 
 // =====RWD=====
