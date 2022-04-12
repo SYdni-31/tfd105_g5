@@ -45,6 +45,14 @@
     <!-- content，各自頁面的html寫在這邊以下都是範例 -->
     <main>
         <div class="index_block">
+            <!-- loading page -->
+            <div id="preloader">
+                <div class="circle"></div>
+                <div class="circle-small"></div>
+                <div class="circle-big"></div>
+                <div class="circle-inner-inner"></div>
+                <div class="circle-inner"></div>
+            </div>
             <!-- 背景圖 -->
             <img src="./img/index/index_background.jpg" class="-margin0auto index_bcg_desktop">
             
@@ -88,24 +96,29 @@
             </div>
 
 
-                <!-- mobile背景+barHopping -->
-                <img src="./img/index/031.jpg" class="=margin0auto index_bcg_mobile">
+            <!-- mobile背景+barHopping+輪播箭頭+pagination dots -->
+            <img src="./img/index/031.jpg" class="=margin0auto index_bcg_mobile">
 
-                <div class="index_right_side">
-                    <img src="./img/index/123.png" class="index_bar_img1">
-                </div>
-                <div class="index_right_side">
-                    <img src="./img/index/132.png" class="index_bar_img2">
-                </div>
-                <div class="index_right_side">
-                    <img src="./img/index/213.png" class="index_bar_img3">
-                </div>
-                <div class="index_right_side">
-                    <img src="./img/index/231.png" class="index_bar_img4">
-                </div>
-                <div class="index_right_side">
-                    <img src="./img/index/312.png" class="index_bar_img5">
-                </div>
+            <div class="index_right_side -hide">
+                <img src="./img/index/123.png" class="index_bar_img1">
+            </div>
+            <div class="index_right_side -hide">
+                <img src="./img/index/132.png" class="index_bar_img2">
+            </div>
+            <div class="index_right_side -hide">
+                <img src="./img/index/213.png" class="index_bar_img3">
+            </div>
+            <div class="index_right_side -hide">
+                <img src="./img/index/231.png" class="index_bar_img4">
+            </div>
+            <div class="index_right_side -hide">
+                <img src="./img/index/312.png" class="index_bar_img5">
+            </div>
+
+            <!-- <div class="swiper-button-next index_mobile_btnNext"></div>
+            <div class="swiper-button-prev index_mobile_btnPrev"></div>
+
+            <div class="swiper-pagination index_mobile_pagination"></div> -->
 
            
 
@@ -150,6 +163,15 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="index_mobile_nav">
+
+                <div class="swiper-button-next index_mobile_btnNext"></div>
+                <div class="swiper-button-prev index_mobile_btnPrev"></div>
+                
+                <!-- <div class="swiper-pagination index_mobile_pagination"></div> -->
+            </div>
+            
         </div>
     </main>
     <!-- footer -->
