@@ -1,7 +1,7 @@
 <?php
     include("connection.php");
     // 選取全部數量
-    $sql= "select count(*) from EXPO";  // table名與欄位名一定要大寫
+    $sql= "select count(*) from GUEST";  // table名與欄位名一定要大寫
     $statement = $pdo->prepare($sql);
     $statement->execute();
 
@@ -10,7 +10,7 @@
     // 選取第x頁資料(分頁)
     $select2 = json_decode(file_get_contents("php://input"), true);
 
-    $sql2= "set @a= concat('select * from EXPO limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";
+    $sql2= "set @a= concat('select * from GUEST limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";
     $statement2 = $pdo->prepare($sql2);
     $statement2->bindValue(":inpage", $select2["inpage"], PDO::PARAM_INT);
     $statement2->bindValue(":perpage", $select2["perpage"], PDO::PARAM_INT);

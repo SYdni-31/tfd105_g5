@@ -1,4 +1,5 @@
 // ========member1_來賓管理_修改按鈕========
+// $swal為套件sweet alert
 Vue.component('backstage_member1_edit',{
     props:['row_data'],
     data(){
@@ -9,17 +10,13 @@ Vue.component('backstage_member1_edit',{
     methods: {
         f_save(){
             if(this.newdata.NAME && this.newdata.NAME !=""
-            && this.newdata.START_TIME && this.newdata.START_TIME !=""
-            && this.newdata.END_TIME && this.newdata.END_TIME !=""
-            && this.newdata.OPEN && this.newdata.OPEN !=""
-            && this.newdata.INTRODUCE && this.newdata.INTRODUCE !=""){
+            && this.newdata.UNIT && this.newdata.UNIT !=""
+            && this.newdata.EMAIL && this.newdata.EMAIL !=""
+            && this.newdata.MODIFY_DATE && this.newdata.MODIFY_DATE !=""){
             // 確認所有欄位是否都有值
                 // 確認開始日期是否小於結束日期
-                let starttime= (this.newdata.START_TIME).split('-').join('')
-                let endtime= (this.newdata.END_TIME).split('-').join('')
-                if(starttime<=endtime){
-                    // console.log(starttime, endtime)
-                    fetch('php/backstage_info1_update_expo.php', {
+               
+                    fetch('php/backstage_member1_update_expo.php', {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'
@@ -27,10 +24,9 @@ Vue.component('backstage_member1_edit',{
                         body:JSON.stringify({
                             ID:this.newdata.ID,
                             NAME:this.newdata.NAME,
-                            START_TIME:this.newdata.START_TIME,
-                            END_TIME:this.newdata.END_TIME,
-                            OPEN:this.newdata.OPEN,
-                            INTRODUCE:this.newdata.INTRODUCE,
+                            UNIT:this.newdata.UNIT,
+                            EMAIL:this.newdata.EMAIL,
+                            MODIFY_DATE:this.newdata.MODIFY_DATE,
                         })
                     }).then(resp =>resp.json())
                     .then(body =>{
@@ -51,18 +47,11 @@ Vue.component('backstage_member1_edit',{
                             });
                         } 
                     })
-                }else{
-                    this.$swal({
-                        title: "儲存失敗",
-                        icon: "error",
-                        text: "請確認日期是否正確",
-                    });
-                }
             }else{
                 this.$swal({
                     title: "儲存失敗",
                     icon: "error",
-                    text: "所有欄位皆須填寫",
+                    text: "所有欄位不得為空",
                 });
             }
         },
@@ -81,37 +70,32 @@ Vue.component('backstage_member1_edit',{
     },
     // 要改成自己的版本 (li) label for/name/id ->ID  要大寫而且要一樣
     template:`
-    <article class="backstage_box">
-        <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
-        <div class="backstage_box-content pt-30">
-            <ul>
-                <li class="mb-16 input-short"><label for="ID">策展ID</label>
-                    <input type="text" name="ID" id="ID" v-model="newdata.ID" disabled>
-                </li>
-                <li class="mb-16 input-short"><label for="NAME">展會名稱</label>
-                    <input type="text" name="NAME" id="NAME" v-model="newdata.NAME">
-                </li>
-                <li class="mb-16 input-long"><label for="INTRODUCR">會議簡介</label>
-                    <textarea name="INTRODUCR" id="INTRODUCR" cols="30" rows="10" v-model="newdata.INTRODUCR"></textarea>
-                </li>
-                <li class="mb-16 input-short"><label for="START_TIME">活動開始</label>
-                    <input type="date" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
-                </li>
-                <li class="mb-16 input-short"><label for="END_TIME">活動結束</label>
-                    <input type="date" name="END_TIME" id="END_TIME" v-model="newdata.END_TIME">
-                </li>
-                <div class="mb-16"><label>進行狀態</label><br>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork"  value="尚未開始" v-model="newdata.OPEN">尚未開始</label>
-                    <label for="working"><input type="radio" name="OPEN" id="working"  value="進行中" v-model="newdata.OPEN">進行中</label>
-                    <label for="worked"><input type="radio" name="OPEN" id="worked"  value="已結束" v-model="newdata.OPEN">已結束</label>
+        <article class="backstage_box">
+            <h2>修改1<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
+            <div class="backstage_box-content pt-30">
+                <ul>
+                    <li class="mb-16 input-short"><label for="ID">來賓ID</label>
+                        <input type="text" name="ID" id="ID" v-model="newdata.ID" disabled>
+                    </li>
+                    <li class="mb-16 input-short"><label for="NAME">來賓名稱</label>
+                        <input type="text" name="NAME" id="NAME" v-model="newdata.NAME">
+                    </li>
+                    <li class="mb-16 input-long"><label for="UNIT">單位</label>
+                        <textarea name="UNIT" id="UNIT" cols="30" rows="10" v-model="newdata.UNIT"></textarea>
+                    </li>
+                    <li class="mb-16 input-short"><label for="EMAIL">電子郵件</label>
+                        <input type="text" name="EMAIL" id="EMAIL" v-model="newdata.EMAIL">
+                    </li>
+                    <li class="mb-16 input-short"><label for="MODIFY_DATE">修改日期</label>
+                        <input type="date" name="MODIFY_DATE" id="MODIFY_DATE" v-model="newdata.MODIFY_DATE">
+                    </li>
+                </ul>                  
+                <div class="backstage-insert-btn">
+                    <button class="backstage-insert_save" @click="f_save">儲存</button>
+                    <button class="backstage-insert_close" @click="f_close">關閉</button>
                 </div>
-            </ul>                  
-            <div class="backstage-insert-btn">
-                <button class="backstage-insert_save" @click="f_save">儲存</button>
-                <button class="backstage-insert_close" @click="f_close">關閉</button>
             </div>
-        </div>
-    </article>`,
+        </article>`,
     created () {
         this.newdata = JSON.parse(JSON.stringify(this.row_data)) 
     },
@@ -122,7 +106,7 @@ Vue.component('backstage_member1',{
     data(){
         return{
             box:null, //判斷要打開的彈窗
-            titles:["來賓ID", "策展名稱", "活動開始", "狀態", "操作"],  // 對照figma，來賓名稱etc.
+            titles:["來賓ID", "來賓名稱", "單位", "電子郵件", "修改日期", "操作"],  // 對照figma，來賓名稱etc.
             datas:'', //每一頁的所有資料
             data_count:'', //資料庫的資料組數
             pages:1,//總共有的頁數，目前所在的頁數
@@ -137,7 +121,7 @@ Vue.component('backstage_member1',{
         edit(data, index){
             this.row_data=data
             this.row_index=index
-            this.box='backstage_info1_edit'
+            this.box='backstage_member1_edit'
         },
         del(index){
             swal({
@@ -147,7 +131,7 @@ Vue.component('backstage_member1',{
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    fetch('php/backstage_info1_delete_expo.php', {
+                    fetch('php/backstage_member1_delete_expo.php', {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'
@@ -164,7 +148,7 @@ Vue.component('backstage_member1',{
                                 icon: "success",
                                 image: "",
                             }).then((willDelete) => {
-                                fetch('php/backstage_info1_select_expo.php')
+                                fetch('php/backstage_member1_select_expo.php')
                                 .then(resp =>resp.json())
                                 .then(resp =>this.datas=resp)
                             })
@@ -210,7 +194,7 @@ Vue.component('backstage_member1',{
             
         },
         ajax(inpage){
-            fetch('php/backstage_info1_select_expo.php', {
+            fetch('php/backstage_member1_select_expo.php', {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'
@@ -261,10 +245,11 @@ Vue.component('backstage_member1',{
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_member1" v-for="(data, index) in datas">
-                <li class="bg-color bg-in-secondcolor">{{data[0]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[1]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[2]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[4]}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['ID']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['NAME']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['UNIT']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['EMAIL']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['MODIFY_DATE']}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
             <div class='backstage_pages mt-10'>

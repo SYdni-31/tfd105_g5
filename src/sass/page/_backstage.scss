@@ -108,9 +108,9 @@
       &.backstage-grid_info2{
         grid-template-columns: 10% 20% 16% 10% 12% 12% 20%;
       }
-      // &.backstage-grid_member1{
-      //   grid-template-columns: 10% 30% 20% 15% 25%;
-      // }  // 自己決定欄位大小
+      &.backstage-grid_member1{
+        grid-template-columns: 5% 15% 15% 30% 20% 15%;
+      }
       &.title{
         li{
         align-items: center;
