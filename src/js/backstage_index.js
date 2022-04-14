@@ -548,6 +548,7 @@
                 titles:["策展ID", "策展名稱", "活動開始", "狀態", "操作"],
                 datas:'', //每一頁的所有資料
                 data_count:'', //資料庫的資料組數
+                search_word:'',
                 pages:1,//總共有的頁數，目前所在的頁數
                 perpage:10, //每頁顯示幾筆
                 inpage:1, //當前頁數
@@ -557,6 +558,9 @@
             }
         },
         methods:{
+            search(){
+                this.ajax()
+            },
             edit(data, index){
                 this.row_data=data
                 this.row_index=index
@@ -639,8 +643,9 @@
                         'Content-Type': 'application/json'
                     },
                     body:JSON.stringify({
-                        inpage: inpage,
+                        inpage: this.inpage,
                         perpage: this.perpage,
+                        search_word: this.search_word,
                     })
                 })
                 .then(resp =>resp.json())
@@ -648,7 +653,6 @@
                     this.datas=resp.data
                     this.data_count=resp.data_count[0][0]
                     this.pages=Math.ceil(this.data_count/this.perpage)
-                    this.inpage=inpage
                 })
             }
         },
@@ -681,6 +685,7 @@
             <button @click="box='backstage_info1_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
             <h3 class="bg-color pall-15">{{tablename}}</h3>
             <div class="pall-10 bg-in-bgcolor">
+                <input type='text' name='search' id='search' class='mb-2 mr-2' v-model="search_word" @keyup="search"><label for='search'><i class="fa-solid fa-magnifying-glass"></i></label>
                 <ul class="bg-color -margin0auto backstage-grid title backstage-grid_info1">
                     <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
                 </ul>
@@ -697,7 +702,7 @@
                     <button v-if="pages>centersize+2 && inpage-centersize/2-1>1" class='backstage_pages_btn pr-2 pl-2'>...</button>
                     <button v-for='(page,index) in centerPages' @click.prevent='changepage(page)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==page}" :key="index">{{page}}</button>
                     <button v-if="pages>centersize+2 && inpage+centersize/2+1<pages" class='backstage_pages_btn pr-2 pl-2'>...</button>
-                    <button @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
+                    <button v-if="pages!= 1" @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
                     <button class='backstage_pages_btn_right ml-2' @click.stop="nextpage">下一頁</button>
                 </div> 
             </div>
@@ -712,6 +717,7 @@
                 body:JSON.stringify({
                     inpage: this.inpage,
                     perpage: this.perpage,
+                    search_word: this.search_word,
                 })
             })
             .then(resp =>resp.json())
@@ -744,7 +750,7 @@
                     onpage:false,
                 },{
                     pagename: "聯絡我們",
-                    href:"backstage_info3",
+                    href:"backstage_info4",
                     onpage:false,
                 },],],
                 ["會員管理",[
