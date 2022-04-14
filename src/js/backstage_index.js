@@ -1,3 +1,236 @@
+// ========expo1_參展廠商_查看按鈕========
+    Vue.component('backstage_expo1_look',{
+        props:['row_data'],
+        data(){
+            return{
+                newdata:'',
+            }
+        },
+        methods: {
+            f_close(){
+                this.$emit('lookclose')
+            },
+        },
+        template:`
+        <article class="backstage_box">
+            <h2>查看<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
+            <div class="backstage_box-content pt-30">
+                <ul>
+                    <li class="mb-16 input-short"><label for="ID">廠商ID</label>
+                        <input type="text" name="ID" id="ID" v-model="newdata.ID" disabled>
+                    </li>
+                    <li class="mb-16 input-short"><label for="EXPO_NAME">展會名稱</label>
+                        <input type="text" name="EXPO_NAME" id="EXPO_NAME" v-model="newdata.EXPO_NAME" disabled>
+                    </li>
+                    <li class="mb-16 input-long"><label for="NAME">廠商名稱</label>
+                        <input type="text" id="NAME" cols="30" rows="10" v-model="newdata.NAME" disabled>
+                    </li>
+                    <li class="mb-16 input-long"><label for="VIDEO">影片連結</label>
+                        <input type="text" name="VIDEO" id="VIDEO" v-model="newdata.VIDEO" disabled>
+                    </li>
+                    <li class="mb-16 input-long"><label for="INTRODUCE">廠商介紹</label>
+                        <textarea name="INTRODUCE" id="INTRODUCE" v-model="newdata.INTRODUCE"  disabled></textarea>
+                    </li>
+                    <li class="backstage_extend">
+                    <div class='pall-5'><img :src="newdata.LOGO"><br>廠商LOGO</div>
+                    <div class='pall-5'><img :src="['img/extend/booth' + newdata.TYPE + '.png']"><br>攤位樣式</div>
+                    <div class='pall-5'><img :src="['img/extend/robot' + newdata.ROBOT + '.png']"><br>客服機器人</div>
+                    </li>
+                    <div class="mb-16"><label>狀態</label><br>
+                        <label for="on"><input type="radio" name="ONBOARD" id="on"  value="1" v-model="newdata.ONBOARD" disabled>上架中</label>
+                        <label for="off"><input type="radio" name="ONBOARD" id="off"  value="0" v-model="newdata.ONBOARD" disabled>下架中</label>
+                    </div>
+                </ul>                  
+                <div class="backstage-insert-btn">
+                    <button class="backstage-insert_close" @click="f_close">關閉</button>
+                </div>
+            </div>
+        </article>`,
+        created () {
+            this.newdata = JSON.parse(JSON.stringify(this.row_data)) 
+        },
+    })
+// ========expo1_參展廠商_table========
+    Vue.component('backstage_expo1',{
+        props:['tablename'],
+        data(){
+            return{
+                box:null, //判斷要打開的彈窗
+                titles:["廠商ID", "廠商名稱", "策展ID", "狀態", "操作"],
+                datas:'', //每一頁的所有資料
+                data_count:'', //資料庫的資料組數
+                search_word:'',
+                pages:1,//總共有的頁數，目前所在的頁數
+                perpage:10, //每頁顯示幾筆
+                inpage:1, //當前頁數
+                centersize:5, // 過多頁數時顯示筆數
+                row_data:null, //被選取那列的資料
+                row_index:null, //被選取那列的序號
+            }
+        },
+        methods:{
+            search(){
+                this.ajax(this.inpage)
+            },
+            switchbtn(index){
+                this.update(index)
+                if(this.datas[index].ONBOARD==true){
+                    this.datas[index].ONBOARD='1'
+                }else{
+                    this.datas[index].ONBOARD='0'
+                }
+            },
+            watch(data, index){
+                this.row_data=data
+                this.row_index=index
+                this.box='backstage_expo1_look'
+            },
+            lookclose(){
+                this.box=null
+            },
+            changepage(inpage){
+                this.ajax(inpage)
+            },
+            previouspage(){
+                if(this.inpage>1){
+                    let inpage=this.inpage-1
+                    this.ajax(inpage)
+                }
+            },
+            nextpage(){
+                if(this.inpage<this.pages){
+                    let inpage=this.inpage+1
+                    this.ajax(inpage)
+                }
+                
+            },
+            ajax(inpage){
+                fetch('php/backstage_expo1_select_company_info.php', {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify({
+                        inpage: inpage,
+                        perpage: this.perpage,
+                        search_word: this.search_word,
+                    })
+                })
+                .then(resp =>resp.json())
+                .then(resp => {
+                    this.datas=resp.data
+                    this.data_count=resp.data_count[0][0]
+                    this.pages=Math.ceil(this.data_count/this.perpage)
+                    this.inpage=inpage
+                })
+            },
+            update(index){
+                fetch('php/backstage_expo1_update_company_info.php', {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify({
+                        ID:this.datas[index].ID,
+                        ONBOARD:this.datas[index].ONBOARD
+                    })
+                }).then(resp =>resp.json())
+                .then(body =>{ 
+                    let {successful} =body
+                    if(successful){
+                        this.$swal({
+                            title: "修改成功",
+                            icon: "success",
+                            image: "",
+                        })
+                    }else{
+                        this.$swal({
+                            title: "修改失敗",
+                            icon: "error",
+                            text: "請檢查廠商資料",
+                        });
+                    } 
+                })
+            },
+        },
+        computed:{
+            centerPages(){
+                let centerPage=this.inpage;
+                if(this.inpage>this.pages-3){
+                    centerPage=this.pages-3
+                }
+                if(this.inpage<4){
+                    centerPage=4
+                }
+                if(this.pages<=this.centersize+2){
+                    const centerArr=[]
+                    for(let i=2; i<this.pages; i++){
+                        centerArr.push(i)
+                    }
+                    return centerArr
+                }else{
+                    const centerArr=[]
+                    for(let i=centerPage-2; i<=centerPage+2; i++){
+                        centerArr.push(i)
+                    }
+                    return centerArr
+                }
+            }
+        },
+        template:`
+        <article class="-margin0auto pt-40 pb-10 table_outer">
+            <h3 class="bg-color pall-15">{{tablename}}</h3>
+            <div class="pall-10 bg-in-bgcolor">
+                <input type='text' name='search' id='search' class='mb-2 mr-2' v-model="search_word" @keyup="search"><label for='search'><i class="fa-solid fa-magnifying-glass"></i></label>
+                <ul class="bg-color -margin0auto backstage-grid title backstage-grid_expo1">
+                    <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
+                </ul>
+                <ul class="bg-color -margin0auto backstage-grid backstage-grid_expo1" v-for="(data, index) in datas">
+                    <li class="bg-color bg-in-secondcolor">{{data.COMPANY_ID}}</li>
+                    <li class="bg-color bg-in-secondcolor">{{data.NAME}}</li>
+                    <li class="bg-color bg-in-secondcolor">{{data.EXPO_NAME}}</li>
+                    <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
+                        下架
+                        <div class="custom-control custom-switch">   
+                            <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.ONBOARD" @change="switchbtn(index)">
+                            <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
+                        </div>
+                        上架
+                    </div> </li>
+                    <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="watch(data, index)" class="backstage_btn backstage_btn_short">查看</button></div></li>
+                </ul>
+                <div class='backstage_pages mt-10'>
+                    <button class='backstage_pages_btn_left mr-2'  @click.stop="previouspage">上一頁</button>
+                    <button @click.prevent='changepage(1)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==1}">1</button>
+                    <button v-if="pages>centersize+2 && inpage-centersize/2-1>1" class='backstage_pages_btn pr-2 pl-2'>...</button>
+                    <button v-for='(page,index) in centerPages' @click.prevent='changepage(page)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==page}" :key="index">{{page}}</button>
+                    <button v-if="pages>centersize+2 && inpage+centersize/2+1<pages" class='backstage_pages_btn pr-2 pl-2'>...</button>
+                    <button v-if="pages!= 1" @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
+                    <button class='backstage_pages_btn_right ml-2' @click.stop="nextpage">下一頁</button>
+                </div> 
+            </div>
+            <component :is="box" @lookclose="lookclose" :row_data="row_data"></component>
+        </article>`,
+        mounted(){
+            fetch('php/backstage_expo1_select_company_info.php', {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({
+                    inpage: this.inpage,
+                    perpage: this.perpage,
+                    search_word: this.search_word,
+                })
+            })
+            .then(resp =>resp.json())
+            .then(resp =>{
+                this.datas=resp.data
+                this.data_count=resp.data_count[0][0]
+                this.pages=Math.ceil(this.data_count/this.perpage)
+            })
+        },
+    })
 // ========info2_大會講師_修改按鈕========
     Vue.component('backstage_info2_edit',{
         props:['row_data'],
@@ -292,7 +525,7 @@
         <article class="-margin0auto pt-10 table_outer">
             <button @click="box='backstage_info2_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
             <h3 class="bg-color pall-15">{{tablename}}</h3>
-            <div class="pt-10 pb-10 bg-in-bgcolor">
+            <div class="pt-10 pall-10 bg-in-bgcolor">
                 <ul class="bg-color -margin0auto backstage-grid title backstage-grid_info2">
                     <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
                 </ul>
@@ -559,7 +792,7 @@
         },
         methods:{
             search(){
-                this.ajax()
+                this.ajax(this.inpage)
             },
             edit(data, index){
                 this.row_data=data
@@ -567,7 +800,7 @@
                 this.box='backstage_info1_edit'
             },
             del(index){
-                swal({
+                this.$swal({
                     title: "是否確定刪除?",
                     icon: "warning",
                     buttons: true,
@@ -591,9 +824,7 @@
                                     icon: "success",
                                     image: "",
                                 }).then((willDelete) => {
-                                    fetch('php/backstage_info1_select_expo.php')
-                                    .then(resp =>resp.json())
-                                    .then(resp =>this.datas=resp)
+                                    this.ajax(this.inpage)
                                 })
                             }else{
                                 this.$swal({
@@ -620,8 +851,8 @@
                 this.box=null
                 this.ajax(this.inpage)
             },
-            changepage(page){
-                this.ajax(page)
+            changepage(inpage){
+                this.ajax(inpage)
             },
             previouspage(){
                 if(this.inpage>1){
@@ -643,7 +874,7 @@
                         'Content-Type': 'application/json'
                     },
                     body:JSON.stringify({
-                        inpage: this.inpage,
+                        inpage: inpage,
                         perpage: this.perpage,
                         search_word: this.search_word,
                     })
@@ -653,6 +884,7 @@
                     this.datas=resp.data
                     this.data_count=resp.data_count[0][0]
                     this.pages=Math.ceil(this.data_count/this.perpage)
+                    this.inpage=inpage
                 })
             }
         },
@@ -690,10 +922,10 @@
                     <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
                 </ul>
                 <ul class="bg-color -margin0auto backstage-grid backstage-grid_info1" v-for="(data, index) in datas">
-                    <li class="bg-color bg-in-secondcolor">{{data[0]}}</li>
-                    <li class="bg-color bg-in-secondcolor">{{data[1]}}</li>
-                    <li class="bg-color bg-in-secondcolor">{{data[2]}}</li>
-                    <li class="bg-color bg-in-secondcolor">{{data[4]}}</li>
+                    <li class="bg-color bg-in-secondcolor">{{data.ID}}</li>
+                    <li class="bg-color bg-in-secondcolor">{{data.NAME}}</li>
+                    <li class="bg-color bg-in-secondcolor">{{data.START_TIME}}</li>
+                    <li class="bg-color bg-in-secondcolor">{{data.OPEN}}</li>
                     <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
                 </ul>
                 <div class='backstage_pages mt-10'>
@@ -765,7 +997,7 @@
                     },
                 ],],["活動管理",[
                     {
-                        pagename: "參展資料",
+                        pagename: "參展廠商",
                         href:"backstage_expo1",
                         onpage:false,
                     },{
