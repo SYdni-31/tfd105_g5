@@ -102,11 +102,14 @@
     .backstage-grid{
       display: grid;
       width: 100%;
-      &.backstage-grid_info1{
-        grid-template-columns: 10% 30% 20% 15% 25%;
-      }
-      &.backstage-grid_info2{
-        grid-template-columns: 10% 20% 16% 10% 12% 12% 20%;
+      // &.backstage-grid_info1{
+      //   grid-template-columns: 10% 30% 20% 15% 25%;
+      // }
+      // &.backstage-grid_info2{
+      //   grid-template-columns: 10% 20% 16% 10% 12% 12% 20%;
+      // }
+      &.backstage-grid_member2{  //調整我的頁面欄位%數大小
+        grid-template-columns: 8% 10% 20% 15% 14% 14% ;
       }
       &.backstage-grid_member1{
         grid-template-columns: 5% 15% 15% 30% 20% 15%;
