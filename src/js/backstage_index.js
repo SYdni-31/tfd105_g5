@@ -232,56 +232,56 @@
         },
     })
 // ========info2_大會講師_修改按鈕========
-    Vue.component('backstage_info2_edit',{
-        props:['row_data'],
-        data(){
-            return{
-                newdata:'',
+Vue.component('backstage_info2_edit', {
+    props: ['row_data'],
+    data() {
+        return {
+            newdata: '',
+            image: "",
+            file_name: "",
+        }
+    },
+    methods: {
+        f_save() {
+            this.$swal({
+                title: "儲存成功",
+                icon: "success",
                 image: "",
-                file_name: "",
-            }
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('editsave', this.newdata)
+                }
+            })
         },
-        methods: {
-            f_save(){
-                this.$swal({
-                    title: "儲存成功",
-                    icon: "success",
-                    image: "",
-                }).then((willInsert) => {
-                    if(willInsert){
-                        this.$emit('editsave', this.newdata)
-                    }
-                })
-            },
-            f_close(){
-                this.$swal({
-                    title: "尚未存檔，是否關閉?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willInsert) => {
-                    if(willInsert){
-                        this.$emit('editclose')
-                    }
-                })
-            },
-            choosephoto(){
-                let filechoose= document.querySelector(".filechoose")
-                filechoose.click()
-            },
-            selectedFile(e) {
-                let file = e.target.files[0];
-                let readFiles = new FileReader();
-                readFiles.readAsDataURL(file);
-                readFiles.addEventListener("load", this.loadImage);
-                this.file_name = file.name;
-                this.newdata[9] = URL.createObjectURL(file)
-            },
-            loadImage(e) {
+        f_close() {
+            this.$swal({
+                title: "尚未存檔，是否關閉?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('editclose')
+                }
+            })
+        },
+        choosephoto() {
+            let filechoose = document.querySelector(".filechoose")
+            filechoose.click()
+        },
+        selectedFile(e) {
+            let file = e.target.files[0];
+            let readFiles = new FileReader();
+            readFiles.readAsDataURL(file);
+            readFiles.addEventListener("load", this.loadImage);
+            this.file_name = file.name;
+            this.newdata[9] = URL.createObjectURL(file)
+        },
+        loadImage(e) {
             this.image = e.target.result;
-            },
         },
-        template:`
+    },
+    template: `
         <article class="backstage_box">
                     <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
                     <div class="backstage_box-content pt-30">
@@ -326,58 +326,58 @@
                         </div>
                     </div>
                 </article>`,
-        created () {
-            this.newdata = JSON.parse(JSON.stringify(this.row_data)) 
-            },
-    })
+    created() {
+        this.newdata = JSON.parse(JSON.stringify(this.row_data))
+    },
+})
 // ========info2_大會講師_後台新增按鈕========
-    Vue.component('backstage_info2_add',{
-        data(){
-            return{
-                newdata:[],
-                // image: "",
-                file_name: "",
-            }
+Vue.component('backstage_info2_add', {
+    data() {
+        return {
+            newdata: [],
+            // image: "",
+            file_name: "",
+        }
+    },
+    methods: {
+        f_save() {
+            this.$swal({
+                title: "儲存成功",
+                icon: "success",
+                image: "",
+            }).then((willInsert) => {
+                this.$emit('addsave', this.newdata)
+            })
         },
-        methods: {
-            f_save(){
-                this.$swal({
-                    title: "儲存成功",
-                    icon: "success",
-                    image: "",
-                }).then((willInsert) => {
-                    this.$emit('addsave', this.newdata)
-                })
-            },
-            f_close(){
-                this.$swal({
-                    title: "尚未存檔，是否關閉?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willInsert) => {
-                    if(willInsert){
-                        this.$emit('addclose')
-                    }
-                })
-            },
-            choosephoto(){
-                let filechoose= document.querySelector(".filechoose")
-                filechoose.click()
-            },
-            selectedFile(e) {
-                let file = e.target.files[0];
-                let readFiles = new FileReader();
-                readFiles.readAsDataURL(file);
-                readFiles.addEventListener("load", this.loadImage);
-                this.file_name = file.name;
-                document.querySelector(".backstage_input-file-img").classList.remove('-hide')
-              },
-              loadImage(e) {
-                this.newdata[10] = e.target.result;
-              },
+        f_close() {
+            this.$swal({
+                title: "尚未存檔，是否關閉?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('addclose')
+                }
+            })
         },
-        template:`
+        choosephoto() {
+            let filechoose = document.querySelector(".filechoose")
+            filechoose.click()
+        },
+        selectedFile(e) {
+            let file = e.target.files[0];
+            let readFiles = new FileReader();
+            readFiles.readAsDataURL(file);
+            readFiles.addEventListener("load", this.loadImage);
+            this.file_name = file.name;
+            document.querySelector(".backstage_input-file-img").classList.remove('-hide')
+        },
+        loadImage(e) {
+            this.newdata[10] = e.target.result;
+        },
+    },
+    template: `
         <article class="backstage_box">
                 <h2>新增<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
                 <div class="backstage_box-content pt-30">
@@ -422,106 +422,106 @@
                     </div>
                 </div>
             </article>`,
-        
-    })
+
+})
 // ========info2_大會講師_table========
-    Vue.component('backstage_info2',{
-        props:['tablename'],
-        data(){
-            return{
-                box:null,
-                titles:["議程ID", "主題", "議程日期", "講師", "開始時間", "結束時間", "操作"],
-                datas:[
-                    [
-                        1,
-                        "2022-04-01",
-                        "10:00:00",
-                        "11:00:00",
-                        "5G智慧生活",
-                        "https://www.youtube.com/watch?v=Rtq1ABThn9Y",
-                        "I",
-                        1,
-                        "王大明",
-                        "img/sample/speaker_sample.png",
-                        "講師介紹1王大明王大明王大明王大明王大明王大明王大明王大明王大明王大明王大明王大明",
-                        null,
-                        1,
-                        null,
-                    ],
-                    [
-                        2,
-                        "2022-04-02",
-                        "15:00:00",
-                        "16:00:00",
-                        "科技改變世界",
-                        "https://www.youtube.com/watch?v=OkIgQNFne0M",
-                        "D",
-                        1,
-                        "王中明",
-                        "img/sample/speaker_sample.png",
-                        "講師介紹2王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明",
-                        null,
-                        1,
-                        null,
-                    ],
-                    [
-                        3,
-                        "2022-03-18",
-                        "11:00:00",
-                        "12:00:00",
-                        "很長很長很長很長很長很長很長的標題",
-                        "https://www.youtube.com/watch?v=OkIgQNFne0M",
-                        "U",
-                        1,
-                        "王小明",
-                        "img/sample/speaker_sample.png",
-                        "講師介紹2王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明",
-                        null,
-                        1,
-                        null,
-                    ]],
-                row_data:null,
-                row_index:null,
-            }
+Vue.component('backstage_info2', {
+    props: ['tablename'],
+    data() {
+        return {
+            box: null,
+            titles: ["議程ID", "主題", "議程日期", "講師", "開始時間", "結束時間", "操作"],
+            datas: [
+                [
+                    1,
+                    "2022-04-01",
+                    "10:00:00",
+                    "11:00:00",
+                    "5G智慧生活",
+                    "https://www.youtube.com/watch?v=Rtq1ABThn9Y",
+                    "I",
+                    1,
+                    "王大明",
+                    "img/sample/speaker_sample.png",
+                    "講師介紹1王大明王大明王大明王大明王大明王大明王大明王大明王大明王大明王大明王大明",
+                    null,
+                    1,
+                    null,
+                ],
+                [
+                    2,
+                    "2022-04-02",
+                    "15:00:00",
+                    "16:00:00",
+                    "科技改變世界",
+                    "https://www.youtube.com/watch?v=OkIgQNFne0M",
+                    "D",
+                    1,
+                    "王中明",
+                    "img/sample/speaker_sample.png",
+                    "講師介紹2王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明",
+                    null,
+                    1,
+                    null,
+                ],
+                [
+                    3,
+                    "2022-03-18",
+                    "11:00:00",
+                    "12:00:00",
+                    "很長很長很長很長很長很長很長的標題",
+                    "https://www.youtube.com/watch?v=OkIgQNFne0M",
+                    "U",
+                    1,
+                    "王小明",
+                    "img/sample/speaker_sample.png",
+                    "講師介紹2王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明王中明",
+                    null,
+                    1,
+                    null,
+                ]],
+            row_data: null,
+            row_index: null,
+        }
+    },
+    methods: {
+        edit(data, index) {
+            this.row_data = data
+            this.row_index = index
+            this.box = 'backstage_info2_edit'
         },
-        methods:{
-            edit(data, index){
-                this.row_data=data
-                this.row_index=index
-                this.box='backstage_info2_edit'
-            },
-            del(index){
-                swal({
-                    title: "是否確定刪除?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        this.datas.splice(index, 1)
-                        swal({
-                            title: "刪除成功",
-                            icon: "success",
-                        });
-                    }
-                })
-            },
-            editclose(){
-                this.box=null
-            },
-            editsave(newdata){
-                this.datas[this.row_index]=newdata
-                this.box=null
-            },
-            addclose(){
-                this.box=null
-            },
-            addsave(newdata){
-                this.datas.push(newdata)
-                this.box=null
-            },
+        del(index) {
+            swal({
+                title: "是否確定刪除?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    this.datas.splice(index, 1)
+                    swal({
+                        title: "刪除成功",
+                        icon: "success",
+                    });
+                }
+            })
         },
-        template:`
+        editclose() {
+            this.box = null
+        },
+        editsave(newdata) {
+            this.datas[this.row_index] = newdata
+            this.box = null
+        },
+        addclose() {
+            this.box = null
+        },
+        addsave(newdata) {
+            this.datas.push(newdata)
+            this.box = null
+        },
+    },
+    template: `
         <article class="-margin0auto pt-10 table_outer">
             <button @click="box='backstage_info2_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
             <h3 class="bg-color pall-15">{{tablename}}</h3>
@@ -541,46 +541,46 @@
             </div>
             <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
         </article>`,
-        mounted: function () {}        
-    })
+    mounted: function () { }
+})
 // ========info1_展覽場次_修改按鈕========
-    Vue.component('backstage_info1_edit',{
-        props:['row_data'],
-        data(){
-            return{
-                newdata:'',
-            }
-        },
-        methods: {
-            f_save(){
-                if(this.newdata.NAME && this.newdata.NAME !=""
-                && this.newdata.START_TIME && this.newdata.START_TIME !=""
-                && this.newdata.END_TIME && this.newdata.END_TIME !=""
-                && this.newdata.OPEN && this.newdata.OPEN !=""
-                && this.newdata.INTRODUCE && this.newdata.INTRODUCE !=""){
+Vue.component('backstage_info1_edit', {
+    props: ['row_data'],
+    data() {
+        return {
+            newdata: '',
+        }
+    },
+    methods: {
+        f_save() {
+            if (this.newdata.NAME && this.newdata.NAME != ""
+                && this.newdata.START_TIME && this.newdata.START_TIME != ""
+                && this.newdata.END_TIME && this.newdata.END_TIME != ""
+                && this.newdata.OPEN && this.newdata.OPEN != ""
+                && this.newdata.INTRODUCE && this.newdata.INTRODUCE != "") {
                 // 確認所有欄位是否都有值
-                    // 確認開始日期是否小於結束日期
-                    let starttime= (this.newdata.START_TIME).split('-').join('')
-                    let endtime= (this.newdata.END_TIME).split('-').join('')
-                    if(starttime<=endtime){
-                        console.log(starttime, endtime)
-                        fetch('php/backstage_info1_update_expo.php', {
-                            method: 'POST',
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body:JSON.stringify({
-                                ID:this.newdata.ID,
-                                NAME:this.newdata.NAME,
-                                START_TIME:this.newdata.START_TIME,
-                                END_TIME:this.newdata.END_TIME,
-                                OPEN:this.newdata.OPEN,
-                                INTRODUCE:this.newdata.INTRODUCE,
-                            })
-                        }).then(resp =>resp.json())
-                        .then(body =>{
-                            let {successful} =body
-                            if(successful){
+                // 確認開始日期是否小於結束日期
+                let starttime = (this.newdata.START_TIME).split('-').join('')
+                let endtime = (this.newdata.END_TIME).split('-').join('')
+                if (starttime <= endtime) {
+                    console.log(starttime, endtime)
+                    fetch('php/backstage_info1_update_expo.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ID: this.newdata.ID,
+                            NAME: this.newdata.NAME,
+                            START_TIME: this.newdata.START_TIME,
+                            END_TIME: this.newdata.END_TIME,
+                            OPEN: this.newdata.OPEN,
+                            INTRODUCE: this.newdata.INTRODUCE,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
                                 this.$swal({
                                     title: "儲存成功",
                                     icon: "success",
@@ -588,43 +588,43 @@
                                 }).then((willInsert) => {
                                     this.$emit('addsave')
                                 })
-                            }else{
+                            } else {
                                 this.$swal({
                                     title: "儲存失敗",
                                     icon: "error",
                                     text: "請檢查欄位",
                                 });
-                            } 
+                            }
                         })
-                    }else{
-                        this.$swal({
-                            title: "儲存失敗",
-                            icon: "error",
-                            text: "請確認日期是否正確",
-                        });
-                    }
-                }else{
+                } else {
                     this.$swal({
                         title: "儲存失敗",
                         icon: "error",
-                        text: "所有欄位皆須填寫",
+                        text: "請確認日期是否正確",
                     });
                 }
-            },
-            f_close(){
+            } else {
                 this.$swal({
-                    title: "尚未存檔，是否關閉?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willInsert) => {
-                    if(willInsert){
-                        this.$emit('editclose')
-                    }
-                })
-            },
+                    title: "儲存失敗",
+                    icon: "error",
+                    text: "所有欄位皆須填寫",
+                });
+            }
         },
-        template:`
+        f_close() {
+            this.$swal({
+                title: "尚未存檔，是否關閉?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('editclose')
+                }
+            })
+        },
+    },
+    template: `
         <article class="backstage_box">
             <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
             <div class="backstage_box-content pt-30">
@@ -656,45 +656,45 @@
                 </div>
             </div>
         </article>`,
-        created () {
-            this.newdata = JSON.parse(JSON.stringify(this.row_data)) 
-        },
-    })
+    created() {
+        this.newdata = JSON.parse(JSON.stringify(this.row_data))
+    },
+})
 // ========info1_展覽場次_後台新增按鈕========
-    Vue.component('backstage_info1_add',{
-        data(){
-            return{
-                newdata:{},
-            }
-        },
-        methods: {
-            f_save(){
-                if(this.newdata.NAME && this.newdata.NAME !=""
-                && this.newdata.START_TIME && this.newdata.START_TIME !=""
-                && this.newdata.END_TIME && this.newdata.END_TIME !=""
-                && this.newdata.OPEN && this.newdata.OPEN !=""
-                && this.newdata.INTRODUCE && this.newdata.INTRODUCE !=""){
+Vue.component('backstage_info1_add', {
+    data() {
+        return {
+            newdata: {},
+        }
+    },
+    methods: {
+        f_save() {
+            if (this.newdata.NAME && this.newdata.NAME != ""
+                && this.newdata.START_TIME && this.newdata.START_TIME != ""
+                && this.newdata.END_TIME && this.newdata.END_TIME != ""
+                && this.newdata.OPEN && this.newdata.OPEN != ""
+                && this.newdata.INTRODUCE && this.newdata.INTRODUCE != "") {
                 // 確認所有欄位是否都有值
-                    // 確認開始日期是否小於結束日期
-                    let starttime= (this.newdata.START_TIME).split('-').join('')
-                    let endtime= (this.newdata.END_TIME).split('-').join('')
-                    if(starttime<=endtime){
-                        fetch('php/backstage_info1_insert_expo.php', {
-                            method: 'POST',
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body:JSON.stringify({
-                                NAME:this.newdata.NAME,
-                                START_TIME:this.newdata.START_TIME,
-                                END_TIME:this.newdata.END_TIME,
-                                OPEN:this.newdata.OPEN,
-                                INTRODUCE:this.newdata.INTRODUCE,
-                            })
-                        }).then(resp =>resp.json())
-                        .then(body =>{
-                            let {successful} =body
-                            if(successful){
+                // 確認開始日期是否小於結束日期
+                let starttime = (this.newdata.START_TIME).split('-').join('')
+                let endtime = (this.newdata.END_TIME).split('-').join('')
+                if (starttime <= endtime) {
+                    fetch('php/backstage_info1_insert_expo.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            NAME: this.newdata.NAME,
+                            START_TIME: this.newdata.START_TIME,
+                            END_TIME: this.newdata.END_TIME,
+                            OPEN: this.newdata.OPEN,
+                            INTRODUCE: this.newdata.INTRODUCE,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
                                 this.$swal({
                                     title: "儲存成功",
                                     icon: "success",
@@ -702,43 +702,43 @@
                                 }).then((willInsert) => {
                                     this.$emit('addsave')
                                 })
-                            }else{
+                            } else {
                                 this.$swal({
                                     title: "儲存失敗",
                                     icon: "error",
                                     text: "請檢查欄位",
                                 });
-                            } 
+                            }
                         })
-                    }else{
-                        this.$swal({
-                            title: "儲存失敗",
-                            icon: "error",
-                            text: "請確認日期是否正確",
-                        });
-                    }
-                }else{
+                } else {
                     this.$swal({
                         title: "儲存失敗",
                         icon: "error",
-                        text: "所有欄位皆須填寫",
+                        text: "請確認日期是否正確",
                     });
                 }
-            },
-            f_close(){
+            } else {
                 this.$swal({
-                    title: "尚未存檔，是否關閉?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  }).then((willInsert) => {
-                      if(willInsert){
-                        this.$emit('addclose')
-                      }
-                  })
-            },
+                    title: "儲存失敗",
+                    icon: "error",
+                    text: "所有欄位皆須填寫",
+                });
+            }
         },
-        template:`
+        f_close() {
+            this.$swal({
+                title: "尚未存檔，是否關閉?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('addclose')
+                }
+            })
+        },
+    },
+    template: `
         <article class="backstage_box">
             <h2>新增<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
             <div class="backstage_box-content pt-30">
@@ -770,8 +770,8 @@
                 </div>
             </div>
         </article>`,
-        
-    })
+
+})
 // ========info1_展覽場次_table========
     Vue.component('backstage_info1',{
         props:['tablename'],
@@ -826,13 +826,13 @@
                                 }).then((willDelete) => {
                                     this.ajax(this.inpage)
                                 })
-                            }else{
+                            } else {
                                 this.$swal({
                                     title: "刪除失敗",
                                     icon: "error",
                                     text: "請檢查欄位",
                                 });
-                            } 
+                            }
                         })
                     }
                 })
@@ -879,40 +879,40 @@
                         search_word: this.search_word,
                     })
                 })
-                .then(resp =>resp.json())
+                .then(resp => resp.json())
                 .then(resp => {
-                    this.datas=resp.data
-                    this.data_count=resp.data_count[0][0]
-                    this.pages=Math.ceil(this.data_count/this.perpage)
-                    this.inpage=inpage
+                    this.datas = resp.data
+                    this.data_count = resp.data_count[0][0]
+                    this.pages = Math.ceil(this.data_count / this.perpage)
+                    this.inpage = inpage
                 })
+        }
+    },
+    computed: {
+        centerPages() {
+            let centerPage = this.inpage;
+            if (this.inpage > this.pages - 3) {
+                centerPage = this.pages - 3
             }
-        },
-        computed:{
-            centerPages(){
-                let centerPage=this.inpage;
-                if(this.inpage>this.pages-3){
-                    centerPage=this.pages-3
-                }
-                if(this.inpage<4){
-                    centerPage=4
-                }
-                if(this.pages<=this.centersize+2){
-                    const centerArr=[]
-                    for(let i=2; i<this.pages; i++){
-                        centerArr.push(i)
-                    }
-                    return centerArr
-                }else{
-                    const centerArr=[]
-                    for(let i=centerPage-2; i<=centerPage+2; i++){
-                        centerArr.push(i)
-                    }
-                    return centerArr
-                }
+            if (this.inpage < 4) {
+                centerPage = 4
             }
-        },
-        template:`
+            if (this.pages <= this.centersize + 2) {
+                const centerArr = []
+                for (let i = 2; i < this.pages; i++) {
+                    centerArr.push(i)
+                }
+                return centerArr
+            } else {
+                const centerArr = []
+                for (let i = centerPage - 2; i <= centerPage + 2; i++) {
+                    centerArr.push(i)
+                }
+                return centerArr
+            }
+        }
+    },
+    template: `
         <article class="-margin0auto pt-10 pb-10 table_outer">
             <button @click="box='backstage_info1_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
             <h3 class="bg-color pall-15">{{tablename}}</h3>
@@ -952,35 +952,35 @@
                     search_word: this.search_word,
                 })
             })
-            .then(resp =>resp.json())
+            .then(resp => resp.json())
             .then(resp => {
-                this.datas=resp.data
-                this.data_count=resp.data_count[0][0]
-                this.pages=Math.ceil(this.data_count/this.perpage)
+                this.datas = resp.data
+                this.data_count = resp.data_count[0][0]
+                this.pages = Math.ceil(this.data_count / this.perpage)
             })
-        },
-    })
+    },
+})
 // ========頁面vue========
-    const vm=new Vue({
-        el:"#page",
-        data: {
-            aside_btn: false,
-            table:'backstage_info1',
-            pages:[
-                ["資訊管理",[
+const vm = new Vue({
+    el: "#page",
+    data: {
+        aside_btn: false,
+        table: 'backstage_info1',
+        pages: [
+            ["資訊管理", [
                 {
                     pagename: "策展場次",
-                    href:"backstage_info1",
-                    onpage:true,
-                },{
+                    href: "backstage_info1",
+                    onpage: true,
+                }, {
                     pagename: "大會講師",
-                    href:"backstage_info2",
-                    onpage:false,
-                },{
+                    href: "backstage_info2",
+                    onpage: false,
+                }, {
                     pagename: "新聞資訊",
-                    href:"backstage_info3",
-                    onpage:false,
-                },{
+                    href: "backstage_info3",
+                    onpage: false,
+                }, {
                     pagename: "聯絡我們",
                     href:"backstage_info4",
                     onpage:false,
@@ -1016,7 +1016,7 @@
                 ],],
             ],
             tablename:"策展場次",
-          },
+        },
         methods: {
             aside_toggle() {
                 this.aside_btn = !this.aside_btn
@@ -1031,10 +1031,18 @@
                 this.table=this.pages[index][1][index2].href
                 this.tablename=this.pages[index][1][index2].pagename
             },
+        
+        changepage(index, index2) {
+            for (let i = 0; i < this.pages.length; i++) {
+                for (let j = 0; j < this.pages[i][1].length; j++) {
+                    this.pages[i][1][j].onpage = false
+                }
+            }
+            this.pages[index][1][index2].onpage = true
+            this.table = this.pages[index][1][index2].href
+            this.tablename = this.pages[index][1][index2].pagename
         },
-        
-            
-        
-    })
-    
+    },
+})
+
 
