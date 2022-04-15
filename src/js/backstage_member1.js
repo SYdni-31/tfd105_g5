@@ -77,13 +77,13 @@ Vue.component('backstage_member1_edit',{
                         <input type="text" name="ID" id="ID" v-model="newdata.ID" disabled>
                     </li>
                     <li class="mb-16 input-short"><label for="NAME">來賓名稱</label>
-                        <input type="text" name="NAME" id="NAME" v-model="newdata.NAME">
+                        <input type="text" name="NAME" id="NAME" v-model.trim="newdata.NAME">
                     </li>
                     <li class="mb-16 input-long"><label for="UNIT">單位</label>
-                        <textarea name="UNIT" id="UNIT" cols="30" rows="10" v-model="newdata.UNIT"></textarea>
+                        <textarea name="UNIT" id="UNIT" cols="30" rows="10" v-model.trim="newdata.UNIT"></textarea>
                     </li>
                     <li class="mb-16 input-short"><label for="EMAIL">電子郵件</label>
-                        <input type="text" name="EMAIL" id="EMAIL" v-model="newdata.EMAIL">
+                        <input type="text" name="EMAIL" id="EMAIL" v-model.trim="newdata.EMAIL">
                     </li>
                     <li class="mb-16 input-short"><label for="LOGINTIME">登入日期</label>
                         <input type="date" name="LOGINTIME" id="LOGINTIME" v-model="newdata['LOGINTIME'].slice(0,10)" disabled>
