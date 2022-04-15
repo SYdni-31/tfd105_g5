@@ -122,46 +122,46 @@ Vue.component('backstage_member1',{
             this.row_index=index
             this.box='backstage_member1_edit'
         },
-        del(index){
-            swal({
-                title: "是否確定刪除?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    fetch('php/backstage_member1_delete_guest.php', {
-                        method: 'POST',
-                        headers:{
-                            'Content-Type': 'application/json'
-                        },
-                        body:JSON.stringify({
-                            ID:this.datas[index].ID,
-                        })
-                    }).then(resp =>resp.json())
-                    .then(body =>{
-                        let {successful} =body
-                        if(successful){
-                            this.$swal({
-                                title: "刪除成功",
-                                icon: "success",
-                                image: "",
-                            }).then((willDelete) => {
-                                fetch('php/backstage_member1_select_guest.php')
-                                .then(resp =>resp.json())
-                                .then(resp =>this.datas=resp)
-                            })
-                        }else{
-                            this.$swal({
-                                title: "刪除失敗",
-                                icon: "error",
-                                text: "請檢查欄位",
-                            });
-                        } 
-                    })
-                }
-            })
-        },
+        // del(index){
+        //     swal({
+        //         title: "是否確定刪除?",
+        //         icon: "warning",
+        //         buttons: true,
+        //         dangerMode: true,
+        //     }).then((willDelete) => {
+        //         if (willDelete) {
+        //             fetch('php/backstage_member1_delete_guest.php', {
+        //                 method: 'POST',
+        //                 headers:{
+        //                     'Content-Type': 'application/json'
+        //                 },
+        //                 body:JSON.stringify({
+        //                     ID:this.datas[index].ID,
+        //                 })
+        //             }).then(resp =>resp.json())
+        //             .then(body =>{
+        //                 let {successful} =body
+        //                 if(successful){
+        //                     this.$swal({
+        //                         title: "刪除成功",
+        //                         icon: "success",
+        //                         image: "",
+        //                     }).then((willDelete) => {
+        //                         fetch('php/backstage_member1_select_guest.php')
+        //                         .then(resp =>resp.json())
+        //                         .then(resp =>this.datas=resp)
+        //                     })
+        //                 }else{
+        //                     this.$swal({
+        //                         title: "刪除失敗",
+        //                         icon: "error",
+        //                         text: "請檢查欄位",
+        //                     });
+        //                 } 
+        //             })
+        //         }
+        //     })
+        // },
         editclose(){
             this.box=null
         },
