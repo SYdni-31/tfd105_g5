@@ -1,15 +1,16 @@
 <?php
     include("connection.php");
-    $select = json_decode(file_get_contents("php://input"), true);
+    $select = json_decode(file_get_contents("php://input"), true);//讓php可以讀 input進來資料 PHP接受JSON POST
 
-    $sql = "UPDATE EXPO SET NAME=:NAME, START_TIME=:START_TIME, END_TIME=:END_TIME, OPEN=:OPEN, INTRODUCE=:INTRODUCE WHERE ID= :ID";
+    $sql = "UPDATE NEWS SET TITLE=:TITLE, CONTENT=:CONTENT, PHOTO=:PHOTO, LINK=:LINK, TIME=:TIME, STATUS=:STATUS WHERE ID= :ID";//根據前面ID
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(":ID", $select["ID"]);
-    $statement->bindValue(":NAME", $select["NAME"]);
-    $statement->bindValue(":START_TIME", $select["START_TIME"]);
-    $statement->bindValue(":END_TIME", $select["END_TIME"]);
-    $statement->bindValue(":OPEN", $select["OPEN"]);
-    $statement->bindValue(":INTRODUCE", $select["INTRODUCE"]);
+    $statement->bindValue(":ID", $select["ID"]); //第一 對到上面$sql的  第二是傳回來的值
+    $statement->bindValue(":TITLE", $select["TITLE"]);
+    $statement->bindValue(":CONTENT", $select["CONTENT"]);
+    $statement->bindValue(":PHOTO", $select["PHOTO"]);
+    $statement->bindValue(":LINK", $select["LINK"]);
+    $statement->bindValue(":TIME", $select["TIME"]);
+    $statement->bindValue(":STATUS", $select["STATUS"]);
     $statement->execute();
     $resultCount = $statement->rowCount();
     
