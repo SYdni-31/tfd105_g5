@@ -1096,7 +1096,7 @@ const vm = new Vue({
                     for(let j=0; j<this.pages[i][1].length; j++){
                         this.pages[i][1][j].onpage=false
                     }
-                }
+                }//綠色全拿掉 下面再接回綠色
                 this.pages[index][1][index2].onpage=true
                 this.table=this.pages[index][1][index2].href
                 this.tablename=this.pages[index][1][index2].pagename

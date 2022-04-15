@@ -9,17 +9,17 @@ Vue.component('backstage_info3_edit',{
     methods: {
         f_save(){ //判定欄位是否空值有沒有存在自己改!!!
             if(this.newdata.NAME && this.newdata.NAME !=""
-            && this.newdata.START_TIME && this.newdata.START_TIME !=""
+            && this.newdata.TITLE && this.newdata.TITLE !=""
             && this.newdata.END_TIME && this.newdata.END_TIME !=""
             && this.newdata.OPEN && this.newdata.OPEN !=""
             && this.newdata.INTRODUCE && this.newdata.INTRODUCE !=""){
             // 確認所有欄位是否都有值
                 // 確認開始日期是否小於結束日期  我們應該不需要不用直接刪除
-                let starttime= (this.newdata.START_TIME).split('-').join('')
+                let starttime= (this.newdata.TITLE).split('-').join('')
                 let endtime= (this.newdata.END_TIME).split('-').join('')
                 if(starttime<=endtime){
                     console.log(starttime, endtime)
-                    fetch('php/backstage_info1_update_expo.php', { //一定要再fetch一次
+                    fetch('php/backstage_info3_update_expo.php', { //一定要再fetch一次
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ Vue.component('backstage_info3_edit',{
                         body:JSON.stringify({   //自己頁面傳出去
                             ID:this.newdata.ID,
                             NAME:this.newdata.NAME,
-                            START_TIME:this.newdata.START_TIME,
+                            TITLE:this.newdata.TITLE,
                             END_TIME:this.newdata.END_TIME,
                             OPEN:this.newdata.OPEN,
                             INTRODUCE:this.newdata.INTRODUCE,
@@ -93,8 +93,8 @@ Vue.component('backstage_info3_edit',{
                 <li class="mb-16 input-long"><label for="INTRODUCR">會議簡介</label>
                     <textarea name="INTRODUCR" id="INTRODUCR" cols="30" rows="10" v-model="newdata.INTRODUCR"></textarea>
                 </li>
-                <li class="mb-16 input-short"><label for="START_TIME">活動開始</label>
-                    <input type="date" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
+                <li class="mb-16 input-short"><label for="TITLE">活動開始</label>
+                    <input type="date" name="TITLE" id="TITLE" v-model="newdata.TITLE">
                 </li>
                 <li class="mb-16 input-short"><label for="END_TIME">活動結束</label>
                     <input type="date" name="END_TIME" id="END_TIME" v-model="newdata.END_TIME">
@@ -124,24 +124,25 @@ Vue.component('backstage_info3_add',{
     },
     methods: {
         f_save(){
-            if(this.newdata.NAME && this.newdata.NAME !=""
-            && this.newdata.START_TIME && this.newdata.START_TIME !=""
-            && this.newdata.END_TIME && this.newdata.END_TIME !=""
-            && this.newdata.OPEN && this.newdata.OPEN !=""
-            && this.newdata.INTRODUCE && this.newdata.INTRODUCE !=""){
-            // 確認所有欄位是否都有值
+            if(this.newdata.TITLE && this.newdata.TITLE !=""
+            && this.newdata.CONTENT && this.newdata.CONTENT !=""
+            && this.newdata.PHOTO && this.newdata.PHOTO !=""
+            && this.newdata.LINK && this.newdata.LINK !=""
+            && this.newdata.TIME && this.newdata.TIME !=""
+            && this.newdata.STATUS && this.newdata.STATUS !=""){
+            // 確認所有欄位是否都有值 
                 // 確認開始日期是否小於結束日期
-                let starttime= (this.newdata.START_TIME).split('-').join('')
+                let starttime= (this.newdata.TITLE).split('-').join('')
                 let endtime= (this.newdata.END_TIME).split('-').join('')
                 if(starttime<=endtime){
-                    fetch('php/backstage_info1_insert_expo.php', {
+                    fetch('php/backstage_info3_insert_expo.php', {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'
                         },
                         body:JSON.stringify({
                             NAME:this.newdata.NAME,
-                            START_TIME:this.newdata.START_TIME,
+                            TITLE:this.newdata.TITLE,
                             END_TIME:this.newdata.END_TIME,
                             OPEN:this.newdata.OPEN,
                             INTRODUCE:this.newdata.INTRODUCE,
@@ -201,22 +202,24 @@ Vue.component('backstage_info3_add',{
                 <li class="mb-16 input-short"><label for="id">策展ID</label>
                     <input type="text" name="id" id="id" value="自動編號" disabled>
                 </li>
-                <li class="mb-16 input-short"><label for="NAME">展會名稱</label>
-                    <input type="text" name="NAME" id="NAME" v-model.trim="newdata.NAME">
+                <li class="mb-16 input-short"><label for="TIME">新聞日期</label>
+                    <input type="date" name="TIME" id="TIME" v-model.trim="newdata.TIME">
                 </li>
-                <li class="mb-16 input-long"><label for="INTRODUCE">會議簡介</label>
-                    <textarea name="INTRODUCE" id="INTRODUCE" cols="30" rows="10" v-model.trim="newdata.INTRODUCE"></textarea>
+                <li class="mb-16 input-long"><label for="CONTENT">新聞內容</label>
+                    <textarea name="CONTENT" id="CONTENT" cols="30" rows="10" v-model.trim="newdata.CONTENT"></textarea>
                 </li>
-                <li class="mb-16 input-short"><label for="START_TIME">活動開始</label>
-                    <input type="date" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
+                <li class="mb-16 input-long"><label for="TITLE">新聞標題</label>
+                    <input type="text" name="TITLE" id="TITLE" v-model="newdata.TITLE">
                 </li>
-                <li class="mb-16 input-short"><label for="END_TIME">活動結束</label>
+                <li class="mb-16 input-long"><label for="LINK">新聞連結</label>
+                    <input type="text" name="LINK" id="LINK" v-model="newdata.LINK">
+                </li>
+                <li class="mb-16 input-short"><label for="END_TIME">新聞照片</label>
                     <input type="date" name="END_TIME" id="END_TIME" v-model="newdata.END_TIME">
                 </li>
-                <div class="mb-16"><label>進行狀態</label><br>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork" value="尚未開始" v-model="newdata.OPEN">尚未開始</label>
-                    <label for="working"><input type="radio" name="OPEN" id="working" value="進行中" v-model="newdata.OPEN">進行中</label>
-                    <label for="worked"><input type="radio" name="OPEN" id="worked" value="已結束" v-model="newdata.OPEN">已結束</label>
+                <div class="mb-16"><label>審核狀態</label><br>
+                    <label for="show"><input type="radio" name="STATUS" id="notwork" value="顯示" v-model="newdata.STATUS">顯示</label>
+                    <label for="notshow"><input type="radio" name="STATUS" id="working" value="不顯示" v-model="newdata.STATUS">不顯示</label>
                 </div>
             </ul>                   
             <div class="backstage-insert-btn">
@@ -248,7 +251,7 @@ Vue.component('backstage_info3',{
         edit(data, index){
             this.row_data=data
             this.row_index=index
-            this.box='backstage_info1_edit'
+            this.box='backstage_info3_edit'
         },
         del(index){
             swal({
@@ -258,7 +261,7 @@ Vue.component('backstage_info3',{
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    fetch('php/backstage_info1_delete_expo.php', {
+                    fetch('php/backstage_info3_delete_expo.php', {
                         method: 'POST', //傳到php
                         headers:{
                             'Content-Type': 'application/json'
@@ -275,7 +278,7 @@ Vue.component('backstage_info3',{
                                 icon: "success",
                                 image: "",
                             }).then((willDelete) => {
-                                fetch('php/backstage_info1_select_expo.php')//刪除成功強制再執行一次select.php
+                                fetch('php/backstage_info3_select_expo.php')//刪除成功強制再執行一次select.php
                                 .then(resp =>resp.json())
                                 .then(resp =>this.datas=resp)
                             })
@@ -321,7 +324,7 @@ Vue.component('backstage_info3',{
             
         },
         ajax(inpage){  
-            fetch('php/backstage_info1_select_expo.php', {
+            fetch('php/backstage_info3_select_expo.php', {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'
@@ -374,10 +377,10 @@ Vue.component('backstage_info3',{
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_info3" v-for="(data, index) in datas">
-                <li class="bg-color bg-in-secondcolor">{{data[0]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[1]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[2]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[4]}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.ID}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.TITLE}}</li>
+                <li class="bg-color bg-in-secondcolor -word_break">{{data.LINK}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.STATUS}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
             <div class='backstage_pages mt-10'>
@@ -393,7 +396,7 @@ Vue.component('backstage_info3',{
         <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
     </article>`,
     mounted(){
-        fetch('php/backstage_info1_select_expo.php', {
+        fetch('php/backstage_info3_select_expo.php', {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'

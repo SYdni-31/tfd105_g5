@@ -18,6 +18,7 @@ Vue.component('backstage_expo2_edit', {
                 // 確認開始時間是否小於結束時間
                 let starttime = (this.newdata.START_TIME).split(':').join('');
                 let endtime = (this.newdata.END_TIME).split(':').join('');
+                let open ='1';
                 if (starttime.length == '6') {
                     starttime = starttime.substr(0, 4);
                 }
@@ -33,6 +34,16 @@ Vue.component('backstage_expo2_edit', {
                     if (end_value.length == '5') {
                         end_value = end_value + ':00';
                     }
+                    // console.log("this.newdata.OPEN"+this.newdata.OPEN);
+
+                    if (this.newdata.OPEN == "啟用"){
+                        open ='1';
+                        // console.log("啟用");
+                    }
+                    if (this.newdata.OPEN == "不啟用"){
+                        // console.log("不啟用");
+                        open ='0';
+                    }
                     if (this.newdata.START_TIME)
                         fetch('php/backstage_expo2_update_expo.php', {
                             method: 'POST',
@@ -45,7 +56,7 @@ Vue.component('backstage_expo2_edit', {
                                 START_TIME: this.newdata.START_TIME,
                                 END_TIME: this.newdata.END_TIME,
                                 STATUS: "U",
-                                OPEN: this.newdata.OPEN,
+                                OPEN: open,
                             })
                         }).then(resp => resp.json())
                             .then(body => {
@@ -106,8 +117,8 @@ Vue.component('backstage_expo2_edit', {
                     <input type="text" name="ID" id="ID" v-model="newdata.ID" disabled>
                 </li>
                 <div class="mb-16 input-short"><label>直播狀態</label><br>
-                    <label for="working"><input type="radio" name="OPEN" id="working"  value="1" v-model="newdata.OPEN">啟用</label>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork"  value="0" v-model="newdata.OPEN">不啟用</label>
+                    <label for="working"><input type="radio" name="OPEN" id="working"  value="啟用" v-model="newdata.OPEN">啟用</label>
+                    <label for="notwork"><input type="radio" name="OPEN" id="notwork"  value="不啟用" v-model="newdata.OPEN">不啟用</label>
                 </div>
                 <li class="mb-16 input-short"><label for="START_TIME">開始時間</label>
                     <input type="time" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
@@ -245,9 +256,13 @@ Vue.component('backstage_expo2', {
             centersize: 5, // 過多頁數時顯示筆數
             row_data: null, //被選取那列的資料
             row_index: null, //被選取那列的序號
+            search_word:'',
         }
     },
     methods: {
+        search(){
+            this.ajax(this.inpage)
+        },
         edit(data, index) {
             this.row_data = data
             this.row_index = index
@@ -278,9 +293,27 @@ Vue.component('backstage_expo2', {
                                     icon: "success",
                                     image: "",
                                 }).then((willDelete) => {
-                                    fetch('php/backstage_expo2_select_expo.php')
+                                    fetch('php/backstage_expo2_select_expo.php', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            inpage: this.inpage,
+                                            perpage: this.perpage,
+                                            search_word: this.search_word,
+                                        })
+                                    })
                                         .then(resp => resp.json())
-                                        .then(resp => this.datas = resp)
+                                        .then(resp => {
+                                            // 先看resp是什麼用c
+                                            // console.log(resp);
+                                            this.datas = resp.data
+                                            // 塞在裡面的裡面
+                                            this.data_count = resp.data_count[0][0]
+                                            // pages是分幾頁，math無條件進位 11/10 =1.1 無條件進位 = 2
+                                            this.pages = Math.ceil(this.data_count / this.perpage)
+                                        })
                                 })
                             } else {
                                 this.$swal({
@@ -332,6 +365,7 @@ Vue.component('backstage_expo2', {
                 body: JSON.stringify({
                     inpage: inpage,
                     perpage: this.perpage,
+                    search_word: this.search_word,
                 })
             })
                 .then(resp => resp.json())
@@ -372,6 +406,7 @@ Vue.component('backstage_expo2', {
         <button @click="box='backstage_expo2_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
         <h3 class="bg-color pall-15">{{tablename}}</h3>
         <div class="pall-10 bg-in-bgcolor">
+            <input type='text' name='search' id='search' class='mb-2 mr-2' v-model="search_word" @keyup="search"><label for='search'><i class="fa-solid fa-magnifying-glass"></i></label>
             <ul class="bg-color -margin0auto backstage-grid title backstage-grid_expo2">
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
@@ -403,6 +438,7 @@ Vue.component('backstage_expo2', {
             body: JSON.stringify({
                 inpage: this.inpage,
                 perpage: this.perpage,
+                search_word: this.search_word,
             })
         })
             .then(resp => resp.json())
