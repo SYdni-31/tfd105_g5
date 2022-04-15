@@ -75,9 +75,9 @@
             switchbtn(index){
                 this.update(index)
                 if(this.datas[index].ONBOARD==true){
-                    this.datas[index].ONBOARD='1'
+                    this.datas[index].ONBOARD=1
                 }else{
-                    this.datas[index].ONBOARD='0'
+                    this.datas[index].ONBOARD=0
                 }
             },
             watch(data, index){
