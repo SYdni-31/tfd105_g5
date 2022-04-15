@@ -2,8 +2,9 @@
     include("connection.php");
     $select = json_decode(file_get_contents("php://input"), true);
 
-    $sql = "DELETE FROM EXPO WHERE ID= :ID";
+    $sql = "UPDATE NEWS SET STATUS=:STATUS WHERE ID= :ID";
     $statement = $pdo->prepare($sql);
+    $statement->bindValue(":STATUS", "D"); //當更新NEWS table時強制狀態變成D
     $statement->bindValue(":ID", $select["ID"]);
     $statement->execute();
     $resultCount = $statement->rowCount(); //php內建計算刪除數量
