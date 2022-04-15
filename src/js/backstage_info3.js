@@ -212,15 +212,14 @@ Vue.component('backstage_info3_add',{
                     <input type="text" name="TITLE" id="TITLE" v-model="newdata.TITLE">
                 </li>
                 <li class="mb-16 input-long"><label for="LINK">新聞連結</label>
-                    <input type="text" name="LINK" id="LINK" v-model="newdata.END_TIME">
+                    <input type="text" name="LINK" id="LINK" v-model="newdata.LINK">
                 </li>
                 <li class="mb-16 input-short"><label for="END_TIME">新聞照片</label>
                     <input type="date" name="END_TIME" id="END_TIME" v-model="newdata.END_TIME">
                 </li>
                 <div class="mb-16"><label>審核狀態</label><br>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork" value="尚未開始" v-model="newdata.OPEN">尚未開始</label>
-                    <label for="working"><input type="radio" name="OPEN" id="working" value="進行中" v-model="newdata.OPEN">進行中</label>
-                    <label for="worked"><input type="radio" name="OPEN" id="worked" value="已結束" v-model="newdata.OPEN">已結束</label>
+                    <label for="show"><input type="radio" name="STATUS" id="notwork" value="顯示" v-model="newdata.STATUS">顯示</label>
+                    <label for="notshow"><input type="radio" name="STATUS" id="working" value="不顯示" v-model="newdata.STATUS">不顯示</label>
                 </div>
             </ul>                   
             <div class="backstage-insert-btn">
@@ -380,7 +379,7 @@ Vue.component('backstage_info3',{
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_info3" v-for="(data, index) in datas">
                 <li class="bg-color bg-in-secondcolor">{{data.ID}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data.TITLE}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data.LINK}}</li>
+                <li class="bg-color bg-in-secondcolor -word_break">{{data.LINK}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data.STATUS}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
