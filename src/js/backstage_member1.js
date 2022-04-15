@@ -25,7 +25,7 @@ Vue.component('backstage_member1_edit',{
                             NAME:this.newdata.NAME,
                             UNIT:this.newdata.UNIT,
                             EMAIL:this.newdata.EMAIL,
-                            // MODIFY_DATE:this.newdata.,
+                            // LOGINTIME:this.newdata.,
                         })
                     }).then(resp =>resp.json())
                     .then(body =>{
@@ -85,8 +85,8 @@ Vue.component('backstage_member1_edit',{
                     <li class="mb-16 input-short"><label for="EMAIL">電子郵件</label>
                         <input type="text" name="EMAIL" id="EMAIL" v-model="newdata.EMAIL">
                     </li>
-                    <li class="mb-16 input-short"><label for="MODIFY_DATE">登入日期</label>
-                        <input type="date" name="MODIFY_DATE" id="MODIFY_DATE" v-model="newdata['MODIFY_DATE'].slice(0,10)" disabled>
+                    <li class="mb-16 input-short"><label for="LOGINTIME">登入日期</label>
+                        <input type="date" name="LOGINTIME" id="LOGINTIME" v-model="newdata['LOGINTIME'].slice(0,10)" disabled>
                     </li>
                 </ul>                  
                 <div class="backstage-insert-btn">
@@ -248,7 +248,7 @@ Vue.component('backstage_member1',{
                 <li class="bg-color bg-in-secondcolor">{{data['NAME']}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data['UNIT']}}</li>
                 <li class="bg-color bg-in-secondcolor -word_break">{{data['EMAIL']}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data['MODIFY_DATE'].slice(0,10)}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['LOGINTIME'].slice(0,10)}}</li>
                 <li class="bg-color bg-in-secondcolor">
                     <div class="backstage_btn_td">
                         <button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button>
