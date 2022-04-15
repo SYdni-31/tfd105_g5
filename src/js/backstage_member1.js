@@ -11,12 +11,11 @@ Vue.component('backstage_member1_edit',{
         f_save(){
             if(this.newdata.NAME && this.newdata.NAME !=""
             && this.newdata.UNIT && this.newdata.UNIT !=""
-            && this.newdata.EMAIL && this.newdata.EMAIL !=""
-            && this.newdata.MODIFY_DATE && this.newdata.MODIFY_DATE !=""){
+            && this.newdata.EMAIL && this.newdata.EMAIL !=""){
             // 確認所有欄位是否都有值
                 // 確認開始日期是否小於結束日期
                
-                    fetch('php/backstage_member1_update_expo.php', {
+                    fetch('php/backstage_member1_update_guest.php', {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'
@@ -26,7 +25,7 @@ Vue.component('backstage_member1_edit',{
                             NAME:this.newdata.NAME,
                             UNIT:this.newdata.UNIT,
                             EMAIL:this.newdata.EMAIL,
-                            MODIFY_DATE:this.newdata.MODIFY_DATE,
+                            // MODIFY_DATE:this.newdata.,
                         })
                     }).then(resp =>resp.json())
                     .then(body =>{
@@ -71,7 +70,7 @@ Vue.component('backstage_member1_edit',{
     // 要改成自己的版本 (li) label for/name/id ->ID  要大寫而且要一樣
     template:`
         <article class="backstage_box">
-            <h2>修改1<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
+            <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
             <div class="backstage_box-content pt-30">
                 <ul>
                     <li class="mb-16 input-short"><label for="ID">來賓ID</label>
@@ -86,8 +85,8 @@ Vue.component('backstage_member1_edit',{
                     <li class="mb-16 input-short"><label for="EMAIL">電子郵件</label>
                         <input type="text" name="EMAIL" id="EMAIL" v-model="newdata.EMAIL">
                     </li>
-                    <li class="mb-16 input-short"><label for="MODIFY_DATE">修改日期</label>
-                        <input type="date" name="MODIFY_DATE" id="MODIFY_DATE" v-model="newdata.MODIFY_DATE">
+                    <li class="mb-16 input-short"><label for="MODIFY_DATE">登入日期</label>
+                        <input type="date" name="MODIFY_DATE" id="MODIFY_DATE" v-model="newdata['MODIFY_DATE'].slice(0,10)" disabled>
                     </li>
                 </ul>                  
                 <div class="backstage-insert-btn">
@@ -106,7 +105,7 @@ Vue.component('backstage_member1',{
     data(){
         return{
             box:null, //判斷要打開的彈窗
-            titles:["來賓ID", "來賓名稱", "單位", "電子郵件", "修改日期", "操作"],  // 對照figma，來賓名稱etc.
+            titles:["來賓ID", "來賓名稱", "單位", "電子郵件", "登入日期", "操作"],  // 對照figma，來賓名稱etc.
             datas:'', //每一頁的所有資料
             data_count:'', //資料庫的資料組數
             pages:1,//總共有的頁數，目前所在的頁數
@@ -131,7 +130,7 @@ Vue.component('backstage_member1',{
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    fetch('php/backstage_member1_delete_expo.php', {
+                    fetch('php/backstage_member1_delete_guest.php', {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'
@@ -148,7 +147,7 @@ Vue.component('backstage_member1',{
                                 icon: "success",
                                 image: "",
                             }).then((willDelete) => {
-                                fetch('php/backstage_member1_select_expo.php')
+                                fetch('php/backstage_member1_select_guest.php')
                                 .then(resp =>resp.json())
                                 .then(resp =>this.datas=resp)
                             })
@@ -194,7 +193,7 @@ Vue.component('backstage_member1',{
             
         },
         ajax(inpage){
-            fetch('php/backstage_member1_select_expo.php', {
+            fetch('php/backstage_member1_select_guest.php', {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'
@@ -248,9 +247,13 @@ Vue.component('backstage_member1',{
                 <li class="bg-color bg-in-secondcolor">{{data['ID']}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data['NAME']}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data['UNIT']}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data['EMAIL']}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data['MODIFY_DATE']}}</li>
-                <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
+                <li class="bg-color bg-in-secondcolor -word_break">{{data['EMAIL']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['MODIFY_DATE'].slice(0,10)}}</li>
+                <li class="bg-color bg-in-secondcolor">
+                    <div class="backstage_btn_td">
+                        <button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button>
+                    </div>
+                </li>
             </ul>
             <div class='backstage_pages mt-10'>
                 <button class='backstage_pages_btn_left mr-2'  @click.stop="previouspage">上一頁</button>
@@ -258,12 +261,13 @@ Vue.component('backstage_member1',{
                 <button v-if="pages>centersize+2 && inpage-centersize/2-1>1" class='backstage_pages_btn pr-2 pl-2'>...</button>
                 <button v-for='(page,index) in centerPages' @click.prevent='changepage(page)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==page}" :key="index">{{page}}</button>
                 <button v-if="pages>centersize+2 && inpage+centersize/2+1<pages" class='backstage_pages_btn pr-2 pl-2'>...</button>
-                <button @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
+                <button v-if="pages!= 1" @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
                 <button class='backstage_pages_btn_right ml-2' @click.stop="nextpage">下一頁</button>
             </div> 
         </div>
         <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
     </article>`,
+    // function email
     mounted(){
         fetch('php/backstage_member1_select_guest.php', {
             method: 'POST',
