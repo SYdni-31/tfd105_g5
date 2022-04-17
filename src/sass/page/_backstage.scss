@@ -377,9 +377,15 @@
         position: relative;
         background-color: #fff;
         opacity: 0.9;
+        i{
+          color: $black-color;
+          @include absolute(50%,50%);
+          transform:translate(50%, -50%);
+          font-size: 48px;
+        }
         img {
-          max-width: 260px;
-          max-height: 260px;
+          max-width: 250px;
+          max-height: 210px;
           position: absolute;
           top: 50%;
           left: 50%;

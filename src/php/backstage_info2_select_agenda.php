@@ -9,7 +9,7 @@
     
     // 選取第x頁資料(分頁)
     $select2 = json_decode(file_get_contents("php://input"), true);
-    $sql2= "set @a= concat('select * from AGENDA where (ID like' , '\"%', :search_word, '%\"','or NAME like', '\"%', :search_word, '%\"', 'or START_TIME like', '\"%', :search_word, '%\"', 'or END_TIME like', '\"%', :search_word, '%\"', 'or DATE like', '\"%', :search_word, '%\"', 'or THEME like', '\"%', :search_word, '%\")', 'and NAME is not null limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";
+    $sql2= "set @a= concat('select * from view_agenda_speach where ID like' , '\"%', :search_word, '%\"','or NAME like', '\"%', :search_word, '%\"', 'or START_TIME like', '\"%', :search_word, '%\"', 'or END_TIME like', '\"%', :search_word, '%\"', 'or DATE like', '\"%', :search_word, '%\"', 'or THEME like', '\"%', :search_word, '%\"', ' limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";
     
     $statement2 = $pdo->prepare($sql2);
     $statement2->bindValue(":inpage", $select2["inpage"], PDO::PARAM_INT);
