@@ -33,41 +33,37 @@ Vue.component('backstage_expo2_edit', {
                     if (end_value.length == '5') {
                         end_value = end_value + ':00';
                     }
-                    console.log("this.newdata.OPEN"+this.newdata.OPEN);
-
-                    if (this.newdata.START_TIME)
-                        fetch('php/backstage_expo2_update_expo.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            // 欄位全部大寫
-                            body: JSON.stringify({
-                                ID: this.newdata.ID,
-                                START_TIME: this.newdata.START_TIME,
-                                END_TIME: this.newdata.END_TIME,
-                                STATUS: "U",
-                                OPEN: this.newdata.OPEN,
-                            })
-                        }).then(resp => resp.json())
-                            .then(body => {
-                                let { successful } = body
-                                if (successful) {
-                                    this.$swal({
-                                        title: "儲存成功",
-                                        icon: "success",
-                                        image: "",
-                                    }).then((willInsert) => {
-                                        this.$emit('addsave')
-                                    })
-                                } else {
-                                    this.$swal({
-                                        title: "儲存失敗",
-                                        icon: "error",
-                                        text: "請檢查欄位",
-                                    });
-                                }
-                            })
+                    fetch('php/backstage_expo2_update_expo.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ID: this.newdata.ID,
+                            START_TIME: this.newdata.START_TIME,
+                            END_TIME: this.newdata.END_TIME,
+                            STATUS: "U",
+                            OPEN: this.newdata.OPEN,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
+                                this.$swal({
+                                    title: "儲存成功",
+                                    icon: "success",
+                                    image: "",
+                                }).then((willInsert) => {
+                                    this.$emit('addsave')
+                                })
+                            } else {
+                                this.$swal({
+                                    title: "儲存失敗",
+                                    icon: "error",
+                                    text: "請檢查欄位",
+                                });
+                            }
+                        })
                 } else {
                     this.$swal({
                         title: "儲存失敗",
@@ -247,20 +243,20 @@ Vue.component('backstage_expo2', {
             centersize: 5, // 過多頁數時顯示筆數
             row_data: null, //被選取那列的資料
             row_index: null, //被選取那列的序號
-            search_word:'',
+            search_word: '',
         }
     },
     methods: {
-        search(){
+        search() {
             this.ajax(this.inpage)
         },
-        switchbtn(index){
+        switchbtn(index) {
             this.update(index)
-            console.log("open"+this.datas[index].OPEN);
-            if(this.datas[index].OPEN==true){
-                this.datas[index].OPEN=1
-            }else{
-                this.datas[index].OPEN=0
+            console.log("open" + this.datas[index].OPEN);
+            if (this.datas[index].OPEN == true) {
+                this.datas[index].OPEN = 1
+            } else {
+                this.datas[index].OPEN = 0
             }
         },
         edit(data, index) {
@@ -376,33 +372,33 @@ Vue.component('backstage_expo2', {
                     this.inpage = inpage
                 })
         },
-        update(index){
+        update(index) {
             fetch('php/backstage_expo2_update_open.php', {
                 method: 'POST',
-                headers:{
+                headers: {
                     'Content-Type': 'application/json'
                 },
-                body:JSON.stringify({
-                    ID:this.datas[index].ID,
-                    OPEN:this.datas[index].OPEN
+                body: JSON.stringify({
+                    ID: this.datas[index].ID,
+                    OPEN: this.datas[index].OPEN
                 })
-            }).then(resp =>resp.json())
-            .then(body =>{ 
-                let {successful} =body
-                if(successful){
-                    this.$swal({
-                        title: "修改成功",
-                        icon: "success",
-                        image: "",
-                    })
-                }else{
-                    this.$swal({
-                        title: "修改失敗",
-                        icon: "error",
-                        text: "請檢查資料",
-                    });
-                } 
-            })
+            }).then(resp => resp.json())
+                .then(body => {
+                    let { successful } = body
+                    if (successful) {
+                        this.$swal({
+                            title: "修改成功",
+                            icon: "success",
+                            image: "",
+                        })
+                    } else {
+                        this.$swal({
+                            title: "修改失敗",
+                            icon: "error",
+                            text: "請檢查資料",
+                        });
+                    }
+                })
         },
 
     },
