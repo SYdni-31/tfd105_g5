@@ -1,25 +1,30 @@
 // =====上方=====
-.backstage_body{
+.backstage_body {
   background-color: $second-color;
 }
-.backstage_nav{
+
+.backstage_nav {
   flex-wrap: nowrap;
   min-width: 768px;
   position: sticky;
-  h3{
-      margin-right: auto;
-      min-width: 220px;
+
+  h3 {
+    margin-right: auto;
+    min-width: 220px;
   }
-  .backstage_logout{
-      display: flex;
-      &:hover{
-          color: $backmain-color ;
-          transition: color .5s;
-      }
+
+  .backstage_logout {
+    display: flex;
+
+    &:hover {
+      color: $backmain-color;
+      transition: color .5s;
+    }
   }
 }
+
 // =====左側bar=====
-.backstage_menu{
+.backstage_menu {
   position: fixed;
   top: 60px;
   left: 0;
@@ -31,106 +36,132 @@
   background-color: #040f15;
   height: calc(100vh - 60px);
   overflow-y: auto;
-  &::-webkit-scrollbar{
-      height: 3px;
+
+  &::-webkit-scrollbar {
+    height: 3px;
   }
-  &::-webkit-scrollbar-thumb{
-      box-shadow: inset 0 0 5px grey;
-      border-radius: 5px; 
+
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
   }
-  .backstage_aside_btn{
-      @include absolute(5px, 5px);
-      transform: rotate(-180deg);
+
+  .backstage_aside_btn {
+    @include absolute(5px, 5px);
+    transform: rotate(-180deg);
   }
-  div{
-    div{
-      width:100%;
-    }
-      width: 80%;
-  }
-  a{
-      border-radius: 10px;
+
+  div {
+    div {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: $black-color !important;
-      &:hover{
-        h4{
-            font-weight: bold;
-        }
-      }
+    }
+
+    width: 80%;
   }
-  .-onpage{
-    h4{
+
+  a {
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $black-color !important;
+
+    &:hover {
+      h4 {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .-onpage {
+    h4 {
       font-weight: bold;
       color: $backmain-color;
     }
   }
-  .backstage_menu_btn{
-      background-color: $backmain-color;
-      height: 50px;
-      h4{
-          font-weight: bold;
-      }
+
+  .backstage_menu_btn {
+    background-color: $backmain-color;
+    height: 50px;
+
+    h4 {
+      font-weight: bold;
+    }
   }
-  .backstage_menu_inner{
-      border-radius: 10px;
+
+  .backstage_menu_inner {
+    border-radius: 10px;
+    background-color: $second-color;
+
+    a {
       background-color: $second-color;
-      a{
-          background-color: $second-color;
-      }
+    }
   }
 
 }
-// =====主區塊======
-.backstage_main{
-  width: calc(100% - 250px);
-  margin-left:250px;
-  min-height: calc(100vh - 60px);
-  margin-bottom: 0; 
 
-// =====中間table=====
-  .table_outer{
+// =====主區塊======
+.backstage_main {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  min-height: calc(100vh - 60px);
+  margin-bottom: 0;
+
+  // =====中間table=====
+  .table_outer {
     width: 96%;
     min-width: 728px;
     font-size: 16px;
   }
-  h3{
-    background-color: $backmain-color;  
+
+  h3 {
+    background-color: $backmain-color;
   }
-  .backstage-grid{
+
+  .backstage-grid {
     display: grid;
     width: 100%;
-    &.backstage-grid_info1{
+
+    &.backstage-grid_info1 {
       grid-template-columns: 10% 30% 20% 15% 25%;
     }
-    &.backstage-grid_info2{
+
+    &.backstage-grid_info2 {
       grid-template-columns: 10% 25% 17% 14% 14% 20%;
     }
-    &.backstage-grid_info3{
-      grid-template-columns: 10% 30% 25% 10% 25%; 
+
+    &.backstage-grid_info3 {
+      grid-template-columns: 10% 30% 25% 10% 25%;
     }
+
     &.backstage-grid_info4 {
-      grid-template-columns: 8% 10% 24% 28% 10% 20%;
+      grid-template-columns: 8% 10% 12% 20% 20% 10% 20%;
     }
-    &.backstage-grid_member1{
+
+    &.backstage-grid_member1 {
       grid-template-columns: 6% 10% 24% 35% 15% 10%;
     }
-    &.backstage-grid_member2{  //調整我的頁面欄位%數大小
-      grid-template-columns: 10% 10% 30% 20% 10% 20% ;
+
+    &.backstage-grid_member2 {
+      //調整我的頁面欄位%數大小
+      grid-template-columns: 10% 10% 30% 20% 10% 20%;
     }
-    &.backstage-grid_expo1{
-      grid-template-columns: 10% 30% 30% 15% 15%;
-    }
-    &.backstage-grid_expo2{
+
+    &.backstage-grid_info3 {
       grid-template-columns: 10% 30% 20% 15% 25%;
     }
-    &.title{
-      li{
-      align-items: center;
+
+    &.backstage-grid_expo2 {
+      grid-template-columns: 10% 30% 20% 15% 25%;
+    }
+
+    &.title {
+      li {
+        align-items: center;
       }
     }
+
     li {
       display: flex;
       flex-direction: column;
@@ -138,101 +169,118 @@
       padding: 5px;
       justify-content: center;
     }
-    img{
+
+    img {
       max-height: 100px;
     }
 
   }
-// =====表格內按鈕排版=====
-  .backstage_btn_td{
+
+  // =====表格內按鈕排版=====
+  .backstage_btn_td {
     align-self: center;
     display: flex;
-    &.switch_flex{
-      white-space: nowrap;
-      padding-left:0;
-      .custom-control-input:checked~.custom-control-label::before{
-        border-color: $backmain-color;
-        background-color: $backmain-color;
-      }
-    }
+    //     white-space: nowrap;;
+    //     .switch_flex{
+    //         display: flex;
+    //         padding-left:0;
+    //     }
   }
-// =====所有按鈕外觀=====
-.backstage_btn{
-  border: 0;
-  border-radius: 10px;
-  color: $black-color;
-  &_add{
+
+  // =====所有按鈕外觀=====
+  .backstage_btn {
+    border: 0;
+    border-radius: 10px;
+    color: $black-color;
+
+    &_add {
       background-color: $backmain-color;
       display: block;
       margin-left: auto;
       width: 110px;
-  }
-  &_short{
+    }
+
+    &_short {
       background-color: $backmain-color;
       width: 60px;
-  }
-  &_bad{
+    }
+
+    &_bad {
       background-color: #9B9797;
       width: 60px;
-  }
-  &:hover{
-      font-weight: bold;
-  }
-}
-.backstage_pages{
-  display: flex;
-  justify-content: flex-end;
-  button{
-    border: 0;
-    &:hover{
+    }
+
+    &:hover {
       font-weight: bold;
     }
   }
-  &_btn{
-    &:hover{
-      color: $backmain-color;
-    }
-    &.action{
-      background-color:$backmain-color;
-      &:hover{
-        color: $black-color;
+
+  .backstage_pages {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      border: 0;
+
+      &:hover {
+        font-weight: bold;
       }
     }
+
+    &_btn {
+      &:hover {
+        color: $backmain-color;
+      }
+
+      &.action {
+        background-color: $backmain-color;
+
+        &:hover {
+          color: $black-color;
+        }
+      }
+    }
+
+    &_btn_left {
+      border-radius: 10px 0 0 10px;
+      background-color: $backmain-color;
+    }
+
+    &_btn_right {
+      border-radius: 0 10px 10px 0;
+      background-color: $backmain-color;
+    }
   }
-  &_btn_left{
-    border-radius: 10px 0 0 10px; 
-    background-color:$backmain-color;
-  }
-  &_btn_right{
-    border-radius: 0 10px 10px 0;
-    background-color:$backmain-color;
-  }
-}
 }
 
 // =====RWD=====
-.backstage_aside_btn{
+.backstage_aside_btn {
   display: none;
   cursor: pointer;
 }
-@media (max-width: 1199.98px){
-  .backstage_menu{
-      height: 100%;
-      transition: all .5s;
-      transform: translateX(-100%);
+
+@media (max-width: 1199.98px) {
+  .backstage_menu {
+    height: 100%;
+    transition: all .5s;
+    transform: translateX(-100%);
   }
-  .backstage_menu.-backstage_aside_on{
-      transform: translateX(0);
+
+  .backstage_menu.-backstage_aside_on {
+    transform: translateX(0);
   }
-  .backstage_main{
-      margin-left: 0;
-      width: 100%;
-      min-width: 768px;
+
+  .backstage_main {
+    margin-left: 0;
+    width: 100%;
+    min-width: 768px;
   }
-  .backstage_aside_btn{
-      display: block;
+
+  .backstage_aside_btn {
+    display: block;
   }
 }
+
 // =====彈窗=====
 .backstage_box {
   @include fixed(50%, null, null, 50%, 100);
@@ -244,6 +292,7 @@
   transform: translate(-50%, -50%);
   border-radius: 20px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $black-color;
+
   // 標題
   h2 {
     background-color: $backmain-color;
@@ -252,113 +301,108 @@
     height: 60px;
     border-radius: 20px 20px 0px 0px;
   }
+
   // 關閉按鈕
-  .backstage_close_icon{
-    @include absolute(10px,20px);
-    font-size:40px;
+  .backstage_close_icon {
+    @include absolute(10px, 20px);
+    font-size: 40px;
     color: #eeeeee;
-    &:hover{
+
+    &:hover {
       color: $black-color;
     }
   }
+
   // 出現卷軸的區塊
   .backstage_box-content {
     overflow-y: auto;
     height: calc(90% - 60px);
+
     // 右側捲動軸效果變更
     &::-webkit-scrollbar {
       height: 3px;
     }
+
     &::-webkit-scrollbar-thumb {
       box-shadow: inset 0 0 5px grey;
       border-radius: 5px;
     }
-    button:hover{
+
+    button:hover {
       font-weight: bold;
     }
+
     // 輸入區塊
     ul {
       @include flex-box-center(80%, space-between);
       flex-wrap: wrap;
       margin: 0 auto;
-      color: $black-color;
+
       // 小標題
       label {
         font-size: 16px;
         padding-left: 6px;
         text-align: left;
-        
+        color: $black-color;
         margin-bottom: 6px;
       }
+
       li {
         display: flex;
         flex-direction: column;
-      // 一般
-      input {
-        padding: 0 16px;
-        height: 45px;
-        color: $black-color;
-        @include font(16px, 300, left, 1.6);
-      }
-      // 攤位圖片
-      &.backstage_extend{
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-        div{
-          width: 33%;
-          img{
-            min-height: 60px;
-            max-height: 120px;
-          }
+
+        // 一般
+        input {
+          padding: 0 16px;
+          height: 45px;
+          color: $black-color;
+          @include font(16px, 300, left, 1.6);
         }
       }
-    }
-    // 文字方塊
-    textarea {
-      padding: 16px;
-      min-height: 180px;
-      resize: none;
-      @include font(16px, 300, left, 1.6);
-      &::-webkit-scrollbar{
-        width: 3px;
+
+      // 文字方塊
+      textarea {
+        padding: 16px;
+        resize: none;
+        @include font(16px, 300, left, 1.6);
       }
-      &::-webkit-scrollbar-thumb{
-          box-shadow: inset 0 0 5px grey;
-          border-radius: 5px; 
-      }
-    }
-      
+
       // 只佔一半
-    .input-short {
-      width: 40%;
-      @include pad(768px) {
+      .input-short {
+        width: 40%;
+
+        @include pad(768px) {
+          width: 100%;
+        }
+      }
+
+      // 佔整行
+      .input-long {
         width: 100%;
       }
     }
-    // 佔整行
-    .input-long {
-      width: 100%;
-    }
-    }
+
     // 檔案上傳的需要另外分出來，不要包在ul
     .input-file {
       width: 80%;
       position: relative;
       margin: 0 auto;
-        // 檔案上傳小標題
-        label {
-          font-size: 16px;
-          font-weight: bold;
-          color: $black-color;
-        }
-        // 檔案名稱input
-        .filename{
-          height: 42px;
-        }
-        // 檔案上傳的「上傳」按鈕
-        button {
-        @include absolute(0,);
+
+      // 檔案上傳小標題
+      label {
+        font-size: 16px;
+        font-weight: bold;
+        color: $black-color;
+      }
+
+      // 檔案名稱input
+      .filename {
+        height: 42px;
+      }
+
+      // 檔案上傳的「上傳」按鈕
+      button {
+        @include absolute(0, );
         width: 70px;
         font-size: 14px;
         line-height: 40px;
@@ -366,23 +410,26 @@
         background-color: $backmain-color;
         border: 0px;
         border-radius: 0px 5px 5px 0px;
-        }
+      }
+
       // 檔案上傳下方預覽區塊
       .backstage_input-file-img {
         border: 1px solid $black-color;
         width: 260px;
         height: 224px;
-        margin-top:20px;
+        margin-top: 20px;
         padding: 0;
         position: relative;
         background-color: #fff;
         opacity: 0.9;
-        i{
+
+        i {
           color: $black-color;
-          @include absolute(50%,50%);
-          transform:translate(50%, -50%);
+          @include absolute(50%, 50%);
+          transform: translate(50%, -50%);
           font-size: 48px;
         }
+
         img {
           max-width: 250px;
           max-height: 210px;
@@ -392,15 +439,18 @@
           transform: translate(-50%, -50%);
         }
       }
-      
+
     }
+
     // 新增的儲存按鈕
     .backstage-insert-btn {
       @include flex-box-center(50%);
       margin: 24px auto;
+
       @include laptop(1200px) {
         @include flex-box-center(80%);
       }
+
       button {
         width: 120px;
         font-size: 14px;
@@ -410,6 +460,34 @@
         border-radius: 5px;
         border: 0px;
       }
+
+      // 關閉按鈕
+      .backstage-insert_close {
+        margin-left: 24px;
+        background-color: $backSecond-color;
+      }
+
+    }
+
+    // 新增的儲存按鈕
+    .backstage-insert-btn {
+      @include flex-box-center(50%);
+      margin: 24px auto;
+
+      @include laptop(1200px) {
+        @include flex-box-center(80%);
+      }
+
+      button {
+        width: 120px;
+        font-size: 14px;
+        line-height: 45px;
+        color: $black-color;
+        background-color: $backmain-color;
+        border-radius: 5px;
+        border: 0px;
+      }
+
       // 關閉按鈕
       .backstage-insert_close {
         margin-left: 24px;
@@ -418,4 +496,3 @@
     }
   }
 }
-
