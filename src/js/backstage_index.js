@@ -1,17 +1,17 @@
 // ========expo1_參展廠商_查看按鈕========
-Vue.component('backstage_expo1_look',{
-    props:['row_data'],
-    data(){
-        return{
-            newdata:'',
+Vue.component('backstage_expo1_look', {
+    props: ['row_data'],
+    data() {
+        return {
+            newdata: '',
         }
     },
     methods: {
-        f_close(){
+        f_close() {
             this.$emit('lookclose')
         },
     },
-    template:`
+    template: `
     <article class="backstage_box">
         <h2>查看<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
         <div class="backstage_box-content pt-30">
@@ -46,138 +46,138 @@ Vue.component('backstage_expo1_look',{
             </div>
         </div>
     </article>`,
-    created () {
-        this.newdata = JSON.parse(JSON.stringify(this.row_data)) 
+    created() {
+        this.newdata = JSON.parse(JSON.stringify(this.row_data))
     },
 })
 // ========expo1_參展廠商_table========
-Vue.component('backstage_expo1',{
-    props:['tablename'],
-    data(){
-        return{
-            box:null, //判斷要打開的彈窗
-            titles:["廠商ID", "廠商名稱", "策展ID", "狀態", "操作"],
-            datas:'', //每一頁的所有資料
-            data_count:'', //資料庫的資料組數
-            search_word:'',
-            pages:1,//總共有的頁數，目前所在的頁數
-            perpage:10, //每頁顯示幾筆
-            inpage:1, //當前頁數
-            centersize:5, // 過多頁數時顯示筆數
-            row_data:null, //被選取那列的資料
-            row_index:null, //被選取那列的序號
+Vue.component('backstage_expo1', {
+    props: ['tablename'],
+    data() {
+        return {
+            box: null, //判斷要打開的彈窗
+            titles: ["廠商ID", "廠商名稱", "策展ID", "狀態", "操作"],
+            datas: '', //每一頁的所有資料
+            data_count: '', //資料庫的資料組數
+            search_word: '',
+            pages: 1,//總共有的頁數，目前所在的頁數
+            perpage: 10, //每頁顯示幾筆
+            inpage: 1, //當前頁數
+            centersize: 5, // 過多頁數時顯示筆數
+            row_data: null, //被選取那列的資料
+            row_index: null, //被選取那列的序號
         }
     },
-    methods:{
-        search(){
+    methods: {
+        search() {
             this.ajax(this.inpage)
         },
-        switchbtn(index){
+        switchbtn(index) {
             this.update(index)
-            if(this.datas[index].ONBOARD==true){
-                this.datas[index].ONBOARD=1
-            }else{
-                this.datas[index].ONBOARD=0
+            if (this.datas[index].ONBOARD == true) {
+                this.datas[index].ONBOARD = 1
+            } else {
+                this.datas[index].ONBOARD = 0
             }
         },
-        watch(data, index){
-            this.row_data=data
-            this.row_index=index
-            this.box='backstage_expo1_look'
+        watch(data, index) {
+            this.row_data = data
+            this.row_index = index
+            this.box = 'backstage_expo1_look'
         },
-        lookclose(){
-            this.box=null
+        lookclose() {
+            this.box = null
         },
-        changepage(inpage){
+        changepage(inpage) {
             this.ajax(inpage)
         },
-        previouspage(){
-            if(this.inpage>1){
-                let inpage=this.inpage-1
+        previouspage() {
+            if (this.inpage > 1) {
+                let inpage = this.inpage - 1
                 this.ajax(inpage)
             }
         },
-        nextpage(){
-            if(this.inpage<this.pages){
-                let inpage=this.inpage+1
+        nextpage() {
+            if (this.inpage < this.pages) {
+                let inpage = this.inpage + 1
                 this.ajax(inpage)
             }
-            
+
         },
-        ajax(inpage){
+        ajax(inpage) {
             fetch('php/backstage_expo1_select_company_info.php', {
                 method: 'POST',
-                headers:{
+                headers: {
                     'Content-Type': 'application/json'
                 },
-                body:JSON.stringify({
+                body: JSON.stringify({
                     inpage: inpage,
                     perpage: this.perpage,
                     search_word: this.search_word,
                 })
             })
-            .then(resp =>resp.json())
-            .then(resp => {
-                this.datas=resp.data
-                this.data_count=resp.data_count[0][0]
-                this.pages=Math.ceil(this.data_count/this.perpage)
-                this.inpage=inpage
-            })
+                .then(resp => resp.json())
+                .then(resp => {
+                    this.datas = resp.data
+                    this.data_count = resp.data_count[0][0]
+                    this.pages = Math.ceil(this.data_count / this.perpage)
+                    this.inpage = inpage
+                })
         },
-        update(index){
+        update(index) {
             fetch('php/backstage_expo1_update_company_info.php', {
                 method: 'POST',
-                headers:{
+                headers: {
                     'Content-Type': 'application/json'
                 },
-                body:JSON.stringify({
-                    ID:this.datas[index].ID,
-                    ONBOARD:this.datas[index].ONBOARD
+                body: JSON.stringify({
+                    ID: this.datas[index].ID,
+                    ONBOARD: this.datas[index].ONBOARD
                 })
-            }).then(resp =>resp.json())
-            .then(body =>{ 
-                let {successful} =body
-                if(successful){
-                    this.$swal({
-                        title: "修改成功",
-                        icon: "success",
-                        image: "",
-                    })
-                }else{
-                    this.$swal({
-                        title: "修改失敗",
-                        icon: "error",
-                        text: "請檢查廠商資料",
-                    });
-                } 
-            })
+            }).then(resp => resp.json())
+                .then(body => {
+                    let { successful } = body
+                    if (successful) {
+                        this.$swal({
+                            title: "修改成功",
+                            icon: "success",
+                            image: "",
+                        })
+                    } else {
+                        this.$swal({
+                            title: "修改失敗",
+                            icon: "error",
+                            text: "請檢查廠商資料",
+                        });
+                    }
+                })
         },
     },
-    computed:{
-        centerPages(){
-            let centerPage=this.inpage;
-            if(this.inpage>this.pages-3){
-                centerPage=this.pages-3
+    computed: {
+        centerPages() {
+            let centerPage = this.inpage;
+            if (this.inpage > this.pages - 3) {
+                centerPage = this.pages - 3
             }
-            if(this.inpage<4){
-                centerPage=4
+            if (this.inpage < 4) {
+                centerPage = 4
             }
-            if(this.pages<=this.centersize+2){
-                const centerArr=[]
-                for(let i=2; i<this.pages; i++){
+            if (this.pages <= this.centersize + 2) {
+                const centerArr = []
+                for (let i = 2; i < this.pages; i++) {
                     centerArr.push(i)
                 }
                 return centerArr
-            }else{
-                const centerArr=[]
-                for(let i=centerPage-2; i<=centerPage+2; i++){
+            } else {
+                const centerArr = []
+                for (let i = centerPage - 2; i <= centerPage + 2; i++) {
                     centerArr.push(i)
                 }
                 return centerArr
             }
         }
     },
-    template:`
+    template: `
     <article class="-margin0auto pt-40 pb-10 table_outer">
         <h3 class="bg-color pall-15">{{tablename}}</h3>
         <div class="pall-10 bg-in-bgcolor">
@@ -211,24 +211,24 @@ Vue.component('backstage_expo1',{
         </div>
         <component :is="box" @lookclose="lookclose" :row_data="row_data"></component>
     </article>`,
-    mounted(){
+    mounted() {
         fetch('php/backstage_expo1_select_company_info.php', {
             method: 'POST',
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 inpage: this.inpage,
                 perpage: this.perpage,
                 search_word: this.search_word,
             })
         })
-        .then(resp =>resp.json())
-        .then(resp =>{
-            this.datas=resp.data
-            this.data_count=resp.data_count[0][0]
-            this.pages=Math.ceil(this.data_count/this.perpage)
-        })
+            .then(resp => resp.json())
+            .then(resp => {
+                this.datas = resp.data
+                this.data_count = resp.data_count[0][0]
+                this.pages = Math.ceil(this.data_count / this.perpage)
+            })
     },
 })
 // ========info2_大會講師_修改按鈕========
@@ -331,53 +331,53 @@ Vue.component('backstage_info2_edit', {
     },
 })
 // ========info2_大會講師_後台新增按鈕========
-    Vue.component('backstage_info2_add', {
-        data() {
-            return {
-                newdata: [],
-                // image: "",
-                file_name: "",
-            }
+Vue.component('backstage_info2_add', {
+    data() {
+        return {
+            newdata: [],
+            // image: "",
+            file_name: "",
+        }
+    },
+    methods: {
+        f_save() {
+            this.$swal({
+                title: "儲存成功",
+                icon: "success",
+                image: "",
+            }).then((willInsert) => {
+                this.$emit('addsave', this.newdata)
+            })
         },
-        methods: {
-            f_save() {
-                this.$swal({
-                    title: "儲存成功",
-                    icon: "success",
-                    image: "",
-                }).then((willInsert) => {
-                    this.$emit('addsave', this.newdata)
-                })
-            },
-            f_close() {
-                this.$swal({
-                    title: "尚未存檔，是否關閉?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willInsert) => {
-                    if (willInsert) {
-                        this.$emit('addclose')
-                    }
-                })
-            },
-            choosephoto() {
-                let filechoose = document.querySelector(".filechoose")
-                filechoose.click()
-            },
-            selectedFile(e) {
-                let file = e.target.files[0];
-                let readFiles = new FileReader();
-                readFiles.readAsDataURL(file);
-                readFiles.addEventListener("load", this.loadImage);
-                this.file_name = file.name;
-                document.querySelector(".backstage_input-file-img").classList.remove('-hide')
-            },
-            loadImage(e) {
-                this.newdata[10] = e.target.result;
-            },
+        f_close() {
+            this.$swal({
+                title: "尚未存檔，是否關閉?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('addclose')
+                }
+            })
         },
-        template: `
+        choosephoto() {
+            let filechoose = document.querySelector(".filechoose")
+            filechoose.click()
+        },
+        selectedFile(e) {
+            let file = e.target.files[0];
+            let readFiles = new FileReader();
+            readFiles.readAsDataURL(file);
+            readFiles.addEventListener("load", this.loadImage);
+            this.file_name = file.name;
+            document.querySelector(".backstage_input-file-img").classList.remove('-hide')
+        },
+        loadImage(e) {
+            this.newdata[10] = e.target.result;
+        },
+    },
+    template: `
             <article class="backstage_box">
                     <h2>新增<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
                     <div class="backstage_box-content pt-30">
@@ -423,54 +423,54 @@ Vue.component('backstage_info2_edit', {
                     </div>
                 </article>`,
 
-    })
+})
 // ========info2_大會講師_table========
-    Vue.component('backstage_info2', {
-        props:['tablename'],
-        data(){
-            return{
-                box:null, //判斷要打開的彈窗
-                titles:["議程ID", "主題", "議程日期", "開始時間", "開始時間", "操作"],
-                datas:'', //每一頁的所有資料
-                data_count:'', //資料庫的資料組數
-                search_word:'',
-                pages:1,//總共有的頁數，目前所在的頁數
-                perpage:10, //每頁顯示幾筆
-                inpage:1, //當前頁數
-                centersize:5, // 過多頁數時顯示筆數
-                row_data:null, //被選取那列的資料
-                row_index:null, //被選取那列的序號
-            }
+Vue.component('backstage_info2', {
+    props: ['tablename'],
+    data() {
+        return {
+            box: null, //判斷要打開的彈窗
+            titles: ["議程ID", "主題", "議程日期", "開始時間", "開始時間", "操作"],
+            datas: '', //每一頁的所有資料
+            data_count: '', //資料庫的資料組數
+            search_word: '',
+            pages: 1,//總共有的頁數，目前所在的頁數
+            perpage: 10, //每頁顯示幾筆
+            inpage: 1, //當前頁數
+            centersize: 5, // 過多頁數時顯示筆數
+            row_data: null, //被選取那列的資料
+            row_index: null, //被選取那列的序號
+        }
+    },
+    methods: {
+        search() {
+            this.ajax(this.inpage)
         },
-        methods:{
-            search(){
-                this.ajax(this.inpage)
-            },
-            edit(data, index){
-                this.row_data=data
-                this.row_index=index
-                this.box='backstage_info2_edit'
-            },
-            del(index){
-                this.$swal({
-                    title: "是否確定刪除?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        fetch('php/backstage_info2_delete_agenda.php', {
-                            method: 'POST',
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body:JSON.stringify({
-                                ID:this.datas[index].ID,
-                            })
-                        }).then(resp =>resp.json())
-                        .then(body =>{
-                            let {successful} =body
-                            if(successful){
+        edit(data, index) {
+            this.row_data = data
+            this.row_index = index
+            this.box = 'backstage_info2_edit'
+        },
+        del(index) {
+            this.$swal({
+                title: "是否確定刪除?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    fetch('php/backstage_info2_delete_agenda.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ID: this.datas[index].ID,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
                                 this.$swal({
                                     title: "刪除成功",
                                     icon: "success",
@@ -486,51 +486,51 @@ Vue.component('backstage_info2_edit', {
                                 });
                             }
                         })
-                    }
-                })
-            },
-            editclose(){
-                this.box=null
-            },
-            editsave(){
-                this.box=null
-                this.ajax(this.inpage)
-            },
-            addclose(){
-                this.box=null
-            },
-            addsave(){
-                this.box=null
-                this.ajax(this.inpage)
-            },
-            changepage(inpage){
+                }
+            })
+        },
+        editclose() {
+            this.box = null
+        },
+        editsave() {
+            this.box = null
+            this.ajax(this.inpage)
+        },
+        addclose() {
+            this.box = null
+        },
+        addsave() {
+            this.box = null
+            this.ajax(this.inpage)
+        },
+        changepage(inpage) {
+            this.ajax(inpage)
+        },
+        previouspage() {
+            if (this.inpage > 1) {
+                let inpage = this.inpage - 1
                 this.ajax(inpage)
-            },
-            previouspage(){
-                if(this.inpage>1){
-                    let inpage=this.inpage-1
-                    this.ajax(inpage)
-                }
-            },
-            nextpage(){
-                if(this.inpage<this.pages){
-                    let inpage=this.inpage+1
-                    this.ajax(inpage)
-                }
-                
-            },
-            ajax(inpage){
-                fetch('php/backstage_info2_select_agenda.php', {
-                    method: 'POST',
-                    headers:{
-                        'Content-Type': 'application/json'
-                    },
-                    body:JSON.stringify({
-                        inpage: inpage,
-                        perpage: this.perpage,
-                        search_word: this.search_word,
-                    })
+            }
+        },
+        nextpage() {
+            if (this.inpage < this.pages) {
+                let inpage = this.inpage + 1
+                this.ajax(inpage)
+            }
+
+        },
+        ajax(inpage) {
+            fetch('php/backstage_info2_select_agenda.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    inpage: inpage,
+                    perpage: this.perpage,
+                    search_word: this.search_word,
                 })
+            })
                 .then(resp => resp.json())
                 .then(resp => {
                     this.datas = resp.data
@@ -593,18 +593,18 @@ Vue.component('backstage_info2_edit', {
             </div>
             <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
         </article>`,
-        mounted(){
-            fetch('php/backstage_info2_select_agenda.php', {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify({
-                    inpage: this.inpage,
-                    perpage: this.perpage,
-                    search_word: this.search_word,
-                })
+    mounted() {
+        fetch('php/backstage_info2_select_agenda.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                inpage: this.inpage,
+                perpage: this.perpage,
+                search_word: this.search_word,
             })
+        })
             .then(resp => resp.json())
             .then(resp => {
                 this.datas = resp.data
@@ -612,89 +612,89 @@ Vue.component('backstage_info2_edit', {
                 this.pages = Math.ceil(this.data_count / this.perpage)
             })
     },
-    })
+})
 // ========info1_展覽場次_修改按鈕========
-    Vue.component('backstage_info1_edit', {
-        props: ['row_data'],
-        data() {
-            return {
-                newdata: '',
-            }
-        },
-        methods: {
-            f_save() {
-                if (this.newdata.NAME && this.newdata.NAME != ""
-                    && this.newdata.START_TIME && this.newdata.START_TIME != ""
-                    && this.newdata.END_TIME && this.newdata.END_TIME != ""
-                    && this.newdata.OPEN && this.newdata.OPEN != ""
-                    && this.newdata.INTRODUCE && this.newdata.INTRODUCE != "") {
-                    // 確認所有欄位是否都有值
-                    // 確認開始日期是否小於結束日期
-                    let starttime = (this.newdata.START_TIME).split('-').join('')
-                    let endtime = (this.newdata.END_TIME).split('-').join('')
-                    if (starttime <= endtime) {
-                        console.log(starttime, endtime)
-                        fetch('php/backstage_info1_update_expo.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                ID: this.newdata.ID,
-                                NAME: this.newdata.NAME,
-                                START_TIME: this.newdata.START_TIME,
-                                END_TIME: this.newdata.END_TIME,
-                                OPEN: this.newdata.OPEN,
-                                INTRODUCE: this.newdata.INTRODUCE,
-                            })
-                        }).then(resp => resp.json())
-                            .then(body => {
-                                let { successful } = body
-                                if (successful) {
-                                    this.$swal({
-                                        title: "儲存成功",
-                                        icon: "success",
-                                        image: "",
-                                    }).then((willInsert) => {
-                                        this.$emit('addsave')
-                                    })
-                                } else {
-                                    this.$swal({
-                                        title: "儲存失敗",
-                                        icon: "error",
-                                        text: "請檢查欄位",
-                                    });
-                                }
-                            })
-                    } else {
-                        this.$swal({
-                            title: "儲存失敗",
-                            icon: "error",
-                            text: "請確認日期是否正確",
-                        });
-                    }
+Vue.component('backstage_info1_edit', {
+    props: ['row_data'],
+    data() {
+        return {
+            newdata: '',
+        }
+    },
+    methods: {
+        f_save() {
+            if (this.newdata.NAME && this.newdata.NAME != ""
+                && this.newdata.START_TIME && this.newdata.START_TIME != ""
+                && this.newdata.END_TIME && this.newdata.END_TIME != ""
+                && this.newdata.OPEN && this.newdata.OPEN != ""
+                && this.newdata.INTRODUCE && this.newdata.INTRODUCE != "") {
+                // 確認所有欄位是否都有值
+                // 確認開始日期是否小於結束日期
+                let starttime = (this.newdata.START_TIME).split('-').join('')
+                let endtime = (this.newdata.END_TIME).split('-').join('')
+                if (starttime <= endtime) {
+                    console.log(starttime, endtime)
+                    fetch('php/backstage_info1_update_expo.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ID: this.newdata.ID,
+                            NAME: this.newdata.NAME,
+                            START_TIME: this.newdata.START_TIME,
+                            END_TIME: this.newdata.END_TIME,
+                            OPEN: this.newdata.OPEN,
+                            INTRODUCE: this.newdata.INTRODUCE,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
+                                this.$swal({
+                                    title: "儲存成功",
+                                    icon: "success",
+                                    image: "",
+                                }).then((willInsert) => {
+                                    this.$emit('addsave')
+                                })
+                            } else {
+                                this.$swal({
+                                    title: "儲存失敗",
+                                    icon: "error",
+                                    text: "請檢查欄位",
+                                });
+                            }
+                        })
                 } else {
                     this.$swal({
                         title: "儲存失敗",
                         icon: "error",
-                        text: "所有欄位皆須填寫",
+                        text: "請確認日期是否正確",
                     });
                 }
-            },
-            f_close() {
+            } else {
                 this.$swal({
-                    title: "尚未存檔，是否關閉?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willInsert) => {
-                    if (willInsert) {
-                        this.$emit('editclose')
-                    }
-                })
-            },
+                    title: "儲存失敗",
+                    icon: "error",
+                    text: "所有欄位皆須填寫",
+                });
+            }
         },
-        template: `
+        f_close() {
+            this.$swal({
+                title: "尚未存檔，是否關閉?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('editclose')
+                }
+            })
+        },
+    },
+    template: `
             <article class="backstage_box">
                 <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
                 <div class="backstage_box-content pt-30">
@@ -726,89 +726,89 @@ Vue.component('backstage_info2_edit', {
                     </div>
                 </div>
             </article>`,
-        created() {
-            this.newdata = JSON.parse(JSON.stringify(this.row_data))
-        },
-    })
+    created() {
+        this.newdata = JSON.parse(JSON.stringify(this.row_data))
+    },
+})
 // ========info1_展覽場次_後台新增按鈕========
-    Vue.component('backstage_info1_add', {
-        data() {
-            return {
-                newdata: {},
-            }
-        },
-        methods: {
-            f_save() {
-                if (this.newdata.NAME && this.newdata.NAME != ""
-                    && this.newdata.START_TIME && this.newdata.START_TIME != ""
-                    && this.newdata.END_TIME && this.newdata.END_TIME != ""
-                    && this.newdata.OPEN && this.newdata.OPEN != ""
-                    && this.newdata.INTRODUCE && this.newdata.INTRODUCE != "") {
-                    // 確認所有欄位是否都有值
-                    // 確認開始日期是否小於結束日期
-                    let starttime = (this.newdata.START_TIME).split('-').join('')
-                    let endtime = (this.newdata.END_TIME).split('-').join('')
-                    if (starttime <= endtime) {
-                        fetch('php/backstage_info1_insert_expo.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                NAME: this.newdata.NAME,
-                                START_TIME: this.newdata.START_TIME,
-                                END_TIME: this.newdata.END_TIME,
-                                OPEN: this.newdata.OPEN,
-                                INTRODUCE: this.newdata.INTRODUCE,
-                            })
-                        }).then(resp => resp.json())
-                            .then(body => {
-                                let { successful } = body
-                                if (successful) {
-                                    this.$swal({
-                                        title: "儲存成功",
-                                        icon: "success",
-                                        image: "",
-                                    }).then((willInsert) => {
-                                        this.$emit('addsave')
-                                    })
-                                } else {
-                                    this.$swal({
-                                        title: "儲存失敗",
-                                        icon: "error",
-                                        text: "請檢查欄位",
-                                    });
-                                }
-                            })
-                    } else {
-                        this.$swal({
-                            title: "儲存失敗",
-                            icon: "error",
-                            text: "請確認日期是否正確",
-                        });
-                    }
+Vue.component('backstage_info1_add', {
+    data() {
+        return {
+            newdata: {},
+        }
+    },
+    methods: {
+        f_save() {
+            if (this.newdata.NAME && this.newdata.NAME != ""
+                && this.newdata.START_TIME && this.newdata.START_TIME != ""
+                && this.newdata.END_TIME && this.newdata.END_TIME != ""
+                && this.newdata.OPEN && this.newdata.OPEN != ""
+                && this.newdata.INTRODUCE && this.newdata.INTRODUCE != "") {
+                // 確認所有欄位是否都有值
+                // 確認開始日期是否小於結束日期
+                let starttime = (this.newdata.START_TIME).split('-').join('')
+                let endtime = (this.newdata.END_TIME).split('-').join('')
+                if (starttime <= endtime) {
+                    fetch('php/backstage_info1_insert_expo.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            NAME: this.newdata.NAME,
+                            START_TIME: this.newdata.START_TIME,
+                            END_TIME: this.newdata.END_TIME,
+                            OPEN: this.newdata.OPEN,
+                            INTRODUCE: this.newdata.INTRODUCE,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
+                                this.$swal({
+                                    title: "儲存成功",
+                                    icon: "success",
+                                    image: "",
+                                }).then((willInsert) => {
+                                    this.$emit('addsave')
+                                })
+                            } else {
+                                this.$swal({
+                                    title: "儲存失敗",
+                                    icon: "error",
+                                    text: "請檢查欄位",
+                                });
+                            }
+                        })
                 } else {
                     this.$swal({
                         title: "儲存失敗",
                         icon: "error",
-                        text: "所有欄位皆須填寫",
+                        text: "請確認日期是否正確",
                     });
                 }
-            },
-            f_close() {
+            } else {
                 this.$swal({
-                    title: "尚未存檔，是否關閉?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willInsert) => {
-                    if (willInsert) {
-                        this.$emit('addclose')
-                    }
-                })
-            },
+                    title: "儲存失敗",
+                    icon: "error",
+                    text: "所有欄位皆須填寫",
+                });
+            }
         },
-        template: `
+        f_close() {
+            this.$swal({
+                title: "尚未存檔，是否關閉?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willInsert) => {
+                if (willInsert) {
+                    this.$emit('addclose')
+                }
+            })
+        },
+    },
+    template: `
             <article class="backstage_box">
                 <h2>新增<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
                 <div class="backstage_box-content pt-30">
@@ -841,54 +841,54 @@ Vue.component('backstage_info2_edit', {
                 </div>
             </article>`,
 
-    })
+})
 // ========info1_展覽場次_table========
-    Vue.component('backstage_info1',{
-        props:['tablename'],
-        data(){
-            return{
-                box:null, //判斷要打開的彈窗
-                titles:["策展ID", "策展名稱", "活動開始", "狀態", "操作"],
-                datas:'', //每一頁的所有資料
-                data_count:'', //資料庫的資料組數
-                search_word:'',
-                pages:1,//總共有的頁數，目前所在的頁數
-                perpage:10, //每頁顯示幾筆
-                inpage:1, //當前頁數
-                centersize:5, // 過多頁數時顯示筆數
-                row_data:null, //被選取那列的資料
-                row_index:null, //被選取那列的序號
-            }
+Vue.component('backstage_info1', {
+    props: ['tablename'],
+    data() {
+        return {
+            box: null, //判斷要打開的彈窗
+            titles: ["策展ID", "策展名稱", "活動開始", "狀態", "操作"],
+            datas: '', //每一頁的所有資料
+            data_count: '', //資料庫的資料組數
+            search_word: '',
+            pages: 1,//總共有的頁數，目前所在的頁數
+            perpage: 10, //每頁顯示幾筆
+            inpage: 1, //當前頁數
+            centersize: 5, // 過多頁數時顯示筆數
+            row_data: null, //被選取那列的資料
+            row_index: null, //被選取那列的序號
+        }
+    },
+    methods: {
+        search() {
+            this.ajax(this.inpage)
         },
-        methods:{
-            search(){
-                this.ajax(this.inpage)
-            },
-            edit(data, index){
-                this.row_data=data
-                this.row_index=index
-                this.box='backstage_info1_edit'
-            },
-            del(index){
-                this.$swal({
-                    title: "是否確定刪除?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        fetch('php/backstage_info1_delete_expo.php', {
-                            method: 'POST',
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body:JSON.stringify({
-                                ID:this.datas[index].ID,
-                            })
-                        }).then(resp =>resp.json())
-                        .then(body =>{
-                            let {successful} =body
-                            if(successful){
+        edit(data, index) {
+            this.row_data = data
+            this.row_index = index
+            this.box = 'backstage_info1_edit'
+        },
+        del(index) {
+            this.$swal({
+                title: "是否確定刪除?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    fetch('php/backstage_info1_delete_expo.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ID: this.datas[index].ID,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
                                 this.$swal({
                                     title: "刪除成功",
                                     icon: "success",
@@ -904,51 +904,51 @@ Vue.component('backstage_info2_edit', {
                                 });
                             }
                         })
-                    }
-                })
-            },
-            editclose(){
-                this.box=null
-            },
-            editsave(){
-                this.box=null
-                this.ajax(this.inpage)
-            },
-            addclose(){
-                this.box=null
-            },
-            addsave(){
-                this.box=null
-                this.ajax(this.inpage)
-            },
-            changepage(inpage){
+                }
+            })
+        },
+        editclose() {
+            this.box = null
+        },
+        editsave() {
+            this.box = null
+            this.ajax(this.inpage)
+        },
+        addclose() {
+            this.box = null
+        },
+        addsave() {
+            this.box = null
+            this.ajax(this.inpage)
+        },
+        changepage(inpage) {
+            this.ajax(inpage)
+        },
+        previouspage() {
+            if (this.inpage > 1) {
+                let inpage = this.inpage - 1
                 this.ajax(inpage)
-            },
-            previouspage(){
-                if(this.inpage>1){
-                    let inpage=this.inpage-1
-                    this.ajax(inpage)
-                }
-            },
-            nextpage(){
-                if(this.inpage<this.pages){
-                    let inpage=this.inpage+1
-                    this.ajax(inpage)
-                }
-                
-            },
-            ajax(inpage){
-                fetch('php/backstage_info1_select_expo.php', {
-                    method: 'POST',
-                    headers:{
-                        'Content-Type': 'application/json'
-                    },
-                    body:JSON.stringify({
-                        inpage: inpage,
-                        perpage: this.perpage,
-                        search_word: this.search_word,
-                    })
+            }
+        },
+        nextpage() {
+            if (this.inpage < this.pages) {
+                let inpage = this.inpage + 1
+                this.ajax(inpage)
+            }
+
+        },
+        ajax(inpage) {
+            fetch('php/backstage_info1_select_expo.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    inpage: inpage,
+                    perpage: this.perpage,
+                    search_word: this.search_word,
                 })
+            })
                 .then(resp => resp.json())
                 .then(resp => {
                     this.datas = resp.data
@@ -1010,18 +1010,18 @@ Vue.component('backstage_info2_edit', {
             </div>
             <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
         </article>`,
-        mounted(){
-            fetch('php/backstage_info1_select_expo.php', {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify({
-                    inpage: this.inpage,
-                    perpage: this.perpage,
-                    search_word: this.search_word,
-                })
+    mounted() {
+        fetch('php/backstage_info1_select_expo.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                inpage: this.inpage,
+                perpage: this.perpage,
+                search_word: this.search_word,
             })
+        })
             .then(resp => resp.json())
             .then(resp => {
                 this.datas = resp.data
@@ -1029,7 +1029,7 @@ Vue.component('backstage_info2_edit', {
                 this.pages = Math.ceil(this.data_count / this.perpage)
             })
     },
-    })
+})
 // ========頁面vue========
 const vm = new Vue({
     el: "#page",
@@ -1052,56 +1052,56 @@ const vm = new Vue({
                     onpage: false,
                 }, {
                     pagename: "聯絡我們",
-                    href:"backstage_info4",
-                    onpage:false,
+                    href: "backstage_info4",
+                    onpage: false,
                 },],],
-                ["會員管理",[
-                    {
-                        pagename: "來賓管理",
-                        href:"backstage_member1",
-                        onpage:false,
-                    },{
-                        pagename: "廠商管理",
-                        href:"backstage_member2",
-                        onpage:false,
-                    },
-                ],],["活動管理",[
-                    {
-                        pagename: "參展廠商",
-                        href:"backstage_expo1",
-                        onpage:false,
-                    },{
-                        pagename: "直播時段",
-                        href:"backstage_expo2",
-                        onpage:false,
-                    },{
-                        pagename: "直播審核表",
-                        href:"backstage_expo3",
-                        onpage:false,
-                    },{
-                        pagename: "直播留言板",
-                        href:"backstage_expo4",
-                        onpage:false,
-                    },
-                ],],
-            ],
-            tablename:"策展場次",
+            ["會員管理", [
+                {
+                    pagename: "來賓管理",
+                    href: "backstage_member1",
+                    onpage: false,
+                }, {
+                    pagename: "廠商管理",
+                    href: "backstage_member2",
+                    onpage: false,
+                },
+            ],], ["活動管理", [
+                {
+                    pagename: "參展廠商",
+                    href: "backstage_expo1",
+                    onpage: false,
+                }, {
+                    pagename: "直播時段",
+                    href: "backstage_expo2",
+                    onpage: false,
+                }, {
+                    pagename: "直播審核表",
+                    href: "backstage_expo3",
+                    onpage: false,
+                }, {
+                    pagename: "直播留言板",
+                    href: "backstage_expo4",
+                    onpage: false,
+                },
+            ],],
+        ],
+        tablename: "策展場次",
+    },
+    methods: {
+        aside_toggle() {
+            this.aside_btn = !this.aside_btn
         },
-        methods: {
-            aside_toggle() {
-                this.aside_btn = !this.aside_btn
-            },
-            changepage(index, index2){
-                for(let i=0; i<this.pages.length; i++){
-                    for(let j=0; j<this.pages[i][1].length; j++){
-                        this.pages[i][1][j].onpage=false
-                    }
-                }//綠色全拿掉 下面再接回綠色
-                this.pages[index][1][index2].onpage=true
-                this.table=this.pages[index][1][index2].href
-                this.tablename=this.pages[index][1][index2].pagename
-            },
-        
+        changepage(index, index2) {
+            for (let i = 0; i < this.pages.length; i++) {
+                for (let j = 0; j < this.pages[i][1].length; j++) {
+                    this.pages[i][1][j].onpage = false
+                }
+            }//綠色全拿掉 下面再接回綠色
+            this.pages[index][1][index2].onpage = true
+            this.table = this.pages[index][1][index2].href
+            this.tablename = this.pages[index][1][index2].pagename
+        },
+
         changepage(index, index2) {
             for (let i = 0; i < this.pages.length; i++) {
                 for (let j = 0; j < this.pages[i][1].length; j++) {
