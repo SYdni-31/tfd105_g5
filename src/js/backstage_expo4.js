@@ -130,22 +130,20 @@ Vue.component('backstage_expo4',{
         <h3 class="bg-color pall-15">{{tablename}}</h3>
         <div class="pall-10 bg-in-bgcolor">
             <input type='text' name='search' id='search' class='mb-2 mr-2' v-model="search_word" @keyup="search"><label for='search'><i class="fa-solid fa-magnifying-glass"></i></label>
-            <ul class="bg-color -margin0auto backstage-grid title backstage-grid_expo1">
+            <ul class="bg-color -margin0auto backstage-grid title backstage-grid_expo4">
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
-            <ul class="bg-color -margin0auto backstage-grid backstage-grid_expo1" v-for="(data, index) in datas">
-                <li class="bg-color bg-in-secondcolor">{{data.COMPANY_ID}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data.NAME}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data.EXPO_NAME}}</li>
-                <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
-                    下架
-                    <div class="custom-control custom-switch">   
-                        <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.ONBOARD" @change="switchbtn(index)">
-                        <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
+            <ul class="bg-color -margin0auto backstage-grid backstage-grid_expo4" v-for="(data, index) in datas">
+                <li class="bg-color bg-in-secondcolor">{{data['ID']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['LIVE_LIST_ID']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['COMPANY_ID'] || data['GUEST_ID']}}</li>  <!--COMPANY_ID/ GUEST_ID條件顯示-->
+                <li class="bg-color bg-in-secondcolor">{{data['CONTENT']}}</li>
+                <li class="bg-color bg-in-secondcolor">
+                    <div class="backstage_btn_td">
+                        <button @click="del(index)" class="backstage_btn backstage_btn_bad ml-2">刪除</button>
                     </div>
-                    上架
-                </div> </li>
-                <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="watch(data, index)" class="backstage_btn backstage_btn_short">查看</button></div></li>
+                </li>
+
             </ul>
             <div class='backstage_pages mt-10'>
                 <button class='backstage_pages_btn_left mr-2'  @click.stop="previouspage">上一頁</button>
