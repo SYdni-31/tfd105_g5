@@ -1,7 +1,7 @@
 <?php
     include("connection.php");
     // 選取全部數量
-    $sql= "select count(*) from NEWS";
+    $sql= "select count(*) from NEWS  where STATUS !=\"D\" ";//狀態不等於d的都可以出來 
     $statement = $pdo->prepare($sql);
     $statement->execute();
 
@@ -10,7 +10,7 @@
     // 選取第x頁資料(分頁)  // json_decode — 對 JSON 格式的字符串進行編碼//file_get_contents() 函數把整個文件讀入一個字符串中。
     $select2 = json_decode(file_get_contents("php://input"), true);//變數可以訂 不用改這是 讓php可以讀 input進來資料 PHP接受JSON POST
 
-    $sql2= "set @a= concat('select * from NEWS limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";//字串串接 計算 改select * from EXPO
+    $sql2= "set @a= concat('select * from NEWS where STATUS !=\"D\"  limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";//字串串接 計算 改select * from EXPO
     $statement2 = $pdo->prepare($sql2);
     $statement2->bindValue(":inpage", $select2["inpage"], PDO::PARAM_INT); //大寫
     $statement2->bindValue(":perpage", $select2["perpage"], PDO::PARAM_INT);

@@ -18,7 +18,6 @@ Vue.component('backstage_expo2_edit', {
                 // 確認開始時間是否小於結束時間
                 let starttime = (this.newdata.START_TIME).split(':').join('');
                 let endtime = (this.newdata.END_TIME).split(':').join('');
-                let open ='1';
                 if (starttime.length == '6') {
                     starttime = starttime.substr(0, 4);
                 }
@@ -34,49 +33,37 @@ Vue.component('backstage_expo2_edit', {
                     if (end_value.length == '5') {
                         end_value = end_value + ':00';
                     }
-                    // console.log("this.newdata.OPEN"+this.newdata.OPEN);
-
-                    if (this.newdata.OPEN == "啟用"){
-                        open ='1';
-                        // console.log("啟用");
-                    }
-                    if (this.newdata.OPEN == "不啟用"){
-                        // console.log("不啟用");
-                        open ='0';
-                    }
-                    if (this.newdata.START_TIME)
-                        fetch('php/backstage_expo2_update_expo.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            // 欄位全部大寫
-                            body: JSON.stringify({
-                                ID: this.newdata.ID,
-                                START_TIME: this.newdata.START_TIME,
-                                END_TIME: this.newdata.END_TIME,
-                                STATUS: "U",
-                                OPEN: open,
-                            })
-                        }).then(resp => resp.json())
-                            .then(body => {
-                                let { successful } = body
-                                if (successful) {
-                                    this.$swal({
-                                        title: "儲存成功",
-                                        icon: "success",
-                                        image: "",
-                                    }).then((willInsert) => {
-                                        this.$emit('addsave')
-                                    })
-                                } else {
-                                    this.$swal({
-                                        title: "儲存失敗",
-                                        icon: "error",
-                                        text: "請檢查欄位",
-                                    });
-                                }
-                            })
+                    fetch('php/backstage_expo2_update_expo.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ID: this.newdata.ID,
+                            START_TIME: this.newdata.START_TIME,
+                            END_TIME: this.newdata.END_TIME,
+                            STATUS: "U",
+                            OPEN: this.newdata.OPEN,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
+                                this.$swal({
+                                    title: "儲存成功",
+                                    icon: "success",
+                                    image: "",
+                                }).then((willInsert) => {
+                                    this.$emit('addsave')
+                                })
+                            } else {
+                                this.$swal({
+                                    title: "儲存失敗",
+                                    icon: "error",
+                                    text: "請檢查欄位",
+                                });
+                            }
+                        })
                 } else {
                     this.$swal({
                         title: "儲存失敗",
@@ -117,8 +104,8 @@ Vue.component('backstage_expo2_edit', {
                     <input type="text" name="ID" id="ID" v-model="newdata.ID" disabled>
                 </li>
                 <div class="mb-16 input-short"><label>直播狀態</label><br>
-                    <label for="working"><input type="radio" name="OPEN" id="working"  value="啟用" v-model="newdata.OPEN">啟用</label>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork"  value="不啟用" v-model="newdata.OPEN">不啟用</label>
+                    <label for="working"><input type="radio" name="OPEN" id="working"  value="1" v-model="newdata.OPEN">啟用</label>
+                    <label for="notwork"><input type="radio" name="OPEN" id="notwork"  value="0" v-model="newdata.OPEN">不啟用</label>
                 </div>
                 <li class="mb-16 input-short"><label for="START_TIME">開始時間</label>
                     <input type="time" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
@@ -223,8 +210,8 @@ Vue.component('backstage_expo2_add', {
                     <input type="text" name="id" id="id" value="自動編號" disabled>
                 </li>
                 <div class="mb-16 input-short"><label>直播狀態</label><br>
-                    <label for="working"><input type="radio" name="OPEN" id="working" value="0" v-model="newdata.OPEN">啟用</label>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork" value="1" v-model="newdata.OPEN">不啟用</label>
+                    <label for="working"><input type="radio" name="OPEN" id="working" value="1" v-model="newdata.OPEN">啟用</label>
+                    <label for="notwork"><input type="radio" name="OPEN" id="notwork" value="0" v-model="newdata.OPEN">不啟用</label>
                 </div>
                 <li class="mb-16 input-short"><label for="START_TIME">活動開始</label>
                     <input type="time" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
@@ -256,12 +243,21 @@ Vue.component('backstage_expo2', {
             centersize: 5, // 過多頁數時顯示筆數
             row_data: null, //被選取那列的資料
             row_index: null, //被選取那列的序號
-            search_word:'',
+            search_word: '',
         }
     },
     methods: {
-        search(){
+        search() {
             this.ajax(this.inpage)
+        },
+        switchbtn(index) {
+            this.update(index)
+            console.log("open" + this.datas[index].OPEN);
+            if (this.datas[index].OPEN == true) {
+                this.datas[index].OPEN = 1
+            } else {
+                this.datas[index].OPEN = 0
+            }
         },
         edit(data, index) {
             this.row_data = data
@@ -375,7 +371,36 @@ Vue.component('backstage_expo2', {
                     this.pages = Math.ceil(this.data_count / this.perpage)
                     this.inpage = inpage
                 })
-        }
+        },
+        update(index) {
+            fetch('php/backstage_expo2_update_open.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ID: this.datas[index].ID,
+                    OPEN: this.datas[index].OPEN
+                })
+            }).then(resp => resp.json())
+                .then(body => {
+                    let { successful } = body
+                    if (successful) {
+                        this.$swal({
+                            title: "修改成功",
+                            icon: "success",
+                            image: "",
+                        })
+                    } else {
+                        this.$swal({
+                            title: "修改失敗",
+                            icon: "error",
+                            text: "請檢查資料",
+                        });
+                    }
+                })
+        },
+
     },
     computed: {
         centerPages() {
@@ -414,7 +439,14 @@ Vue.component('backstage_expo2', {
                 <li class="bg-color bg-in-secondcolor">{{data[0]}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data[1]}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data[2]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[4]}}</li>
+                <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
+                    下架
+                    <div class="custom-control custom-switch">   
+                        <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN" @change="switchbtn(index)">
+                        <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
+                    </div>
+                    上架
+                </div> </li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
             <div class='backstage_pages mt-10'>
