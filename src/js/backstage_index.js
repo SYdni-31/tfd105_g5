@@ -31,7 +31,7 @@ Vue.component('backstage_expo1_look',{
                 <li class="mb-16 input-long"><label for="INTRODUCE">廠商介紹</label>
                     <textarea name="INTRODUCE" id="INTRODUCE" v-model="newdata.INTRODUCE"  disabled></textarea>
                 </li>
-                <li class="backstage_extend">
+                <li class="mb-16 backstage_extend">
                 <div class='pall-5'><img :src="newdata.LOGO"><br>廠商LOGO</div>
                 <div class='pall-5'><img :src="['img/extend/booth' + newdata.TYPE + '.png']"><br>攤位樣式</div>
                 <div class='pall-5'><img :src="['img/extend/robot' + newdata.ROBOT + '.png']"><br>客服機器人</div>

@@ -13,13 +13,6 @@ Vue.component('backstage_member2_edit', {
                 && this.newdata.EMAIL && this.newdata.EMAIL != ""
                 && this.newdata.OPEN != null && this.newdata.OPEN != undefined) {
                 // 確認所有欄位是否都有值
-                let open = '1';
-                if (this.newdata.OPEN === "尚未開始") {
-                    open = "0";
-                }
-                if (this.newdata.OPEN === "進行中") {
-                    open = "1";
-                }
                 
                 console.log("hi");
                 fetch('php/backstage_member2_update_company.php', {
@@ -33,7 +26,7 @@ Vue.component('backstage_member2_edit', {
                         NAME: this.newdata.NAME,
                         EMAIL: this.newdata.EMAIL,
                         STATUS: "U",
-                        OPEN: open,
+                        OPEN: this.newdata.OPEN,
                     })
                 }).then(resp => resp.json())
                     .then(body => {

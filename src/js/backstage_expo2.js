@@ -440,12 +440,12 @@ Vue.component('backstage_expo2', {
                 <li class="bg-color bg-in-secondcolor">{{data[1]}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data[2]}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
-                    下架
+                    不啟用
                     <div class="custom-control custom-switch">   
                         <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN" @change="switchbtn(index)">
                         <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
                     </div>
-                    上架
+                    啟用
                 </div> </li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
