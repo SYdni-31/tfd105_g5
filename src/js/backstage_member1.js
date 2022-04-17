@@ -108,6 +108,7 @@ Vue.component('backstage_member1',{
             titles:["來賓ID", "來賓名稱", "單位", "電子郵件", "登入日期", "操作"],  // 對照figma，來賓名稱etc.
             datas:'', //每一頁的所有資料
             data_count:'', //資料庫的資料組數
+            search_word:'',
             pages:1,//總共有的頁數，目前所在的頁數
             perpage:10, //每頁顯示幾筆
             inpage:1, //當前頁數
@@ -117,6 +118,9 @@ Vue.component('backstage_member1',{
         }
     },
     methods:{
+        search(){
+            this.ajax(this.inpage)
+        },
         edit(data, index){
             this.row_data=data
             this.row_index=index
@@ -201,6 +205,7 @@ Vue.component('backstage_member1',{
                 body:JSON.stringify({
                     inpage: inpage,
                     perpage: this.perpage,
+                    search_word: this.search_word,
                 })
             })
             .then(resp =>resp.json())
@@ -240,6 +245,7 @@ Vue.component('backstage_member1',{
     <article class="-margin0auto pt-10 pb-10 table_outer">
         <h3 class="bg-color pall-15">{{tablename}}</h3>
         <div class="pall-10 bg-in-bgcolor">
+            <input type='text' name='search' id='search' class='mb-2 mr-2' v-model="search_word" @keyup="search"><label for='search'><i class="fa-solid fa-magnifying-glass"></i></label>
             <ul class="bg-color -margin0auto backstage-grid title backstage-grid_member1">
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
@@ -277,6 +283,7 @@ Vue.component('backstage_member1',{
             body:JSON.stringify({
                 inpage: this.inpage,
                 perpage: this.perpage,
+                search_word: this.search_word,
             })
         })
         .then(resp =>resp.json())

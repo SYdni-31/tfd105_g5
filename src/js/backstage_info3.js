@@ -119,31 +119,40 @@ Vue.component('backstage_info3_edit', {
 Vue.component('backstage_info3_add', {
     data() {
         return {
-            newdata: {},
+            newdata: {
+               TIME:'',
+               CONTENT:'',
+               TITLE:'',
+               LINK:'',
+               PHOTO:'',
+               STATUS:'',
+            },
+            file_name:'',
+            file:'',
         }
     },
     methods: {
         f_save() {
-            if (this.newdata.TITLE && this.newdata.TITLE != ""
-                && this.newdata.CONTENT && this.newdata.CONTENT != ""
-                && this.newdata.PHOTO && this.newdata.PHOTO != ""
-                && this.newdata.LINK && this.newdata.LINK != ""
-                && this.newdata.TIME && this.newdata.TIME != ""
-                && this.newdata.STATUS && this.newdata.STATUS != "") {
+            if (this.newdata.TIME != "" &&
+                this.newdata.CONTENT != ""&&
+                this.newdata.TITLE != ""&&
+                this.newdata.LINK != ""&&
+                this.newdata.PHOTO!= ""&&
+                this.newdata.STATUS != "") {
                 // 確認所有欄位是否都有值 
-
+                form_data = new FormData();
+                form_data.append('datas',JSON.stringify({
+                TIME:this.newdata.TIME, //前面TIME 傳給PHP PHP裡
+                CONTENT:this.newdata.CONTENT,
+                TITLE:this.newdata.TITLE,
+                LINK:this.newdata.LINK,
+                PHOTO:this.newdata.PHOTO,
+                STATUS:this.newdata.STATUS,
+                }))
+                form_data.append('file',this.file);
                 fetch('php/backstage_info3_insert_expo.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        NAME: this.newdata.NAME,
-                        TITLE: this.newdata.TITLE,
-                        END_TIME: this.newdata.END_TIME,
-                        OPEN: this.newdata.OPEN,
-                        INTRODUCE: this.newdata.INTRODUCE,
-                    })
+                    body:form_data,
                 }).then(resp => resp.json())
                     .then(body => {
                         let { successful } = body
@@ -183,23 +192,33 @@ Vue.component('backstage_info3_add', {
                 }
             })
         },
-        // selectedFile(e) {
-        //     let file = e.target.files[0];
-        //     // let file = e.target.file.item(0);
-        //     console.log("vue的:" + file);
-    
-        //     let readFiles = new FileReader(); //js的內建物件，才可以找到路徑，宣告後可以使用屬性和方法
-        //     readFiles.readAsDataURL(file); //這是方法，如果寫別的讀取別的
-        //     readFiles.addEventListener("load", this.loadImage);
-        //     this.file_name = file.name;
-        //     $(".file-text").text(file.name);
-        //     $(".photo-text").text(file.name);
-        //     $(".fa-image").addClass("input-p-hide");
-        //     $(".file-text").removeClass("file-text-hide");
-        //   },
-        //   loadImage(e) {
-        //     this.image = e.target.result;
-        //   },
+        choosephoto() {
+            let filechoose = document.querySelector(".filechoose")
+            filechoose.click()
+        },
+        selectedFile(e) {
+            let file = e.target.files[0];
+            let readFiles = new FileReader();
+            readFiles.readAsDataURL(file);
+            readFiles.addEventListener("load", (e)=>{
+                this.newdata.PHOTO = e.target.result;
+            });
+            this.file_name = file.name;
+            this.file=e.target.files[0]
+            document.querySelector(".icon_img").style.opacity = "0";
+        },
+        dropfile(e){
+            if(e.dataTransfer.files.length>0){
+                let reader= new FileReader()
+                reader.readAsDataURL(e.dataTransfer.files[0])
+                reader.addEventListener("load", () => {
+                    this.newdata.PHOTO = reader.result;
+                })
+                this.file_name = e.dataTransfer.files[0].name;
+                this.file=e.dataTransfer.files[0]
+                document.querySelector(".icon_img").style.opacity = "0";
+            }
+        },
     },
     template: `
     <article class="backstage_box">
@@ -221,10 +240,16 @@ Vue.component('backstage_info3_add', {
                 <li class="mb-16 input-long"><label for="LINK">新聞連結</label>
                     <input type="text" name="LINK" id="LINK" v-model="newdata.LINK">
                 </li>
-                <li class="mb-16 input-long input-file"><label for="PHOTO">新聞照片</label>
-                    <input type="file" name="PHOTO" id="PHOTO"@change="selectedFile" v-model="newdata.PHOTO">
-
-                </li>
+                <div class="mb-16 input-long input-file">
+                <label for="PHOTO">新聞照片</label>
+                <input type="file" class="filechoose -hide" name="filechoose" id="filechoose" @change="selectedFile">
+                <input type="text" class="filename" name="filename" id="filename" :value="file_name" disabled>
+                <button @click="choosephoto">上傳</button>
+                <div class="backstage_input-file-img"  @dragover.prevent="" @drop.prevent="dropfile">
+                <i class="fa-solid fa-image icon_img"></i>
+                <img id="PHOTO" class="img-update" :src="newdata.PHOTO"><!--雙向綁定到base64為了讓圖片顯示在頁面上-->
+            </div>
+                </div>
                 <div class="mb-16"><label>審核狀態</label><br>
                     <label for="show"><input type="radio" name="STATUS" id="notwork" value="顯示" v-model="newdata.STATUS">顯示</label>
                     <label for="notshow"><input type="radio" name="STATUS" id="working" value="不顯示" v-model="newdata.STATUS">不顯示</label>

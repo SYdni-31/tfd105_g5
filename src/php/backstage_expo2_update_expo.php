@@ -13,7 +13,7 @@
     $statement->bindValue(":OPEN", $select["OPEN"] , PDO::PARAM_INT);
     $statement->execute();
     $resultCount = $statement->rowCount();
-    
+    print_r($resultCount);
     if($resultCount > 0){
     $resp["successful"] = true;
     
