@@ -147,7 +147,7 @@
     }
 
     &.backstage-grid_info3 {
-      grid-template-columns: 10% 30% 20% 15% 25%;
+      grid-template-columns: 10% 30% 25% 15% 20%;
     }
     &.backstage-grid_expo4{
       grid-template-columns: 5% 6% 25% 55% 9%;
@@ -156,7 +156,12 @@
     &.backstage-grid_expo2 {
       grid-template-columns: 10% 30% 20% 15% 25%;
     }
-
+    &.backstage-grid_expo1 {
+      grid-template-columns: 10% 35% 30% 15% 10%;
+    }
+    &.backstage-grid_expo3 {
+      grid-template-columns: 8% 17% 17% 17% 17% 17% 7%;
+    }
     &.title {
       li {
         align-items: center;
@@ -181,11 +186,12 @@
   .backstage_btn_td {
     align-self: center;
     display: flex;
-    //     white-space: nowrap;;
-    //     .switch_flex{
-    //         display: flex;
-    //         padding-left:0;
-    //     }
+    &.switch_flex{
+      .custom-control-input:checked~.custom-control-label::before { 
+        border-color: $backmain-color;
+        background-color: $backmain-color;
+      }
+    }
   }
 
   // =====所有按鈕外觀=====
@@ -380,6 +386,22 @@
       // 佔整行
       .input-long {
         width: 100%;
+      }
+      .backstage_extend{
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        color: $black-color;
+        div{
+          width: 33%;
+          text-align: center;
+          img{
+            display: block;
+            margin:0 auto;
+            max-width: 100%;
+            height: 200px;
+          }
+        }
       }
     }
 
