@@ -222,7 +222,7 @@ Vue.component('backstage_info3_add', {
                     <input type="text" name="LINK" id="LINK" v-model="newdata.LINK">
                 </li>
                 <li class="mb-16 input-long input-file"><label for="PHOTO">新聞照片</label>
-                    <input type="file" name="PHOTO" id="PHOTO"@change="selectedFile" v-model="newdata.PHOTO">
+                    <input type="file" class="filechoose -hide" name="PHOTO" id="PHOTO"@change="selectedFile" v-model="newdata.PHOTO">
 
                 </li>
                 <div class="mb-16"><label>審核狀態</label><br>
