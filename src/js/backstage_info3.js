@@ -126,6 +126,7 @@ Vue.component('backstage_info3_add', {
                LINK:'',
                PHOTO:'',
                STATUS:'',
+               OPEN:'',
             },
             file_name:'',
             file:'',
@@ -147,7 +148,8 @@ Vue.component('backstage_info3_add', {
                 TITLE:this.newdata.TITLE,
                 LINK:this.newdata.LINK,
                 PHOTO:this.newdata.PHOTO,
-                STATUS:this.newdata.STATUS,
+                STATUS:"I",
+                OPEN: this.newdata.OPEN,
                 }))
                 form_data.append('file',this.file);
                 fetch('php/backstage_info3_insert_expo.php', {
@@ -281,6 +283,15 @@ Vue.component('backstage_info3', {
         }
     },
     methods: {   //函數方法大部分放這
+        switchbtn(index) {
+            this.update(index)
+            console.log("open" + this.datas[index].OPEN);
+            if (this.datas[index].OPEN == true) {
+                this.datas[index].OPEN = 1
+            } else {
+                this.datas[index].OPEN = 0
+            } //為了後面操作頁面修改讀的到
+        },
         edit(data, index) {
             this.row_data = data
             this.row_index = index
@@ -387,7 +398,35 @@ Vue.component('backstage_info3', {
                     this.pages = Math.ceil(this.data_count / this.perpage)
                     this.inpage = inpage
                 })
-        }
+        },
+        update(index) {
+            fetch('php/backstage_info3_update_open.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ID: this.datas[index].ID,
+                    OPEN: this.datas[index].OPEN//傳true false
+                })
+            }).then(resp => resp.json())
+                .then(body => {
+                    let { successful } = body
+                    if (successful) {
+                        this.$swal({
+                            title: "修改成功",
+                            icon: "success",
+                            image: "",
+                        })
+                    } else {
+                        this.$swal({
+                            title: "修改失敗",
+                            icon: "error",
+                            text: "請檢查資料",
+                        });
+                    }
+                })
+        },
     },
     computed: { //函數方法也可以放這，但是放在這裡的函數不能傳參數  用寫小(),一定要有傳回值
         centerPages() {
@@ -426,7 +465,15 @@ Vue.component('backstage_info3', {
                 <li class="bg-color bg-in-secondcolor">{{data.ID}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data.TITLE}}</li>
                 <li class="bg-color bg-in-secondcolor -word_break">{{data.LINK}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data.STATUS}}</li>
+                <!--<li class="bg-color bg-in-secondcolor">{{data.STATUS}}</li>-->
+                <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
+                不啟用
+                <div class="custom-control custom-switch">   
+                    <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN" @change="switchbtn(index)">
+                    <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
+                </div>
+                啟用
+            </div> </li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
             <div class='backstage_pages mt-10'>
@@ -435,7 +482,7 @@ Vue.component('backstage_info3', {
                 <button v-if="pages>centersize+2 && inpage-centersize/2-1>1" class='backstage_pages_btn pr-2 pl-2'>...</button>
                 <button v-for='(page,index) in centerPages' @click.prevent='changepage(page)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==page}" :key="index">{{page}}</button>
                 <button v-if="pages>centersize+2 && inpage+centersize/2+1<pages" class='backstage_pages_btn pr-2 pl-2'>...</button>
-                <button @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
+                <button v-if="pages!= 1" @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
                 <button class='backstage_pages_btn_right ml-2' @click.stop="nextpage">下一頁</button>
             </div> 
         </div>
