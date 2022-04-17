@@ -12,7 +12,7 @@
     $select2 = json_decode(file_get_contents("php://input"), true);
     // 只要傳值不用收值
     // concat 是變成字串，inpage是傳回來的值是第幾頁
-    $sql2= "set @a= concat('select ID,START_TIME,END_TIME,STATUS, case when OPEN = 0 then \'不啟用\' else \'啟用\' end as OPEN from AGENDA_TIME where STATUS !=\"D\" and ( ID like' , '\"%', :search_word, '%\"','or START_TIME like', '\"%', :search_word, '%\"', 'or END_TIME like', '\"%', :search_word, '%\"', 'or OPEN like', '\"%', :search_word, '%\" )', ' limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";
+    $sql2= "set @a= concat('select * from AGENDA_TIME where STATUS !=\"D\" and ( ID like' , '\"%', :search_word, '%\"','or START_TIME like', '\"%', :search_word, '%\"', 'or END_TIME like', '\"%', :search_word, '%\"', 'or OPEN like', '\"%', :search_word, '%\" )', ' limit',' ', (:inpage-1)*:perpage, ', ', :perpage)";
     $statement2 = $pdo->prepare($sql2);
     $statement2->bindValue(":inpage", $select2["inpage"], PDO::PARAM_INT);
     $statement2->bindValue(":perpage", $select2["perpage"], PDO::PARAM_INT);
