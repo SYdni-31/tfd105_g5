@@ -91,8 +91,8 @@ Vue.component('backstage_member2_edit', {
                 </li>
 
                 <div class="mb-16"><label>審核狀態</label><br>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork" value="0" v-model="newdata.OPEN">尚未開始</label>
-                    <label for="working"><input type="radio" name="OPEN" id="working" value="1" v-model="newdata.OPEN">進行中</label>
+                    <label for="notwork"><input type="radio" name="OPEN" id="notwork" value="0" v-model="newdata.OPEN">未審核</label>
+                    <label for="working"><input type="radio" name="OPEN" id="working" value="1" v-model="newdata.OPEN">正常</label>
                 </div>
             </ul>                  
             <div class="backstage-insert-btn">
@@ -234,6 +234,13 @@ Vue.component('backstage_member2', {
                     this.data_count = resp.data_count[0][0]
                     this.pages = Math.ceil(this.data_count / this.perpage)
                     this.inpage = inpage
+                    for(let i = 0; i < this.datas.length; i++){
+                        if(this.datas[i].OPEN == 1){
+                            this.datas[i].OPEN = "正常"
+                        }else{
+                            this.datas[i].OPEN = "未審核"
+                        }
+                    }
                 })
         }
     },
@@ -270,11 +277,11 @@ Vue.component('backstage_member2', {
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_member2" v-for="(data, index) in datas">
-                <li class="bg-color bg-in-secondcolor">{{data[0]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[2]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[1]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[3]}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data[5]}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.ID}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.LASTNAME}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.NAME}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.EMAIL}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.OPEN}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
             <div class='backstage_pages mt-10'>
@@ -306,6 +313,13 @@ Vue.component('backstage_member2', {
                 this.datas = resp.data
                 this.data_count = resp.data_count[0][0]
                 this.pages = Math.ceil(this.data_count / this.perpage)
+                for(let i = 0; i < this.datas.length; i++){
+                    if(this.datas[i].OPEN == 1){
+                        this.datas[i].OPEN = "正常"
+                    }else{
+                        this.datas[i].OPEN = "未審核"
+                    }
+                }
             })
     },
 })
