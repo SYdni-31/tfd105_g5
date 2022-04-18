@@ -338,26 +338,26 @@
                     @include absolute (29vw, 1.5vw);
                     animation: barHopping1 2.5s linear infinite;
                 }
-                .index_right_bar2 {
-                    width: 11vw;
-                    @include absolute (29vw, 1.5vw);
-                    animation: barHopping2 2.5s linear infinite;
-                }
-                .index_right_bar3 {
-                    width: 11vw;
-                    @include absolute (29vw, 1.5vw);
-                    animation: barHopping3 2.5s linear infinite; 
-                }
-                .index_right_bar4 {
-                    width: 11vw;
-                    @include absolute (29vw, 1.5vw);
-                    animation: barHopping4 2.5s linear infinite;
-                }
-                .index_right_bar5 {
-                    width: 11vw;
-                    @include absolute (29vw, 1.5vw);
-                    animation: barHopping5 2.5s linear infinite;
-                }
+                // .index_right_bar2 {
+                //     width: 11vw;
+                //     @include absolute (29vw, 1.5vw);
+                //     animation: barHopping2 2.5s linear infinite;
+                // }
+                // .index_right_bar3 {
+                //     width: 11vw;
+                //     @include absolute (29vw, 1.5vw);
+                //     animation: barHopping3 2.5s linear infinite; 
+                // }
+                // .index_right_bar4 {
+                //     width: 11vw;
+                //     @include absolute (29vw, 1.5vw);
+                //     animation: barHopping4 2.5s linear infinite;
+                // }
+                // .index_right_bar5 {
+                //     width: 11vw;
+                //     @include absolute (29vw, 1.5vw);
+                //     animation: barHopping5 2.5s linear infinite;
+                // }
             }
             
         }
@@ -411,20 +411,20 @@
         }
     }
     // 右側區塊
-    @keyframes barHopping1 {
-        0% {
-            opacity: 1;
-        }
-        18%{
-            opacity: 1;
-        }
-        19%{
-            opacity: 0;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
+    // @keyframes barHopping1 {
+    //     0% {
+    //         opacity: 1;
+    //     }
+    //     18%{
+    //         opacity: 1;
+    //     }
+    //     19%{
+    //         opacity: 0;
+    //     }
+    //     100% {
+    //         opacity: 0;
+    //     }
+    // }
     
     @keyframes barHopping2 {
         0% {

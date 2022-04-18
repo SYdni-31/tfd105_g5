@@ -11,7 +11,7 @@ Vue.component('backstage_info4_edit', {
             if (this.newdata.REPLY_CNT && this.newdata.REPLY_CNT != ""
                 && this.newdata.STATUS != undefined && this.newdata.STATUS != null
             ) {
-                console.log(this.newdata.REPLY_CNT);
+                console.log(this.newdata);
                 // 確認所有欄位是否都有值
                 // 確認開始日期是否小於結束日期
                 // let starttime = (this.newdata.START_TIME).split('-').join('') '2020-01-01' [2020,01,01] '20200101'
@@ -88,8 +88,8 @@ Vue.component('backstage_info4_edit', {
                 <li class="mb-16 input-short"><label for="NAME">姓名</label>
                     <input type="text" name="NAME" id="NAME" v-model="newdata.NAME" disabled>
                 </li>
-                <li class="mb-16 input-long"><label for="CONTECT">訊息內容</label>
-                    <textarea name="CONTECT" id="CONTECT" cols="30" rows="10" v-model="newdata.CONTECT" disabled></textarea>
+                <li class="mb-16 input-long"><label for="CONTENT">訊息內容</label>
+                    <textarea name="CONTENT" id="CONTENT" cols="30" rows="10" v-model="newdata.CONTENT" disabled></textarea>
                 </li>
                 <li class="mb-16 input-long"><label for="REPLY_CNT">回覆內容</label>
                     <textarea name="REPLY_CNT" id="REPLY_CNT" cols="30" rows="10" v-model="newdata.REPLY_CNT"></textarea>
@@ -250,7 +250,7 @@ Vue.component('backstage_info4', {
                     }
 
                 })
-            this.$forceupdate()
+            // this.$forceupdate()
         }
     },
     computed: {
@@ -300,7 +300,7 @@ Vue.component('backstage_info4', {
                 <button v-if="pages>centersize+2 && inpage-centersize/2-1>1" class='backstage_pages_btn pr-2 pl-2'>...</button>
                 <button v-for='(page,index) in centerPages' @click.prevent='changepage(page)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==page}" :key="index">{{page}}</button>
                 <button v-if="pages>centersize+2 && inpage+centersize/2+1<pages" class='backstage_pages_btn pr-2 pl-2'>...</button>
-                <button @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
+                <button v-if="pages!= 1" @click.prevent='changepage(pages)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==pages}">{{pages}}</button>
                 <button class='backstage_pages_btn_right ml-2' @click.stop="nextpage">下一頁</button>
             </div> 
         </div>
