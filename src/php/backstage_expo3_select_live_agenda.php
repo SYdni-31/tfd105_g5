@@ -9,7 +9,7 @@ $select=$statement->fetchAll();
 // 選取第x頁資料(分頁)
 //等號後方複製就好 變數自己訂
 $select2=json_decode(file_get_contents("php://input"), true);
-$sql2= "set @a= concat('select * from view_live_agenda where ID like' , '\"%', :search_word, '%\"','or NAME like', '\"%', :search_word, '%\"', 'or START_TIME like', '\"%', :search_word, '%\"', 'or APPLY_TIME like', '\"%', :search_word, '%\"','or END_TIME like','\"%',:search_word,'%\"', ' limit', ' ', (:inpage-1)*:perpage, ', ', :perpage)";
+$sql2= "set @a= concat('select * from view_live_agenda where ID like' , '\"%', :search_word, '%\"','or NAME like', '\"%', :search_word, '%\"', 'or START_TIME like', '\"%', :search_word, '%\"', 'or APPLY_TIME like', '\"%', :search_word, '%\"','or END_TIME like','\"%',:search_word,'%\"', ' order by ID limit', ' ', (:inpage-1)*:perpage, ', ', :perpage)";
 //準備要把@a存進mysql內
 $statement2 = $pdo->prepare($sql2);
 $statement2->bindValue(":inpage", $select2["inpage"], PDO::PARAM_INT);
