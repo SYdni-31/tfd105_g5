@@ -17,22 +17,80 @@ Vue.component('backstage_expo4',{
         }
     },
     methods:{
+        del(index) {
+            swal({
+                title: "是否確定刪除?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    fetch('php/backstage_expo4_delete_live_board.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            ID: this.datas[index].ID,
+                        })
+                    }).then(resp => resp.json())
+                        .then(body => {
+                            let { successful } = body
+                            if (successful) {
+                                this.$swal({
+                                    title: "刪除成功",
+                                    icon: "success",
+                                    image: "",
+                                }).then((willDelete) => {
+                                    fetch('php/backstage_expo4_select_live_board.php', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            inpage: this.inpage,
+                                            perpage: this.perpage,
+                                            search_word: this.search_word,
+                                        })
+                                    })
+                                        .then(resp => resp.json())
+                                        .then(resp => {
+                                            // 先看resp是什麼用c
+                                            // console.log(resp);
+                                            this.datas = resp.data
+                                            // 塞在裡面的裡面
+                                            this.data_count = resp.data_count[0][0]
+                                            // pages是分幾頁，math無條件進位 11/10 =1.1 無條件進位 = 2
+                                            this.pages = Math.ceil(this.data_count / this.perpage)
+                                        })
+                                })
+                            } else {
+                                this.$swal({
+                                    title: "刪除失敗",
+                                    icon: "error",
+                                    text: "請檢查欄位",
+                                });
+                            }
+                        })
+                }
+            })
+        },
         search(){
             this.ajax(this.inpage)
         },
-        switchbtn(index){
-            this.update(index)
-            if(this.datas[index].ONBOARD==true){
-                this.datas[index].ONBOARD=1
-            }else{
-                this.datas[index].ONBOARD=0
-            }
-        },
-        watch(data, index){
-            this.row_data=data
-            this.row_index=index
-            this.box='backstage_expo4_look'
-        },
+        // switchbtn(index){
+        //     this.update(index)
+        //     if(this.datas[index].ONBOARD==true){
+        //         this.datas[index].ONBOARD=1
+        //     }else{
+        //         this.datas[index].ONBOARD=0
+        //     }
+        // },
+        // watch(data, index){
+        //     this.row_data=data
+        //     this.row_index=index
+        //     this.box='backstage_expo4_look'
+        // },
         lookclose(){
             this.box=null
         },
@@ -72,34 +130,34 @@ Vue.component('backstage_expo4',{
                 this.inpage=inpage
             })
         },
-        update(index){
-            fetch('php/backstage_expo4_update_live_board.php', {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify({
-                    ID:this.datas[index].ID,
-                    ONBOARD:this.datas[index].ONBOARD
-                })
-            }).then(resp =>resp.json())
-            .then(body =>{ 
-                let {successful} =body
-                if(successful){
-                    this.$swal({
-                        title: "修改成功",
-                        icon: "success",
-                        image: "",
-                    })
-                }else{
-                    this.$swal({
-                        title: "修改失敗",
-                        icon: "error",
-                        text: "請檢查廠商資料",
-                    });
-                } 
-            })
-        },
+        // update(index){
+        //     fetch('php/backstage_expo4_update_live_board.php', {
+        //         method: 'POST',
+        //         headers:{
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body:JSON.stringify({
+        //             ID:this.datas[index].ID,
+        //             ONBOARD:this.datas[index].ONBOARD
+        //         })
+        //     }).then(resp =>resp.json())
+        //     .then(body =>{ 
+        //         let {successful} =body
+        //         if(successful){
+        //             this.$swal({
+        //                 title: "修改成功",
+        //                 icon: "success",
+        //                 image: "",
+        //             })
+        //         }else{
+        //             this.$swal({
+        //                 title: "修改失敗",
+        //                 icon: "error",
+        //                 text: "請檢查廠商資料",
+        //             });
+        //         } 
+        //     })
+        // },
     },
     computed:{
         centerPages(){
@@ -136,14 +194,13 @@ Vue.component('backstage_expo4',{
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_expo4" v-for="(data, index) in datas">
                 <li class="bg-color bg-in-secondcolor">{{data['ID']}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data['LIVE_LIST_ID']}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data['COMPANY_ID'] || data['GUEST_ID']}}</li>  <!--COMPANY_ID/ GUEST_ID條件顯示-->
+                <li class="bg-color bg-in-secondcolor">{{data['NAME']}}</li>  <!--COMPANY_ID/ GUEST_ID條件顯示用 ||測試OK-->
                 <li class="bg-color bg-in-secondcolor">{{data['CONTENT']}}</li>
                 <li class="bg-color bg-in-secondcolor">
                     <div class="backstage_btn_td">
                         <button @click="del(index)" class="backstage_btn backstage_btn_bad ml-2">刪除</button>
                     </div>
                 </li>
-
             </ul>
             <div class='backstage_pages mt-10'>
                 <button class='backstage_pages_btn_left mr-2'  @click.stop="previouspage">上一頁</button>

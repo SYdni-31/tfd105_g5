@@ -7,7 +7,7 @@ let nav = document.getElementById("nav");
 let login = document.getElementById("login");
 let company_menu = document.getElementById("company_menu");
 let companyBack_info = document.getElementById("companyBack_info");
-let companyBack_live = document.getElementById("companyBack_live");
+let companyBack_tech = document.getElementById("companyBack_tech");
 let companyBack = document.getElementById("companyBack");
 let logo_orange = document.getElementById("logo_orange");
 let logo_main = document.getElementById("logo_main");
@@ -43,10 +43,13 @@ login_page_icon.addEventListener("click", function () {
 // 查網址是不是後台
 if (href_page.includes("companyback_info")) {
   companyBack_info.classList.add("company-menu-border");
-} else if (href_page.includes("companyback_live")) {
-  companyBack_live.classList.add("company-menu-border");
+} else if (href_page.includes("companyback_tech")) {
+  companyBack_tech.classList.add("company-menu-border");
 
-} else if (href_page.includes("companyback")) {
+} else if (href_page.includes("companyback_look")) {
+  companyBack_info.classList.add("company-menu-border");
+
+}else if (href_page.includes("companyback")) {
   companyBack.classList.add("company-menu-border");
 
 }
