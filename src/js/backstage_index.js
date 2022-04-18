@@ -336,7 +336,7 @@ Vue.component('backstage_info2_edit', {
     },
     template: `
         <article class="backstage_box">
-            <h2>新增<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
+            <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
             <div class="backstage_box-content pt-30">
                 <ul>
                     <li class="mb-16 input-short"><label for="ID">議程ID</label>

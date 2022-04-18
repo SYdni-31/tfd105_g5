@@ -44,3 +44,7 @@ var swiper = new Swiper(".mySwiper", {
   $('.chatbox_close').on('click',function(){
     $(this).parents('.extend_chatbox').hide(300)
   }) 
+
+  const vm = new Vue({
+
+  })
