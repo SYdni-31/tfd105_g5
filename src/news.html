@@ -50,15 +50,15 @@
         
         <section class="news-over-hidden" id="news_app" >
             <div class="news wrapper">
-                <div class="news-card" data-aos="fade-right" data-aos-duration="1500"  v-for="(data, index) in news" >
+                <div class="news-card" data-aos="fade-right" data-aos-duration="1500"  v-for="(key, index) in news" >
                     <div class="news-date">
-                        <h2> {{data.TIME}} </h2>
+                        <h2> {{key.TIME}} </h2>
                     </div>
                     <div class="news-content" >
-                        <a :href="data.LINK"  target="_blank">
-                            <img :src="data.PHOTO" alt="新聞資訊">
-                            <h3> {{data.TITLE}} </h3>
-                            <h4> {{data.CONTENT}} </h4>
+                        <a :href="key.LINK"  target="_blank">
+                            <img :src="key.PHOTO" alt="新聞資訊">
+                            <h3> {{key.TITLE}} </h3>
+                            <h4> {{key.CONTENT}} </h4>
                         </a>
                     </div>
                 </div>
