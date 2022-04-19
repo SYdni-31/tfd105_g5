@@ -20,20 +20,18 @@ Vue.component('backstage_info3_edit', {
                 // 確認所有欄位是否都有值
                 let form_data = new FormData();
                 form_data.append('datas', JSON.stringify({
+                    ID: this.newdata.ID,
                     TIME: this.newdata.TIME, //前面TIME 傳給PHP PHP裡
                     CONTENT: this.newdata.CONTENT,
                     TITLE: this.newdata.TITLE,
                     LINK: this.newdata.LINK,
-                    PHOTO: this.newdata.PHOTO,
+                    // PHOTO: this.newdata.PHOTO,
                     STATUS: "U",
                     OPEN: this.newdata.OPEN,
                 }))
                 form_data.append('file', this.file);
                 fetch('php/backstage_info3_update_expo.php', { //一定要再fetch一次
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                     body: form_data,
                 }).then(resp => resp.json())
                     .then(body => {
@@ -116,11 +114,11 @@ Vue.component('backstage_info3_edit', {
     },
     template: `
     <article class="backstage_box">
-        <h2>新增<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
+        <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
         <div class="backstage_box-content pt-30">
             <ul>
                 <li class="mb-16 input-short"><label for="id">策展ID</label>
-                    <input type="text" name="id" id="id" value="自動編號" disabled>
+                    <input type="text" name="id" id="id" v-model="newdata.ID" disabled>
                 </li>
                 <li class="mb-16 input-short"><label for="TIME">新聞日期</label>
                     <input type="date" name="TIME" id="TIME" v-model.trim="newdata.TIME">
