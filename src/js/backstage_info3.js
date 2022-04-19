@@ -30,7 +30,7 @@ Vue.component('backstage_info3_edit', {
                     OPEN: this.newdata.OPEN,
                 }))
                 form_data.append('file', this.file);
-                fetch('php/backstage_info3_update_expo.php', { //一定要再fetch一次
+                fetch('php/backstage_info3_update_news.php', { //一定要再fetch一次
                     method: 'POST',
                     body: form_data,
                 }).then(resp => resp.json())
@@ -194,7 +194,7 @@ Vue.component('backstage_info3_add', {
                     OPEN: this.newdata.OPEN,
                 }))
                 form_data.append('file', this.file);
-                fetch('php/backstage_info3_insert_expo.php', {
+                fetch('php/backstage_info3_insert_news.php', {
                     method: 'POST',
                     body: form_data,
                 }).then(resp => resp.json())
@@ -322,9 +322,13 @@ Vue.component('backstage_info3', {
             centersize: 5, // 過多頁數時顯示筆數
             row_data: null, //被選取那列的資料
             row_index: null, //被選取那列的序號
+            search_word: '',
         }
     },
     methods: {   //函數方法大部分放這
+        search(){
+            this.ajax(this.inpage)
+        },
         switchbtn(index) {
             this.update(index)
             console.log("open" + this.datas[index].OPEN);
@@ -347,7 +351,7 @@ Vue.component('backstage_info3', {
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    fetch('php/backstage_info3_delete_expo.php', {
+                    fetch('php/backstage_info3_delete_news.php', {
                         method: 'POST', //傳到php
                         headers: {
                             'Content-Type': 'application/json'
@@ -364,7 +368,7 @@ Vue.component('backstage_info3', {
                                     icon: "success",
                                     image: "",
                                 }).then((willDelete) => {
-                                    fetch('php/backstage_info3_select_expo.php', {
+                                    fetch('php/backstage_info3_select_news.php', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -372,6 +376,7 @@ Vue.component('backstage_info3', {
                                         body: JSON.stringify({
                                             inpage: this.inpage,
                                             perpage: this.perpage,
+                                            search_word: this.search_word,
                                         })
                                     })
                                         .then(resp => resp.json())
@@ -423,7 +428,7 @@ Vue.component('backstage_info3', {
 
         },
         ajax(inpage) {
-            fetch('php/backstage_info3_select_expo.php', {
+            fetch('php/backstage_info3_select_news.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -431,6 +436,7 @@ Vue.component('backstage_info3', {
                 body: JSON.stringify({
                     inpage: inpage,
                     perpage: this.perpage,
+                    search_word: this.search_word,
                 })
             })
                 .then(resp => resp.json())
@@ -500,7 +506,8 @@ Vue.component('backstage_info3', {
         <button @click="box='backstage_info3_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
         <h3 class="bg-color pall-15">{{tablename}}</h3>
         <div class="pall-10 bg-in-bgcolor">
-            <ul class="bg-color -margin0auto backstage-grid title backstage-grid_info3">
+        <input type='text' name='search' id='search' class='mb-2 mr-2' v-model="search_word" @keyup="search"><label for='search'><i class="fa-solid fa-magnifying-glass"></i></label>    
+        <ul class="bg-color -margin0auto backstage-grid title backstage-grid_info3">
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_info3" v-for="(data, index) in datas">
@@ -531,7 +538,7 @@ Vue.component('backstage_info3', {
         <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
     </article>`,
     mounted() {
-        fetch('php/backstage_info3_select_expo.php', {
+        fetch('php/backstage_info3_select_news.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -539,6 +546,7 @@ Vue.component('backstage_info3', {
             body: JSON.stringify({
                 inpage: this.inpage,
                 perpage: this.perpage,
+                search_word: this.search_word,
             })
         })
             .then(resp => resp.json())
