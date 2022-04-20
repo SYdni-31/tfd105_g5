@@ -34,15 +34,16 @@
       display: flex;
       margin-bottom: 60px;
       .news-date {
-        width: 30px;
-        padding-top: 170px;
-        margin-right: 20px;
+        width: 120px;
+        padding-top: 125px;
+        margin-right: -90px;
         h2 {
           transform: rotate(-90deg);
           transform-origin: left top;
           color: $main-color;
           letter-spacing: 4px;
           font-weight: 700;
+          font-size: 16px;
         }
       }
       .news-content {

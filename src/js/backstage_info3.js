@@ -4,60 +4,55 @@ Vue.component('backstage_info3_edit', {
     data() {
         return {
             newdata: '',
+            image: '',
+            file_name: '',
         }
     },
     methods: {
         f_save() { //判定欄位是否空值有沒有存在自己改!!!
-            if (this.newdata.NAME && this.newdata.NAME != ""
+            if (this.newdata.TIME && this.newdata.TIME != ""
+                && this.newdata.CONTENT && this.newdata.CONTENT != ""
                 && this.newdata.TITLE && this.newdata.TITLE != ""
-                && this.newdata.END_TIME && this.newdata.END_TIME != ""
-                && this.newdata.OPEN && this.newdata.OPEN != ""
-                && this.newdata.INTRODUCE && this.newdata.INTRODUCE != "") {
+                && this.newdata.LINK && this.newdata.LINK != ""
+                && this.newdata.PHOTO && this.newdata.PHOTO != ""
+                && this.newdata.STATUS && this.newdata.STATUS != ""
+                && this.newdata.OPEN != null && this.newdata.OPEN != undefined) {
                 // 確認所有欄位是否都有值
-                // 確認開始日期是否小於結束日期  我們應該不需要不用直接刪除
-                let starttime = (this.newdata.TITLE).split('-').join('')
-                let endtime = (this.newdata.END_TIME).split('-').join('')
-                if (starttime <= endtime) {
-                    console.log(starttime, endtime)
-                    fetch('php/backstage_info3_update_expo.php', { //一定要再fetch一次
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({   //自己頁面傳出去
-                            ID: this.newdata.ID,
-                            NAME: this.newdata.NAME,
-                            TITLE: this.newdata.TITLE,
-                            END_TIME: this.newdata.END_TIME,
-                            OPEN: this.newdata.OPEN,
-                            INTRODUCE: this.newdata.INTRODUCE,
-                        })
-                    }).then(resp => resp.json())
-                        .then(body => {
-                            let { successful } = body
-                            if (successful) {
-                                this.$swal({
-                                    title: "儲存成功",
-                                    icon: "success",
-                                    image: "",
-                                }).then((willInsert) => {
-                                    this.$emit('addsave')
-                                })
-                            } else {
-                                this.$swal({
-                                    title: "儲存失敗",
-                                    icon: "error",
-                                    text: "請檢查欄位",
-                                });
-                            }
-                        })
-                } else {
-                    this.$swal({
-                        title: "儲存失敗",
-                        icon: "error",
-                        text: "請確認日期是否正確",
-                    });
-                }
+                let form_data = new FormData();
+                form_data.append('datas', JSON.stringify({
+                    ID: this.newdata.ID,
+                    TIME: this.newdata.TIME, //前面TIME 傳給PHP PHP裡
+                    CONTENT: this.newdata.CONTENT,
+                    TITLE: this.newdata.TITLE,
+                    LINK: this.newdata.LINK,
+                    // PHOTO: this.newdata.PHOTO,
+                    STATUS: "U",
+                    OPEN: this.newdata.OPEN,
+                }))
+                form_data.append('file', this.file);
+                fetch('php/backstage_info3_update_news.php', { //一定要再fetch一次
+                    method: 'POST',
+                    body: form_data,
+                }).then(resp => resp.json())
+                    .then(body => {
+                        let { successful } = body
+                        if (successful) {
+                            this.$swal({
+                                title: "儲存成功",
+                                icon: "success",
+                                image: "",
+                            }).then((willInsert) => {
+                                this.$emit('addsave')
+                            })
+                        } else {
+                            this.$swal({
+                                title: "儲存失敗",
+                                icon: "error",
+                                text: "請檢查欄位",
+                            });
+                        }
+                    })
+
             } else {
                 this.$swal({
                     title: "儲存失敗",
@@ -78,33 +73,80 @@ Vue.component('backstage_info3_edit', {
                 }
             })
         },
+        choosephoto() {
+            let filechoose = document.querySelector(".filechoose")
+            filechoose.click()
+        },
+        // selectedFile(e) {
+        //     let file = e.target.files[0];
+        //     let readFiles = new FileReader();
+        //     readFiles.readAsDataURL(file);
+        //     readFiles.addEventListener("load", this.loadImage);
+        //     this.file_name = file.name;
+        //     this.newdata[4] = URL.createObjectURL(file)
+        // },
+        // loadImage(e) {
+        //     this.image = e.target.result;
+        // },
+        selectedFile(e) {
+            let file = e.target.files[0];
+            let readFiles = new FileReader();
+            readFiles.readAsDataURL(file);
+            readFiles.addEventListener("load", (e) => {
+                this.newdata.PHOTO = e.target.result;
+            });
+            this.file_name = file.name;
+            this.file = e.target.files[0]
+            document.querySelector(".icon_img").style.opacity = "0";
+        },
+        dropfile(e) {
+            if (e.dataTransfer.files.length > 0) {
+                let reader = new FileReader()
+                reader.readAsDataURL(e.dataTransfer.files[0])
+                reader.addEventListener("load", () => {
+                    this.newdata.PHOTO = reader.result;
+                })
+                this.file_name = e.dataTransfer.files[0].name;
+                this.file = e.dataTransfer.files[0]
+                document.querySelector(".icon_img").style.opacity = "0";
+            }
+        },
     },
     template: `
     <article class="backstage_box">
         <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
-        <div class="backstage_box-content pt-30"> 
+        <div class="backstage_box-content pt-30">
             <ul>
-                <li class="mb-16 input-short"><label for="ID">ID</label>
-                    <input type="text" name="ID" id="ID" v-model="newdata.ID" disabled>
+                <li class="mb-16 input-short"><label for="id">策展ID</label>
+                    <input type="text" name="id" id="id" v-model="newdata.ID" disabled>
                 </li>
-                <li class="mb-16 input-short"><label for="NAME">展會名稱</label>
-                    <input type="text" name="NAME" id="NAME" v-model="newdata.NAME">
+                <li class="mb-16 input-short"><label for="TIME">新聞日期</label>
+                    <input type="date" name="TIME" id="TIME" v-model.trim="newdata.TIME">
                 </li>
-                <li class="mb-16 input-long"><label for="INTRODUCR">會議簡介</label>
-                    <textarea name="INTRODUCR" id="INTRODUCR" cols="30" rows="10" v-model="newdata.INTRODUCR"></textarea>
+                <li class="mb-16 input-long"><label for="CONTENT">新聞內容</label>
+                    <textarea name="CONTENT" id="CONTENT" cols="30" rows="10" v-model.trim="newdata.CONTENT"></textarea>
                 </li>
-                <li class="mb-16 input-short"><label for="TITLE">活動開始</label>
-                    <input type="date" name="TITLE" id="TITLE" v-model="newdata.TITLE">
+                <li class="mb-16 input-long"><label for="TITLE">新聞標題</label>
+                    <input type="text" name="TITLE" id="TITLE" v-model="newdata.TITLE">
                 </li>
-                <li class="mb-16 input-short"><label for="END_TIME">活動結束</label>
-                    <input type="date" name="END_TIME" id="END_TIME" v-model="newdata.END_TIME">
+                <li class="mb-16 input-long"><label for="LINK">新聞連結</label>
+                    <input type="text" name="LINK" id="LINK" v-model="newdata.LINK">
                 </li>
-                <div class="mb-16"><label>進行狀態</label><br>
-                    <label for="notwork"><input type="radio" name="OPEN" id="notwork"  value="尚未開始" v-model="newdata.OPEN">尚未開始</label>
-                    <label for="working"><input type="radio" name="OPEN" id="working"  value="進行中" v-model="newdata.OPEN">進行中</label>
-                    <label for="worked"><input type="radio" name="OPEN" id="worked"  value="已結束" v-model="newdata.OPEN">已結束</label>
+                <div class="mb-16 input-long input-file">
+                <label for="PHOTO">新聞照片</label>
+                <input type="file" class="filechoose -hide" name="filechoose" id="filechoose" @change="selectedFile">
+                <input type="text" class="filename" name="filename" id="filename" :value="file_name" disabled>
+                <button @click="choosephoto">上傳</button>
+                <div class="backstage_input-file-img"  @dragover.prevent="" @drop.prevent="dropfile">
+                <i class="fa-solid fa-image icon_img"></i>
+                <img id="PHOTO" class="img-update" :src="newdata.PHOTO"><!--雙向綁定到base64為了讓圖片顯示在頁面上-->
+            </div>
                 </div>
-            </ul>                  
+                <div class="mb-16"><label>審核狀態</label><br>
+                    <label for="show"><input type="radio" name="OPEN" id="notwork" value="1" v-model="newdata.OPEN">顯示</label>
+                    <label for="notshow"><input type="radio" name="OPEN" id="working" value="0" v-model="newdata.OPEN">不顯示</label>
+                </div>
+            </ul>                   
             <div class="backstage-insert-btn">
                 <button class="backstage-insert_save" @click="f_save">儲存</button>
                 <button class="backstage-insert_close" @click="f_close">關閉</button>
@@ -120,41 +162,41 @@ Vue.component('backstage_info3_add', {
     data() {
         return {
             newdata: {
-               TIME:'',
-               CONTENT:'',
-               TITLE:'',
-               LINK:'',
-               PHOTO:'',
-               STATUS:'',
-               OPEN:'',
+                TIME: '',
+                CONTENT: '',
+                TITLE: '',
+                LINK: '',
+                PHOTO: '',
+                STATUS: '',
+                OPEN: '',
             },
-            file_name:'',
-            file:'',
+            file_name: '',
+            file: '',
         }
     },
     methods: {
         f_save() {
             if (this.newdata.TIME != "" &&
-                this.newdata.CONTENT != ""&&
-                this.newdata.TITLE != ""&&
-                this.newdata.LINK != ""&&
-                this.newdata.PHOTO!= ""&&
+                this.newdata.CONTENT != "" &&
+                this.newdata.TITLE != "" &&
+                this.newdata.LINK != "" &&
+                this.newdata.PHOTO != "" &&
                 this.newdata.STATUS != "") {
                 // 確認所有欄位是否都有值 
                 form_data = new FormData();
-                form_data.append('datas',JSON.stringify({
-                TIME:this.newdata.TIME, //前面TIME 傳給PHP PHP裡
-                CONTENT:this.newdata.CONTENT,
-                TITLE:this.newdata.TITLE,
-                LINK:this.newdata.LINK,
-                PHOTO:this.newdata.PHOTO,
-                STATUS:"I",
-                OPEN: this.newdata.OPEN,
+                form_data.append('datas', JSON.stringify({
+                    TIME: this.newdata.TIME, //前面TIME 傳給PHP PHP裡
+                    CONTENT: this.newdata.CONTENT,
+                    TITLE: this.newdata.TITLE,
+                    LINK: this.newdata.LINK,
+                    PHOTO: this.newdata.PHOTO,
+                    STATUS: "I",
+                    OPEN: this.newdata.OPEN,
                 }))
-                form_data.append('file',this.file);
-                fetch('php/backstage_info3_insert_expo.php', {
+                form_data.append('file', this.file);
+                fetch('php/backstage_info3_insert_news.php', {
                     method: 'POST',
-                    body:form_data,
+                    body: form_data,
                 }).then(resp => resp.json())
                     .then(body => {
                         let { successful } = body
@@ -202,22 +244,22 @@ Vue.component('backstage_info3_add', {
             let file = e.target.files[0];
             let readFiles = new FileReader();
             readFiles.readAsDataURL(file);
-            readFiles.addEventListener("load", (e)=>{
+            readFiles.addEventListener("load", (e) => {
                 this.newdata.PHOTO = e.target.result;
             });
             this.file_name = file.name;
-            this.file=e.target.files[0]
+            this.file = e.target.files[0]
             document.querySelector(".icon_img").style.opacity = "0";
         },
-        dropfile(e){
-            if(e.dataTransfer.files.length>0){
-                let reader= new FileReader()
+        dropfile(e) {
+            if (e.dataTransfer.files.length > 0) {
+                let reader = new FileReader()
                 reader.readAsDataURL(e.dataTransfer.files[0])
                 reader.addEventListener("load", () => {
                     this.newdata.PHOTO = reader.result;
                 })
                 this.file_name = e.dataTransfer.files[0].name;
-                this.file=e.dataTransfer.files[0]
+                this.file = e.dataTransfer.files[0]
                 document.querySelector(".icon_img").style.opacity = "0";
             }
         },
@@ -280,9 +322,13 @@ Vue.component('backstage_info3', {
             centersize: 5, // 過多頁數時顯示筆數
             row_data: null, //被選取那列的資料
             row_index: null, //被選取那列的序號
+            search_word: '',
         }
     },
     methods: {   //函數方法大部分放這
+        search(){
+            this.ajax(this.inpage)
+        }, //搜尋功能
         switchbtn(index) {
             this.update(index)
             console.log("open" + this.datas[index].OPEN);
@@ -305,7 +351,7 @@ Vue.component('backstage_info3', {
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    fetch('php/backstage_info3_delete_expo.php', {
+                    fetch('php/backstage_info3_delete_news.php', {
                         method: 'POST', //傳到php
                         headers: {
                             'Content-Type': 'application/json'
@@ -322,7 +368,7 @@ Vue.component('backstage_info3', {
                                     icon: "success",
                                     image: "",
                                 }).then((willDelete) => {
-                                    fetch('php/backstage_info3_select_expo.php', {
+                                    fetch('php/backstage_info3_select_news.php', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -330,6 +376,7 @@ Vue.component('backstage_info3', {
                                         body: JSON.stringify({
                                             inpage: this.inpage,
                                             perpage: this.perpage,
+                                            search_word: this.search_word,
                                         })
                                     })
                                         .then(resp => resp.json())
@@ -381,7 +428,7 @@ Vue.component('backstage_info3', {
 
         },
         ajax(inpage) {
-            fetch('php/backstage_info3_select_expo.php', {
+            fetch('php/backstage_info3_select_news.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -389,6 +436,7 @@ Vue.component('backstage_info3', {
                 body: JSON.stringify({
                     inpage: inpage,
                     perpage: this.perpage,
+                    search_word: this.search_word,
                 })
             })
                 .then(resp => resp.json())
@@ -458,7 +506,8 @@ Vue.component('backstage_info3', {
         <button @click="box='backstage_info3_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
         <h3 class="bg-color pall-15">{{tablename}}</h3>
         <div class="pall-10 bg-in-bgcolor">
-            <ul class="bg-color -margin0auto backstage-grid title backstage-grid_info3">
+        <input type='text' name='search' id='search' class='mb-2 mr-2' v-model="search_word" @keyup="search"><label for='search'><i class="fa-solid fa-magnifying-glass"></i></label>    
+        <ul class="bg-color -margin0auto backstage-grid title backstage-grid_info3">
                 <li class="bg-color bg-in-secondcolor" v-for="title in titles">{{title}}</li>
             </ul>
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_info3" v-for="(data, index) in datas">
@@ -467,12 +516,12 @@ Vue.component('backstage_info3', {
                 <li class="bg-color bg-in-secondcolor -word_break">{{data.LINK}}</li>
                 <!--<li class="bg-color bg-in-secondcolor">{{data.STATUS}}</li>-->
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
-                不啟用
+                不顯示
                 <div class="custom-control custom-switch">   
                     <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN" @change="switchbtn(index)">
                     <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
                 </div>
-                啟用
+                顯示
             </div> </li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
@@ -489,7 +538,7 @@ Vue.component('backstage_info3', {
         <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
     </article>`,
     mounted() {
-        fetch('php/backstage_info3_select_expo.php', {
+        fetch('php/backstage_info3_select_news.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -497,6 +546,7 @@ Vue.component('backstage_info3', {
             body: JSON.stringify({
                 inpage: this.inpage,
                 perpage: this.perpage,
+                search_word: this.search_word,
             })
         })
             .then(resp => resp.json())

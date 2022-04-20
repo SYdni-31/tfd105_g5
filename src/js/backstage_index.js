@@ -236,22 +236,63 @@ Vue.component('backstage_info2_edit', {
     props: ['row_data'],
     data() {
         return {
-            newdata: '',
-            image: "",
+            newdata: {},
             file_name: "",
+            TIME_OPT:'',
+            file:'',
         }
     },
     methods: {
         f_save() {
-            this.$swal({
-                title: "儲存成功",
-                icon: "success",
-                image: "",
-            }).then((willInsert) => {
-                if (willInsert) {
-                    this.$emit('editsave', this.newdata)
-                }
-            })
+            if (this.newdata.NAME != ""&&
+                this.newdata.AGENDA_TIME_ID != ""&&
+                this.newdata.LINK != ""&&
+                this.newdata.DATE != ""&&
+                this.newdata.THEME != ""&&
+                this.newdata.PHOTO != ""&&
+                this.newdata.INTRODUCE != "") {
+                form_data = new FormData();
+                form_data.append('datas', JSON.stringify({
+                    ID: this.newdata.ID,
+                    NAME: this.newdata.NAME,
+                    AGENDA_TIME_ID: this.newdata.AGENDA_TIME_ID,
+                    LINK: this.newdata.LINK,
+                    DATE: this.newdata.DATE,
+                    THEME: this.newdata.THEME,
+                    INTRODUCE: this.newdata.INTRODUCE,
+                    }))
+                form_data.append('file', this.file);
+                fetch('php/backstage_info2_update_agenda.php', {
+                    method: 'POST',
+                    body: form_data,
+                }).then(resp => resp.json())
+                .then(body => {
+                    let {successful} =body
+                    if (successful) {
+                        this.$swal({
+                            title: "儲存成功",
+                            icon: "success",
+                            image: "",
+                        }).then((willInsert) => {
+                            this.$emit('addsave')
+                        })
+                    } else {
+                        this.$swal({
+                            title: "儲存失敗",
+                            icon: "error",
+                            text: "請檢查欄位",
+                        });
+                    }
+                })
+
+            } else {
+                this.$swal({
+                    title: "儲存失敗",
+                    icon: "error",
+                    text: "所有欄位皆須填寫",
+                });
+            }
+
         },
         f_close() {
             this.$swal({
@@ -261,7 +302,7 @@ Vue.component('backstage_info2_edit', {
                 dangerMode: true,
             }).then((willInsert) => {
                 if (willInsert) {
-                    this.$emit('editclose')
+                    this.$emit('addclose')
                 }
             })
         },
@@ -273,62 +314,81 @@ Vue.component('backstage_info2_edit', {
             let file = e.target.files[0];
             let readFiles = new FileReader();
             readFiles.readAsDataURL(file);
-            readFiles.addEventListener("load", this.loadImage);
+            readFiles.addEventListener("load", (e)=>{
+                this.newdata.PHOTO = e.target.result;
+            });
             this.file_name = file.name;
-            this.newdata[9] = URL.createObjectURL(file)
+            this.file=e.target.files[0]
+            document.querySelector(".icon_img").style.opacity = "0";
         },
-        loadImage(e) {
-            this.image = e.target.result;
+        dropfile(e){
+            if(e.dataTransfer.files.length>0){
+                let reader= new FileReader()
+                reader.readAsDataURL(e.dataTransfer.files[0])
+                reader.addEventListener("load", () => {
+                    this.newdata.PHOTO = reader.result;
+                })
+                this.file_name = e.dataTransfer.files[0].name;
+                this.file=e.dataTransfer.files[0]
+                document.querySelector(".icon_img").style.opacity = "0";
+            }
         },
     },
     template: `
         <article class="backstage_box">
-                    <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
-                    <div class="backstage_box-content pt-30">
-                        <ul>
-                            <li class="mb-16 input-short"><label for="id">議程ID</label>
-                                <input type="text" name="id" id="id" v-model="newdata[0]" disabled>
-                            </li>
-                            <li class="mb-16 input-short"><label for="date">議程日期</label>
-                                <input type="date" name="date" id="date" v-model="newdata[1]">
-                            </li>
-                            <li class="mb-16 input-short"><label for="starttime">開始時間</label>
-                            <input type="time" name="starttime" id="starttime" v-model="newdata[2]">
-                            </li>
-                            <li class="mb-16 input-short"><label for="endtime">結束時間</label>
-                                <input type="time" name="endtime" id="endtime" v-model="newdata[3]">
-                            </li>
-                            <li class="mb-16 input-short"><label for="theme">主題</label>
-                            <input type="text" name="theme" id="theme" v-model="newdata[4]">
-                            </li>
-                            <li class="mb-16 input-short"><label for="name">講師名稱</label>
-                            <input type="text" name="name" id="name" v-model="newdata[8]">
-                            </li>
-                            <li class="mb-16 input-long"><label for="link">直播連結</label>
-                            <input type="text" name="link" id="link" v-model="newdata[5]">
-                            </li>
-                            <li class="mb-16 input-long"><label for="introduce">講師介紹</label>
-                                <textarea name="introduce" id="introduce" cols="30" rows="10" v-model="newdata[10]"></textarea>
-                            </li>
-                        </ul> 
-                        <div class="mb-16 input-file">
-                            <label>講師照片</label>
-                            <input type="file" class="filechoose -hide" name="filechoose" id="filechoose" @change="selectedFile">
-                            <input type="text" class="filename" name="filename" id="filename" :value="file_name" disabled>
-                            <button @click="choosephoto">上傳</button>
-                            <div class="backstage_input-file-img">
-                                <img id="img" class="img-update" :src="newdata[9]">
-                            </div>
-                        </div>                  
-                        <div class="backstage-insert-btn">
-                            <button class="backstage-insert_save" @click="f_save">儲存</button>
-                            <button class="backstage-insert_close" @click="f_close">關閉</button>
-                        </div>
+            <h2>修改<i @click="f_close" class="fa-regular fa-circle-xmark backstage_close_icon"></i></h2>
+            <div class="backstage_box-content pt-30">
+                <ul>
+                    <li class="mb-16 input-short"><label for="ID">議程ID</label>
+                        <input type="text" name="ID" id="ID" value="自動編號" disabled>
+                    </li>
+                    <li class="mb-16 input-short"><label for="DATE">議程日期</label>
+                        <input type="DATE" name="DATE" id="DATE" v-model="newdata.DATE">
+                    </li>
+                    <li class="mb-16 input-long"><label for="START_TIME">時間</label>
+                        <select  name="TIME" v-model="newdata.AGENDA_TIME_ID">
+                            <option value="" selected>請選擇時間</option>
+                            <option  v-for="TIME in TIME_OPT" :value="TIME.ID">{{TIME.START_TIME.slice(0, 5)}}-{{TIME.END_TIME.slice(0, 5)}}</option>
+                        </select>
+                    </li>
+                    <li class="mb-16 input-short"><label for="THEME">主題</label>
+                        <input type="text" name="THEME" id="THEME" v-model.trim="newdata.THEME">
+                    </li>
+                    <li class="mb-16 input-short"><label for="NAME">講師名稱</label>
+                        <input type="text" name="NAME" id="NAME" v-model.trim="newdata.NAME">
+                    </li>
+                    <li class="mb-16 input-long"><label for="LINK">直播連結</label>
+                        <input type="text" name="LINK" id="LINK" v-model.trim="newdata.LINK">
+                    </li>
+                    <li class="mb-16 input-long"><label for="INTRODUCE">講師介紹</label>
+                        <textarea name="INTRODUCE" id="INTRODUCE" cols="30" rows="10" v-model="newdata.INTRODUCE"></textarea>
+                    </li>
+                </ul> 
+                <div class="mb-16 input-file">
+                    <label>講師照片</label>
+                    <input type="file" class="filechoose -hide" name="filechoose" id="filechoose" @change="selectedFile">
+                    <input type="text" class="filename" name="filename" id="filename" :value="file_name" disabled>
+                    <button @click="choosephoto">上傳</button>
+                    <div class="backstage_input-file-img"  @dragover.prevent="" @drop.prevent="dropfile">
+                        <img id="PHOTO" class="img-update" :src="newdata.PHOTO">
                     </div>
-                </article>`,
-    created() {
-        this.newdata = JSON.parse(JSON.stringify(this.row_data))
-    },
+                </div>                  
+                <div class="backstage-insert-btn">
+                    <button class="backstage-insert_save" @click="f_save">儲存</button>
+                    <button class="backstage-insert_close" @click="f_close">關閉</button>
+                </div>
+            </div>
+        </article>`,
+        created() {
+            this.newdata = JSON.parse(JSON.stringify(this.row_data))
+        },
+        mounted(){
+            fetch('php/backstage_info2_select_agenda_time.php')
+            .then(resp => resp.json())
+            .then(resp => {
+                this.TIME_OPT=resp
+            })
+        },
 })
 // ========info2_大會講師_後台新增按鈕========
 Vue.component('backstage_info2_add', {
@@ -365,7 +425,6 @@ Vue.component('backstage_info2_add', {
                     DATE: this.newdata.DATE,
                     THEME: this.newdata.THEME,
                     INTRODUCE: this.newdata.INTRODUCE,
-                    file_name: this.file_name,
                     }))
                 form_data.append('file', this.file);
                 fetch('php/backstage_info2_insert_agenda.php', {
@@ -609,33 +668,33 @@ Vue.component('backstage_info2', {
                 this.pages = Math.ceil(this.data_count / this.perpage)
                 this.inpage = inpage
             })
-    }
-},
-computed: {
-    centerPages() {
-        let centerPage = this.inpage;
-        if (this.inpage > this.pages - 3) {
-            centerPage = this.pages - 3
         }
-        if (this.inpage < 4) {
-            centerPage = 4
-        }
-        if (this.pages <= this.centersize + 2) {
-            const centerArr = []
-            for (let i = 2; i < this.pages; i++) {
-                centerArr.push(i)
+    },
+    computed: {
+        centerPages() {
+            let centerPage = this.inpage;
+            if (this.inpage > this.pages - 3) {
+                centerPage = this.pages - 3
             }
-            return centerArr
-        } else {
-            const centerArr = []
-            for (let i = centerPage - 2; i <= centerPage + 2; i++) {
-                centerArr.push(i)
+            if (this.inpage < 4) {
+                centerPage = 4
             }
-            return centerArr
+            if (this.pages <= this.centersize + 2) {
+                const centerArr = []
+                for (let i = 2; i < this.pages; i++) {
+                    centerArr.push(i)
+                }
+                return centerArr
+            } else {
+                const centerArr = []
+                for (let i = centerPage - 2; i <= centerPage + 2; i++) {
+                    centerArr.push(i)
+                }
+                return centerArr
+            }
         }
-    }
-},
-template: `
+    },
+    template: `
     <article class="-margin0auto pt-10 pb-10 table_outer">
         <button @click="box='backstage_info2_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
         <h3 class="bg-color pall-15">{{tablename}}</h3>
@@ -678,6 +737,7 @@ template: `
         })
         .then(resp => resp.json())
         .then(resp => {
+            console.log(resp)
             this.datas = resp.data
             this.data_count = resp.data_count[0][0]
             this.pages = Math.ceil(this.data_count / this.perpage)

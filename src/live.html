@@ -15,15 +15,15 @@
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!-- aos -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">   
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <!-- VUE -->
   <script src="js/vue.min.js"></script>
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
   <script type="text/javascript">
-      (function () {
-          emailjs.init("VmKwawpbImHtur7aa");
-      })();
+    (function () {
+      emailjs.init("VmKwawpbImHtur7aa");
+    })();
   </script>
   <!-- is.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
@@ -40,7 +40,7 @@
     @@include('layout/login.html')
   </header>
   <!-- content，各自頁面的html寫在這邊以下都是範例 -->
-  <main>
+  <main id="live_container">
     <section>
       <div class="live-container">
         <!-- 影片區 -->
@@ -49,7 +49,9 @@
           <h2>
             抱歉，目前無直播<br />下一次直播時間 : <br />2022/03/14 09:00
           </h2>
-          <iframe width="900" height="500" src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ" title="video" frameborder="0" class="live-video"
+          <iframe width="900" height="500"
+            src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ"
+            title="video" frameborder="0" class="live-video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
@@ -58,42 +60,65 @@
         <div id="live_pc" class="live-board-container" :class="{'pc-active': pcOpen === true}">
           <div class="live-board">
             <div class="search-container-title" @click="toggle()">
-              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img" :class="{'-transform-180': pcOpen === true}"/>
+              <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img"
+                :class="{'-transform-180': pcOpen === true}" />
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
+            <!-- <todo-list></todo-list>
+            <todo-input @abc="addTask"></todo-input> -->
             <div class="result-block">
-              <div class="search-container"></div>
+              <div class="search-container">
+                <todo-item  v-for="(task,index) in tasks" :name="tasks[index]['name']" :message="tasks[index]['message']"></todo-item>
+              </div>
             </div>
-            <!-- 打字傳送區 -->
             <div class="input-block">
-              <input type="text" class="live-text-input" name="live-text-input" placeholder="傳送訊息" />
-              <button class=" live-submit btn-short" name="live-submit" type="button">
+              <input  v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息">
+              <button class=" live-submit btn-short" name="live-submit" type="button" @click="text_save">送交</button>
+            </div>
+            <!-- <div class="result-block">
+              <div class="search-container"></div>
+            </div> -->
+            <!-- 打字傳送區 -->
+            <!-- <div class="input-block">
+              <input type="text" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息" />
+              <button class=" live-submit btn-short" name="live-submit" type="button" @click="text_save">
                 送出
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
 
         <!-- 留言板(RWD) -->
         <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': rwdOpen === true}">
           <div class="live-board">
-            <div class="search-container-title" @click="toggle()">
+            <div class="search-container-title" @click="toggle_rwd()">
               <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img-rwd" class="-transform--90"
                 :class="{'-transform-90': rwdOpen === true}" />
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
             <div class="result-block-rwd">
-              <div class="search-container"></div>
+              <div class="search-container">
+                <todo-item  v-for="(task,index) in tasks" :name="tasks[index]['name']" :message="tasks[index]['message']"></todo-item>
+              </div>
             </div>
             <!-- 打字傳送區 -->
             <div class="input-block">
+              <input  v-model="task" class="live-text-input-rwd" name="live-text-input" id="live_text" placeholder="傳送訊息">
+              <button class=" live-submit-rwd btn-short" name="live-submit" type="button" @click="text_save_rwd">送交</button>
+            </div>
+            <!-- 留言顯示區 -->
+            <!-- <div class="result-block-rwd">
+              <div class="search-container"></div>
+            </div> -->
+            <!-- 打字傳送區 -->
+            <!-- <div class="input-block">
               <input type="text" class="live-text-input-rwd" name="live-text-input" placeholder="傳送訊息" />
               <button class="btn-short live-submit-rwd" name="live-submit" type="button">
                 送出
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -102,19 +127,19 @@
     <div>
       <div class="live-company">
         <ul class="live-company-text">
-          <li>
+          <li v-if="C_NAME != '' ">
             <div class="live-company-title">
               <img src="img/live/compnay-title.png" alt="現在直播廠商" />
               <h2>現在直播廠商</h2>
             </div>
-            <h3>台灣積體電路製造股份有限公司(台積電)</h3>
+            <h3>{{C_NAME}}</h3>
           </li>
-          <li>
+          <li v-if="C_EMAIL != '' ">
             <div class="live-company-email">
               <img src="img/live/compnay-email.png" alt="聯絡方式" />
               <h2>聯絡方式</h2>
             </div>
-            <h3>email: test@gmail.com</h3>
+            <h3>email: {{C_EMAIL}}</h3>
           </li>
         </ul>
         <img src="img/live/live_circle_2.svg" alt="圓形圖案" class="img-circle">

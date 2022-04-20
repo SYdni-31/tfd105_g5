@@ -40,7 +40,7 @@
         @@include('layout/login.html')
     </header>
     <!-- content，各自頁面的html寫在這邊以下都是範例 -->
-    <main class="contect_main">
+    <main class="contect_main" id="contect_main">
         <section class="wrapper contect_wrapper">
             <div class="contect_slogan">
                 <h2>Attend Exhibition</h2>
@@ -51,23 +51,23 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <div class="contect_introduction">
-                        <form action="#" method="#" id="contect_form">
+                        <form action="php/connect_insert.php" method="post" id="contect_form"> <!-- @submit.prevent="contect_submit" --> 
                             <label for="contect_name"><span class="contect_mark contect_name ">您的姓名:</span></label>
-                            <input type="text" class="contect_box " id="contect_name" name="" />
+                            <input type="text" class="contect_box " id="contect_name" v-model="contect_name" name="contect_name" />
                             <label for="contect_mail"><span class="contect_mark">電子郵件:</span></label>
-                            <input type="text" class="contect_box" id="contect_mail" name="" />
+                            <input type="text" class="contect_box" id="contect_mail" v-model="contect_mail" name="contect_mail" />
                             <label for="contect_phone"><span class="contect_mark">連絡電話:</span></label>
-                            <input type="text" class="contect_box" id="contect_phone" name="" />
-                            <label for="contect_itd"><span>貴公司名稱:</span></label>
-                            <input type="text" class="contect_box" id="contect_itd" name="" />
+                            <input type="text" class="contect_box" id="contect_phone" v-model="contect_phone" name="contect_phone" />
+                            <label for="contect_company"><span>貴公司名稱:</span></label>
+                            <input type="text" class="contect_box" id="contect_company"v-model="contect_company" name="contect_company" />
                             <label for="contect_type"><span>您的展覽類型:</span></label>
-                            <input type="text" class="contect_box" id="contect_type" name="" />
-                            <label for="contect_message"><span class="contect_mark">訊息內容:</span></label>
-                            <textarea cols="20" rows="5" class="contect_box contect_message"  id="contect_message" name=""></textarea>
-                            <input type="submit" class="btn-long mt-15" id="contect_submit"value="送出資料">
-
-
+                            <input type="text" class="contect_box" id="contect_type" v-model="contect_type" name="contect_type" />
+                            <label for="contect_content"><span class="contect_mark">訊息內容:</span></label>
+                            <textarea cols="20" rows="5" class="contect_box contect_message"  id="contect_message" v-model="contect_mark" name="contect_content"></textarea>
+                            <input type="button" class="btn-long mt-15" id="contect_submit" value="送出資料">
+                            
                         </form>
+     
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
