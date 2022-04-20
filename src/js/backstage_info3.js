@@ -328,7 +328,7 @@ Vue.component('backstage_info3', {
     methods: {   //函數方法大部分放這
         search(){
             this.ajax(this.inpage)
-        },
+        }, //搜尋功能
         switchbtn(index) {
             this.update(index)
             console.log("open" + this.datas[index].OPEN);

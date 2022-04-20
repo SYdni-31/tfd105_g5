@@ -16,7 +16,10 @@ $(".contect_question").on("click", function (e) {
 //   var reg = /(\S)+[@]{1}(\S)+[.]{1}(\w)+/;
 
 var the_form_el = document.getElementById("contect_form");
-the_form_el.addEventListener("submit", function (e) {    //針對送出事建綁定  先驗證再送出 帳號email 卡號 必填符合格式
+// the_form_el.addEventListener("submit", function (e) {    //針對送出事建綁定  先驗證再送出 帳號email 卡號 必填符合格式
+  
+var btn= document.getElementById("contect_submit");
+btn.addEventListener("click",function(){
   //先抓欄位
   let name_el = document.getElementById("contect_name");
   let email_el = document.getElementById("contect_mail");
@@ -60,13 +63,38 @@ the_form_el.addEventListener("submit", function (e) {    //針對送出事建綁
   }
 
   if (!send_data) {            //if(send_data == false) 一樣
-      e.preventDefault();
+      // e.preventDefault();
     swal("送出失敗", "格式錯誤或是必填欄位未輸入!", "error");
  
   }else{
     swal("送出成功", " ", "success");
+
+    setTimeout(function(){
+      the_form_el.submit();
+    },3000);
+    
   }
+
 });
+
+
 
 // aos
 AOS.init();
+
+// new Vue({
+//   el: '#contect_form',
+//   data:{
+//     contect_name:'',
+//     contect_mail:'',
+//     contect_phone:'',
+//     contect_company:'',
+//     contect_type:'',
+//     contect_mark:''
+//   },
+//   methods: {
+//     contect_submit(){
+//       console.log("閱讀並同意");
+//     }
+//   },
+// })
