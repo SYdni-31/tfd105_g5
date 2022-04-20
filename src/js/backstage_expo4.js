@@ -4,7 +4,7 @@ Vue.component('backstage_expo4',{
     data(){
         return{
             box:null, //判斷要打開的彈窗
-            titles:["ID", "直播ID", "留言者", "留言內容", "操作"],
+            titles:["ID", "議程主題", "留言者", "留言內容", "操作"],
             datas:'', //每一頁的所有資料
             data_count:'', //資料庫的資料組數
             search_word:'', // 搜尋字串
@@ -193,8 +193,8 @@ Vue.component('backstage_expo4',{
             </ul>
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_expo4" v-for="(data, index) in datas">
                 <li class="bg-color bg-in-secondcolor">{{data['ID']}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data['LIVE_LIST_ID']}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data['NAME']}}</li>  <!--COMPANY_ID/ GUEST_ID條件顯示用 ||測試OK-->
+                <li class="bg-color bg-in-secondcolor">{{data['THEME']}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data['NAME']}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data['CONTENT']}}</li>
                 <li class="bg-color bg-in-secondcolor">
                     <div class="backstage_btn_td">

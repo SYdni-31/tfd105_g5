@@ -33,7 +33,7 @@ Vue.component('backstage_expo2_edit', {
                     if (end_value.length == '5') {
                         end_value = end_value + ':00';
                     }
-                    fetch('php/backstage_expo2_update_expo.php', {
+                    fetch('php/backstage_expo2_update_agenda_time.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -143,7 +143,7 @@ Vue.component('backstage_expo2_add', {
                 let starttime = (this.newdata.START_TIME).split(':').join('');
                 let endtime = (this.newdata.END_TIME).split(':').join('');
                 if (starttime <= endtime) {
-                    fetch('php/backstage_expo2_insert_expo.php', {
+                    fetch('php/backstage_expo2_insert_agenda_time.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -251,13 +251,14 @@ Vue.component('backstage_expo2', {
             this.ajax(this.inpage)
         },
         switchbtn(index) {
-            this.update(index)
+
             console.log("open" + this.datas[index].OPEN);
             if (this.datas[index].OPEN == true) {
                 this.datas[index].OPEN = 1
             } else {
                 this.datas[index].OPEN = 0
             }
+            this.update(index)
         },
         edit(data, index) {
             this.row_data = data
@@ -272,7 +273,7 @@ Vue.component('backstage_expo2', {
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    fetch('php/backstage_expo2_delete_expo.php', {
+                    fetch('php/backstage_expo2_delete_agenda_time.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -289,7 +290,7 @@ Vue.component('backstage_expo2', {
                                     icon: "success",
                                     image: "",
                                 }).then((willDelete) => {
-                                    fetch('php/backstage_expo2_select_expo.php', {
+                                    fetch('php/backstage_expo2_select_agenda_time.php', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -353,7 +354,7 @@ Vue.component('backstage_expo2', {
 
         },
         ajax(inpage) {
-            fetch('php/backstage_expo2_select_expo.php', {
+            fetch('php/backstage_expo2_select_agenda_time.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -380,7 +381,7 @@ Vue.component('backstage_expo2', {
                 },
                 body: JSON.stringify({
                     ID: this.datas[index].ID,
-                    OPEN: this.datas[index].OPEN
+                    OPEN: this.datas[index].OPEN_1
                 })
             }).then(resp => resp.json())
                 .then(body => {
@@ -442,7 +443,7 @@ Vue.component('backstage_expo2', {
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
                     不啟用
                     <div class="custom-control custom-switch">   
-                        <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN" @change="switchbtn(index)">
+                        <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN_1" @change="switchbtn(index)">
                         <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
                     </div>
                     啟用
@@ -462,7 +463,7 @@ Vue.component('backstage_expo2', {
         <component :is="box" @editclose="editclose" @editsave="editsave" @addclose="addclose" @addsave="addsave" :row_data="row_data"></component>
     </article>`,
     mounted() {
-        fetch('php/backstage_expo2_select_expo.php', {
+        fetch('php/backstage_expo2_select_agenda_time.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -482,6 +483,13 @@ Vue.component('backstage_expo2', {
                 this.data_count = resp.data_count[0][0]
                 // pages是分幾頁，math無條件進位 11/10 =1.1 無條件進位 = 2
                 this.pages = Math.ceil(this.data_count / this.perpage)
+                for (let i = 0; i < this.datas.length; i++) {
+                    if (this.datas[i].OPEN == 0) {
+                        this.datas[i].OPEN_1 = false
+                    } else {
+                        this.datas[i].OPEN_1 = true
+                    }
+                }
             })
     },
 })
