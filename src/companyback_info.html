@@ -12,6 +12,7 @@
     integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
   <!-- title icon -->
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+  <script src="js/vue.min.js"></script>
 
   <title>聚策展-廠商後台-廠商資訊管理</title>
 </head>
@@ -26,39 +27,40 @@
   </header>
   <!-- content，各自頁面的html寫在這邊以下都是範例 大區塊外面包section  -->
   <main>
-    <section class="wrapper">
-      <section class="wrapper company_wrapper">
+      <section class="wrapper company_wrapper" id="companyback_info">
         <div class="company_title">
           <a class="title_skill">廠商資訊管理</a>
         </div>
         <form action="" class="companyback_info_form">
-          <ul class="all_input">
+          <ul class="all_input" >
             <li class="">
               <div class="field pt-45">
                 <h2>策展名稱:</h2>
-                <input type="text" id="ex_name" required autocomplete="off" placeholder="" />
-                <label for="ex_name" title="Display name" data-title="策展名稱"></label>
+                <input type="text" id="ex_name" required autocomplete="off" placeholder="" v-model="datas.EXPO_NAME" disabled />
+                <label for="ex_name" title="" data-title="策展名稱"></label>
               </div>
               <div class="field pt-45">
                 <h2>廠商名稱:</h2>
-                <input type="text" id="c_company_name" required autocomplete="off" />
-                <label for="c_company_name" title="Company name" data-title="廠商名稱"></label>
+                <input type="text" id="c_company_name" required autocomplete="off" v-model="datas.NAME" disabled/>
+                <label for="c_company_name" title="" data-title="廠商名稱"></label>
               </div>
               <div class="field pt-45">
                 <h2>影片網址:</h2>
-                <input type="text" id="vedio_add" required autocomplete="off" />
+                <input type="text" id="vedio_add" required autocomplete="off" v-model="datas.VIDEO" />
                 <label for="vedio_add" title="Video address" data-title="影片網址"></label>
               </div>
             </li>
             <li>
-              <div class="company_logo mt-45">
-                <button>插入logo</button>
+              <div class="company_logo mt-45" >
+                <input type="file" class="logo_file -hide" @change="change">
+                <img id="preview" :src="datas.LOGO" alt="" class="-margin0auto" >
+                <button @click.prevent="chooselogo">插入logo</button>
               </div>
             </li>
           </ul>
           <div class="field introduce pt-60">
             <h2>廠商介紹:</h2>
-            <textarea name="" class="fle" id="intr_company" rows="8" required autocomplete="off" size="300"></textarea>
+            <textarea name="" class="fle" id="intr_company" rows="8" required autocomplete="off" size="300" v-model="datas.INTRODUCE"></textarea>
             <label for="intr_company" title="Introduce" data-title="廠商介紹"></label>
           </div>
 
@@ -71,11 +73,11 @@
             </li>
             <li>
               <label for="robot1"><img src="./img/c_back/robot1.png" alt=""></label>
-              <input type="radio" name="robotpicture" id="robot1">
+              <input type="radio" name="robotpicture" id="robot1" v-model="datas.ROBOT" value="1" >
             </li>
             <li>
               <label for="robot2"><img src="./img/c_back/robot2 .png" alt=""></label>
-              <input type="radio" name="robotpicture" id="robot2">
+              <input type="radio" name="robotpicture" id="robot2" v-model="datas.ROBOT" value="2">
             </li>
           </ul>
 
@@ -88,26 +90,23 @@
               </span>
             </li>
             <li>
-              <label for="environment1"><img src="./img/c_back/evin (1).png" alt=""></label>
-              <input type="radio" name="environmentpicture" id="environment1">
+              <label for="environment1"><img src="./img/c_back/evin (1).png" alt="" ></label>
+              <input type="radio" name="environmentpicture" id="environment1" v-model="datas.TYPE" value="1">
             </li>
             <li>
               <label for="environment2"><img src="./img/c_back/evin (2).png" alt=""></label>
-              <input type="radio" name="environmentpicture" id="environment2">
+              <input type="radio" name="environmentpicture" id="environment2" v-model="datas.TYPE" value="2">
             </li>
             <li>
               <label for="environment3"><img src="./img/c_back/evin (3).png" alt=""></label>
-              <input type="radio" name="environmentpicture" id="environment3">
+              <input type="radio" name="environmentpicture" id="environment3" v-model="datas.TYPE" value="3">
             </li>
           </ul>
 
-          <input type="submit" class="btn-long save mt-60" name="save" value="儲存並預覽">
+          <input type="submit" class="btn-long save mt-60" name="save" value="儲存並預覽" @click.prevent="formData">
         </form>
 
-      </section>
-      <section>
-
-      </section>
+      
   </main>
   <!-- footer -->
   <footer>
@@ -119,10 +118,7 @@
   <!-- 先連結main再連結各自設的js -->
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
-
-  <script>
-
-  </script>
+  <script src="js/companyback_info.min.js"></script>
 </body>
 
 </html>
