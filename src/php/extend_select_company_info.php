@@ -1,6 +1,5 @@
 <?php
     include("connection.php");
-    $select = json_decode(file_get_contents("php://input"), true);
     // 選取全部數量
     $sql= "select * from view_company_info where ONBOARD=1";
     $statement = $pdo->prepare($sql);
@@ -20,10 +19,11 @@
 
     $select3= $statement3->fetchAll();
 
+    $select4 = json_decode(file_get_contents("php://input"), true);
     $sql4= "SELECT * FROM view_company_board where (GUEST_ID = :GUEST or COMPANY_ID = :COMPANY);";
     $statement4 = $pdo->prepare($sql4);
-    $statement->bindValue(":GUEST", $select["guest"]);
-    $statement->bindValue(":COMPANY", $select["company"]);
+    $statement4->bindValue(":GUEST", $select4["guest"]);
+    $statement4->bindValue(":COMPANY", $select4["company"]);
     $statement4->execute();
 
     $select4= $statement4->fetchAll();

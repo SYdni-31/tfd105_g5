@@ -80,8 +80,8 @@
                 <p v-for="talk in room.board" class="chat_content  pall-5 mall-10 mt-30 ml-30" :class="talk.C_MSG==null?'chat_content_me':'chat_content_you'">{{talk.G_MSG||talk.C_MSG}}<span>{{talktime(talk.MSGTIME)}}</span></p>
               </div>
               <div class="chat_input">
-                <input  type="text" v-model="chatword" @keyup.enter="subchat" placeholder="請輸入訊息內容...">
-                <button @click="subchat" class="btn-short"><i class="fa-solid fa-paper-plane"></i></button>
+                <input  type="text" v-model="chatword" @keyup.enter="subchat(room.ID,$event)" placeholder="請輸入訊息內容...">
+                <button @click="subchat(room.ID,$event)" class="btn-short"><i class="fa-solid fa-paper-plane"></i></button>
               </div>
             </article>
           </section>
