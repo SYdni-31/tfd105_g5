@@ -10,5 +10,7 @@
     if ($select != null){
         $folder['data']=$select;
         echo json_encode($folder);
+    }else{
+        echo ("false");
     };
 ?>
