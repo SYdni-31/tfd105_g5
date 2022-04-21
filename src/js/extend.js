@@ -26,7 +26,7 @@ const vm = new Vue({
       }
     },
     chat(e){
-      $(e.currentTarget).next('.extend_chatbox').toggle(300)
+      $(e.currentTarget).next('.extend_chatbox').show(300)
     },
     chatoff(e){
       $(e.currentTarget).parents('.extend_chatbox').hide(300)
@@ -53,7 +53,13 @@ const vm = new Vue({
         e.currentTarget.closest('.extend_chatbox').querySelector('.chated').scroll(0,e.currentTarget.closest('.extend_chatbox').querySelector('.chated').scrollHeight)
         this.chatword=""
       }
-    }
+    },
+    techconract(NAME, e){
+      e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('.extend_chat_btn').click()
+      e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('input').value = `我想了解你們的${NAME}`
+      window.scroll(0,200)
+      e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('.chated').scroll(0,e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('.chated').scrollHeight)
+    },
   },
   created(){
     fetch('php/extend_select_company_info.php',{

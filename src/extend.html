@@ -97,7 +97,7 @@
               <div class="-margin0auto pt-30" v-for="item in room.tech">
                 <h4 class="mr-10">{{item.NAME}}</h4>
                 <div>
-                  <a href="#" class="btn-short mall-10">CONTACT</a>
+                  <a @click.prevent="techconract(item.NAME, $event)" href="#" class="btn-short mall-10">CONTACT</a>
                   <a :href="item.LINK" class="btn-short mall-10" target="_blank">VIEW</a>  
                 </div>
               </div>
