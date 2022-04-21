@@ -75,38 +75,10 @@
         <div class="about_scheduleText">
           <div class="mb-10 about_title">大會議程</div>
           <ul>
-            <li v-for="schedule in schedules">
+            <li v-for="(schedule,index) in schedules">
               <h3 class="about_time">{{schedule.time}}</h3>
               <h3 class="about_theme">{{schedule.theme}}</h3>
             </li>
-            <!-- <li>
-              <h3 class="about_time">10:30-11:00</h3>
-              <h3 class="about_theme">主講人:唐鳳-數位國家・創新經濟發展方案</h3>
-            </li>
-            <li>
-              <h3 class="about_time">11:00-11:30</h3>
-              <h3 class="about_theme">主講人:郭水義-看好5G 前景</h3>
-            </li>
-            <li>
-              <h3 class="about_time">11:30-12:00</h3>
-              <h3 class="about_theme">主講人:張忠謀-經營人的學習與成長</h3>
-            </li>
-            <li>
-              <h3 class="about_time">12:00-13:00</h3>
-              <h3 class="about_theme">中午休息</h3>
-            </li>
-            <li>
-              <h3 class="about_time">13:00-14:00</h3>
-              <h3 class="about_theme">廠商名-技術分享</h3>
-            </li>
-            <li>
-              <h3 class="about_time">14:00-15:00</h3>
-              <h3 class="about_theme">廠商名-技術分享</h3>
-            </li>
-            <li>
-              <h3 class="about_time">15:00-16:00</h3>
-              <h3 class="about_theme">廠商名-技術分享</h3>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -132,7 +104,7 @@
             </h4>
           </div>
         </div>
-        <div class="about_speaker mt-20">
+        <!-- <div class="about_speaker mt-20">
           <div class="about_speaker_intro">
             <img class="mt-35" src="img/about/speaker2.png">
             <h3 class="mt-18">張忠謀</h3>
@@ -148,7 +120,7 @@
               </ul>
             </h4>
           </div>
-        </div>
+        </div> -->
         <div class="about_speaker mt-20">
           <div class="about_speaker_intro">
             <img class="mt-35" src="img/about/speaker3.png">
