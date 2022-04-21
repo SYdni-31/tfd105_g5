@@ -22,7 +22,6 @@
 .extend_main{
     .swiper-button-next, .swiper-button-prev{
         top:500px;
-        z-index: 0;
     }
 }
 .extend_body{
@@ -114,7 +113,6 @@
             background-color: $black-color;
             height: 450px;
             width: 300px;
-            z-index: 20;
             .chat_title{
                 border-bottom: 1px solid #f6fafb78;
                 h3{

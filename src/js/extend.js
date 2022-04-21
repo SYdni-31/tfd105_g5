@@ -27,9 +27,13 @@ const vm = new Vue({
     },
     chat(e){
       $(e.currentTarget).next('.extend_chatbox').show(300)
+      document.querySelector(".swiper-button-next").classList.add("-hide")
+      document.querySelector(".swiper-button-prev").classList.add("-hide")
     },
     chatoff(e){
       $(e.currentTarget).parents('.extend_chatbox').hide(300)
+      document.querySelector(".swiper-button-next").classList.remove("-hide")
+      document.querySelector(".swiper-button-prev").classList.remove("-hide")
     },
     talktime(time){
       return time.slice(5).slice(0,11).replace("-", "/")
@@ -74,27 +78,61 @@ const vm = new Vue({
   })
     .then(resp => resp.json())
     .then(resp => {
-      this.rooms= resp['rooms']
+      let rooms_data = resp['rooms']
+     rooms_data= resp['rooms']
       for(let j=0; j<resp.rooms.length; j++){
-        this.rooms[j]['live']=[]
-        this.rooms[j]['tech']=[]
-        this.rooms[j]['board']=[]
+       rooms_data[j]['live']=[]
+       rooms_data[j]['tech']=[]
+       rooms_data[j]['board']=[]
         for(let i=0; i<resp.live.length; i++){
           if(resp.live[i].CI_ID==resp.rooms[j].ID){
-            this.rooms[j]['live'].push(resp.live[i])
+           rooms_data[j]['live'].push(resp.live[i])
           }
         }
         for(let h=0; h<resp.tech.length; h++){  
           if(resp.tech[h].CI_ID==resp.rooms[j].ID){
-            this.rooms[j]['tech'].push(resp.tech[h])
+           rooms_data[j]['tech'].push(resp.tech[h])
           }
         }
         for(let k=0; k<resp.board.length; k++){  
           if(resp.board[k].COMPANY_INFO_ID==resp.rooms[j].ID){
-            this.rooms[j]['board'].push(resp.board[k])
+           rooms_data[j]['board'].push(resp.board[k])
           }
         }
       }
+      this.rooms = rooms_data
+
+      this.$nextTick(()=>{
+    // =================輪播=================  
+    var galleryTop = new Swiper('.gallery-top', {
+      spaceBetween: 10,
+      loop: true,
+      loopedSlides: 7,
+      observer:true,//修改swiper自己或子元素時，自動初始化swiper
+      observeParents:true,//修改swiper的父元素時，自動初始化swiper
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+      spaceBetween: 60,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+      loop: true,
+      loopedSlides: 7,
+      effect:'coverflow',
+      coverflowEffect: {
+          rotate: 0,
+        },
+      observer:true,//修改swiper自己或子元素時，自動初始化swiper
+      observeParents:true,//修改swiper的父元素時，自動初始化swiper
+    });
+    galleryTop.controller.control = galleryThumbs;
+    galleryThumbs.controller.control = galleryTop;
+      })
       // this.rooms.push(resp['rooms'][0])
       // this.rooms.push(resp['rooms'][1])
       // this.rooms.push(resp['rooms'][2])
@@ -110,35 +148,7 @@ const vm = new Vue({
     })
   },
   mounted(){
-    // =================輪播=================  
-  var galleryTop = new Swiper('.gallery-top', {
-    spaceBetween: 10,
-    loop: true,
-    loopedSlides: 7,
-    observer:true,//修改swiper自己或子元素時，自動初始化swiper
-    observeParents:true,//修改swiper的父元素時，自動初始化swiper
-    // navigation: {
-    //   nextEl: '.swiper-button-next',
-    //   prevEl: '.swiper-button-prev',
-    // },
-  });
-  var galleryThumbs = new Swiper('.gallery-thumbs', {
-    spaceBetween: 60,
-    centeredSlides: true,
-    slidesPerView: 'auto',
-    touchRatio: 0.2,
-    slideToClickedSlide: true,
-    loop: true,
-    loopedSlides: 7,
-    effect:'coverflow',
-    coverflowEffect: {
-        rotate: 0,
-      },
-    observer:true,//修改swiper自己或子元素時，自動初始化swiper
-    observeParents:true,//修改swiper的父元素時，自動初始化swiper
-  });
-  galleryTop.controller.control = galleryThumbs;
-  galleryThumbs.controller.control = galleryTop;
+
 
   }
   
