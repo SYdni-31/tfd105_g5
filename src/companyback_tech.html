@@ -12,7 +12,9 @@
         integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
     <!-- title icon -->
     <link rel="icon" href="img/tianlam-logo-mainblack.svg">
-
+    <!-- VUE -->
+    <script src="js/vue.min.js"></script>
+    
     <title>聚策展-廠商後台-技術展示區</title>
 </head>
 
@@ -27,13 +29,36 @@
     </header>
     <!-- content，各自頁面的html寫在這邊以下都是範例 大區塊外面包section  -->
     <main>
-        <section class="wrapper company_wrapper">
+        <section class="wrapper company_wrapper" id="tech_app" >
+            <!-- 上方標題 -->
             <div class="company_title">
                 <a class="title_skill">技術展示區</a>
             </div>
 
-            <form action="#" class="companyback_form">
-                <!-- icon -->
+            <div v-for="(tech, index) in techs">
+                <form action="#" class="companyback_form">
+                    <!-- icon -->
+                    <!-- v-for最多八筆 -->
+                    <aside class="companyback_layout" v-for="list in 8"></aside>
+                    <ol class="companyback_icon">
+                        <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
+                        <li> <a><i class="fa-regular fa-trash-can"></i></a></li>
+                    </ol>
+                    <div class="field pt-45">
+                        <h2>技術名稱 :</h2>
+                        <input type="text" id="skill_name0" required autocomplete="off" v-model="tech.NAME">
+                        <label for="skill_name0" title="Skill name" data-title="技術名稱"></label>
+                    </div>
+                    <div class="field pt-45">
+                        <h2>技術網址 :</h2>
+                        <input type="text" id="password_add" required autocomplete="off" v-model="tech.LINK">
+                        <label for="password_add" title="Skill address" data-title="技術網址"></label>
+                    </div>
+                    <a class="companyback_save btn_company_back">儲存</a>
+                </form>
+            </div>
+
+            <!-- <form action="#" class="companyback_form">
                 <aside class="companyback_layout">1</aside>
                 <ol class="companyback_icon">
                     <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
@@ -51,11 +76,9 @@
                     <label for="password_add" title="Skill address" data-title="技術網址"></label>
                 </div>
                 <a class="companyback_save btn_company_back">儲存</a>
-            </form>
+            </form> -->
 
-
-            <form action="#" class="companyback_form ">
-                <!-- icon -->
+            <!-- <form action="#" class="companyback_form ">
                 <aside class="companyback_layout">2</aside>
                 <ol class="companyback_icon">
                     <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
@@ -72,9 +95,9 @@
                     <label for="password_add2" title="Skill address" data-title="技術網址"></label>
                 </div>
                 <a class="companyback_save btn_company_back">儲存</a>
-            </form>
-            <form action="#" class="companyback_form ">
-                <!-- icon -->
+            </form> -->
+
+            <!-- <form action="#" class="companyback_form ">
                 <aside class="companyback_layout">3</aside>
                 <ol class="companyback_icon">
                     <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
@@ -92,7 +115,8 @@
                     <label for="password3" title="Skill address" data-title="技術網址"></label>
                 </div>
                 <a class="companyback_save btn_company_back">儲存</a>
-            </form>
+            </form> -->
+
             <div class="companyback_add mt-30">
                 <a class="btn_company_back">新增</a>
             </div>
