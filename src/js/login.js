@@ -2,23 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let login_page_icon = document.getElementById("login_page_icon");
     let login = document.getElementById("login");
     let btn_close = document.getElementById("BtnClose");
+    let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 
     // 點擊人頭叫出登入頁燈箱
     login_page_icon.addEventListener("click", function () {
         login.classList.remove("js-none");
-        // login.fadeIn(1000);
         login.classList.add("js-block");
-        // login.fadeIn(3000);
         document.body.style.overflow = "hidden";
     });
 
     // 點擊叉叉可以關閉燈箱
     btn_close.addEventListener("click", function () {
-        CloseLightBox();
+        closeLightBox();
+        // console.log("1");
     });
 
     // 關閉燈箱
-    function CloseLightBox() {
+    function closeLightBox() {
         login.classList.remove("-login_page_icon");
         login.classList.remove("js-block");
         promptMessage.classList.remove("js-block");
@@ -28,24 +28,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // 點擊遮罩處可以關閉燈箱
     $(document).on("click", ".login", function (e) {
         if ($(e.target).is(".login")) {
-            CloseLightBox();
+            closeLightBox();
         }
     });
 
     // 按Esc鍵可以關閉燈箱
     $(document).keyup(function (e) {
         if (e.which == "27") {
-            CloseLightBox();
+            closeLightBox();
         }
     });
 
-    var login_btn_signup = document.getElementById("login_btn_signup");
-    var signIn = document.getElementById("signIn");
-    var companySignInContainer = document.getElementById("company_sign_in_container");
-    var companySignUpContainer = document.getElementsByClassName("company-sign-up-container")[0];
-    var guestSignInContainer = document.getElementsByClassName("guest-sign-in-container")[0];
+    let login_btn_signup = document.getElementById("login_btn_signup");
+    let signIn = document.getElementById("signIn");
+    let companySignInContainer = document.getElementById("company_sign_in_container");
+    let companySignUpContainer = document.getElementsByClassName("company-sign-up-container")[0];
+    let guestSignInContainer = document.getElementsByClassName("guest-sign-in-container")[0];
     let overlayContainer = document.getElementsByClassName("overlay-container")[0];
-    var loginConpanySignInAlert = document.getElementsByClassName('login_conpanySignIn_alert')[0];
+    let loginConpanySignInAlert = document.getElementsByClassName('login_conpanySignIn_alert')[0];
 
     // 點擊註冊
     login_btn_signup.addEventListener("click", function () {
@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let company_2 = document.getElementById('company_2');
     let exb_dropdown = document.getElementById('exb_dropdown');
     loginBtnSubmitinfo.addEventListener("click", function (e) {
+        // e.submit();
         let companySignUp_name = name_2.value.trim();
         let companySignUp_email = email_3.value.trim();
         let companySignUp_password = password_2.value.trim();
@@ -168,7 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // 電子郵件不得為空值且符合格式
         // console.log(companySignUp_email);
         // console.log(is.email(companySignUp_email));
-        if (is.email(companySignUp_email)) {
+        let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+        if (mailRight.test(companySignUp_email)) {
             // console.log("1");
             email_3.classList.remove("login-error");
         } else {
@@ -189,13 +191,13 @@ document.addEventListener("DOMContentLoaded", function () {
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_2.value.length > 20) {
             send_data = false;
-            alert('密碼長度不得大於20碼');
+            // alert('密碼長度不得大於20碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
         } else if (password_2.value.length < 8) {
             send_data = false;
-            alert('密碼長度不得小於8碼');
+            // alert('密碼長度不得小於8碼');
             password_2.focus();
             password_2.classList.add("login-error");
             // password_2.value = "";
@@ -219,7 +221,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 各欄位不得為空值
-        if (companySignUp_name === "" && companySignUp_password === "" && companySignUp_company === "" && !is.email(companySignUp_email)) {
+        // let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+        if (companySignUp_name === "" && companySignUp_password === "" && companySignUp_company === "" && !mailRight.test(companySignUp_email)) {
             send_data = false;
         } else if (companySignUp_password === "") {
             send_data = false;
@@ -258,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
         receivedForm.classList.remove("js-block");
         receivedForm.classList.remove("js-block");
         loginTabGuest.classList.remove('js-none');
-        CloseLightBox();
+        closeLightBox();
         setTimeout(function () {
             companySignInContainer.classList.remove("js-slide-left");
             companySignInContainer.classList.remove("js-none");
@@ -280,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
             companySignUpContainer.classList.add("js-none");
             companySignInContainer.classList.add("js-slide-right");
-            //   companySignInContainer.classList.add("js-block");
+            companySignInContainer.classList.add("js-block");
             companySignInContainer.classList.remove("js-none");
             companySignInContainer.classList.remove("js-slide-left");
             //   companySignInContainer.classList.add("js-block3");
@@ -300,27 +303,29 @@ document.addEventListener("DOMContentLoaded", function () {
         let forget_changeEmail = changeEmail.value.trim();
         let send_data = true;
         //發信，有信件數量限制，故暫時不發信
-        var templateParams = {
-            user: "台積電",
-            from_name:"聚策展",
-            message: "您的密碼已變更為password!''",
-            To_Email: forget_changeEmail,
-          };
-          emailjs.send("service_gos3kx1", "template_a1m2ysc", templateParams).then(
-            function (response) {
-              console.log("SUCCESS!", response.status, response.text);
-            },
-            function (error) {
-              console.log("FAILED...", error);
-            }
-        );
+        // var templateParams = {
+        //     user: "台積電",
+        //     from_name:"聚策展",
+        //     message: "您的密碼已變更為password!''",
+        //     To_Email: forget_changeEmail,
+        //   };
+        //   emailjs.send("service_gos3kx1", "template_a1m2ysc", templateParams).then(
+        //     function (response) {
+        //       console.log("SUCCESS!", response.status, response.text);
+        //     },
+        //     function (error) {
+        //       console.log("FAILED...", error);
+        //     }
+        // );
+        let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 
-        if (is.email(forget_changeEmail)) {
+        if (mailRight.test(forget_changeEmail)) {
             // console.log("1");
-            email_el.classList.remove("login-error");
+            changeEmail.classList.remove("login-error");
         } else {
-            email_el.classList.add("login-error");
             send_data = false;
+            changeEmail.classList.add("login-error");
+            // console.log("1");
         }
         // if ($("#form-forget-password").hasClass("js-block")) {
         //     promptMessage.classList.remove("js-none");
@@ -328,10 +333,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // }
         // 登入成功與登入失敗
         if (!send_data) {
-            if ($("#form-forget-password").hasClass("js-block")) {
-                swal('寄送失敗', '格式錯誤或是必填欄位未輸入!', 'error');
-                e.preventDefault();
-            }
+            // if ($("#form-forget-password").hasClass("js-block")) {
+            swal('寄送失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+            e.preventDefault();
+            // }
         } else {
             promptMessage.classList.remove("js-none");
             promptMessage.classList.add("js-block");
@@ -341,7 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 輸入完資訊，點擊參觀按鈕後關閉彈窗
-    var loginBtnVisit = document.getElementsByClassName("login_btn-visit")[0];
+    let loginBtnVisit = document.getElementsByClassName("login_btn-visit")[0];
     let name_1 = document.getElementById('name_1');
     let email_2 = document.getElementById('email_2');
     let Company_1 = document.getElementById('Company_1');
@@ -361,9 +366,10 @@ document.addEventListener("DOMContentLoaded", function () {
             send_data = true;
         }
 
+        let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         // 電子郵件欄位驗證
-        if (is.email(guest_email)) {
-            // console.log("1");
+        if (mailRight.test(guest_email)) {
+            console.log("11111111");
             email_2.classList.remove("login-error");
         } else {
             // console.log("2");
@@ -379,7 +385,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             send_data = true;
             swal('成功', '歡迎參觀聚策展!', 'success');
-            CloseLightBox();
+            closeLightBox();
             // alert('歡迎參觀聚策展!');
             name_1.value = "";
             email_2.value = "";
@@ -442,7 +448,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.innerWidth < 880) {
 
         // RWD JS
-        var $li = $("ul.tab-title li");
+        let $li = $("ul.tab-title li");
 
         $($li.eq(0).addClass("-on").find("a").attr("href")).siblings(".tab-inner").hide();
 
@@ -466,8 +472,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // 電子郵件欄位不得輸入中文
         // var strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
         // companySignIn_email = strNOCn_1;    
+
+        // email格式
+        let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         // email符合格式
-        if (is.email(companySignIn_email)) {
+        if (mailRight.test(companySignIn_email)) {
             // console.log("1");
             email_el.classList.remove("login-error");
         } else {
@@ -477,14 +486,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_el.value.length > 20) {
-            alert('輸入密碼長度不得大於20碼');
+            // alert('輸入密碼長度不得大於20碼');
             password_el.focus();
             password_el.classList.add("login-error");
             // password_el.value = "";
             send_data = false;
         } else if (password_el.value.length < 8) {
             send_data = false;
-            alert('輸入密碼長度不得小於8碼');
+            // alert('輸入密碼長度不得小於8碼');
             // swal('登入失敗', '輸入密碼長度不得小於8碼', 'warning');
             password_el.focus();
             password_el.classList.add("login-error");
@@ -512,6 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             // send_data = true;
             // alert("登入成功");
+            sessionStorage.clear();
             swal('登入成功', '', 'success');
             email_el.value = "";
             password_el.value = "";
@@ -525,4 +535,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+
+
 });
+
+
+// AJAX
+const url = "php/company_login.php";
+const companyEmail = document.querySelector('#email_1');
+// console.log(companyEmail);
+const companyPassword = document.querySelector('#password_1');
+document.querySelector('button').addEventListener('click', () => {
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            login_id: companyEmail.value.trim(),
+            companyPassword: btoa(companyPassword.value.trim()),
+        })
+    })
+
+    .then(res => res.json())
+    .then(customer => {
+        // console.log(customer);
+        const { NAME,successful,EMAIL,ID,INFO_ID } = customer;
+        if(successful){
+            swal('登入成功', '', 'success');
+            sessionStorage.setItem('login_id', ID);
+            sessionStorage.setItem('login_name', NAME);
+            sessionStorage.setItem('login_email', EMAIL);
+            sessionStorage.setItem('login_info', INFO_ID);
+            
+        }else{
+            swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+
+        }
+
+    });
+
+});
+
