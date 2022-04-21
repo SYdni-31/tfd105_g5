@@ -10,31 +10,50 @@ $select=$statement->fetchAll();
 // 選取第x頁資料(分頁)
 //等號後方複製就好 變數自己訂
 $select2=json_decode(file_get_contents("php://input"), true);
-$sql2= "set @a= concat('select * from CONTACT where ID like' , '\"%', :search_word, '%\"','or NAME like', '\"%', :search_word, '%\"', 'or EMAIL like', '\"%', :search_word, '%\"', 'or PHONE like', '\"%', :search_word, '%\"','or COMPANY like','\"%',:search_word,'%\"','or TYPE like','\"%',:search_word,'%\"','or STATUS like','\"%',:search_word,'%\"', ' limit', ' ', (:inpage-1)*:perpage, ', ', :perpage)";
+// $sql2= "set @a= concat('select * from CONTACT where ID like' , '\"%', :search_word, '%\"','or NAME like', '\"%', :search_word, '%\"', 'or EMAIL like', '\"%', :search_word, '%\"', 'or PHONE like', '\"%', :search_word, '%\"','or COMPANY like','\"%',:search_word,'%\"','or TYPE like','\"%',:search_word,'%\"','or STATUS like','\"%',:search_word,'%\"', ' limit', ' ', (:inpage-1)*:perpage, ', ', :perpage)";
+$sql2 = "
+    select *
+    from CONTACT
+    where
+        ID like :search_word
+        or NAME like :search_word
+        or EMAIL like :search_word 
+        or PHONE like :search_word
+        or COMPANY like :search_word
+        or TYPE like :search_word
+        or STATUS like :search_word
+    limit
+        :skipRow, :showRow";
+
 //準備要把@a存進mysql內
+$inpage = $select2["inpage"];
+$perpage = $select2["perpage"];
+
 $statement2 = $pdo->prepare($sql2);
-$statement2->bindValue(":inpage", $select2["inpage"], PDO::PARAM_INT);
-$statement2->bindValue(":perpage", $select2["perpage"], PDO::PARAM_INT);
-$statement2->bindValue(":search_word", $select2["search_word"]);
+$statement2->bindValue(":search_word", '%'.$select2["search_word"].'%');
+$statement2->bindValue(":skipRow", ($inpage - 1) * $perpage, PDO::PARAM_INT);
+$statement2->bindValue(":showRow", $perpage, PDO::PARAM_INT);
+
 
 $statement2->execute();
 
 //第三部是將第二步的變數給拿出來
-$sql3="prepare texts from @a";
-$statement3 = $pdo->prepare($sql3);
-$statement3->execute();
+// $sql3="prepare texts from @a";
+// $statement3 = $pdo->prepare($sql3);
+// $statement3->execute();
 
 
-//第四部是執行第三部的文字
-$sql4="execute texts";
-    $statement4 = $pdo->prepare($sql4);
-    $statement4->execute();
+// //第四部是執行第三部的文字
+// $sql4="execute texts";
+//     $statement4 = $pdo->prepare($sql4);
+//     $statement4->execute();
 
 
-$select2= $statement4->fetchALL();
+$select2= $statement2->fetchALL();
 if ($select != null){
     $folder['data_count']=$select;
     $folder['data']=$select2;
     echo json_encode($folder);
 };
+
 ?>
