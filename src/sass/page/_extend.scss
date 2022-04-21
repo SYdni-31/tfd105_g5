@@ -10,7 +10,7 @@
             max-height: 91.15px;
         }
     }
-    .swiper-slide-thumb-active{
+    .swiper-slide-active img{
         border: 3px solid $main-color;
     }
     h1.cblook_top{
@@ -22,6 +22,7 @@
 .extend_main{
     .swiper-button-next, .swiper-button-prev{
         top:500px;
+        z-index: 0;
     }
 }
 .extend_body{
@@ -113,6 +114,7 @@
             background-color: $black-color;
             height: 450px;
             width: 300px;
+            z-index: 20;
             .chat_title{
                 border-bottom: 1px solid #f6fafb78;
                 h3{
@@ -280,13 +282,18 @@
             width: 80%;
             height: 40vw;           
         }
-    } 
+        
+    }
+    p{
+        text-align: center;
+        line-height: 250px;
+    }
 }
 // =======RWD======
 @include laptop(1200px){
     .extend_main{
         .swiper-button-next, .swiper-button-prev{
-            top:60vw;
+            top:40vw;
         }
     }
 }
@@ -295,9 +302,9 @@
         h3{
             font-size: 14px;
         }
-    }
+    }   
     .extend_body .extend_look .extend_chatbox{
-        @include absolute(-10%,null, null, 50%);
+        @include absolute(5%,null, null, 50%);
     }
     h1.cblook_top{
         font-size: 26px;

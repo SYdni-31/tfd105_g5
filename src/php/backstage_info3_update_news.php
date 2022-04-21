@@ -35,7 +35,7 @@ if(isset($_FILES["file"])){ //函数檢測變量是否有變動
         $statement->bindValue(":LINK", $select["LINK"]);
         $statement->bindValue(":TITLE", $select["TITLE"]);
         $statement->bindValue(":STATUS","U");
-        $statement->bindValue(":fileName", "speaker_img/".$fileName);
+        $statement->bindValue(":fileName", "img/news/".$fileName);
         $statement->bindValue(":OPEN", $select["OPEN"], PDO::PARAM_INT);
         $statement->bindValue(":ID", $select["ID"]);
 

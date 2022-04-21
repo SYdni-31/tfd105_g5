@@ -152,5 +152,5 @@ exports.cls = clear
 exports.default = series(clear, parallel(includeHTML, minicss, packagejs, package),browser) 
  
  // online
-exports.online = series(clear, parallel(includeHTML, minicss, minijs, babel5, min_images))
+exports.online = series(clear, parallel(includeHTML, minicss, minijs, min_images))
  

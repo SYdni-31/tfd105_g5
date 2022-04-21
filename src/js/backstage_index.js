@@ -668,33 +668,33 @@ Vue.component('backstage_info2', {
                 this.pages = Math.ceil(this.data_count / this.perpage)
                 this.inpage = inpage
             })
-    }
-},
-computed: {
-    centerPages() {
-        let centerPage = this.inpage;
-        if (this.inpage > this.pages - 3) {
-            centerPage = this.pages - 3
         }
-        if (this.inpage < 4) {
-            centerPage = 4
-        }
-        if (this.pages <= this.centersize + 2) {
-            const centerArr = []
-            for (let i = 2; i < this.pages; i++) {
-                centerArr.push(i)
+    },
+    computed: {
+        centerPages() {
+            let centerPage = this.inpage;
+            if (this.inpage > this.pages - 3) {
+                centerPage = this.pages - 3
             }
-            return centerArr
-        } else {
-            const centerArr = []
-            for (let i = centerPage - 2; i <= centerPage + 2; i++) {
-                centerArr.push(i)
+            if (this.inpage < 4) {
+                centerPage = 4
             }
-            return centerArr
+            if (this.pages <= this.centersize + 2) {
+                const centerArr = []
+                for (let i = 2; i < this.pages; i++) {
+                    centerArr.push(i)
+                }
+                return centerArr
+            } else {
+                const centerArr = []
+                for (let i = centerPage - 2; i <= centerPage + 2; i++) {
+                    centerArr.push(i)
+                }
+                return centerArr
+            }
         }
-    }
-},
-template: `
+    },
+    template: `
     <article class="-margin0auto pt-10 pb-10 table_outer">
         <button @click="box='backstage_info2_add'" class=" backstage_btn backstage_btn_add mb-15">新增</button>
         <h3 class="bg-color pall-15">{{tablename}}</h3>
@@ -737,6 +737,7 @@ template: `
         })
         .then(resp => resp.json())
         .then(resp => {
+            console.log(resp)
             this.datas = resp.data
             this.data_count = resp.data_count[0][0]
             this.pages = Math.ceil(this.data_count / this.perpage)

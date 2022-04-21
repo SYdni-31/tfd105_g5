@@ -1,31 +1,196 @@
+// 輸入的訊息內容
+Vue.component('todo-item', {
+  props: ['name', 'message'],
+  template: `
+  <ul class="search-list">
+    <li class="search-li">
+    <div class="search-li-icon">
+        <i class="fa-solid fa-user"></i>
+    </div>
+    <div>
+      <div class="item-name">
+      {{name}}
+      </div>
+      <div class="item-block">
+        <div class="title-block">{{message}}</div>
+
+      </div>
+      </div>
+    </li>
+  </ul>
+  `,
+});
+
+// 控制全部
 new Vue({
-  el: '#live_pc', //在這講是給誰執行
+  el: '#live_container', //在這講是給誰執行
   data() {
     return {
-      pcOpen: false,
+      rwdOpen: false, //rwd的收合
+      pcOpen: false,  //pc的收合
+      task: '',  //輸入留言的欄位
+      tasks: [   //留言顯示的內容與姓名
+      ],
+      AGENDA_ID: '',
+      C_NAME: '',
+      C_EMAIL: '',
+      LINK: '',
+      NEXT_TIME: '',
     };
   },
+  mounted: function () {
+    this.$nextTick(function () {
+      // 一進到畫面先顯示留言內容
+      fetch('php/live_select_text.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then(resp => resp.json())
+        .then(resp => {
+          if( resp != false){
+            // 把所有留言顯示
+            for (i = 0; i < resp.data.length; i++) {
+              this.tasks.push({
+                name: resp.data[i].NAME,
+                message: resp.data[i].CONTENT,
+              });
+            }
+            this.AGENDA_ID = resp.data[0].AGENDA_ID;
+            // 把留言全部用到最底下
+            $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
+            $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight });
+          }
+        });
+      // 搜尋線正直播的內容
+      fetch('php/live_select_agenda.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then(resp => resp.json())
+        .then(resp => {
+          // 把所有留言顯示
+          // console.log("resp:" + resp);
+          // console.log("resp:" + resp.data);
+          if (resp.data != null) {
+
+            this.C_NAME = resp.data[0].NAME;
+            this.C_EMAIL = resp.data[0].EMAIL;
+            this.LINK = resp.data[0].LINK;
+          }
+          // 下一個直播時段
+          if (resp.nextData.length >0) {
+            this.NEXT_TIME = resp.nextData[0].NEXT_TIME;
+          }
+          // 把留言全部用到最底下
+          $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
+          $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight });
+        });
+    })
+  },
   methods: {
+    // 控制pc版收合
     toggle() {
       this.pcOpen = !this.pcOpen;
-    }
-  },
-}); //給初值，在裡面描述屬性跟方法，包在物件{}裡
-new Vue({
-  el: '#live_rwd', //在這講是給誰執行
-  data() {
-    return {
-      rwdOpen: false,
-    };
-  },
-  methods: {
-    toggle() {
+    },
+    // 控制rwd版收合
+    toggle_rwd() {
       this.rwdOpen = !this.rwdOpen
-    }
+    },
+    // pc版點擊送出
+    text_save() {
+      const input_text = $(".live-text-input").val().trim();
+      if (input_text != '') {
+        this.tasks.push({
+          name: "王大明",
+          message: input_text,
+        });
+        fetch('php/live_insert_text.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            CONTENT: input_text,
+            STATUS: "I",
+            COMPANY_ID: "1",
+            GUEST_ID: null,
+          })
+        }).then(resp => resp.json())
+          .then(body => {
+            let { successful } = body;
+            if (successful) {
+
+              console.log("成功");
+            } else {
+              console.log("失敗");
+            }
+          })
+        // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
+        //console.log( $('section.result-block').prop("scrollHeight") );
+
+        // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
+        $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
+        $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight });
+
+
+        // 欄位清空
+        this.task = "";
+
+      } else {
+        alert("請輸入資料");
+      }
+    },
+    // rwd版點擊送出
+    text_save_rwd() {
+      const input_text = $(".live-text-input-rwd").val().trim();
+      if (input_text != '') {
+        this.tasks.push({
+          name: "王大明",
+          message: input_text,
+        });
+        fetch('php/live_insert_text.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            CONTENT: input_text,
+            STATUS: "I",
+            COMPANY_ID: "1",
+            GUEST_ID: null,
+            AGENDA_ID: "1",
+          })
+        }).then(resp => resp.json())
+          .then(body => {
+            let { successful } = body;
+            if (successful) {
+
+              console.log("成功");
+            } else {
+              console.log("失敗");
+            }
+          })
+        // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
+        //console.log( $('section.result-block').prop("scrollHeight") );
+
+        // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
+        $(".result-block").animate({ scrollTop: $('.result-block-rwd')[0].scrollHeight }, 10);
+        $(".result-block-rwd").animate({ scrollTop: $('.result-block-rwd')[0].scrollHeight }, 10);
+
+        // 欄位清空
+        this.task = "";
+
+      } else {
+        alert("請輸入資料");
+      }
+    },
+
   },
 }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
 
-// aos
+// aos 動畫
 AOS.init();
 
 $(function () {
@@ -36,15 +201,15 @@ $(function () {
   } else {
     // alert("有直播");
   }
-  
-  // 訊息輸入完畢，enter送出
+
+  // PC訊息輸入完畢，enter送出
   $(".live-text-input").on("keydown", function (e) {
     // console.log(e.which);
     if (e.which == 13) {
       $(".live-submit").click();
     }
   });
-
+  // RWD訊息輸入完畢，enter送出
   $(".live-text-input-rwd").on("keydown", function (e) {
     // console.log(e.which);
     if (e.which == 13) {
@@ -52,202 +217,5 @@ $(function () {
     }
   });
 
-  //PC版點擊 "送出"
-  $(".live-submit").on("click", function () {
-    const input_text = $(".live-text-input").val().trim();
-    // console.log(input_text);
-    if (input_text == "") {
-      alert("請輸入資料");
-    } else {
-      let html = `
-          <ul class="search-list">
-            <li class="search-li">
-            <div class="search-li-icon">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div>
-              <div class="item-name">
-              王大明
-              </div>
-              <div class="item-block">
-                <div class="title-block">${input_text}</div>
-              </div>
-              </div>
-            </li>
-          </ul>
-        `;
-
-      $("div.search-container").append(html);
-
-      // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
-      //console.log( $('section.result-block').prop("scrollHeight") );
-
-      // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
-      $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight});
-      $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight});
-
-
-
-    }
-    // 欄位清空
-    $(".live-text-input").val("");
-  });
-
-
-
-  // RWD點擊"送出"
-  $(".live-submit-rwd").on("click", function () {
-    const input_text = $(".live-text-input-rwd").val().trim();
-    // console.log(input_text);
-    if (input_text == "") {
-      alert("請輸入資料");
-    } else {
-      let html = `
-          <ul class="search-list">
-            <li class="search-li">
-            <div class="search-li-icon">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div>
-              <div class="item-name">
-              王大明
-              </div>
-              <div class="item-block">
-                <div class="title-block">${input_text}</div>
-
-              </div>
-              </div>
-            </li>
-          </ul>
-        `;
-
-      $("div.search-container").append(html);
-
-      // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
-
-      // 重點2：透過 animate 使用 scrollTop 指定要滑動到離上方指定位置
-      $(".result-block").animate({ scrollTop: $('.result-block-rwd')[0].scrollHeight}, 10);
-      $(".result-block-rwd").animate({ scrollTop: $('.result-block-rwd')[0].scrollHeight}, 10);
-
-    }
-    
-    // console.log(scrollTop);
-    // 欄位清空
-    $(".live-text-input-rwd").val("");
-  });
 
 });
-
-
-
-  // 點擊收合留言板
-  // $("#live-icon-img").on("click", function () {
-  //   $("#live-icon-img").toggleClass("-transform-180");
-  //   $(".live-board-container").toggleClass("-live-on");
-  //   // 要關閉，快點消失
-  //   if ($("#live-icon-img").attr("class") == "-transform-180") {
-  //     setTimeout(live_text, 50);
-  //     // 要開啟，要慢點出現
-  //   } else {
-  //     setTimeout(live_text, 700);
-  //   }
-  // });
-
-  // 點擊收合留言板(RWD)
-  // $("#live-icon-img-rwd").on("click", function () {
-  //   $("#live-icon-img-rwd").toggleClass("-transform-90");
-  //   $(".live-board-container").toggleClass("-live-on");
-
-  //   $("#search-container-title-h3").toggleClass("-hide");
-  //   $(".input-block").toggleClass("-live-border-hide");
-  //   $(".input-block").toggleClass("-live-input-hide");
-  //   $(".search-container-title").toggleClass("-live-border-hide");
-  //   $(".live-text-input").toggleClass("-hide");
-  //   $("#live-submit").toggleClass("-hide");
-  //   $(".search-container").toggleClass("-hide");
-  //   $(".result-block").toggleClass("live-height");
-  //   $(".live-board").toggleClass("-live-border-hide-0");
-
-  // });
-
-  // function live_text() {
-  //   $("#search-container-title-h3").toggleClass("-hide");
-  //   $(".input-block").toggleClass("-live-border-hide");
-  //   $(".search-container-title").toggleClass("-live-border-hide");
-  //   $(".live-text-input").toggleClass("-live-text-input-hide");
-  //   $("#live-submit").toggleClass("-hide");
-  //   $(".search-container").toggleClass("-hide");
-  //   $(".result-block").toggleClass("live-height");
-  // }
-
-    // // 上課測試
-    // const input = $(".live-text-input");
-    // // 在這裡改成php網址
-    // // const url = "https://jsonplaceholder.typicode.com/todos/";
-    // const url = "http://10.2.0.84:8080/spring-exercise/test/login";
-    // // fetch() 會回傳Promise物件
-    // fetch(`${url}${input.val()}`)
-    // // .then(自己取的名字 => 自己取的名字.json())
-    //   .then(resp => resp.json())
-    //   .then(body => console.log(body));
-    // ;
-
-
-    // 第二個測試
-    // const url = "login.php";
-
-    // const username = $("#username");
-    // const password = $("#password");
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     username: $("#username").val(),
-    //     password: $("#password").val()
-    //   })
-    // })
-    //   .then(resp => resp.json())
-    //   .then(body => {
-    //     const { successful, NICKNAME } = body;
-    //     // div.textContent = successful ? nickname : message;
-    //     if (successful) {
-    //       $(".test-div").text(NICKNAME);
-    //     } else {
-    //       $(".test-div").text("");
-    //     }
-    //   });
-
-
-
-    // // 測試欄位
-    // $("#username").val("");
-    // $("#password").val("");
-
-    // 上傳圖片
-    // const url = "http://10.2.0.84:8080/spring-exercise/test/fileUpload";
-    // const file = $("#file-test")[0].files[0];
-    // const fileReader = new FileReader();
-    // fileReader.onload = function (event) {
-    //     const base64Str = btoa(event.target.result);
-    //     fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             fileName: file.name,
-    //             file: base64Str
-    //         })
-    //     })
-    //         .then(resp => resp.json())
-    //         .then(body => {
-    //             const { successful ,message} = body;
-    //             if(successful){
-    //                 alert(message);
-    //             }
-    //         });
-
-    // }
-    // fileReader.readAsBinaryString(file);
