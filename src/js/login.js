@@ -521,7 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             // send_data = true;
             // alert("登入成功");
-            sessionStorage.clear();
+            // sessionStorage.clear();
             swal('登入成功', '', 'success');
             email_el.value = "";
             password_el.value = "";
@@ -568,7 +568,7 @@ document.querySelector('button').addEventListener('click', () => {
             sessionStorage.setItem('login_name', NAME);
             sessionStorage.setItem('login_email', EMAIL);
             sessionStorage.setItem('login_info', INFO_ID);
-            
+            sessionStorage.setItem('login_type', 'COMPANY');            
         }else{
             swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
 
