@@ -15,6 +15,8 @@ let menu_el = document.getElementsByClassName("menu");
 let now_page_el = document.getElementsByClassName("now_page");
 let href_page = window.location.pathname;
 let nav_login = document.getElementById("nav_login");
+let nav_logout = document.querySelector("#nav_logout");
+// console.log(nav_logout);
 ham_icon.addEventListener("click", function () {
   // 選單收合
   ham_menu.classList.toggle("menu-active");
@@ -80,3 +82,7 @@ if(href_page.includes("extend")){
 }else if(href_page.includes("contect")){
   $(".menu_img_contect").removeClass("-hide");
 }
+
+nav_logout.addEventListener("click", function(){
+  sessionStorage.clear();
+})
