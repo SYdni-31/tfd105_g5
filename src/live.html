@@ -47,9 +47,10 @@
         <!-- https://www.youtube.com/embed/gfwWsWJhoig?modestbranding=1&autoplay=1&playlist=gfwWsWJhoig -->
         <div class="live-video-container">
           <h2>
-            抱歉，目前無直播<br />下一次直播時間 : <br />2022/03/14 09:00
+            抱歉，目前無直播<br />下一次直播時間 : <br />
+            <span>{{NEXT_TIME}}</span>
           </h2>
-          <iframe width="900" height="500"
+          <iframe  width="900" height="500"
             src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ"
             title="video" frameborder="0" class="live-video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -105,7 +106,7 @@
             </div>
             <!-- 打字傳送區 -->
             <div class="input-block">
-              <input  v-model="task" class="live-text-input-rwd" name="live-text-input" id="live_text" placeholder="傳送訊息">
+              <input  v-model="task" class="live-text-input-rwd" name="live-text-input" id="live_text_rwd" placeholder="傳送訊息">
               <button class=" live-submit-rwd btn-short" name="live-submit" type="button" @click="text_save_rwd">送交</button>
             </div>
             <!-- 留言顯示區 -->
@@ -124,7 +125,7 @@
       </div>
     </section>
     <!-- 下方廠商介紹區 -->
-    <div>
+    <div  v-if="C_NAME != ''">
       <div class="live-company">
         <ul class="live-company-text">
           <li v-if="C_NAME != '' ">
@@ -142,7 +143,7 @@
             <h3>email: {{C_EMAIL}}</h3>
           </li>
         </ul>
-        <img src="img/live/live_circle_2.svg" alt="圓形圖案" class="img-circle">
+        <img v-if="C_NAME != ''" src="img/live/live_circle_2.svg" alt="圓形圖案" class="img-circle">
       </div>
     </div>
   </main>
