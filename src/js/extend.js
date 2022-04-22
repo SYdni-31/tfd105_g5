@@ -133,23 +133,7 @@ const vm = new Vue({
     galleryTop.controller.control = galleryThumbs;
     galleryThumbs.controller.control = galleryTop;
       })
-      // this.rooms.push(resp['rooms'][0])
-      // this.rooms.push(resp['rooms'][1])
-      // this.rooms.push(resp['rooms'][2])
-      // this.rooms.push(resp['rooms'][0])
-      // this.rooms.push(resp['rooms'][1])
-      // this.rooms.push(resp['rooms'][2]) 
-      // this.rooms.push(resp['rooms'][0])
-      // this.rooms.push(resp['rooms'][1])
-      // this.rooms.push(resp['rooms'][2]) 
-      // this.rooms.push(resp['rooms'][0])
-      // this.rooms.push(resp['rooms'][1])
-      // this.rooms.push(resp['rooms'][2])
     })
   },
-  mounted(){
-
-
-  }
   
 })

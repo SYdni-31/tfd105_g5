@@ -14,6 +14,8 @@
     integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
   <!-- title icon -->
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
+  <!-- VUE -->
+  <script src="js/vue.min.js"></script>
 
   <title>策展後台-攤位預覽</title>
 </head>
@@ -28,100 +30,61 @@
     @@include('layout/login.html')
   </header>
   <!-- content，各自頁面的html寫在這邊 -->
-  <main>
-    <section class="extend_main">
-        <div class="wrapper">
-        <div class="extend_head">
-                <h1 class="cblook_top text_center pall-20 -border_bgcolor">虛擬攤商預覽畫面</h1>
-        </div>
-            <!-- 攤位圖&內容 -->
-        <div class="extend_body">
-                <section class="extend_look">
-                <article class="extend_booth1">
-                    <img src="img/extend/booth1.png" alt="">
-                    <div class="extend_banner">
-                    <img src="img/sample/Logo1.png" alt="">
-                    <h3 class="bg-color ml-5">Technology-company股份有限公司</h3>
-                    </div>
-                    <iframe class="video" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
-                </article>
-                <a href="#" class="extend_chat_btn">
-                    <div class="extend_robotch1">
-                    <img class="extend_robotwave" src="img/extend/robotwave1.gif" alt="">
-                    <img class="extend_robot" src="img/extend/robot1.png" alt="">
-                    </div>
-                    <i class="fa-solid fa-comment-dots extend_chat"></i>
-                </a>
-                </section>
-                <!-- 下方內容 -->
-                <section class="extend_content wrapper -border_maincolor pall-20">
-                    <h3 class="pb-20 content_point content_pointed">關於我們</h3>
-                    <h3 class="pb-20 content_point">技術展示</h3>
-                    <h3 class="pb-20 content_point">展覽影片</h3>
-                    <article class="content_inner content_about">
-                        <h4 class="mall-10">台積公司<br>
-                        tsmc.com/chinese/aboutTSMC<br>
-                        <br>
-                        PHONE: 886-3-5636688<br>
-                        EMAIL: tsmchr@tsmc.com<br>
-                        <br>
-                        台積公司成立於1987年，率先開創了專業積體電路製造服務之商業模式，自此成為世界領先的專業積體電路製造服務公司。台積公司以領先業界的製程技術及設計解決方案組合支援其客戶及夥伴生態系統的蓬勃發展，以此釋放全球半導體產業的創新。身為全球的企業公民，台積公司的營運範圍遍及亞洲、歐洲及北美，致力成為企業社會責任的行動者。<br>
-                        </h4>
-                    </article>
-                    <article class="content_inner content_tech -hide">
-                        <div class="-margin0auto pt-30">
-                        <h4 class="mr-10">技術名稱1</h4>
-                        <div>
-                            <a href="#" class="btn-short mall-10">CONTACT</a>
-                            <a href="#" class="btn-short mall-10">VIEW</a>  
-                        </div>
-                        </div>
-                        <div class="-margin0auto pt-30">
-                        <h4 class="mr-10">技術名稱2</h4>
-                        <div>
-                            <a href="#" class="btn-short mall-10">CONTACT</a>
-                            <a href="#" class="btn-short mall-10">VIEW</a>  
-                        </div>
-                        </div>
-                        <div class="-margin0auto pt-30">
-                        <h4 class="mr-10">技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3技術名稱3</h4>
-                        <div>
-                            <a href="#" class="btn-short mall-10">CONTACT</a>
-                            <a href="#" class="btn-short mall-10">VIEW</a>  
-                        </div>
-                        </div>
-                        <div class="-margin0auto pt-30">
-                        <h4 class="mr-10">技術名稱4</h4>
-                        <div>
-                            <a href="#" class="btn-short mall-10">CONTACT</a>
-                            <a href="#" class="btn-short mall-10">VIEW</a>  
-                        </div>
-                        </div>
-                        <div class="-margin0auto pt-30">
-                        <h4 class="mr-10">技術名稱5</h4>
-                        <div>
-                            <a href="#" class="btn-short mall-10">CONTACT</a>
-                            <a href="#" class="btn-short mall-10">VIEW</a>  
-                        </div>
-                        </div>
-                        <div class="-margin0auto pt-30">
-                        <h4 class="mr-10">技術名稱6</h4>
-                        <div>
-                            <a href="#" class="btn-short mall-10">CONTACT</a>
-                            <a href="#" class="btn-short mall-10">VIEW</a>  
-                        </div>
-                        </div>
-                    </article>
-                    <article class="content_inner content_video -hide">
-                        <iframe class="video -margin0auto" type="text/html" src="https://www.youtube.com/embed/_OAhhRuCTCU?autoplay=1&origin=http://example.com" frameborder="0" allowfullscreen></iframe>
-                        <a class="pt-20" href="./live.html"><button class="btn-short -margin0auto">前往觀看</button></a>
-                    </article>
-                </section>
-        </div>
+  <main id="cblook">
+    <section class="extend_main wrapper">
+      <div class="extend_head">
+        <h1 class="cblook_top text_center pall-5 flex-box-around -margin0auto">
+          虛擬攤商預覽畫面
+        </h1>
+      </div>
+  <!-- 攤位圖&內容 -->
+      <div class="extend_body mt-30">
+        <section class="extend_look">
+          <article :class="['extend_booth' + looks.TYPE]">
+            <img :src="['img/extend/booth' + looks.TYPE + '.png']" alt="picture">
+            <div class="extend_banner">
+              <img :src="looks.LOGO" alt="logo">
+              <h3 class="bg-color ml-5">{{looks.NAME}}</h3>
+            </div>
+            <iframe class="video" type="text/html" :src="['https://www.youtube.com/embed/' + looks['VIDEO'] + '?autoplay=0&mute=1']" frameborder="0" allowfullscreen></iframe>
+          </article>
+          <a @click.prevent="" href="#" class="extend_chat_btn">
+              <div :class="['extend_robotch' + looks.ROBOT]">
+              <img class="extend_robotwave" :src="['img/extend/robotwave' + looks.ROBOT + '.gif']" alt="conact robot"/>
+              <img class="extend_robot" :src="['img/extend/robot' + looks.ROBOT + '.png']" alt="conact robot"/>
+              </div>
+              <i class="fa-solid fa-comment-dots extend_chat"></i>
+          </a>
+        </section>
+        <!-- 下方內容 -->
+        <section class="extend_content wrapper -border_maincolor pall-20">
+          <h3 @click="little('about')" class="pb-20 content_point" :class="{'content_pointed':little_page=='about'}">關於我們</h3>
+          <h3 @click="little('tech')" class="pb-20 content_point" :class="{'content_pointed':little_page=='tech'}">技術展示</h3>
+          <h3 @click="little('live')" class="pb-20 content_point" :class="{'content_pointed':little_page=='live'}">展覽影片</h3>
+          <article class="content_inner content_about" :class="{'-hide':little_page !='about'}">
+            <h4 class="mall-10">{{looks.INTRODUCE}}</h4>
+          </article>
+          <article v-if="techs.length>0" class="content_inner content_tech" :class="{'-hide':little_page !='tech'}">
+            <div class="-margin0auto pt-30" v-for="item in techs">
+              <h4 class="mr-10">{{item.NAME}}</h4>
+              <div>
+                <a @click.prevent="" href="#" class="btn-short mall-10">CONTACT</a>
+                <a :href="item.LINK" class="btn-short mall-10" target="_blank">VIEW</a>  
+              </div>
+            </div>
+          </article>
+          <article v-else class="content_inner content_tech" :class="{'-hide':little_page !='tech'}">
+            <p>---尚未有技術上傳---</p>
+          </article>
+          <article class="content_inner content_video"  :class="{'-hide':little_page !='live'}">
+            <p>---不支援此預覽---</p>
+          </article>
+        </section>
       </div>
     </section>
-    <section class="wrapper">
-        
+    <section class="cblook_btn wrapper -margin0auto">
+      <a href="./companyback_info.html" class="btn_company_back back">回去修改</a>
+      <a class="btn_company_back check">確認上架</a>
     </section>
   </main>
   <!-- footer -->
@@ -131,11 +94,9 @@
 
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- slider (swiper) -->
-  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
-  <script src="js/extend.min.js"></script>
+  <script src="js/companyback_look.min.js"></script>
 </body>
 
 </html>

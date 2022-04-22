@@ -14,8 +14,6 @@
     integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
   <!-- title icon -->
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
-  <!-- VUE -->
-  <script src="js/vue.min.js"></script>
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
   <script type="text/javascript">
@@ -27,6 +25,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
   <!-- SweetAlert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- VUE -->
+    <script src="js/vue.min.js"></script>
   <title>聚策展-虛擬商展</title>
 </head>
 
@@ -55,17 +55,17 @@
         <div class="swiper-slide"  v-for="(room, index) in rooms">
           <section class="extend_look">
             <article :class="['extend_booth' + room.TYPE]">
-              <img :src="['img/extend/booth' + room.TYPE + '.png']" alt="">
+              <img :src="['img/extend/booth' + room.TYPE + '.png']" alt="picture">
               <div class="extend_banner">
-                <img :src="room.LOGO" alt="">
+                <img :src="room.LOGO" alt="logo">
                 <h3 class="bg-color ml-5">{{room.NAME}}</h3>
               </div>
               <iframe class="video" type="text/html" :src="['https://www.youtube.com/embed/' + room['VIDEO'].split('=')[1] + '?autoplay=0&mute=1']" frameborder="0" allowfullscreen></iframe>
             </article>
             <a @click.prevent="chat" href="#" class="extend_chat_btn">
               <div :class="['extend_robotch' + room.ROBOT]">
-                <img class="extend_robotwave" :src="['img/extend/robotwave' + room.ROBOT + '.gif']" alt="">
-                <img class="extend_robot" :src="['img/extend/robot' + room.ROBOT + '.png']" alt="">
+                <img class="extend_robotwave" :src="['img/extend/robotwave' + room.ROBOT + '.gif']" alt="conact robot">
+                <img class="extend_robot" :src="['img/extend/robot' + room.ROBOT + '.png']" alt="conact robot">
               </div>
               <i class="fa-solid fa-comment-dots extend_chat"></i>
             </a>

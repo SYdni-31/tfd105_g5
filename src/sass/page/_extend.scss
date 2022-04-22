@@ -5,7 +5,6 @@
         cursor: pointer;
         width: 100px;
         height: 91.15px;
-        @include flex-box-center(null);
         img{
             max-height: 91.15px;
         }
@@ -13,8 +12,31 @@
     .swiper-slide-active img{
         border: 3px solid $main-color;
     }
+    // =========預覽頂端==========
     h1.cblook_top{
-        width: 100%;
+        border-bottom: 3px solid;
+        border-image-source: linear-gradient(to left,#57fff5,#f37f15);
+        border-image-slice: 1;
+        width: 80%;
+    }
+}
+.cblook_btn{
+    @include flex-box-around(40%);
+    min-width: 320px;
+    a.btn_company_back{
+        width: 140px;
+        padding:5px 20px;
+        font-size: 18px;
+        color: $accent-color;
+        &:hover{
+            color: $black-color;
+        }
+}
+@include mobile() {
+        h1.cblook_top p{
+            order:3;
+            width: 100%;
+        }
     }
 }
 
