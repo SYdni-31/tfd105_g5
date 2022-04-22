@@ -46,7 +46,7 @@
               <img :src="looks.LOGO" alt="logo">
               <h3 class="bg-color ml-5">{{looks.NAME}}</h3>
             </div>
-            <iframe class="video" type="text/html" :src="['https://www.youtube.com/embed/' + looks['VIDEO'] + '?autoplay=0&mute=1']" frameborder="0" allowfullscreen></iframe>
+            <iframe class="video" type="text/html" :src="['https://www.youtube.com/embed/' + looks['VIDEO'].split('=')[1] + '?autoplay=0&mute=1']" frameborder="0" allowfullscreen></iframe>
           </article>
           <a @click.prevent="" href="#" class="extend_chat_btn">
               <div :class="['extend_robotch' + looks.ROBOT]">
