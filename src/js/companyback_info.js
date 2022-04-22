@@ -37,9 +37,10 @@ const view = new Vue({
                 INTRODUCE:this.datas.INTRODUCE,
                 ROBOT:this.datas.ROBOT,
                 TYPE:this.datas.TYPE,
+                ID:this.datas.ID,
                 }),
             );
-            fromData.append("img_data",this.img_data)
+            fromData.append("file",this.img_data)
             // console.log(fromData);
             fetch('php/companyback_info_update_company_info.php',{
                 method:'POST',

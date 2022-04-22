@@ -1,6 +1,3 @@
-// aos
-AOS.init();
-
 // vue fetch
 new Vue({
     el: '#news_app',
@@ -16,6 +13,8 @@ new Vue({
         .then(resp => {
             this.news=resp
         })
-          
+
+        // aos
+        AOS.init();
     },
 })

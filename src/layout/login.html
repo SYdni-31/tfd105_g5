@@ -1,19 +1,22 @@
-<div class="login" id="login">
+<div class="login" class="magictime puffIn" id="login">
     <div class="member tab-demo" id="">
         <a class="btn login_btn-close" id="BtnClose"><i class="fa-solid fa-xmark"></i></a>
         <ul class="tab-title">
             <li class="login_tab_company"><a href="#company_sign_in_container">廠商</a></li>
             <li class="login_tab_guest"><a href="#tab02">訪客</a></li>
         </ul>
+
         <!-- 廠商登入(右) 預設一開始顯示-->
-        <form class="form-container company-sign-in-container tab-inner" id="company_sign_in_container">
+        <form class="form-container company-sign-in-container tab-inner"
+            id="company_sign_in_container">
             <h2 class="mb-30 h2-white">廠商登入</h2>
             <div class="field">
-                <input type="text" id="email_1" required autocomplete="off" placeholder="" class="login_signup" />
+                <input type="text" name="email" id="email_1" required autocomplete="off" placeholder=""
+                    class="login_signup" />
                 <label for="email_1" title="電子郵件" data-title="email"></label>
             </div>
             <div class="field">
-                <input type="password" id="password_1" required autocomplete="off" placeholder=""
+                <input type="password" name="password" id="password_1" required autocomplete="off" placeholder=""
                     class="login_signup" />
                 <label for="password_1" title="密碼" data-title="password"></label>
             </div>
@@ -25,6 +28,7 @@
             <a href="#" class="mt-20 forget-a">忘記密碼?</a>
             <p class="login_conpanySignIn_alert">帳號或密碼錯誤，<br>請重新輸入或點擊忘記密碼!</p>
         </form>
+
         <!-- 訪客登入(左) 預設，點擊頁籤顯示-->
         <form class="form-container guest-sign-in-container tab-inner" id="tab02">
             <h2 class="mb-30 guestsignin h2-black">我是訪客</h2>
@@ -42,6 +46,7 @@
             </div>
             <button type="submit" class="btn-short btn-2 login_btn-visit">參觀</button>
         </form>
+
         <!-- 廠商註冊 (右) 點擊"註冊"，滑動後顯示-->
         <form class="form-signup company-sign-up-container">
             <h2 class="companysignup mt-45 h2-black">廠商註冊</h2>
@@ -66,29 +71,35 @@
             <select name="" id="exb_dropdown">
                 <option value="0" disabled>展覽類型</option>
                 <option value="1">Tián lám 2022智慧全球科技聚策展</option>
+                <option value="2">台北科技展</option>
+                <option value="3">國際醫材展</option>
             </select>
             <div class="btn_group2">
                 <button type="submit" class="btn-short btn-2 login_btn_submitinfo">送出資料</button>
                 <button type="button" class="btn-short btn-2 login_btn_back2">返回登入</button>
             </div>
         </form>
+
         <!-- 收到申請 (右) 點擊"送出"，顯示-->
         <div class="received-form">
             <p class="rcvd">已收到申請!</p>
             <p>我們已收到您的詳細資料，<br>審核工作天為7個工作天，<br>敬請耐心等候~</p>
             <button type="button" class="btn-2 btn-short login_btn_confirm">確認</button>
         </div>
+
         <!-- 忘記密碼 (右) 點擊""忘記密碼，顯示-->
         <div class="form-forget-password" id="form-forget-password">
             <h2 class="h2_forget">忘記密碼</h2>
             <ul>
                 <li><i class="fa-solid fa-envelope"></i></li>
-                <li><input type="text" id="changeemail" required autocomplete="off" placeholder="請輸入電子郵件..." /></li>
+                <li><input type="text" id="changeemail" class="changeemail" required autocomplete="off"
+                        placeholder="請輸入電子郵件..." /></li>
             </ul>
             <button type="button" class="give btn-long">寄送驗證信</button>
             <p class="mt-20" id="prompt_message">已寄送密碼信，請至電子郵件收驗證信!</p>
             <button type="button" class="login_btn_back btn-long mt-20">返回登入</button>
         </div>
+
         <!-- 歡迎回來 (左) 滑動後顯示(RWD沒有) -->
         <div class="overlay-container form-container js-none" id="overlay-slide">
             <h2 class="welcome">歡迎回來</h2>

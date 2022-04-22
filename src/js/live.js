@@ -32,13 +32,15 @@ new Vue({
       tasks: [   //留言顯示的內容與姓名
       ],
       AGENDA_ID: '',
-      C_NAME:'',
-      C_EMAIL:'',
-      LINK:'',
+      C_NAME: '',
+      C_EMAIL: '',
+      LINK: '',
+      NEXT_TIME: '',
     };
   },
   mounted: function () {
     this.$nextTick(function () {
+      // 一進到畫面先顯示留言內容
       fetch('php/live_select_text.php', {
         method: 'POST',
         headers: {
@@ -46,21 +48,21 @@ new Vue({
         },
       }).then(resp => resp.json())
         .then(resp => {
-          // 把所有留言顯示
-          // console.log("resp:" + resp);
-          // console.log("resp:" + resp.data);
-          for (i = 0; i < resp.data.length; i++) {
-            this.tasks.push({
-              name: resp.data[i].NAME,
-              message: resp.data[i].CONTENT,
-            });
+          if( resp != false){
+            // 把所有留言顯示
+            for (i = 0; i < resp.data.length; i++) {
+              this.tasks.push({
+                name: resp.data[i].NAME,
+                message: resp.data[i].CONTENT,
+              });
+            }
+            this.AGENDA_ID = resp.data[0].AGENDA_ID;
+            // 把留言全部用到最底下
+            $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
+            $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight });
           }
-          this.AGENDA_ID = resp.data[0].AGENDA_ID;
-          // 把留言全部用到最底下
-          $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
-          $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight });
         });
-
+      // 搜尋現正直播的內容
       fetch('php/live_select_agenda.php', {
         method: 'POST',
         headers: {
@@ -68,12 +70,16 @@ new Vue({
         },
       }).then(resp => resp.json())
         .then(resp => {
-          // 把所有留言顯示
-          console.log("resp:" + resp);
-          console.log("resp:" + resp.data);
-          this.C_NAME = resp.data[0].NAME;
-          this.C_EMAIL = resp.data[0].EMAIL;
-          this.LINK = resp.data[0].LINK;
+          // 有直播內容
+          if (resp.data != null) {
+            this.C_NAME = resp.data[0].NAME;
+            this.C_EMAIL = resp.data[0].EMAIL;
+            this.LINK = resp.data[0].LINK;
+          }
+          // 下一個直播時段
+          if (resp.nextData.length >0) {
+            this.NEXT_TIME = resp.nextData[0].NEXT_TIME;
+          }
           // 把留言全部用到最底下
           $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
           $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight });

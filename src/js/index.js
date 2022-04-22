@@ -61,6 +61,6 @@ var parallaxInstance = new Parallax(scene, {
 window.addEventListener('load', ()=>{
   window.setTimeout(()=>{
     $('#preloader').remove();
-  }, 3000);
+  }, 1500);
 })
 
