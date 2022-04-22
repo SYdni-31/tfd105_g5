@@ -62,7 +62,7 @@ new Vue({
             $(".result-block-rwd").animate({ scrollTop: $('.result-block')[0].scrollHeight });
           }
         });
-      // 搜尋線正直播的內容
+      // 搜尋現正直播的內容
       fetch('php/live_select_agenda.php', {
         method: 'POST',
         headers: {
@@ -70,11 +70,8 @@ new Vue({
         },
       }).then(resp => resp.json())
         .then(resp => {
-          // 把所有留言顯示
-          // console.log("resp:" + resp);
-          // console.log("resp:" + resp.data);
+          // 有直播內容
           if (resp.data != null) {
-
             this.C_NAME = resp.data[0].NAME;
             this.C_EMAIL = resp.data[0].EMAIL;
             this.LINK = resp.data[0].LINK;
