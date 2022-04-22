@@ -14,6 +14,8 @@
     <link rel="icon" href="img/tianlam-logo-mainblack.svg">
     <!-- VUE -->
     <script src="js/vue.min.js"></script>
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
     <title>聚策展-廠商後台-技術展示區</title>
 </head>
@@ -39,24 +41,48 @@
                 <form action="#" class="companyback_form">
                     <!-- icon -->
                     <!-- v-for最多八筆 -->
-                    <aside class="companyback_layout" v-for="list in 8"></aside>
+                    <aside class="companyback_layout"></aside>
                     <ol class="companyback_icon">
                         <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
                         <li> <a><i class="fa-regular fa-trash-can"></i></a></li>
                     </ol>
                     <div class="field pt-45">
                         <h2>技術名稱 :</h2>
-                        <input type="text" id="skill_name0" required autocomplete="off" v-model="tech.NAME">
-                        <label for="skill_name0" title="Skill name" data-title="技術名稱"></label>
+                        <input type="text" :id="['skill_name' + index]" required autocomplete="off" v-model="tech.NAME">
+                        <label :for="['skill_name' + index]" title="Skill name" data-title="技術名稱"></label>
                     </div>
                     <div class="field pt-45">
                         <h2>技術網址 :</h2>
-                        <input type="text" id="password_add" required autocomplete="off" v-model="tech.LINK">
-                        <label for="password_add" title="Skill address" data-title="技術網址"></label>
+                        <input type="text" :id="['password_add' + index]" required autocomplete="off" v-model="tech.LINK">
+                        <label :for="['password_add' + index]" title="Skill address" data-title="技術網址"></label>
                     </div>
                     <a class="companyback_save btn_company_back">儲存</a>
                 </form>
             </div>
+
+            <div class="insert_form -hide">
+                <form action="#" class="companyback_form">
+                    <!-- icon -->
+                    <!-- v-for最多八筆 -->
+                    <aside class="companyback_layout" ></aside>
+                    <ol class="companyback_icon">
+                        <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
+                        <li> <a><i class="fa-regular fa-trash-can"></i></a></li>
+                    </ol>
+                    <div class="field pt-45">
+                        <h2>技術名稱 :</h2>
+                        <input type="text" :id="['skill_name' + techs.length]" required autocomplete="off" >
+                        <label :for="['skill_name' + techs.length]" title="Skill name" data-title="技術名稱"></label>
+                    </div>
+                    <div class="field pt-45">
+                        <h2>技術網址 :</h2>
+                        <input type="text" :id="['password_add' + techs.length]" required autocomplete="off" >
+                        <label :for="['password_add' + techs.length]" title="Skill address" data-title="技術網址"></label>
+                    </div>
+                    <a class="companyback_save btn_company_back">儲存</a>
+                </form>
+            </div>
+
 
             <!-- <form action="#" class="companyback_form">
                 <aside class="companyback_layout">1</aside>
@@ -117,7 +143,7 @@
                 <a class="companyback_save btn_company_back">儲存</a>
             </form> -->
 
-            <div class="companyback_add mt-30">
+            <div class="companyback_add mt-30" @click="showInsert">
                 <a class="btn_company_back">新增</a>
             </div>
         </section>
