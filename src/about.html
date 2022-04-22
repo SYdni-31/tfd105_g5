@@ -76,7 +76,7 @@
           <div class="mb-10 about_title">大會議程</div>
           <ul>
             <li v-for="(schedule,index) in schedules">
-              <h3 class="about_time">{{schedule.time}}</h3>
+              <h3 class="about_time">{{schedule.START_TIME}}-{{schedule.END_TIME}}</h3>
               <h3 class="about_theme">{{schedule.theme}}</h3>
             </li>
           </ul>
@@ -87,12 +87,12 @@
       <div class="mb-10 about_title">講師介紹</div>
       <div class="about_speakers">
         <div class="about_speaker mt-20">
-          <div class="about_speaker_intro">
+          <div class="about_speaker_intro" @click="turn_back()">
             <img class="mt-35" src="img/about/speaker1.png">
             <h3 class="mt-18">郭水義</h3>
             <h4 class="mt-8">中華電信總經理</h4>
           </div>
-          <div class="about_hoverText -hide">
+          <div class="about_hoverText " :class="{'-hide':hideiamge === true}" >
             <h4>郭水義<br>經歷
               <ul>
                 <li>-中華電信執行副總經理暨財務長</li>

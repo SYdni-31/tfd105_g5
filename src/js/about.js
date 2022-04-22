@@ -68,10 +68,35 @@ const vm = new Vue({
     el: "#about_main",
     data: {
         schedules:[
-            {time:'10:20-10:30',theme:'主持人介紹',},
-            {time:'10:30-11:00',theme:'主講人:唐鳳-數位國家・創新經濟發展方案',},
+          
             
-        ]
+        ],
+        speaker:"",
+        today:"2022-04-10",
+        hideiamge:false,
+
+    },
+    methods: {
+        turn_back(){
+            this.hideiamge = !this.hideiamge
+        }
+    },
+    mounted(){
+        fetch("php/about_select_about.php",{
+            method: 'POST', //傳到php
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Today: this.today,
+            })
+        }).then(resp => resp.json())//接收
+        .then(body => {
+            console.log(body);
+            this.schedules=body
+        })
+
+
     },
 
-    })
+})
