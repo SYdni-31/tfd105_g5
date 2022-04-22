@@ -14,7 +14,7 @@
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
   <!-- 套件flatpickr -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+  <script src="js/vue.min.js"></script>
   <title>聚策展-廠商後台-首頁</title>
 </head>
 
@@ -37,8 +37,8 @@
 
         <!-- 這是套件 -->
         <div class="time_tech">
-          <input class="timepicker" type="time" placeholder="選擇當日時段">
-          <input class="form-contril" type="datetime-local" placeholder="點擊日曆">
+          <input class="timepicker" type="time" placeholder="選擇當日時段" required  v-model="TIME">
+          <input class="form-contril" type="datetime-local" placeholder="點擊日曆" required v-model="DATE">
 
         </div>
         <!-- <input type="date" class="companyback_time"> -->
@@ -46,9 +46,9 @@
 
 
         <div class="form_under pt-58">
-          <input type="submit" value="確認送出" class="companyback_submit">
+          <input type="submit" value="確認送出" class="companyback_submit" required @click.prevent="ajax">
           <div class="field">
-            <input type="text" id="email" required autocomplete="off" class="" />
+            <input type="text" id="email" required autocomplete="off" class="" v-model="LINK"/>
             <label for="email" title="LINK" data-title="直播網址"></label>
           </div>
         </div>
@@ -205,7 +205,8 @@
           </li>
           <!-- <div class="c_bank_mask"></div> -->
         </ul>
-
+      </section>
+    </section> 
 
 
 
@@ -236,7 +237,7 @@
       disable: [
         function (date) {
           // disable every multiple of 8
-          // return !(date.getDate() % 8);
+          return !(date.getDate() % 8);
         }
       ]
     })
@@ -244,8 +245,9 @@
       enableTime: true,
       noCalendar: true,
       dateFormat: "H:i-K",
-      mode: "range",
-
+      // mode: "range",
+      minTime: "13:00",
+      maxTime: "16:00",
     })
 
   </script>
