@@ -79,6 +79,7 @@
                 <span @click="chatoff" class="chatbox_close"><i class="fa-regular fa-circle-xmark main-color"></i></span>
               </div>
               <div class="chated pall-5">
+                <P v-if="room.board.length<=0" class="text_center">目前無對話紀錄</P>
                 <p v-for="talk in room.board" class="chat_content  pall-5 mall-10 mt-30 ml-30" :class="talk.C_MSG==null?'chat_content_me':'chat_content_you'">{{talk.G_MSG||talk.C_MSG}}<span>{{talktime(talk.MSGTIME)}}</span></p>
               </div>
               <div class="chat_input">
