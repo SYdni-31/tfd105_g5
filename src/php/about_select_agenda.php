@@ -12,7 +12,15 @@
     $select=$statement->fetchAll(); 
     //PHP接收 JSON POST
 
+    $sql2="select LOGO from view_company_info;";
+    $statement2 = $pdo->prepare($sql2);
+    $statement2->execute();
+    $select2= $statement2->fetchAll();
+
+
     if ($select != null){
-        echo json_encode($select);
+        $folder['agenda']=$select;
+        $folder['carousel']=$select2;
+        echo json_encode($folder);
     };
 ?>

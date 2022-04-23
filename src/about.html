@@ -76,8 +76,8 @@
           <div class="mb-10 about_title">大會議程</div>
           <ul>
             <li v-for="(schedule,index) in schedules">
-              <h3 class="about_time">{{schedule.START_TIME}}-{{schedule.END_TIME}}</h3>
-              <h3 class="about_theme">{{schedule.theme}}</h3>
+              <h3 class="about_time" >{{schedule.START_TIME.slice(0,-3)}}-{{schedule.END_TIME.slice(0,-3)}}</h3>
+              <h3 class="about_theme">{{schedule.THEME}}</h3>
             </li>
           </ul>
         </div>
@@ -85,57 +85,17 @@
     </section>
     <section class="wrapper about_lecturer wrapper_about"> <!--data-aos="fade-up" data-aos-duration="2000"-->
       <div class="mb-10 about_title">講師介紹</div>
-      <div class="about_speakers">
-        <div class="about_speaker mt-20">
-          <div class="about_speaker_intro" @click="turn_back()">
-            <img class="mt-35" src="img/about/speaker1.png">
-            <h3 class="mt-18">郭水義</h3>
-            <h4 class="mt-8">中華電信總經理</h4>
+      <div class="about_speakers"  > <!--speakers只要有講師的-->
+        <div class="about_speaker mt-20" v-for="(speaker,index) in speakers">
+          <div class="about_speaker_intro" @click="turn_back(index)">
+            <img class="mt-35" :src="speaker.PHOTO">
+            <h3 class="mt-18">{{speaker.NAME}}</h3>
+            <!-- <h4 class="mt-8">中華電信總經理</h4> -->
           </div>
-          <div class="about_hoverText " :class="{'-hide':hideiamge === true}" >
-            <h4>郭水義<br>經歷
+          <div class="about_hoverText -hide" @click="turn_back(index)">
+            <h4>{{speaker.NAME}}<br>經歷
               <ul>
-                <li>-中華電信執行副總經理暨財務長</li>
-                <li>-中華電信執行副總經理（投資長）</li>
-                <li>-中華電信投資事業處副總經理</li>
-                <li>-中華電信會計處副總經理</li>
-                <li>-光世代建設開發股份有限公司總經理</li>
-              </ul>
-            </h4>
-          </div>
-        </div>
-        <!-- <div class="about_speaker mt-20">
-          <div class="about_speaker_intro">
-            <img class="mt-35" src="img/about/speaker2.png">
-            <h3 class="mt-18">張忠謀</h3>
-            <h4 class="mt-8">台積電創辦人</h4>
-          </div>
-          <div class="about_hoverText -hide">
-            <h4>張忠謀<br>經歷
-              <ul>
-                <li>-應邀至擔任工業技術研究院院長</li>
-                <li>-創辦台灣積體電路公司，任董事長</li>
-                <li>-創辦世界先進積體電路公司司</li>
-                <li>-曾被「時代」週刊評為最有影響力的二十六位總經理之一</li>
-              </ul>
-            </h4>
-          </div>
-        </div> -->
-        <div class="about_speaker mt-20">
-          <div class="about_speaker_intro">
-            <img class="mt-35" src="img/about/speaker3.png">
-            <h3 class="mt-18">唐鳳</h3>
-            <h4 class="mt-8">現職:行政院政務委員</h4>
-          </div>
-          <div class="about_hoverText -hide">
-            <h4>唐鳳<br>經歷
-              <ul>
-                <li>-行政院虛擬世界法規調適計劃顧問</li>
-                <li>-Perl 6語言設計師和首席實作者</li>
-                <li>-耀宏科技顧問</li>
-                <li>-傲爾網公司負責人</li>
-                <li>-明碁公司顧問</li>
-                <li>-資迅人公司技術總監</li>
+                <li>{{speaker.INTRODUCE}}</li>
               </ul>
             </h4>
           </div>
@@ -145,21 +105,14 @@
     <section class="about_exhibitor">
       <div class="mb-10 wrapper about_title wrapper_about">參與廠商</div>
       <!-- Swiper -->
-      <div class="swiper mySwiper about_mySwiper">
+      <div class="swiper mySwiper about_mySwiper" >
         <div class="swiper-wrapper">
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo1.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo2.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/logo3.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo4.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo5.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/logo6.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo7.png"></div>
+          <div class="swiper-slide about_slide" v-for="(carousel,index) in carousels">
+          <img :src="carousel.LOGO"></div>
         </div>
         <div class="swiper-scrollbar about_scrollbar"></div>
       </div>
     </section>
-
-
 
   </main>
   <!-- footer -->
