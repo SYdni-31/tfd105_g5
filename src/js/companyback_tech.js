@@ -4,12 +4,15 @@ new Vue({
     data:{
         techs:'',
         company_info_id:2,
-        insert_data:'',
+        newtech:'',
+        newlink:'',
     },
     methods:{
+        // 把隱藏的新增表格顯現
         showInsert(){
             document.getElementsByClassName("insert_form")[0].classList.remove("-hide");
         },
+        // 重新安排現有的表格數量，更新背景數字的順序與其顏色的順序
         rearrange (){
             // 抓取剩下的表格queryselectorall,先抓取表格元素，然後在刪除的時候aside tag的innertext改變來更改樣式，可以使用clg來步步進逼語法是否正確，接下來要把這個函數獨立在外面，並在點擊新增按鈕與刪除按鈕的時候，也觸發這個函數
             let companybackForm = document.querySelectorAll(".companyback_form");
@@ -37,10 +40,89 @@ new Vue({
                 }
             }
         },
-    },
-    created(){
-    },
-    beforeMounted (){
+        // 更新表格中的內容
+        update(id, name, link){
+            // link要http or https 開頭
+            // if(link)
+            // console.log(id);
+            // console.log(name);
+            // console.log(link);
+            fetch('php/companyback_update_tech.php',{
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    ID: id,
+                    NAME: name,
+                    LINK: link,
+                })
+            })
+            .then(resp=>resp.json())
+            // .then(body=>{
+            //     // let {successful} = body;
+            //     // if(successful){
+            //     //     this.$swal({
+            //     //         title: "儲存成功",
+            //     //         icon: "success",
+            //     //         image: "",
+            //     //     })
+            //     // }else{
+            //     //     this.$swal({
+            //     //         title: "儲存失敗",
+            //     //         icon: "error",
+            //     //         text: "請檢查欄位",
+            //     //     });
+            //     // }
+            // })
+    
+        },
+        // 刪除表格的資料，UPDATE STATUS='D'
+        del(id, status){
+            fetch('php/companyback_update2_tech.php',{
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    ID: id,
+                    STATUS: status,
+                })
+            })
+            .then(resp=>resp.json())
+            // .then(body=>{
+            //     let {successful} = body;
+            //     if(successful){
+            //         this.$swal({
+            //             title: "儲存成功",
+            //             icon: "success",
+            //             image: "",
+            //         })
+            //     }else{
+            //         this.$swal({
+            //             title: "儲存失敗",
+            //             icon: "error",
+            //             text: "請檢查欄位",
+            //         });
+            //     }
+            // })
+        },
+        insert(){
+            fetch('php/companyback_insert_tech.php',{
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    NAME: this.newtech,
+                    LINK: this.newlink,
+                    ID: this.company_info_id,
+                })
+            })
+            .then(resp=>resp.json())
+
+        },
+
     },
     mounted(){
         // const self = this;
@@ -60,22 +142,7 @@ new Vue({
             this.$nextTick(()=>{
                 this.rearrange();
             })
-        })
-
-        fetch('php/companyback_insert_tech.php',{
-            method: 'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                insert_data:{},
-            })
-        })
-        .then(resp=>resp.json())
-        .then(resp=>{
-            this.techs=resp
-        })
-
+        })        
         
     },
 })

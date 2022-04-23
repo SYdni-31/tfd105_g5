@@ -40,11 +40,10 @@
             <div v-for="(tech, index) in techs">
                 <form action="#" class="companyback_form">
                     <!-- icon -->
-                    <!-- v-for最多八筆 -->
                     <aside class="companyback_layout"></aside>
                     <ol class="companyback_icon">
-                        <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
-                        <li> <a><i class="fa-regular fa-trash-can"></i></a></li>
+                        <li ><a ><i class="fa-regular fa-pen-to-square"></i></a></li>
+                        <li @click="del(tech.ID, tech.STATUS)"><a><i class="fa-regular fa-trash-can"></i></a></li>
                     </ol>
                     <div class="field pt-45">
                         <h2>技術名稱 :</h2>
@@ -56,7 +55,7 @@
                         <input type="text" :id="['password_add' + index]" required autocomplete="off" v-model="tech.LINK">
                         <label :for="['password_add' + index]" title="Skill address" data-title="技術網址"></label>
                     </div>
-                    <a class="companyback_save btn_company_back">儲存</a>
+                    <a class="companyback_save btn_company_back" @click="update(tech.ID, tech.NAME, tech.LINK)">儲存</a>
                 </form>
             </div>
 
@@ -71,15 +70,15 @@
                     </ol>
                     <div class="field pt-45">
                         <h2>技術名稱 :</h2>
-                        <input type="text" :id="['skill_name' + techs.length]" required autocomplete="off" >
-                        <label :for="['skill_name' + techs.length]" title="Skill name" data-title="技術名稱"></label>
+                        <input type="text" :id="['skill_name' + techs.length]" required autocomplete="off" v-model="newtech">
+                        <label :for="['skill_name' + techs.length]" title="Skill name" data-title="技術名稱" ></label>
                     </div>
                     <div class="field pt-45">
                         <h2>技術網址 :</h2>
-                        <input type="text" :id="['password_add' + techs.length]" required autocomplete="off" >
-                        <label :for="['password_add' + techs.length]" title="Skill address" data-title="技術網址"></label>
+                        <input type="text" :id="['password_add' + techs.length]" required autocomplete="off" v-model="newlink">
+                        <label :for="['password_add' + techs.length]" title="Skill address" data-title="技術網址" ></label>
                     </div>
-                    <a class="companyback_save btn_company_back">儲存</a>
+                    <a class="companyback_save btn_company_back" @click="insert">儲存</a>
                 </form>
             </div>
 
