@@ -4,7 +4,7 @@ const vm = new Vue({
     rooms:"",
     little_page:"about",
     chatword:"",
-    guest:1,
+    guest:null,
     company:null,
   },
   methods: {
@@ -29,6 +29,17 @@ const vm = new Vue({
       $(e.currentTarget).next('.extend_chatbox').show(300)
       document.querySelector(".swiper-button-next").classList.add("-hide")
       document.querySelector(".swiper-button-prev").classList.add("-hide")
+      if(sessionStorage.getItem("login_type")){
+      }else{
+        this.$swal({
+          title: "尚未登入",
+          icon: "error",
+          text: "請登入後再進行留言",
+        })
+        $(e.currentTarget).next('.extend_chatbox').hide(300)
+        document.querySelector(".swiper-button-next").classList.remove("-hide")
+        document.querySelector(".swiper-button-prev").classList.remove("-hide")   
+      }
     },
     chatoff(e){
       $(e.currentTarget).parents('.extend_chatbox').hide(300)
@@ -66,20 +77,27 @@ const vm = new Vue({
     },
   },
   created(){
+    let type=sessionStorage.getItem("login_type")
+    let id=sessionStorage.getItem("login_id")
+    if(type=="COMPANY"){
+      this.company=id
+    }else if(type=="GUEST"){
+      this.guest=id
+    }else{}
     fetch('php/extend_select_company_info.php',{
-    method: 'POST',
-    headers:{
-        'Content-Type': 'application/json'
-    },
-    body:JSON.stringify({
-        guest:this.guest,
-        company:this.company,
+      method: 'POST',
+      headers:{
+          'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({
+          guest:this.guest,
+          company:this.company,
+      })
     })
-  })
     .then(resp => resp.json())
     .then(resp => {
       let rooms_data = resp['rooms']
-     rooms_data= resp['rooms']
+      rooms_data= resp['rooms']
       for(let j=0; j<resp.rooms.length; j++){
        rooms_data[j]['live']=[]
        rooms_data[j]['tech']=[]
@@ -103,35 +121,35 @@ const vm = new Vue({
       this.rooms = rooms_data
 
       this.$nextTick(()=>{
-    // =================輪播=================  
-    var galleryTop = new Swiper('.gallery-top', {
-      spaceBetween: 10,
-      loop: true,
-      loopedSlides: 7,
-      observer:true,//修改swiper自己或子元素時，自動初始化swiper
-      observeParents:true,//修改swiper的父元素時，自動初始化swiper
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-      spaceBetween: 60,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      touchRatio: 0.2,
-      slideToClickedSlide: true,
-      loop: true,
-      loopedSlides: 7,
-      effect:'coverflow',
-      coverflowEffect: {
-          rotate: 0,
+        // =================輪播=================  
+        var galleryTop = new Swiper('.gallery-top', {
+          spaceBetween: 10,
+          loop: true,
+          loopedSlides: 7,
+          observer:true,//修改swiper自己或子元素時，自動初始化swiper
+          observeParents:true,//修改swiper的父元素時，自動初始化swiper
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+          spaceBetween: 60,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          touchRatio: 0.2,
+          slideToClickedSlide: true,
+          loop: true,
+          loopedSlides: 7,
+          effect:'coverflow',
+          coverflowEffect: {
+            rotate: 0,
         },
-      observer:true,//修改swiper自己或子元素時，自動初始化swiper
-      observeParents:true,//修改swiper的父元素時，自動初始化swiper
-    });
-    galleryTop.controller.control = galleryThumbs;
-    galleryThumbs.controller.control = galleryTop;
+        observer:true,//修改swiper自己或子元素時，自動初始化swiper
+        observeParents:true,//修改swiper的父元素時，自動初始化swiper
+      });
+      galleryTop.controller.control = galleryThumbs;
+      galleryThumbs.controller.control = galleryTop;
       })
     })
   },
