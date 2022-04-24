@@ -184,7 +184,9 @@
 .about_hoverText{
     height: 480px;
     text-align: left;
-    margin-top: 120px;
+    // margin-top: 120px;
+    display: flex;
+    align-items: center;
 }
 .about_hoverText li {
     text-align: left;
