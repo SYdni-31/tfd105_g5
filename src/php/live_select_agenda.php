@@ -3,10 +3,10 @@
     // 選取全部數量
     // $select = json_decode(file_get_contents("php://input"), true);      // 只有變數可以修改
     $sql= "SELECT A.LINK, ifnull(A.NAME,B.NAME) AS NAME,A.COMPANY_INFO_ID,B.EMAIL,B.ID 
-        FROM (
-            SELECT * FROM AGENDA  
-            where date = CURDATE() and HOUR(START_TIME) <= HOUR(now()) and HOUR(END_TIME)>= HOUR(now())) A
-            join COMPANY B where A.COMPANY_INFO_ID = B.ID ";
+    FROM (
+        SELECT * FROM AGENDA  
+        where date = CURDATE() and HOUR(START_TIME) = HOUR(now()) and HOUR(END_TIME)>= HOUR(now()) order by START_TIME desc limit 1) A
+        LEFT join COMPANY B ON A.COMPANY_INFO_ID = B.ID";
     $statement=$pdo->prepare($sql);
     $statement->execute();
     $select=$statement->fetchAll(); 
@@ -17,10 +17,9 @@
     $select2= $statement2->fetchAll();
     if ($select != null){
         $folder['data']=$select;
-        echo json_encode($folder);
     };
     if ($select2 != null){
         $folder['nextData']=$select2;
-        echo json_encode($folder);
     };
+    echo json_encode($folder);
 ?>
