@@ -2,6 +2,7 @@
     include("connection.php");
     //PHP接收 JSON POST
     $select = json_decode(file_get_contents("php://input"), true);
+
     // 選取全部數量
     $sql="select ID, NAME, LINK from TECH where STATUS != 'D' and COMPANY_INFO_ID=:id";  
     $statement=$pdo->prepare($sql);

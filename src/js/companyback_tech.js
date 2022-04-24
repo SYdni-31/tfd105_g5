@@ -3,14 +3,34 @@ new Vue({
     el: '#tech_app',
     data:{
         techs:'',
-        company_info_id:2,
+        company_info_id:'',
         newtech:'',
         newlink:'',
+        newforms: false,
+
     },
     methods:{
         // 把隱藏的新增表格顯現
         showInsert(){
-            document.getElementsByClassName("insert_form")[0].classList.remove("-hide");
+            this.newforms=true;
+            
+            // if(this.newforms==true){
+            //     // swal要先儲存
+            //     this.$swal({
+            //         title: "儲存成功",
+            //         icon: "success",
+            //         image: "",
+            //     })
+            // }else{
+            //     this.newforms=true;
+            //     this.$swal({
+            //         title: "儲存失敗",
+            //         icon: "error",
+            //         text: "請檢查欄位",
+            //     });
+            // }
+
+            // document.getElementsByClassName("insert_form")[0].classList.remove("-hide");
         },
         // 重新安排現有的表格數量，更新背景數字的順序與其顏色的順序
         rearrange (){
@@ -42,39 +62,41 @@ new Vue({
         },
         // 更新表格中的內容
         update(id, name, link){
-            // link要http or https 開頭
-            // if(link)
-            // console.log(id);
-            // console.log(name);
-            // console.log(link);
-            fetch('php/companyback_update_tech.php',{
-                method: 'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    ID: id,
-                    NAME: name,
-                    LINK: link,
+            let linkRule = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
+            if(name != '' &&
+               link != '' &&
+               linkRule.test(link) ){
+                fetch('php/companyback_update_tech.php',{
+                    method: 'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        ID: id,
+                        NAME: name,
+                        LINK: link,
+                        COMPANY_INFO_ID: this.company_info_id,
+                    })
                 })
-            })
-            .then(resp=>resp.json())
-            // .then(body=>{
-            //     // let {successful} = body;
-            //     // if(successful){
-            //     //     this.$swal({
-            //     //         title: "儲存成功",
-            //     //         icon: "success",
-            //     //         image: "",
-            //     //     })
-            //     // }else{
-            //     //     this.$swal({
-            //     //         title: "儲存失敗",
-            //     //         icon: "error",
-            //     //         text: "請檢查欄位",
-            //     //     });
-            //     // }
-            // })
+                .then(resp=>resp.json())
+                .then(body=>{
+                    let {successful} = body;
+                    if(successful){
+                        this.$swal({
+                            title: "儲存成功",
+                            icon: "success",
+                            image: "",
+                        })
+                    }
+                })
+            }else{
+                this.$swal({
+                    title: "更新失敗",
+                    icon: "error",
+                    text: "請檢查欄位是否未填或是網址格式有誤",
+                });
+            }
+            
     
         },
         // 刪除表格的資料，UPDATE STATUS='D'
@@ -87,63 +109,99 @@ new Vue({
                 body:JSON.stringify({
                     ID: id,
                     STATUS: status,
+                    COMPANY_INFO_ID: this.company_info_id,
                 })
             })
             .then(resp=>resp.json())
-            // .then(body=>{
-            //     let {successful} = body;
-            //     if(successful){
-            //         this.$swal({
-            //             title: "儲存成功",
-            //             icon: "success",
-            //             image: "",
-            //         })
-            //     }else{
-            //         this.$swal({
-            //             title: "儲存失敗",
-            //             icon: "error",
-            //             text: "請檢查欄位",
-            //         });
-            //     }
-            // })
+            .then(body=>{
+                let {successful2} = body;
+                if(successful2){
+                    this.$swal({
+                        title: "刪除成功",
+                        icon: "success",
+                        image: "",
+                    })
+                }
+            })
         },
+        // 新增資料
         insert(){
-            fetch('php/companyback_insert_tech.php',{
-                method: 'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    NAME: this.newtech,
-                    LINK: this.newlink,
-                    ID: this.company_info_id,
+            let linkRule = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
+            if(this.newtech !='' &&
+               this.newlink !='' && 
+               linkRule.test(this.newlink)){
+                fetch('php/companyback_insert_tech.php',{
+                    method: 'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        NAME: this.newtech,
+                        LINK: this.newlink,
+                        ID: this.company_info_id,
+                    })
                 })
-            })
-            .then(resp=>resp.json())
-
+                .then(resp=>resp.json())
+                .then(body=>{
+                    let {successful} = body;
+                    if(successful){
+                        this.$swal({
+                            title: "儲存成功",
+                            icon: "success",
+                            image: "",
+                        })
+                    }
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 3000);
+                })
+            }else{
+                this.$swal({
+                    title: "儲存失敗",
+                    icon: "error",
+                    text: "請檢查欄位是否未填或是網址格式有誤",
+                });
+            }
         },
 
     },
     mounted(){
-        // const self = this;
+        this.$nextTick(()=>{
+            if(sessionStorage['login_id'] == undefined){
+                this.login_id = '';
+            }else{
+                this.login_id = sessionStorage['login_id'];
+                this.loin_name = sessionStorage['login_name'];
+                this.login_type = sessionStorage['login_type'];
+                this.company_info_id = sessionStorage['login_info'];
+                // console.log(this.company_info_id);
 
-        fetch('php/companyback_select_tech.php',{
-            method: 'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                company_info_id: this.company_info_id,
-            })
+                fetch('php/companyback_select_tech.php',{
+                    method: 'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        company_info_id: this.company_info_id,
+                    })
+                })
+                .then(resp=>resp.json())
+                .then(resp=>{
+                    this.techs=resp
+                    this.$nextTick(()=>{
+                        this.rearrange();
+                    })
+                });   
+             }
         })
-        .then(resp=>resp.json())
-        .then(resp=>{
-            this.techs=resp
-            this.$nextTick(()=>{
-                this.rearrange();
-            })
-        })        
-        
+    },
+    created(){
+        let companyAcc = sessionStorage.getItem("login_info");
+        if(companyAcc != null){
+            this.company_info=companyAcc
+        }else{
+            document.location.href='./index.html'
+        }
     },
 })
 

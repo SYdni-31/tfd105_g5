@@ -14,8 +14,8 @@
     <link rel="icon" href="img/tianlam-logo-mainblack.svg">
     <!-- VUE -->
     <script src="js/vue.min.js"></script>
-    <!-- SweetAlert -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- alert套件 -->
+    <script src="https://unpkg.com/vue-swal"></script>
     
     <title>聚策展-廠商後台-技術展示區</title>
 </head>
@@ -59,10 +59,9 @@
                 </form>
             </div>
 
-            <div class="insert_form -hide">
+            <div class="insert_form" :class="{'-hide':newforms==false}">
                 <form action="#" class="companyback_form">
                     <!-- icon -->
-                    <!-- v-for最多八筆 -->
                     <aside class="companyback_layout" ></aside>
                     <ol class="companyback_icon">
                         <li><a><i class="fa-regular fa-pen-to-square"></i></a></li>
@@ -82,7 +81,15 @@
                 </form>
             </div>
 
+            <div class="companyback_add mt-30" >
+                <a class="btn_company_back tech_addbtn" href="./companyback_info.html">回上一頁</a>
+            
+                <a class="btn_company_back tech_addbtn" @click="showInsert">新增</a>
+ 
+                <a class="btn_company_back tech_addbtn" href="./companyback_look.html">儲存並預覽</a>
+            </div>
 
+            
             <!-- <form action="#" class="companyback_form">
                 <aside class="companyback_layout">1</aside>
                 <ol class="companyback_icon">
@@ -141,10 +148,6 @@
                 </div>
                 <a class="companyback_save btn_company_back">儲存</a>
             </form> -->
-
-            <div class="companyback_add mt-30" @click="showInsert">
-                <a class="btn_company_back">新增</a>
-            </div>
         </section>
     </main>
     <!-- footer -->

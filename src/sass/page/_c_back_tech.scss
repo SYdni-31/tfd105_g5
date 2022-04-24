@@ -152,10 +152,20 @@ $companyback_num2 : 2;
 
 //下方按鈕
 .companyback_add {
+    display: flex;
+    justify-content: space-between;
+    @include mobile(){
+        flex-direction: column;
+        flex-basis: 10vw;
+    }
     .btn_company_back {
         border: 1px solid rgba($accent-color, 0.5);
-        display: inline-block;
-        float: right;
+    }
+    .tech_addbtn {
+        @include mobile(){
+            margin: 0.5rem 4rem;
+        }
+
     }
 }
 
