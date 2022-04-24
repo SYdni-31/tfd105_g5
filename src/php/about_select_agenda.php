@@ -2,12 +2,12 @@
     include("connection.php");
     //會議
     $select = json_decode(file_get_contents("php://input"), true); 
-    $sql="select * from agenda where DATE = :today
+    $sql="select * from agenda where DATE = CURDATE()
     union
     select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     order by START_TIME";
     $statement=$pdo->prepare($sql);
-    $statement->bindValue(":today", $select["Today"]);
+    // $statement->bindValue(":today", $select["Today"]);
     $statement->execute();
     $select=$statement->fetchAll(); 
     //PHP接收 JSON POST
