@@ -181,7 +181,7 @@ Vue.component('backstage_info3_add', {
                 this.newdata.TITLE != "" &&
                 this.newdata.LINK != "" &&
                 this.newdata.PHOTO != "" &&
-                this.newdata.STATUS != "") {
+                this.newdata.OPEN != "") {
                 // 確認所有欄位是否都有值 
                 form_data = new FormData();
                 form_data.append('datas', JSON.stringify({
@@ -295,8 +295,8 @@ Vue.component('backstage_info3_add', {
             </div>
                 </div>
                 <div class="mb-16"><label>審核狀態</label><br>
-                    <label for="show"><input type="radio" name="STATUS" id="notwork" value="顯示" v-model="newdata.STATUS">顯示</label>
-                    <label for="notshow"><input type="radio" name="STATUS" id="working" value="不顯示" v-model="newdata.STATUS">不顯示</label>
+                    <label for="show"><input type="radio" name="OPEN" id="notwork" value="1" v-model="newdata.OPEN">顯示</label>
+                    <label for="notshow"><input type="radio" name="OPEN" id="working" value="0" v-model="newdata.OPEN">不顯示</label>
                 </div>
             </ul>                   
             <div class="backstage-insert-btn">
