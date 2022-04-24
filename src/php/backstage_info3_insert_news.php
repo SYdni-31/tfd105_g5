@@ -20,7 +20,8 @@
             $ServerRoot = $_SERVER["DOCUMENT_ROOT"];
             
             //檔案最終存放位置
-            $filePath = $ServerRoot."/speaker_img/".$fileName;
+            $filePath = $ServerRoot."/tfd105/g5/img/news/".$fileName;
+            // $filePath = $ServerRoot."/tfd105_g5/dist/img/news/".$fileName;
       
             //將暫存檔搬移到正確位置，從server上的路徑move到新的路徑
             move_uploaded_file($filePath_Temp, $filePath);
@@ -49,7 +50,7 @@
     $statement = $pdo->prepare($sql);
     $statement->bindValue(":TITLE", $select["TITLE"]);
     $statement->bindValue(":CONTENT", $select["CONTENT"]);  //欄位皆大寫
-    $statement->bindValue(":fileName", "speaker_img/".$fileName);
+    $statement->bindValue(":fileName","img/news/".$fileName);
     $statement->bindValue(":LINK", $select["LINK"]);
     $statement->bindValue(":TIME", $select["TIME"]);
     $statement->bindValue(":STATUS", $select["STATUS"]);

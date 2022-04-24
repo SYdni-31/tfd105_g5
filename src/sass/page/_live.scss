@@ -79,6 +79,10 @@
           text-align: center;
         }
       }
+      .live-login-block{
+        @include flex-box-center(30%, null);
+        height: calc(100% - 60px);
+      }
       // 顯示留言區塊
       .result-block {
         background-color: $black-color;

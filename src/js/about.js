@@ -67,35 +67,107 @@
 const vm = new Vue({
     el: "#about_main",
     data: {
-        schedules:[
-          
-            
-        ],
-        speaker:"",
-        today:"2022-04-10",
+        schedules:[],
+        speakers:[],
+        today:"2022-04-11",
         hideiamge:false,
+        timestart:'',
+        carousels:'',
+        expos:'',
 
     },
     methods: {
-        turn_back(){
-            this.hideiamge = !this.hideiamge
+        turn_back(index){
+            // console.log(e.currentTarget);
+            // e.currentTarget.classList.toggle('-hide')
+            // this.hideiamge = !this.hideiamge
+            document.getElementsByClassName('about_speaker_intro')[index].classList.toggle('-hide')
+            document.getElementsByClassName('about_hoverText')[index].classList.toggle('-hide')
+
+        },
+        introduce(txt, e){
+
         }
     },
     mounted(){
-        fetch("php/about_select_about.php",{
+        fetch("php/about_select_agenda.php",{
             method: 'POST', //傳到php
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                Today: this.today,
+                // Today: this.today,
+                // Today:new Date(),
             })
         }).then(resp => resp.json())//接收
         .then(body => {
-            console.log(body);
-            this.schedules=body
+            // console.log(body);
+            // console.log(body['agenda']);
+            // console.log(body['carousel']);
+            console.log(body['expo']);
+            this.schedules=body['agenda'];
+            this.carousels=body['carousel'];
+            this.expos=body['expo'];
+            
+            // this.schedules=body;
+            for(let i=0; i<body['agenda'].length; i++){
+            // this.timestart=body[i].START_TIME.slice(0,-3);
+                if(body['agenda'][i].PHOTO !=null &&body['agenda'][i].PHOTO !=""){
+                    this.speakers.push(body['agenda'][i])
+                }
+            }
+            // console.log(this.speakers)
+            for(let j=0; j<this.speakers.length; j++){
+              let txt=this.speakers[j].INTRODUCE.split('\n')
+              this.speakers[j]['txts']=txt
+              // let parser = new DOMParser();
+              // let doc=parser.parseFromString(txt, "text/xml");
+              // document.addEventListener('DOMContentLoaded',function(){
+              // doc.document.getElementsByClassName('abour_txt')[j].innerHTML
+              // })
+            }
+            
+           
         })
+        this.$nextTick(()=>{
+        var swiper = new Swiper(".mySwiper", {
+              slidesPerView: 7, //一頁幾個
+              spaceBetween: 50,  //照片間格
+              loop: true,
+              observer:true,//修改swiper自己或子元素時，自動初始化swiper
+              observeParents:true,//修改swiper的父元素時，自動初始化swiper
+              scrollbar: {
+                el: ".swiper-scrollbar",
+                hide: false,
+                draggable: true,
+                dragSize: 10,
+            
+              },
+              breakpoints: {
+                320: {
+                  slidesPerView: 4,
+                  spaceBetween: 20,
+                },
+                375: {
+                  slidesPerView: 4,
+                  spaceBetween: 20,
+                },
+                480: {
+                  slidesPerView: 4,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 5,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 7,
+                  spaceBetween: 50,
+                },
+              }
+            });
 
+          })
 
     },
 

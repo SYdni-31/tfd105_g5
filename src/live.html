@@ -25,10 +25,8 @@
       emailjs.init("VmKwawpbImHtur7aa");
     })();
   </script>
-  <!-- is.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
-  <!-- SweetAlert -->
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- alert套件 -->
+  <script src="https://unpkg.com/vue-swal"></script>
   <title>聚策展-現正直播</title>
 </head>
 
@@ -45,20 +43,21 @@
       <div class="live-container">
         <!-- 影片區 -->
         <!-- https://www.youtube.com/embed/gfwWsWJhoig?modestbranding=1&autoplay=1&playlist=gfwWsWJhoig -->
+        <!-- src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ" -->
         <div class="live-video-container">
           <h2>
             抱歉，目前無直播<br />下一次直播時間 : <br />
             <span>{{NEXT_TIME}}</span>
           </h2>
-          <iframe  width="900" height="500"
-            src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ"
+          <iframe v-if="C_NAME != ''" width="900" height="500"
+            :src="['https://www.youtube.com/embed/' + LINK.split('=')[1] + '?&autoplay=1&loop=1&modestbranding=1&playlist='+ LINK.split('=')[1] ]"
             title="video" frameborder="0" class="live-video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
         <!-- 留言板(PC) -->
-        <div id="live_pc" class="live-board-container" :class="{'pc-active': pcOpen === true}">
+        <div id="live_pc" class="live-board-container" :class="{'pc-active': pcOpen === true}" v-if="C_NAME != ''">
           <div class="live-board">
             <div class="search-container-title" @click="toggle()">
               <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img"
@@ -66,32 +65,26 @@
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
-            <!-- <todo-list></todo-list>
-            <todo-input @abc="addTask"></todo-input> -->
-            <div class="result-block">
+            <div class="result-block" >
               <div class="search-container">
-                <todo-item  v-for="(task,index) in tasks" :name="tasks[index]['name']" :message="tasks[index]['message']"></todo-item>
+                <todo-item v-for="(task,index) in tasks" :name="tasks[index]['name']"
+                  :message="tasks[index]['message']"></todo-item>
               </div>
             </div>
-            <div class="input-block">
-              <input  v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息">
+            <!-- 打字傳送區 -->
+            <div class="input-block" >
+              <input v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息">
               <button class=" live-submit btn-short" name="live-submit" type="button" @click="text_save">送交</button>
             </div>
-            <!-- <div class="result-block">
-              <div class="search-container"></div>
-            </div> -->
-            <!-- 打字傳送區 -->
-            <!-- <div class="input-block">
-              <input type="text" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息" />
-              <button class=" live-submit btn-short" name="live-submit" type="button" @click="text_save">
-                送出
-              </button>
-            </div> -->
+            <!-- 尚未登入 -->
+            <div class="live-login-block" v-if="login_id == '' && C_NAME != ''">
+              <button class="btn-short">開始聊天</button>
+            </div>
           </div>
         </div>
 
         <!-- 留言板(RWD) -->
-        <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': rwdOpen === true}">
+        <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': rwdOpen === true}" v-if="C_NAME != ''" >
           <div class="live-board">
             <div class="search-container-title" @click="toggle_rwd()">
               <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img-rwd" class="-transform--90"
@@ -101,41 +94,37 @@
             <!-- 留言顯示區 -->
             <div class="result-block-rwd">
               <div class="search-container">
-                <todo-item  v-for="(task,index) in tasks" :name="tasks[index]['name']" :message="tasks[index]['message']"></todo-item>
+                <todo-item v-for="(task,index) in tasks" :name="tasks[index]['name']"
+                  :message="tasks[index]['message']"></todo-item>
               </div>
             </div>
             <!-- 打字傳送區 -->
             <div class="input-block">
-              <input  v-model="task" class="live-text-input-rwd" name="live-text-input" id="live_text_rwd" placeholder="傳送訊息">
-              <button class=" live-submit-rwd btn-short" name="live-submit" type="button" @click="text_save_rwd">送交</button>
+              <input v-model="task" class="live-text-input-rwd" name="live-text-input" id="live_text_rwd"
+                placeholder="傳送訊息">
+              <button class=" live-submit-rwd btn-short" name="live-submit" type="button"
+                @click="text_save_rwd">送交</button>
             </div>
-            <!-- 留言顯示區 -->
-            <!-- <div class="result-block-rwd">
-              <div class="search-container"></div>
-            </div> -->
-            <!-- 打字傳送區 -->
-            <!-- <div class="input-block">
-              <input type="text" class="live-text-input-rwd" name="live-text-input" placeholder="傳送訊息" />
-              <button class="btn-short live-submit-rwd" name="live-submit" type="button">
-                送出
-              </button>
-            </div> -->
+          </div>
+          <!-- 尚未登入 -->
+          <div class="live-board" v-if="login_id == '' && C_NAME != ''">
+            <button class="btn-short">開始聊天</button>
           </div>
         </div>
-      </div>
     </section>
     <!-- 下方廠商介紹區 -->
-    <div  v-if="C_NAME != ''">
+    <div v-if="C_NAME != ''">
       <div class="live-company">
         <ul class="live-company-text">
           <li v-if="C_NAME != '' ">
             <div class="live-company-title">
-              <img src="img/live/compnay-title.png" alt="現在直播廠商" />
-              <h2>現在直播廠商</h2>
+              <img src="img/live/compnay-title.png" alt="現正直播廠商" />
+              <h2 v-if="C_EMAIL != null ">現正直播廠商</h2>
+              <h2 v-if="C_EMAIL == null ">現正直播講師</h2>
             </div>
             <h3>{{C_NAME}}</h3>
           </li>
-          <li v-if="C_EMAIL != '' ">
+          <li v-if="C_EMAIL != null ">
             <div class="live-company-email">
               <img src="img/live/compnay-email.png" alt="聯絡方式" />
               <h2>聯絡方式</h2>
