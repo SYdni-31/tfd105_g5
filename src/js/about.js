@@ -96,8 +96,8 @@ const vm = new Vue({
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                Today: this.today,
-                // Today:new Date(),
+                // Today: this.today,
+                Today:new Date(),
             })
         }).then(resp => resp.json())//接收
         .then(body => {
@@ -129,10 +129,13 @@ const vm = new Vue({
             
            
         })
+        this.$nextTick(()=>{
         var swiper = new Swiper(".mySwiper", {
               slidesPerView: 7, //一頁幾個
               spaceBetween: 50,  //照片間格
               loop: true,
+              observer:true,//修改swiper自己或子元素時，自動初始化swiper
+              observeParents:true,//修改swiper的父元素時，自動初始化swiper
               scrollbar: {
                 el: ".swiper-scrollbar",
                 hide: false,
@@ -164,6 +167,7 @@ const vm = new Vue({
               }
             });
 
+          })
 
     },
 
