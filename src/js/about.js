@@ -97,7 +97,7 @@ const vm = new Vue({
             },
             body: JSON.stringify({
                 // Today: this.today,
-                Today:new Date(),
+                // Today:new Date(),
             })
         }).then(resp => resp.json())//接收
         .then(body => {
