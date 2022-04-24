@@ -69,10 +69,11 @@ const vm = new Vue({
     data: {
         schedules:[],
         speakers:[],
-        today:"2022-04-10",
+        today:"2022-04-11",
         hideiamge:false,
         timestart:'',
         carousels:'',
+        expos:'',
 
     },
     methods: {
@@ -84,7 +85,9 @@ const vm = new Vue({
             document.getElementsByClassName('about_hoverText')[index].classList.toggle('-hide')
 
         },
-    
+        introduce(txt, e){
+
+        }
     },
     mounted(){
         fetch("php/about_select_agenda.php",{
@@ -94,14 +97,18 @@ const vm = new Vue({
             },
             body: JSON.stringify({
                 Today: this.today,
+                // Today:new Date(),
             })
         }).then(resp => resp.json())//接收
         .then(body => {
-            console.log(body);
-            console.log(body['agenda']);
-            console.log(body['carousel']);
+            // console.log(body);
+            // console.log(body['agenda']);
+            // console.log(body['carousel']);
+            console.log(body['expo']);
             this.schedules=body['agenda'];
             this.carousels=body['carousel'];
+            this.expos=body['expo'];
+            
             // this.schedules=body;
             for(let i=0; i<body['agenda'].length; i++){
             // this.timestart=body[i].START_TIME.slice(0,-3);
@@ -109,7 +116,17 @@ const vm = new Vue({
                     this.speakers.push(body['agenda'][i])
                 }
             }
-
+            // console.log(this.speakers)
+            for(let j=0; j<this.speakers.length; j++){
+              let txt=this.speakers[j].INTRODUCE.split('\n')
+              this.speakers[j]['txts']=txt
+              // let parser = new DOMParser();
+              // let doc=parser.parseFromString(txt, "text/xml");
+              // document.addEventListener('DOMContentLoaded',function(){
+              // doc.document.getElementsByClassName('abour_txt')[j].innerHTML
+              // })
+            }
+            
            
         })
         var swiper = new Swiper(".mySwiper", {
