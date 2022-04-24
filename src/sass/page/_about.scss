@@ -183,15 +183,16 @@
 }
 .about_hoverText{
     height: 480px;
-    text-align: left;
-    // margin-top: 120px;
+}
+.about_hover{
     display: flex;
     align-items: center;
+    height: 480px;
 }
-.about_hoverText li {
-    text-align: left;
-    font-size: 14px;
-}
+// .about_hoverText li {
+//     text-align: left;
+//     font-size: 14px;
+// }
 .about_hoverText h4 {
     text-align: left;
     padding: 20px;
@@ -202,6 +203,7 @@
     justify-content: space-around;
    
 }
+
 
 @media (max-width: 1100px) {
     .about_speakers {
