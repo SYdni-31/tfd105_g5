@@ -62,16 +62,28 @@ btn.addEventListener("click",function(){
     message_el.classList.remove("-error");
   }
 
+ 
   if (!send_data) {            //if(send_data == false) 一樣
       // e.preventDefault();
     swal("送出失敗", "格式錯誤或是必填欄位未輸入!", "error");
  
   }else{
-    swal("送出成功", " ", "success");
+    // swal("送出成功", " ", "success");
+ 
+swal({
+  icon: 'success',
+  title: '送出成功',
+  text:'　　　　　　',
+  showConfirmButton: false,
+  showCancelButton: false,
+  buttons:false,
+  
+});
+
 
     setTimeout(function(){
       the_form_el.submit();
-    },3000);
+    },1500);
     
   }
 

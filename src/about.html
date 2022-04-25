@@ -45,28 +45,27 @@
   </header>
   <!-- content，各自頁面的html寫在這邊以下都是範例 大區塊外面包section  -->
   <main class="about_main" id="about_main">
-    <section class="about_banner">
-      <img src="img/about/about_banner.png">
+    <section class="about_banner" v-for="expo in expos">
+      <img src="img/about/about_banner.png" >
       <div class="about_slogan pd-10">
         <div class="about_sloganFirst">
-          <h2 class="about_subtitle">---------- 2022 最新科技展 ----------</h2>
+          <h2 class="about_subtitle">{{expo.NAME}}</h2>
           <div class="about_new">
             <h1>新智慧、新科技、新創意</h1>
-            <h2>04.01 - 06.30</h2>
+            <h2>{{expo.START_TIME}}~{{expo.END_TIME}}</h2>
           </div>
         </div>
         <div class="about_rwd_title">
-          2022 最新科技展
-          <h2 class="about_date">04.01 - 06.30</h2>
+          {{expo.NAME}}
+          <h2 class="about_date">{{expo.START_TIME}}~{{expo.END_TIME}}</h2>
         </div>
 
         <!-- <h2 class="about_date">04.01 - 06.30</h2> -->
       </div>
     </section>
-    <section class="wrapper about_brief wrapper_about" > <!--data-aos="fade-up" data-aos-duration="2000"-->
+    <section class="wrapper about_brief wrapper_about" v-for="expo in expos"> <!--data-aos="fade-up" data-aos-duration="2000"-->
       <div class="mb-10 about_title">會議簡介</div>
-      <h3>疫情翻轉新常態．加速智慧轉型~~~~<br>
-        新冠肺炎疫情自2020年爆發以來，徹底翻轉人類生活、工作與娛樂型態。遠距、零接觸成為「新常態」，促使國家、企業乃至個人，都要展開「智慧轉型」，以迎向後疫情時代，並緊緊握住復甦商機。在疫情期間展現優異的經濟韌性。疫情過後，全球更應該積極推動經濟轉型，邁入新形態市場，要強化數位轉型，更要提升民眾數位化能力。
+      <h3>{{expo.INTRODUCE}}
       </h3>
     </section>
     <section class="about_agenda "> <!--data-aos="fade-up" data-aos-duration="2000"-->
@@ -76,8 +75,8 @@
           <div class="mb-10 about_title">大會議程</div>
           <ul>
             <li v-for="(schedule,index) in schedules">
-              <h3 class="about_time">{{schedule.START_TIME}}-{{schedule.END_TIME}}</h3>
-              <h3 class="about_theme">{{schedule.theme}}</h3>
+              <h3 class="about_time" >{{schedule.START_TIME.slice(0,-3)}}-{{schedule.END_TIME.slice(0,-3)}}</h3>
+              <h3 class="about_theme">{{schedule.THEME}}</h3>
             </li>
           </ul>
         </div>
@@ -85,59 +84,20 @@
     </section>
     <section class="wrapper about_lecturer wrapper_about"> <!--data-aos="fade-up" data-aos-duration="2000"-->
       <div class="mb-10 about_title">講師介紹</div>
-      <div class="about_speakers">
-        <div class="about_speaker mt-20">
-          <div class="about_speaker_intro" @click="turn_back()">
-            <img class="mt-35" src="img/about/speaker1.png">
-            <h3 class="mt-18">郭水義</h3>
-            <h4 class="mt-8">中華電信總經理</h4>
+      <div class="about_speakers"  > <!--speakers只要有講師的-->
+        <div class="about_speaker mt-5" v-for="(speaker,index) in speakers">
+          <div class="about_speaker_intro" @click="turn_back(index)">
+            <img class="mt-50" :src="speaker.PHOTO">
+            <h3 class="mt-18">{{speaker.NAME}}</h3>
+            <!-- <h4 class="mt-8">中華電信總經理</h4> -->
           </div>
-          <div class="about_hoverText " :class="{'-hide':hideiamge === true}" >
-            <h4>郭水義<br>經歷
+          <div class="about_hoverText -hide" @click="turn_back(index)">
+            <h4>{{speaker.NAME}}<br>
               <ul>
-                <li>-中華電信執行副總經理暨財務長</li>
-                <li>-中華電信執行副總經理（投資長）</li>
-                <li>-中華電信投資事業處副總經理</li>
-                <li>-中華電信會計處副總經理</li>
-                <li>-光世代建設開發股份有限公司總經理</li>
+                <p v-for="txt in speaker.txts">{{txt}}</p><br>
+                <!-- {{speaker.INTRODUCE.replaceAll('-',`${<br>}`)}} -->
               </ul>
-            </h4>
-          </div>
-        </div>
-        <!-- <div class="about_speaker mt-20">
-          <div class="about_speaker_intro">
-            <img class="mt-35" src="img/about/speaker2.png">
-            <h3 class="mt-18">張忠謀</h3>
-            <h4 class="mt-8">台積電創辦人</h4>
-          </div>
-          <div class="about_hoverText -hide">
-            <h4>張忠謀<br>經歷
-              <ul>
-                <li>-應邀至擔任工業技術研究院院長</li>
-                <li>-創辦台灣積體電路公司，任董事長</li>
-                <li>-創辦世界先進積體電路公司司</li>
-                <li>-曾被「時代」週刊評為最有影響力的二十六位總經理之一</li>
-              </ul>
-            </h4>
-          </div>
-        </div> -->
-        <div class="about_speaker mt-20">
-          <div class="about_speaker_intro">
-            <img class="mt-35" src="img/about/speaker3.png">
-            <h3 class="mt-18">唐鳳</h3>
-            <h4 class="mt-8">現職:行政院政務委員</h4>
-          </div>
-          <div class="about_hoverText -hide">
-            <h4>唐鳳<br>經歷
-              <ul>
-                <li>-行政院虛擬世界法規調適計劃顧問</li>
-                <li>-Perl 6語言設計師和首席實作者</li>
-                <li>-耀宏科技顧問</li>
-                <li>-傲爾網公司負責人</li>
-                <li>-明碁公司顧問</li>
-                <li>-資迅人公司技術總監</li>
-              </ul>
-            </h4>
+            </h4> 
           </div>
         </div>
       </div>
@@ -145,21 +105,14 @@
     <section class="about_exhibitor">
       <div class="mb-10 wrapper about_title wrapper_about">參與廠商</div>
       <!-- Swiper -->
-      <div class="swiper mySwiper about_mySwiper">
+      <div class="swiper mySwiper about_mySwiper" >
         <div class="swiper-wrapper">
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo1.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo2.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/logo3.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo4.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo5.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/logo6.png"></div>
-          <div class="swiper-slide about_slide"><img src="img/sample/Logo7.png"></div>
+          <div class="swiper-slide about_slide" v-for="(carousel,index) in carousels">
+          <img :src="carousel.LOGO"></div>
         </div>
         <div class="swiper-scrollbar about_scrollbar"></div>
       </div>
     </section>
-
-
 
   </main>
   <!-- footer -->
