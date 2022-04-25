@@ -368,23 +368,7 @@ Vue.component('backstage_info3', {
                                     icon: "success",
                                     image: "",
                                 }).then((willDelete) => {
-                                    fetch('php/backstage_info3_select_news.php', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify({
-                                            inpage: this.inpage,
-                                            perpage: this.perpage,
-                                            search_word: this.search_word,
-                                        })
-                                    })
-                                        .then(resp => resp.json())
-                                        .then(resp => {
-                                            this.datas = resp.data
-                                            this.data_count = resp.data_count[0][0]
-                                            this.pages = Math.ceil(this.data_count / this.perpage)
-                                        })
+                                   this.ajax(this.inpage);
                                 })
                             } else {
                                 this.$swal({
