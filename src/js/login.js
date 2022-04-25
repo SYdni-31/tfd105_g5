@@ -212,7 +212,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 判斷是否成功送出資料
-        if (!send_data) {
+        if (password_2.value.length < 8) {
+            e.preventDefault();
+            swal('註冊失敗', '您輸入的密碼需大於八碼~', 'error');
+        }else if(!send_data){
             e.preventDefault();
             swal('送出失敗', '格式錯誤或是必填欄位未輸入!', 'error');
         } else {
@@ -655,7 +658,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     })
                 }).then(res => res.json())
                     .then(customer => {
-                        const { NAME, successful, EMAIL, ID, INFO_ID } = customer;
+                        const { NAME, successful, EMAIL, ID, INFO_ID , successfulOpen } = customer;
                         if (successful) {
                             swal({
                                 icon: 'success',
@@ -664,7 +667,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 showConfirmButton: false,
                                 showCancelButton: false,
                                 buttons:false,
-                                timer: 1500,
+                                timer: 1200,
                             })
                             // 設置sessionStorage
                             sessionStorage.setItem('login_id', ID);
@@ -677,11 +680,17 @@ document.addEventListener("DOMContentLoaded", function () {
                             closeLightBox();
                             setTimeout(function () {
                                 window.location.reload();
-                            }, 1500);
+                            }, 1200);
                         } else {
-                            swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
-                            email_el.classList.add("login-error");
-                            password_el.classList.add("login-error");
+                            if(successfulOpen){
+                                swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+                                email_el.classList.add("login-error");
+                                password_el.classList.add("login-error");
+                            }else{
+                                swal('登入失敗', '廠商尚未通過審核，請耐心等候，謝謝!', 'error');
+                                email_el.classList.add("login-error");
+                                password_el.classList.add("login-error");
+                            }
                         }
 
                     });
