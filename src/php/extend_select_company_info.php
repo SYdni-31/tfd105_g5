@@ -16,7 +16,6 @@
     $sql3= "select CI.ID CI_ID, T.* from view_company_info CI join TECH T on  CI.ID=T.COMPANY_INFO_ID where ONBOARD=1;";
     $statement3 = $pdo->prepare($sql3);
     $statement3->execute();
-
     $select3= $statement3->fetchAll();
 
     $select4 = json_decode(file_get_contents("php://input"), true);

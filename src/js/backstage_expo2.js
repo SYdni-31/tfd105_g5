@@ -47,14 +47,15 @@ Vue.component('backstage_expo2_edit', {
                         })
                     }).then(resp => resp.json())
                         .then(body => {
-                            let { successful } = body
+                            let { successful } = body;
+                            console.log("successful:"+body);
                             if (successful) {
                                 this.$swal({
                                     title: "儲存成功",
                                     icon: "success",
                                     image: "",
                                 }).then((willInsert) => {
-                                    this.$emit('addsave')
+                                    this.$emit('addsave');
                                 })
                             } else {
                                 this.$swal({
@@ -89,7 +90,7 @@ Vue.component('backstage_expo2_edit', {
                 dangerMode: true,
             }).then((willInsert) => {
                 if (willInsert) {
-                    this.$emit('editclose')
+                    this.$emit('editclose');
                 }
             })
         },
@@ -163,7 +164,7 @@ Vue.component('backstage_expo2_add', {
                                     icon: "success",
                                     image: "",
                                 }).then((willInsert) => {
-                                    this.$emit('addsave')
+                                    this.$emit('addsave');
                                 })
                             } else {
                                 this.$swal({
@@ -196,7 +197,7 @@ Vue.component('backstage_expo2_add', {
                 dangerMode: true,
             }).then((willInsert) => {
                 if (willInsert) {
-                    this.$emit('addclose')
+                    this.$emit('addclose');
                 }
             })
         },
@@ -251,19 +252,17 @@ Vue.component('backstage_expo2', {
             this.ajax(this.inpage)
         },
         switchbtn(index) {
-
-            console.log("open" + this.datas[index].OPEN);
             if (this.datas[index].OPEN == true) {
-                this.datas[index].OPEN = 1
+                this.datas[index].OPEN = 1;
             } else {
-                this.datas[index].OPEN = 0
+                this.datas[index].OPEN = 0;
             }
             this.update(index)
         },
         edit(data, index) {
-            this.row_data = data
-            this.row_index = index
-            this.box = 'backstage_expo2_edit'
+            this.row_data = data;
+            this.row_index = index;
+            this.box = 'backstage_expo2_edit';
         },
         del(index) {
             swal({
@@ -283,7 +282,7 @@ Vue.component('backstage_expo2', {
                         })
                     }).then(resp => resp.json())
                         .then(body => {
-                            let { successful } = body
+                            let { successful } = body;
                             if (successful) {
                                 this.$swal({
                                     title: "刪除成功",
@@ -303,8 +302,6 @@ Vue.component('backstage_expo2', {
                                     })
                                         .then(resp => resp.json())
                                         .then(resp => {
-                                            // 先看resp是什麼用c
-                                            // console.log(resp);
                                             this.datas = resp.data
                                             // 塞在裡面的裡面
                                             this.data_count = resp.data_count[0][0]
@@ -360,17 +357,27 @@ Vue.component('backstage_expo2', {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    inpage: inpage,
+                    inpage: this.inpage,
                     perpage: this.perpage,
                     search_word: this.search_word,
                 })
             })
                 .then(resp => resp.json())
                 .then(resp => {
+                    // 先看resp是什麼用c
+                    // console.log(resp);
                     this.datas = resp.data
+                    // 塞在裡面的裡面
                     this.data_count = resp.data_count[0][0]
+                    // pages是分幾頁，math無條件進位 11/10 =1.1 無條件進位 = 2
                     this.pages = Math.ceil(this.data_count / this.perpage)
-                    this.inpage = inpage
+                    for (let i = 0; i < this.datas.length; i++) {
+                        if (this.datas[i].OPEN == 0) {
+                            this.datas[i].OPEN_1 = false
+                        } else {
+                            this.datas[i].OPEN_1 = true
+                        }
+                    }
                 })
         },
         update(index) {
@@ -381,7 +388,7 @@ Vue.component('backstage_expo2', {
                 },
                 body: JSON.stringify({
                     ID: this.datas[index].ID,
-                    OPEN: this.datas[index].OPEN_1
+                    OPEN: this.datas[index].OPEN_1,
                 })
             }).then(resp => resp.json())
                 .then(body => {

@@ -1,11 +1,12 @@
+
 .company_wrapper {
+    // 套件外包form
     .companyback_dateform {
         position: relative;
         display: flex;
         flex-direction: column;
         padding-top: 120px;
-
-
+        // 日曆套件
         .flatpickr-calendar.inline {
             background-color: #040F15;
             // box-shadow: none;
@@ -17,8 +18,7 @@
             position: absolute;
             top: 58px;
             left: 55px;
-        }
-
+         } 
         .label-before {
             line-height: 20px;
             font-size: 16px;
@@ -28,52 +28,14 @@
             left: 15px;
             // margin: 0 auto;
         }
-
-        .field {
-            position: relative;
-            display: flex;
-
-            // order: 2;
-            // margin-bottom: 15px;
-            // margin: 0 auto;
-            // border: 1px solid red;
-            label::before {
-                content: attr(title);
-                position: absolute;
-                top: 12px;
-                left: 30px;
-                line-height: 36px;
-                font-size: 18px;
-                color: #F6FAFB;
-                transition: 300ms all;
-            }
-
-            input {
-                @include input(391px, $accent-color);
-                height: 64px;
-                line-height: 64px;
-                font-size: 18px;
-                box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
-            }
-
-            // input:not(:focus) + label{
-            //     color: rgba(0,0,0,0);
-            // }
-        }
     }
-
-
 }
 
-
-
-
-//下面兩個都是第一部分右半邊的input
+//下面兩個都是第一部分右半邊的input(套件)
 .time_tech {
     display: flex;
     // justify-content: flex-end;
     flex-direction: row-reverse;
-
     //timepicker的input
     //年月日的input
     .form-contril {
@@ -88,7 +50,6 @@
         margin-right: 52px;
         box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
     }
-
     .timepicker {
         // width: 391px;
         border-radius: 10px;
@@ -101,13 +62,12 @@
         background-color: black;
         box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
     }
-
 }
 
+// 包住確認鍵與link的div
 .form_under {
     display: flex;
     flex-direction: row-reverse;
-
     .companyback_submit {
         margin-left: 39px;
         width: 213px;
@@ -118,29 +78,45 @@
         border-radius: 10px;
         color: $second-color;
         background-color: black;
+        cursor: pointer;
+    }
+    // 包住link的div
+    .field {
+        position: relative;
+        display: flex;
+        // order: 2;
+        // margin-bottom: 15px;
+        // margin: 0 auto;
+        // border: 1px solid red;
+        label::before {
+            content: attr(title);
+            position: absolute;
+            top: 12px;
+            left: 30px;
+            line-height: 36px;
+            font-size: 18px;
+            color: #F6FAFB;
+            transition: 300ms all;
+        }
+        input {
+            @include input(391px, $accent-color);
+            height: 64px;
+            line-height: 64px;
+            font-size: 18px;
+            box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
+        }
+        // input:not(:focus) + label{
+        //     color: rgba(0,0,0,0);
+        // }
     }
 }
 
-
-
-
-//第二層
+//第二層(留言板表頭)
 .chatboard {
     padding-top: 160px;
 }
 
-.chat1_company {
-    overflow-y: auto;
-
-    .sechtion_chat2 {
-        overflow-y: auto;
-    }
-}
-
-
-
-
-
+// 搜尋欄
 .companyback_search {
     .companyback_searchinput {
         background: #0D0D0D;
@@ -159,25 +135,35 @@
         //     font-size: 20px;
         //     color: white;
         //              }
-
     }
 }
 
-
-
-
-// 第一個聊天室
+// 第一個聊天室(整個聊天室?)
 .companyback_main_chatbox {
     display: flex;
-
+    // 廠商列表(下面有一樣的class所以移到下面去了)
+    // .chat1_company {
+    //   overflow-y: auto;
+    // }
+    //來賓列表(好像用不到)
+    // .sechtion_chat2 {
+    //     overflow-y: auto;
+    // }
+    // 聊天版的外包裝
+    li.two {
+        article.companyback_back_chatbox {
+            div.chat_title {
+                i.fa-xmark {
+                    display: none;
+                }
+            }
+        }
+    }
 }
-
-
-
-
-
+// 來賓與廠商列表
 section.companyback_chat1 {
     width: 427px;
+    height: 38%;
     // height: 347px;
     background-color: #0D0D0D;
     box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
@@ -185,10 +171,19 @@ section.companyback_chat1 {
     border-radius: 20px;
     display: inline-block;
 }
-
-
-
+// 標題之後的真正列表
 .chat1_company {
+    height: 90%;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 4px $accent-color;
+        border-radius: 5px;
+
+    }
     i {
         font-size: 65px;
         color: #F37F15;
@@ -197,7 +192,6 @@ section.companyback_chat1 {
     li.variouscompany {
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
         padding: 10px 2px;
-
         display: flex;
         flex-wrap: wrap;
 
@@ -217,51 +211,26 @@ section.companyback_chat1 {
 
             p {
                 font-size: 12px;
-
             }
 
             span {
                 padding: 0 14px;
             }
-        }
-
-    }
-}
-
-
-// 第二個聊天室
-
-
-
-
-li.variouscompany {
-    div {
-        span.variouscompany_span {
-            margin-left: auto;
-
-            i {
-                font-size: 18px;
+            span.variouscompany_span {
+                margin-left: auto;
+    
+                i {
+                    font-size: 18px;
+                }
             }
         }
     }
 }
-
-li.two {
-    article.companyback_back_chatbox {
-        div.chat_title {
-            i.fa-xmark {
-                display: none;
-            }
-        }
-    }
-}
-
-
 
 //聊天版
-
 .companyback_back_chatbox {
     width: 666px;
+    height: 100%;
     padding: 30px;
     background-color: #0D0D0D;
     //    border: 2px solid sandybrown;
@@ -330,6 +299,7 @@ li.two {
 //聊天室內部
 .companyback_chated {
     padding: 10px;
+    height: 500px;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -346,7 +316,6 @@ li.two {
         border-radius: 5px;
 
     }
-
     // &::-webkit-scrollbar-track-piece{
 
     // }
@@ -373,8 +342,6 @@ li.two {
             min-width: 110px;
         }
 
-        ;
-
         &::before {
             content: "";
             position: absolute;
@@ -385,9 +352,7 @@ li.two {
             border-width: 20px 0px 10px 10px;
             height: 0px;
             width: 0px;
-
         }
-
     }
 
     p.chat_content_you {
@@ -414,7 +379,6 @@ li.two {
             word-wrap: nowrap
         }
     }
-
 }
 
 
@@ -422,64 +386,43 @@ li.two {
 
 //================RWD=================//
 @include laptop (1300px) {
-
     section.company_wrapper {
         padding: 40px 2% 20px 8%;
-
         .companyback_dateform {
-
             .flatpickr-calendar.inline {
                 top: 20%;
                 left: 7%;
             }
-
-            .label-before {
-
-                top: -10px;
-                padding: 0 6px;
-                left: 15px;
-            }
-
+            // (重複)
+            // .label-before {
+                // top: -10px;
+                // padding: 0 6px;
+                // left: 15px;
+            // }
         }
-
-
     }
-
-
-
 
     //下面兩個都是第一部分右半邊的input
     .time_tech {
-
         .form-contril {
             margin-right: 3%;
         }
-
         .timepicker {
             margin: 0;
-
         }
-
     }
 
     .form_under {
-
         .companyback_submit {
             margin-left: 3%;
             width: 200px;
             font-size: 20px;
-
         }
     }
-
-
-
-
-    //第二層
+    //第二層(聊天室表頭)
     .chatboard {
         padding-top: 80px;
     }
-
 
     //以下兩個li
     ul.companyback_main_chatbox {
@@ -491,71 +434,38 @@ li.two {
             width: 60%;
         }
     }
-
-
-
+    // 搜尋欄
     .companyback_search {
         .companyback_searchinput {
-
             width: 90%;
         }
     }
 
-
-
-
     // 第一個聊天室
-
-
-
-
-
     section.companyback_chat1 {
         width: 90%;
         padding: 4%;
     }
-
-
-
     .chat1_company {
         i {
-            font-size: 60px;
+            font-size: 30px;
         }
 
         li.variouscompany {
             padding: 2% 2px;
-
-
-
             div {
-
                 .company_receive {
                     margin-left: auto;
-
                 }
-
-
                 span {
                     padding: 0 4%;
                     min-width: 50px;
                 }
             }
-
         }
     }
 
-
-    // 第二個聊天室
-
-
-
-
-
-
-
-
     //聊天版
-
     .companyback_back_chatbox {
         width: 100%;
         padding: 5% 3%;
@@ -565,87 +475,67 @@ li.two {
 
             i {
                 font-size: 60px;
-
             }
         }
 
         .chat_input {
             padding-top: 5%;
-
             input {
                 width: 90%;
                 height: 45px;
-
             }
-
-
+        }
+        //聊天室內部
+        .mt-41 {
+            margin-top: 5%;
+        }
+    
+        .mt-35 {
+            margin-top: 32px;
+        }
+    
+        .ml-30 {
+            margin-left: 12px;
         }
     }
-
-    //聊天室內部
-    .mt-41 {
-        margin-top: 5%;
-    }
-
-    .mt-35 {
-        margin-top: 32px;
-    }
-
-    .ml-30 {
-        margin-left: 12px;
-    }
-
     .companyback_chated {
         padding: 2%;
-
-
-
-
-        p.chat_content {
+       p.chat_content {
             padding: 12px;
-
         }
+        // p.chat_content_me {
+        //     &::before {
+        //         content: "";
+        //     }
 
-        p.chat_content_me {
+        // }
 
+        // p.chat_content_you {
 
+        //     &::before {
+        //         content: '';
+        //         @include absolute(null, -10px, 0);
+        //         border-color: transparent transparent $accent-color transparent;
+        //         border-style: solid solid solid solid;
+        //         border-width: 20px 10px 10px 0px;
+        //         height: 0px;
+        //         width: 0px;
 
-            &::before {
-                content: "";
+        //     }
 
-            }
-
-        }
-
-        p.chat_content_you {
-
-            &::before {
-                content: '';
-                @include absolute(null, -10px, 0);
-                border-color: transparent transparent $accent-color transparent;
-                border-style: solid solid solid solid;
-                border-width: 20px 10px 10px 0px;
-                height: 0px;
-                width: 0px;
-
-            }
-
-            span {
-                @include absolute(null, 5px, -20px);
-                color: #f6fafb78;
-                font-size: 12px;
-                word-wrap: nowrap
-            }
-        }
-
+        //     span {
+        //         @include absolute(null, 5px, -20px);
+        //         color: #f6fafb78;
+        //         font-size: 12px;
+        //         word-wrap: nowrap;
+                
+        //     }
+        // }
     }
-
-
 }
 
 @include laptop (1160px) {
     section.company_wrapper {
-
         .companyback_dateform {
             .time_tech {
                 padding-right: 4%;
@@ -679,9 +569,7 @@ li.two {
     }
 }
 
-
 @include pad(992px) {
-
     section.company_wrapper {
         padding: 2% 1% 20px 9%;
 
@@ -720,79 +608,38 @@ li.two {
                 .field {
                     width: 45%;
                     margin-bottom: 0;
-
-
                 }
             }
-
-
-
-
         }
-
-
     }
-
-
-
-
 
     //第二層
     .chatboard {
         padding-top: 6%;
     }
 
-
     //以下兩個li
     ul.companyback_main_chatbox {
         padding: 0 1%;
-
-    }
-
-    .mt-43 {
-        margin-top: 7%;
-    }
-
-    .mt-44 {
-        margin-top: 7%
-    }
-
-
-
-
-
-
-    // 第一個聊天室
-
-
-
-    .chat1_company {
-
-        li.variouscompany {
-
-
-
-            div {
-
-
-
-                span {
-                    padding: 0;
-                    min-width: 45px;
-                }
-            }
-
+        .mt-43 {
+            margin-top: 7%;
+        }  
+        .mt-44 {
+            margin-top: 7%
         }
     }
 
-
-    // 第二個聊天室
-
-
-
-
+    .chat1_company {
+        li.variouscompany {
+            div {
+                span {
+                    padding: 0 0 0 2px;
+                    min-width: 45px;
+                }
+            }
+        }
+    }
 }
-
 
 @include pad(768px) {
     section.company_wrapper {
@@ -841,43 +688,36 @@ li.two {
                 }
             }
         }
-
     }
 
     //第二層
     .chatboard {
         padding-top: 5%;
     }
-
-
     //以下兩個li
     ul.companyback_main_chatbox {
         @include relative();
-
         .one {
             width: 80%;
             margin: 0 auto;
             min-width: 300px;
             cursor: pointer;
+            height:650px;
         }
-
         .two {
             width: 100%;
             min-width: 300px;
             margin: 0 auto;
             // height: 100vh;
-
             display: none;
             // @include absolute(0, 0, auto, auto, 10);
             @include fixed(0, 0, auto, auto, 100);
-            height: calc(100vh - 70px);
-
+            height: 650px;
             // @include sticky(0, 0, auto, auto, 10);
-            .companyback_chated {
-                // height: calc(100vh - 350px);
-            }
+            // .companyback_chated {
+            //     // height: calc(100vh - 350px);
+            // }
         }
-
     }
 
     // .c_bank_mask{
@@ -892,49 +732,31 @@ li.two {
 
     .companyback_search {
         .companyback_searchinput {
-
             width: 100%;
         }
     }
 
-
-
-
     // 第一個聊天室
-
     section.companyback_chat1 {
         width: 100%;
+        height: 40%;
     }
-
-
-
     .chat1_company {
-
         li.variouscompany {
-
-
-
-
             div {
-
-
-
                 span {
-
+                    padding: 0 5px;
                     min-width: 50px;
                 }
             }
-
         }
     }
-
-
     // 第二個聊天室
     li.two {
         article.companyback_back_chatbox {
             div.chat_title {
                 i.fa-xmark {
-                    display: block;
+                    display: block !important; 
                     margin-left: auto;
                     font-size: 8vw;
                     cursor: pointer;
@@ -943,68 +765,38 @@ li.two {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
     //聊天版
-
     .companyback_back_chatbox {
-
         .chat_title {
             padding: 0 4% 4%;
-
         }
-
         .chat_input {
             padding-top: 5%;
-
-
         }
-    }
-
-    //聊天室內部
-
-
-    .mt-35 {
-        margin-top: 5%;
-    }
-
-    .ml-30 {
-        margin-left: 2%;
-    }
-
-    .mr-30 {
-        margin-right: 2%;
+        //聊天室內部
+        .mt-35 {
+            margin-top: 5%;
+        }
+    
+        .ml-30 {
+            margin-left: 2%;
+        }
+    
+        .mr-30 {
+            margin-right: 2%;
+        }
     }
 
     .companyback_chated {
         padding: 2%;
-
-
-
-
         p.chat_content {
             padding: 3%;
-
         }
-
-        p.chat_content_me {
-
-
-            &::before {
-                content: "";
-
-            }
-
-        }
-
+        // p.chat_content_me {
+        //     &::before {
+        //         content: "";
+        //     }
+        // }
     }
 }
 
@@ -1013,40 +805,31 @@ li.two {
     section.company_wrapper {
         .companyback_dateform {
             padding: 2% 1%;
-
             .form_under {
                 label::before {
                     font-size: 12px;
                 }
-
                 .companyback_submit {
                     width: 30%;
                     border-radius: 30px;
                     min-width: 180px;
                 }
-
-
-
                 .field {
                     min-width: 250px;
                 }
             }
-
             .label-before {
                 font-size: 10px;
             }
         }
 
         .companyback_chated {
-
             // height: calc(100vh - 190px);
             p.chat_content {
                 font-size: 14px;
                 max-width: 70%;
             }
         }
-
-
     }
 
     .btn-short {

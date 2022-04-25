@@ -92,7 +92,7 @@ new Vue({
           if (resp.nextData.length > 0) {
             this.NEXT_TIME = resp.nextData[0].NEXT_TIME;
           }
-          if(resp.data != "" && resp.data != undefined){
+          if (resp.data != "" && resp.data != undefined && this.login_id !='') {
             setTimeout(() => {
               // 把留言全部用到最底下
               $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
@@ -103,6 +103,11 @@ new Vue({
     })
   },
   methods: {
+    // 點擊開啟登入頁面
+    live_login() {
+      let login = document.getElementById("login");
+      login.classList.add("-login_page_icon");
+    },
     // 控制pc版收合
     toggle() {
       this.pcOpen = !this.pcOpen;
@@ -227,6 +232,7 @@ $(function () {
       $(".live-submit-rwd").click();
     }
   });
+
 
 
 });

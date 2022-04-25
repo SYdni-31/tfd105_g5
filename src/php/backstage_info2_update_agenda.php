@@ -32,7 +32,7 @@ if(isset($_FILES["file"])){
         $statement->bindValue(":LINK", $select["LINK"]);
         $statement->bindValue(":DATE", $select["DATE"]);
         $statement->bindValue(":THEME", $select["THEME"]);
-        $statement->bindValue(":fileName", "speaker_img/".$fileName);
+        $statement->bindValue(":fileName", "img/about/".$fileName);
         $statement->bindValue(":INTRODUCE", $select["INTRODUCE"]);
         $statement->bindValue(":ID", $select["ID"]);
 

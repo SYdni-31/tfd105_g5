@@ -79,7 +79,7 @@
           text-align: center;
         }
       }
-      .live-login-block{
+      .live-login-block {
         @include flex-box-center(30%, null);
         height: calc(100% - 60px);
       }
@@ -218,6 +218,13 @@
       .input-block {
         display: none;
       }
+      .live-login-block {
+        height: 100%;
+        width: 30px;
+        .btn-short {
+          display: none;
+        }
+      }
     }
   }
   // 留言區塊(RWD)
@@ -354,13 +361,12 @@
           }
         }
       }
+      .live-login-block-rwd{
+        @include flex-box-center(100%, null);
+        height: calc(100% - 60px);    
+        justify-content: center;
+      }
       // 點擊時隱藏
-      // .live-height {
-      //   display: none;
-      // }
-      // .live-height-0 {
-      //   height: 0%;
-      // }
       .input-block {
         border-top: 1px solid $main-color;
         display: flex;
@@ -387,19 +393,7 @@
           width: 120px;
         }
       }
-      // 點擊時隱藏線
-      // .-live-border-hide {
-      //   border: 0px;
-      // }
-      // 點擊時隱藏input
-      // .-live-input-hide {
-      //   display: none;
-      // }
     }
-    // 點擊時隱藏高度
-    // .-live-border-hide-0 {
-    //   height: 60px;
-    // }
   }
   // RWD點擊時
   .rwd-active {
@@ -410,6 +404,9 @@
         border-bottom: 0px;
         // height: 60px;
       }
+      .btn-short {
+        display: none;
+      }
       .result-block {
         // height: 0;
         .search-container {
@@ -418,6 +415,12 @@
       }
       .input-block {
         display: none;
+      }
+      .live-login-block-rwd{
+        display: none;
+        .btn-long{
+          display: none;
+        }
       }
     }
   }
