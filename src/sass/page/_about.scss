@@ -59,7 +59,8 @@
 
 @media (min-width:420px) and (max-width:576px){
     .about_slogan {
-        right: 14px;
+        right: 12px;
+        // right: 4px;
         bottom: 22px
     }
     .about_subtitle {
@@ -72,7 +73,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 24px;
+        // font-size: 24px;
     }
     .about_new{
         display: none;
@@ -81,7 +82,7 @@
 
 @media screen and (max-width:420px){
     .about_slogan {
-        right: 14px;
+        right: 8px;
         bottom: 22px
     }
     .about_subtitle {
@@ -94,7 +95,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 20px;
+        // font-size: 20px;
     }
     .about_new{
         display: none;
@@ -169,6 +170,7 @@
 .about_speaker:hover {
     cursor: pointer;
     border: 1px solid #57fff5;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px #57fff5;
 }
 
 // 分三塊

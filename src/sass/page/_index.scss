@@ -692,7 +692,7 @@
     .index_block{
         .index_title {
             margin-top: 20%;
-
+            max-width: 43vw;
             h1 {
                 font-size: 5.4vw;
                 text-align: center;
@@ -701,7 +701,7 @@
     }
 
     .index_title h1::after {
-        content: 'Tián lám 2022 智慧全球科技聚策展';
+        content: 'Tián lám 2022 智慧全球科技展';
         width: auto;
         color: transparent;
     }
