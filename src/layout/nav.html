@@ -1,15 +1,13 @@
 <div class="pt-60" id="nav_app">
   <div class="nav" id="nav" :class="{'bg-null': burger==true}">
-    <!-- <a href="./index.html" class="logo" id="logo_main"><img src="img/tianlam-logo-blue.svg" alt="logo"
-        class="img"></img></a> -->
       <a href="./index.html" class="logo" :class="logo=='orange'? 'logo-orange nav-company':''" :id="logo=='orange'? 'logo_orange':'logo_main'"><img
         :src="['img/tianlam-logo-' + logo + '.svg']" alt="logo" class="img"></img></a>
     <ul class="flex-box-end">
-      <li class="nav-name nav-login" id="nav_login" :class="{'login-icon-hide': companyBack2==false}"><a v-if="userHead" href="./index.html" class="logo_icon"><i
+      <li class="nav-name nav-login" id="nav_login" v-show=" loginPageIcon == true"><a @click.prevent="ham" href="#" class="logo_icon"><i
             class="fa-solid fa-user-check"></i></a>
-        <p id="login_name">尚未登入</p>
+        <p id="login_name"></p> <!-- 塞登入名稱的地方 -->
       </li>                                                                              
-      <li id="login_name_index"><p id="login_page_icon2" v-if="loginPageIcon2"></p><a v-show="loginPageIcon" href="#" id="login_page_icon" class="logo_icon" @click="user1" ><i class="fa-solid fa-user"></i></a></li>
+      <li id="login_name_index" v-show="loginPageIcon == false"><a href="#" id="login_page_icon" class="logo_icon" ><i class="fa-solid fa-user"></i></a></li>
       <li @click="ham">
         <label for="checkbox" id="ham-icon" class="btn_switch" :class="{'open': burger==true}">
           <span></span>
