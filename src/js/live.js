@@ -216,23 +216,3 @@ new Vue({
 
 // aos 動畫
 AOS.init();
-
-$(function () {
-  // PC訊息輸入完畢，enter送出
-  $(".live-text-input").on("keydown", function (e) {
-    // console.log(e.which);
-    if (e.which == 13) {
-      $(".live-submit").click();
-    }
-  });
-  // RWD訊息輸入完畢，enter送出
-  $(".live-text-input-rwd").on("keydown", function (e) {
-    // console.log(e.which);
-    if (e.which == 13) {
-      $(".live-submit-rwd").click();
-    }
-  });
-
-
-
-});
