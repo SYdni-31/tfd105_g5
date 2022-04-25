@@ -236,9 +236,9 @@ Vue.component('backstage_member2', {
                     this.inpage = inpage
                     for(let i = 0; i < this.datas.length; i++){
                         if(this.datas[i].OPEN == 1){
-                            this.datas[i].OPEN = "正常"
+                            this.datas[i].OPEN_1 = "正常"
                         }else{
-                            this.datas[i].OPEN = "未審核"
+                            this.datas[i].OPEN_1 = "未審核"
                         }
                     }
                 })
@@ -281,7 +281,7 @@ Vue.component('backstage_member2', {
                 <li class="bg-color bg-in-secondcolor">{{data.LASTNAME}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data.NAME}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data.EMAIL}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data.OPEN}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.OPEN_1}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
             <div class='backstage_pages mt-10'>
@@ -315,9 +315,9 @@ Vue.component('backstage_member2', {
                 this.pages = Math.ceil(this.data_count / this.perpage)
                 for(let i = 0; i < this.datas.length; i++){
                     if(this.datas[i].OPEN == 1){
-                        this.datas[i].OPEN = "正常"
+                        this.datas[i].OPEN_1 = "正常"
                     }else{
-                        this.datas[i].OPEN = "未審核"
+                        this.datas[i].OPEN_1 = "未審核"
                     }
                 }
             })
