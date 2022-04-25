@@ -160,6 +160,7 @@ $companyback_num2 : 2;
     }
     .btn_company_back {
         border: 1px solid rgba($accent-color, 0.5);
+        background-color: $black-color;
     }
     .tech_addbtn {
         @include mobile(){
