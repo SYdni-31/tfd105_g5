@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // 點擊叉叉可以關閉燈箱
     btn_close.addEventListener("click", function () {
         closeLightBox();
-        // console.log("1");
     });
 
     // 關閉燈箱
@@ -78,11 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 overlayContainer.classList.remove("js-none2");
                 overlayContainer.classList.remove("js-slide-right2");
                 overlayContainer.classList.remove("js-block");
-                // overlayContainer.classList.remove('js-block3');
-                // overlayContainer.classList.add('js-slide-right');
                 overlayContainer.classList.add("js-block3");
-                // $(overlay-container).css("z-index", "2");
-                // guestSignInContainer.classList.remove('js-none');
                 guestSignInContainer.classList.remove("js-block2");
             }, 700);
         }
@@ -93,15 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#company_sign_in_container").hasClass("js-block2")
         ) {
             companySignInContainer.classList.remove("js-slide-right");
-            // companySignInContainer.classList.add('js-slide-left');
             companySignUpContainer.classList.remove("js-none");
             setTimeout(function () {
                 companySignInContainer.classList.remove("js-block2");
                 companySignInContainer.classList.remove("js-slide-left");
                 guestSignInContainer.classList.remove("js-block2");
-                // companySignInContainer.classList.add('js-none');
-                // guestSignInContainer.classList.remove('js-none');
-                // formForgetPassword.classList.remove('js')
                 overlayContainer.classList.remove("js-none2");
                 overlayContainer.classList.remove("js-slide-right2");
             }, 700);
@@ -134,13 +125,12 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#company_sign_in_container").hasClass("js-block3") &&
             $("#company_sign_in_container").hasClass("js-slide-left")
         ) {
-            // companySignInContainer.classList.remove('js-none');
             companySignInContainer.classList.remove("js-block");
             companySignInContainer.classList.remove("js-block3");
         }
     });
 
-    // 點擊送出資料鈕 顯示已送出
+    // 註冊點擊送出資料鈕 顯示已送出
     let receivedForm = document.getElementsByClassName("received-form")[0];
     let loginBtnSubmitinfo = document.getElementsByClassName("login_btn_submitinfo")[0];
     // 抓取註冊表單欄位
@@ -150,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let company_2 = document.getElementById('company_2');
     let exb_dropdown = document.getElementById('exb_dropdown');
     loginBtnSubmitinfo.addEventListener("click", function (e) {
-        // e.submit();
         let companySignUp_name = name_2.value.trim();
         let companySignUp_email = email_3.value.trim();
         let companySignUp_password = password_2.value.trim();
@@ -167,17 +156,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 電子郵件不得為空值且符合格式
-        // console.log(companySignUp_email);
-        // console.log(is.email(companySignUp_email));
         let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         if (mailRight.test(companySignUp_email)) {
-            // console.log("1");
             email_3.classList.remove("login-error");
         } else {
             send_data = false;
-            // console.log("2");
             email_3.classList.add("login-error");
-            // alert('email錯誤!');
         }
 
         // 密碼欄位不得為空值
@@ -191,16 +175,12 @@ document.addEventListener("DOMContentLoaded", function () {
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_2.value.length > 20) {
             send_data = false;
-            // alert('密碼長度不得大於20碼');
             password_2.focus();
             password_2.classList.add("login-error");
-            // password_2.value = "";
         } else if (password_2.value.length < 8) {
             send_data = false;
-            // alert('密碼長度不得小於8碼');
             password_2.focus();
             password_2.classList.add("login-error");
-            // password_2.value = "";
         } else {
             password_2.classList.remove("login-error");
         }
@@ -221,7 +201,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 各欄位不得為空值
-        // let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         if (companySignUp_name === "" && companySignUp_password === "" && companySignUp_company === "" && !mailRight.test(companySignUp_email)) {
             send_data = false;
         } else if (companySignUp_password === "") {
@@ -233,25 +212,85 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 判斷是否成功送出資料
-        // console.log(send_data);
         if (!send_data) {
-            // alert('格式錯誤或是必填欄位未輸入!');
-            swal('送出失敗', '格式錯誤或是必填欄位未輸入!', 'error');
             e.preventDefault();
+            swal('送出失敗', '格式錯誤或是必填欄位未輸入!', 'error');
         } else {
-            companySignUpContainer.classList.add("js-none");
-            companySignUpContainer.classList.remove("js-block");
-            receivedForm.classList.add("js-block");
-            companySignInContainer.classList.remove("js-block");
-            guestSignInContainer.classList.add("js-none");
-            guestSignInContainer.classList.remove("js-block");
-            // alert('資料送出成功');
-            swal('送出成功', '', 'success');
-            name_2.value = "";
-            email_3.value = "";
-            password_2.value = "";
-            company_2.value = "";
-            exb_dropdown.value = 1;
+            e.preventDefault();
+            let companySignUp_name = name_2.value.trim();
+            let companySignUp_email = email_3.value.trim();
+            let companySignUp_password = password_2.value.trim();
+            let companySignUp_company = company_2.value.trim();
+            let companySignUp_dropdown = exb_dropdown.value;
+
+            // AJAX
+            // 搜尋是否申請過相同email
+            let url_select = "php/login_select2_company.php";
+
+            fetch(url_select, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    EMAIL: companySignUp_email,
+                })
+            }).then(res => res.json())
+                .then(customer => {
+                    const { successful } = customer;
+                    if (successful) {
+                        swal('註冊失敗', '此email已註冊!', 'error');
+                    } else {
+                        // AJAX
+                        // 廠商註冊
+                        const url = "php/login_insert_company_info.php";
+
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                LASTNAME: companySignUp_name,
+                                EMAIL: companySignUp_email,
+                                PASSWORD: btoa(companySignUp_password),
+                                NAME: companySignUp_company,
+                                EXPO_ID: companySignUp_dropdown,
+                            })
+                        }).then(res => res.json())
+                            .then(customer => {
+                                const { NAME, successful, EMAIL, ID, EXPO_ID } = customer;
+                                if (successful) {
+                                    swal('送出成功', '', 'success');
+                                    sessionStorage.setItem('login_id', ID);
+                                    sessionStorage.setItem('login_name', NAME);
+                                    sessionStorage.setItem('login_email', EMAIL);
+                                    sessionStorage.setItem('login_info', EXPO_ID);
+                                    sessionStorage.setItem('login_type', "COMPANY");
+                                    companySignUpContainer.classList.add("js-none");
+                                    companySignUpContainer.classList.remove("js-block");
+                                    receivedForm.classList.add("js-block");
+                                    companySignInContainer.classList.remove("js-block");
+                                    guestSignInContainer.classList.add("js-none");
+                                    guestSignInContainer.classList.remove("js-block");
+                                    overlayContainer.classList.add("js-none");
+                                    name_2.value = "";
+                                    email_3.value = "";
+                                    password_2.value = "";
+                                    company_2.value = "";
+                                    exb_dropdown.value = 1;
+                                    sessionStorage.clear();
+                                } else {
+                                    swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+                                    $("#name_2").addClass("login-error");
+                                    $("#email_3").addClass("login-error");
+                                    $("#password_2").addClass("login-error");
+                                    $("#company_2").addClass("login-error");
+                                }
+
+                            });
+                    }
+                });
         }
     });
 
@@ -286,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
             companySignInContainer.classList.add("js-block");
             companySignInContainer.classList.remove("js-none");
             companySignInContainer.classList.remove("js-slide-left");
-            //   companySignInContainer.classList.add("js-block3");
+            // companySignInContainer.classList.add("js-block3");
             overlayContainer.classList.remove("js-block");
             overlayContainer.classList.add("js-none2");
         }, 500);
@@ -296,56 +335,99 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 點擊寄送驗證信 出現提示字
     let give = document.getElementsByClassName("give")[0];
-    // console.log(give);
     let promptMessage = document.getElementById("prompt_message");
     let changeEmail = document.getElementById("changeemail");
     give.addEventListener("click", function (e) {
         let forget_changeEmail = changeEmail.value.trim();
         let send_data = true;
-        //發信，有信件數量限制，故暫時不發信
-        // var templateParams = {
-        //     user: "台積電",
-        //     from_name:"聚策展",
-        //     message: "您的密碼已變更為password!''",
-        //     To_Email: forget_changeEmail,
-        //   };
-        //   emailjs.send("service_gos3kx1", "template_a1m2ysc", templateParams).then(
-        //     function (response) {
-        //       console.log("SUCCESS!", response.status, response.text);
-        //     },
-        //     function (error) {
-        //       console.log("FAILED...", error);
-        //     }
-        // );
+
         let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 
         if (mailRight.test(forget_changeEmail)) {
-            // console.log("1");
             changeEmail.classList.remove("login-error");
         } else {
             send_data = false;
             changeEmail.classList.add("login-error");
-            // console.log("1");
         }
-        // if ($("#form-forget-password").hasClass("js-block")) {
-        //     promptMessage.classList.remove("js-none");
-        //     promptMessage.classList.add("js-block");
-        // }
-        // 登入成功與登入失敗
+        // 格式成功與失敗
         if (!send_data) {
-            // if ($("#form-forget-password").hasClass("js-block")) {
-            swal('寄送失敗', '格式錯誤或是必填欄位未輸入!', 'error');
             e.preventDefault();
-            // }
+            swal('寄送失敗', '格式錯誤或是必填欄位未輸入!', 'error');
         } else {
-            promptMessage.classList.remove("js-none");
-            promptMessage.classList.add("js-block");
-            swal('成功寄出!', '', 'success');
-            changeEmail.value = "";
+            e.preventDefault();
+            // AJAX
+            // 寄送密碼信
+            const url = "php/login_select2_company.php";
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    EMAIL: forget_changeEmail,
+                })
+            }).then(res => res.json())
+                .then(customer => {
+                    const { LASTNAME, successful } = customer;
+                    if (successful) {
+                        promptMessage.classList.remove("js-none");
+                        promptMessage.classList.add("js-block");
+                        function randomString(e) {
+                            e = e || 32;    
+                            var t = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678", a = t.length, n = "";
+                            for (i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * a));
+                            return n
+                        }
+                        let new_password = randomString(8);
+                        //發信，有信件數量限制，故暫時不發信
+                        let templateParams = {
+                            user: LASTNAME,
+                            from_name: "聚策展",
+                            message: new_password,
+                            To_Email: forget_changeEmail,
+                        };
+                        emailjs.send("service_gos3kx1", "template_a1m2ysc", templateParams).then(
+                            function (response) {
+                                console.log("SUCCESS!", response.status, response.text);
+                            },
+                            function (error) {
+                                console.log("FAILED...", error);
+                            }
+                        );
+                        // AJAX
+                        // 更改密碼
+                        const url = "php/login_update_company.php";
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                PASSWORD: new_password,
+                                EMAIL: forget_changeEmail,
+                            })
+                        }).then(res => res.json())
+                            .then(customer => {
+                                const { successful } = customer;
+                                if (successful) {
+                                    swal('成功寄出!', '', 'success');
+                                    changeEmail.value = "";
+                                    closeLightBox();
+                                } else {
+                                    swal('寄送失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+                                }
+                            });
+
+
+                    } else {
+                        swal('寄送失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+                    }
+                });
         }
     });
 
-    // 輸入完資訊，點擊參觀按鈕後關閉彈窗
+    // 訪客輸入完資訊，點擊參觀按鈕後關閉彈窗
     let loginBtnVisit = document.getElementsByClassName("login_btn-visit")[0];
     let name_1 = document.getElementById('name_1');
     let email_2 = document.getElementById('email_2');
@@ -369,24 +451,66 @@ document.addEventListener("DOMContentLoaded", function () {
         let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         // 電子郵件欄位驗證
         if (mailRight.test(guest_email)) {
-            console.log("11111111");
             email_2.classList.remove("login-error");
         } else {
-            // console.log("2");
             email_2.classList.add("login-error");
             send_data = false;
         }
 
         // 參觀成功與參觀失敗
         if (!send_data) {
-            // alert('格式錯誤或是必填欄位未輸入!');
-            swal('失敗', '格式錯誤或是必填欄位未輸入!', 'error');
             e.preventDefault();
+            swal('失敗', '格式錯誤或是必填欄位未輸入!', 'error');
         } else {
+            e.preventDefault();
             send_data = true;
-            swal('成功', '歡迎參觀聚策展!', 'success');
-            closeLightBox();
-            // alert('歡迎參觀聚策展!');
+            // AJAX
+            // 訪客登入
+            const url = "php/login_insert_guest.php";
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    NAME: guest_name,
+                    EMAIL: guest_email,
+                    UNIT: guest_company,
+                })
+            })
+
+                .then(res => res.json())
+                .then(customer => {
+                    const { NAME, successful, EMAIL, ID } = customer;
+                    if (successful) {
+                        swal({
+                            icon: 'success',
+                            title: '歡迎參觀聚策展~',
+                            text:'　　　　　　',
+                            showConfirmButton: false,
+                            showCancelButton: false,
+                            buttons:false,
+                            timer: 1500,
+                        })
+                        sessionStorage.setItem('login_id', ID);
+                        sessionStorage.setItem('login_name', NAME);
+                        sessionStorage.setItem('login_email', EMAIL);
+                        sessionStorage.setItem('login_type', "GUEST");
+                        guest_name.value = "";
+                        guest_email.value = "";
+                        guest_company.value = "";
+                        closeLightBox();
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+                        $("#name_1").addClass("login-error");
+                        $("#email_2").addClass("login-error");
+                    }
+
+                });
             name_1.value = "";
             email_2.value = "";
             Company_1.value = "";
@@ -404,14 +528,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // RWD 點擊註冊鈕，出現廠商登入頁
     let loginBtnSignupRwd = document.getElementById('login_btn_signup_rwd');
     let loginTabGuest = document.getElementsByClassName('login_tab_guest')[0];
-    // console.log(loginTabGuest);
     loginBtnSignupRwd.addEventListener('click', function () {
         companySignInContainer.classList.add('js-none');
         companySignUpContainer.classList.add('js-block');
         loginTabGuest.classList.add('js-none');
-        // console.log(guestSignInContainer);
-        // console.log(loginBtnSignupRwd);
-        // guestSignInContainer.
     })
 
     // RWD 於註冊頁面點擊返回登入鈕，返回廠商登入
@@ -468,16 +588,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let companySignIn_email = email_el.value.trim();
         let companySignIn_password = password_el.value.trim();
         let send_data = true;
-
-        // 電子郵件欄位不得輸入中文
-        // var strNOCn_1 = companySignIn_email.replace(/[^\u4E00-\u9FA5]/g, '');
-        // companySignIn_email = strNOCn_1;    
-
+        
         // email格式
         let mailRight = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         // email符合格式
         if (mailRight.test(companySignIn_email)) {
-            // console.log("1");
             email_el.classList.remove("login-error");
         } else {
             email_el.classList.add("login-error");
@@ -486,18 +601,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //密碼欄位輸入不得大於20碼或小於8碼
         if (password_el.value.length > 20) {
-            // alert('輸入密碼長度不得大於20碼');
             password_el.focus();
             password_el.classList.add("login-error");
-            // password_el.value = "";
             send_data = false;
         } else if (password_el.value.length < 8) {
             send_data = false;
-            // alert('輸入密碼長度不得小於8碼');
-            // swal('登入失敗', '輸入密碼長度不得小於8碼', 'warning');
             password_el.focus();
             password_el.classList.add("login-error");
-            // password_el.value = "";
         } else {
             password_el.classList.remove("login-error");
         }
@@ -514,67 +624,68 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 登入成功與登入失敗
         if (!send_data) {
-            // alert('格式錯誤或是必填欄位未輸入!');
             swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
-            // loginConpanySignInAlert.classList.add('js-block');
+            email_el.classList.add("login-error");
+            password_el.classList.add("login-error");
             e.preventDefault();
         } else {
-            // send_data = true;
-            // alert("登入成功");
-            // sessionStorage.clear();
-            swal('登入成功', '', 'success');
-            email_el.value = "";
-            password_el.value = "";
-        }
+            // 輸入正確電郵地址及密碼，成功登入廠商後台
+            if (companySignIn_email === "tfd105.group5@gmail.com" && companySignIn_password === 'Wed34!""') {
+                e.preventDefault();
+                document.location.href = "backstage_index.html";
+                sessionStorage.setItem('login_type', "USER");
+                sessionStorage.setItem('user_page', "");
+            } else {
+                e.preventDefault();
+                // AJAX
+                // 廠商登入
+                const url = "php/login_select_company.php";
+                const companyEmail = document.querySelector('#email_1');
+                // console.log(companyEmail);
+                const companyPassword = document.querySelector('#password_1');
 
-        // 輸入正確電郵地址及密碼，成功登入廠商後台
-        if (companySignIn_email === "tfd105.group5@gmail.com" && companySignIn_password === 'Wed34!""') {
-            e.preventDefault();
-            document.location.href = "backstage_index.html";
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        login_id: companyEmail.value.trim(),
+                        companyPassword: btoa(companyPassword.value.trim()),
+                    })
+                }).then(res => res.json())
+                    .then(customer => {
+                        const { NAME, successful, EMAIL, ID, INFO_ID } = customer;
+                        if (successful) {
+                            swal({
+                                icon: 'success',
+                                title: '登入成功',
+                                text:'　　　　　　',
+                                showConfirmButton: false,
+                                showCancelButton: false,
+                                buttons:false,
+                                timer: 1500,
+                            })
+                            // 設置sessionStorage
+                            sessionStorage.setItem('login_id', ID);
+                            sessionStorage.setItem('login_name', NAME);
+                            sessionStorage.setItem('login_email', EMAIL);
+                            sessionStorage.setItem('login_info', INFO_ID);
+                            sessionStorage.setItem('login_type', "COMPANY");
+                            email_el.value = "";
+                            password_el.value = "";
+                            closeLightBox();
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1500);
+                        } else {
+                            swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
+                            email_el.classList.add("login-error");
+                            password_el.classList.add("login-error");
+                        }
+
+                    });
+            }
         }
     });
-
-
-
-
 });
-
-
-// AJAX
-const url = "php/company_login.php";
-const companyEmail = document.querySelector('#email_1');
-// console.log(companyEmail);
-const companyPassword = document.querySelector('#password_1');
-document.querySelector('button').addEventListener('click', () => {
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            login_id: companyEmail.value.trim(),
-            companyPassword: btoa(companyPassword.value.trim()),
-        })
-    })
-
-    .then(res => res.json())
-    .then(customer => {
-        // console.log(customer);
-        const { NAME,successful,EMAIL,ID,INFO_ID } = customer;
-        if(successful){
-            swal('登入成功', '', 'success');
-            sessionStorage.setItem('login_id', ID);
-            sessionStorage.setItem('login_name', NAME);
-            sessionStorage.setItem('login_email', EMAIL);
-            sessionStorage.setItem('login_info', INFO_ID);
-            sessionStorage.setItem('login_type', 'COMPANY');            
-        }else{
-            swal('登入失敗', '格式錯誤或是必填欄位未輸入!', 'error');
-
-        }
-
-    });
-
-});
-
