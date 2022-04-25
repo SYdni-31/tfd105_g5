@@ -68,17 +68,25 @@ Vue.component('backstage_expo3',{
                     this.data_count = resp.data_count[0][0];
                     this.pages = Math.ceil(this.data_count / this.perpage);
                     this.inpage = inpage;
+                    for (let i = 0; i < this.datas.length; i++) {
+                        if (this.datas[i].OPEN == 0) {
+                            this.datas[i].OPEN_1 = false
+                        } else {
+                            this.datas[i].OPEN_1 = true
+                        }
+                    }
                 })
             // this.$forceupdate()
         },
         //可以測試v-if
+        //只針對switch button
         switchbtn(index) {
             this.update(index)
             console.log("open" + this.datas[index].OPEN);
-            if (this.datas[index].OPEN == true) {
-                this.datas[index].OPEN = 1
+            if (this.datas[index].OPEN_1 == true) {
+                this.datas[index].OPEN = 1;
             } else {
-                this.datas[index].OPEN = 0
+                this.datas[index].OPEN = 0;
             }
         },
         update(index) {
@@ -89,7 +97,7 @@ Vue.component('backstage_expo3',{
                 },
                 body: JSON.stringify({
                     ID: this.datas[index].ID,
-                    OPEN: this.datas[index].OPEN
+                    OPEN: this.datas[index].OPEN_1
                 })
             }).then(resp => resp.json())
                 .then(body => {
@@ -151,7 +159,7 @@ Vue.component('backstage_expo3',{
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
                 不通過
                 <div class="custom-control custom-switch">   
-                    <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN" @change="switchbtn(index)">
+                    <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN_1" @change="switchbtn(index)">
                     <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
                 </div>
                 通過
@@ -188,6 +196,13 @@ Vue.component('backstage_expo3',{
                 this.datas = resp.data
                 this.data_count = resp.data_count[0][0]
                 this.pages = Math.ceil(this.data_count / this.perpage);
+                for (let i = 0; i < this.datas.length; i++) {
+                    if (this.datas[i].OPEN == 0) {
+                        this.datas[i].OPEN_1 = false
+                    } else {
+                        this.datas[i].OPEN_1 = true
+                    }
+                }
             })
     },
 })

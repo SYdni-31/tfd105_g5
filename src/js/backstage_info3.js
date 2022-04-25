@@ -331,8 +331,8 @@ Vue.component('backstage_info3', {
         }, //搜尋功能
         switchbtn(index) {
             this.update(index)
-            console.log("open" + this.datas[index].OPEN);
-            if (this.datas[index].OPEN == true) {
+            // console.log("open" + this.datas[index].OPEN);
+            if (this.datas[index].OPEN_1 == true) {
                 this.datas[index].OPEN = 1
             } else {
                 this.datas[index].OPEN = 0
@@ -441,10 +441,21 @@ Vue.component('backstage_info3', {
             })
                 .then(resp => resp.json())
                 .then(resp => {
+                      // 先看resp是什麼用c
+                    // console.log(resp);
                     this.datas = resp.data
+                      // 塞在裡面的裡面
                     this.data_count = resp.data_count[0][0]
+                     // pages是分幾頁，math無條件進位 11/10 =1.1 無條件進位 = 2
                     this.pages = Math.ceil(this.data_count / this.perpage)
                     this.inpage = inpage
+                    for (let i = 0; i < this.datas.length; i++) {
+                        if (this.datas[i].OPEN == 0) {
+                            this.datas[i].OPEN_1 = false
+                        } else {
+                            this.datas[i].OPEN_1 = true
+                        }
+                    }
                 })
         },
         update(index) {
@@ -455,7 +466,7 @@ Vue.component('backstage_info3', {
                 },
                 body: JSON.stringify({
                     ID: this.datas[index].ID,
-                    OPEN: this.datas[index].OPEN//傳true false
+                    OPEN: this.datas[index].OPEN_1//傳true false
                 })
             }).then(resp => resp.json())
                 .then(body => {
@@ -518,7 +529,7 @@ Vue.component('backstage_info3', {
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
                 不顯示
                 <div class="custom-control custom-switch">   
-                    <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN" @change="switchbtn(index)">
+                    <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN_1" @change="switchbtn(index)">
                     <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
                 </div>
                 顯示
@@ -554,6 +565,14 @@ Vue.component('backstage_info3', {
                 this.datas = resp.data
                 this.data_count = resp.data_count[0][0]
                 this.pages = Math.ceil(this.data_count / this.perpage)
+                for (let i = 0; i < this.datas.length; i++) {
+                    if (this.datas[i].OPEN == 0) {
+                        this.datas[i].OPEN_1 = false
+                    } else {
+                        this.datas[i].OPEN_1 = true
+                    }
+                }
+            
             })
     },
 })

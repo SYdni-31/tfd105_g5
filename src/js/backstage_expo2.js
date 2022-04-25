@@ -251,12 +251,12 @@ Vue.component('backstage_expo2', {
             this.ajax(this.inpage)
         },
         switchbtn(index) {
-            if (this.datas[index].OPEN == true) {
+            this.update(index)
+            if (this.datas[index].OPEN_1 == true) {
                 this.datas[index].OPEN = 1;
             } else {
                 this.datas[index].OPEN = 0;
             }
-            this.update(index)
         },
         edit(data, index) {
             this.row_data = data;
