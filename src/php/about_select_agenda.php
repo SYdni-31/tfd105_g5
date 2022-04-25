@@ -12,7 +12,7 @@
     select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     order by START_TIME";
     $statement=$pdo->prepare($sql);
-    $statement->bindValue(":TODAY", $select["Today"]);
+    $statement->bindValue(":TODAY", $select["TODAY"]);
     $statement->execute();
     $select=$statement->fetchAll(); 
     //PHP接收 JSON POST
