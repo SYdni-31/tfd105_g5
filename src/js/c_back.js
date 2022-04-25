@@ -25,7 +25,8 @@ const view = new Vue({
                     body:JSON.stringify({
                         DATE:this.DATE,
                         LINK:this.LINK,
-                        ID:this.TIME_ID,        
+                        ID:this.TIME_ID, 
+                        INFO_ID:sessionStorage["login_info"],       
                     })
                 }).then(go_data=>go_data.json())
                 .then(go_data=>{
