@@ -48,7 +48,6 @@ Vue.component('backstage_expo2_edit', {
                     }).then(resp => resp.json())
                         .then(body => {
                             let { successful } = body;
-                            console.log("successful:"+body);
                             if (successful) {
                                 this.$swal({
                                     title: "儲存成功",
@@ -289,25 +288,7 @@ Vue.component('backstage_expo2', {
                                     icon: "success",
                                     image: "",
                                 }).then((willDelete) => {
-                                    fetch('php/backstage_expo2_select_agenda_time.php', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify({
-                                            inpage: this.inpage,
-                                            perpage: this.perpage,
-                                            search_word: this.search_word,
-                                        })
-                                    })
-                                        .then(resp => resp.json())
-                                        .then(resp => {
-                                            this.datas = resp.data
-                                            // 塞在裡面的裡面
-                                            this.data_count = resp.data_count[0][0]
-                                            // pages是分幾頁，math無條件進位 11/10 =1.1 無條件進位 = 2
-                                            this.pages = Math.ceil(this.data_count / this.perpage)
-                                        })
+                                    this.ajax(this.inpage);
                                 })
                             } else {
                                 this.$swal({

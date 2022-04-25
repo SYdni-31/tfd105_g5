@@ -7,12 +7,12 @@
     // select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     // order by START_TIME";
   
-    $sql="select * from agenda where DATE = :today
+    $sql="select * from AGENDA where DATE = :TODAY
     union
     select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     order by START_TIME";
     $statement=$pdo->prepare($sql);
-    $statement->bindValue(":today", $select["Today"]);
+    $statement->bindValue(":TODAY", $select["TODAY"]);
     $statement->execute();
     $select=$statement->fetchAll(); 
     //PHP接收 JSON POST
