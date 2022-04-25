@@ -69,7 +69,7 @@ const vm = new Vue({
     data: {
         schedules:[],
         speakers:[],
-        // today:new Date(),
+        today:`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`,
         hideiamge:false,
         timestart:'',
         carousels:'',
@@ -96,7 +96,7 @@ const vm = new Vue({
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // Today: this.today,
+                Today: this.today,
                 // Today:new Date(),
             })
         }).then(resp => resp.json())//接收
