@@ -71,7 +71,7 @@
           <li class="one">
             <div class="companyback_search">
               <!-- icon -->
-              <input class="companyback_searchinput mt-44" type="search" name="search" placeholder="Search" autocomplete="" v-model="searchword" @keyup="ajax">
+              <input class="companyback_searchinput mt-44" type="search" name="search" placeholder="Search" autocomplete="" v-model="searchword" @keyup="ajax" @input="input" ref="input">
             </div>
             <section class="companyback_chat1 mt-43">
               <h3>廠商</h3>
