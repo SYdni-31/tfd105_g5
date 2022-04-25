@@ -12,23 +12,20 @@ new Vue({
     methods:{
         // 把隱藏的新增表格顯現
         showInsert(){
-            this.newforms=true;
             
-            // if(this.newforms==true){
-            //     // swal要先儲存
-            //     this.$swal({
-            //         title: "儲存成功",
-            //         icon: "success",
-            //         image: "",
-            //     })
-            // }else{
-            //     this.newforms=true;
-            //     this.$swal({
-            //         title: "儲存失敗",
-            //         icon: "error",
-            //         text: "請檢查欄位",
-            //     });
-            // }
+            if(this.techs.length<8){
+                this.newforms=true;
+                
+            }else{
+                this.newforms=false;
+                this.$swal({
+                    title: "新增失敗",
+                    icon: "error",
+                    text: "可新增筆數上限為八筆",
+                });
+    
+            }
+            
 
             // document.getElementsByClassName("insert_form")[0].classList.remove("-hide");
         },
@@ -129,7 +126,8 @@ new Vue({
             let linkRule = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
             if(this.newtech !='' &&
                this.newlink !='' && 
-               linkRule.test(this.newlink)){
+               linkRule.test(this.newlink && 
+               this.techs.length<9)){
                 fetch('php/companyback_insert_tech.php',{
                     method: 'POST',
                     headers:{

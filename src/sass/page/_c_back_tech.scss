@@ -166,6 +166,10 @@ $companyback_num2 : 2;
         @include mobile(){
             margin: 0.5rem 4rem;
         }
+        &:hover {
+            background-color: $accent-color;
+            color: $black-color;
+        }
 
     }
 }
