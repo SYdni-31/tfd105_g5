@@ -14,7 +14,11 @@
   <link rel="icon" href="img/tianlam-logo-mainblack.svg">
   <!-- 套件flatpickr -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- alert套件 -->
   <script src="js/vue.min.js"></script>
+  <script src="https://unpkg.com/vue-swal"></script>
   <title>聚策展-廠商後台-首頁</title>
 </head>
 
@@ -37,8 +41,12 @@
 
         <!-- 這是套件 -->
         <div class="time_tech">
-          <input class="timepicker" type="time" placeholder="選擇當日時段" required  v-model="TIME">
-          <input class="form-contril" type="datetime-local" placeholder="點擊日曆" required v-model="DATE">
+          <!-- <input class="timepicker" type="time" placeholder="選擇當日時段" required  v-model="TIME"> -->
+          <select class="timepicker" name="selecttime" id="" placeholder="選擇當日時段" required v-model="TIME_ID">
+            <option value="" disabled>請先選擇日期</option>
+            <option v-for="chosetime in TIME" :value="chosetime.ID">{{chosetime.time}}</option>
+          </select>
+          <input class="form-contril" type="datetime-local" placeholder="點擊日曆" required v-model="DATE" >
 
         </div>
         <!-- <input type="date" class="companyback_time"> -->
@@ -46,10 +54,10 @@
 
 
         <div class="form_under pt-58">
-          <input type="submit" value="確認送出" class="companyback_submit" required @click.prevent="ajax">
+          <input type="submit" value="確認送出" class="companyback_submit" required @click.prevent="insertsql">
           <div class="field">
-            <input type="text" id="email" required autocomplete="off" class="" v-model="LINK"/>
-            <label for="email" title="LINK" data-title="直播網址"></label>
+            <input type="text" id="email" class="c_link"  required autocomplete="off" v-model="LINK" style="background: transparent;"/>
+            <label for="email" title="LINK FORM YOUTUBE" data-title="直播網址"></label>
           </div>
         </div>
       </form>
@@ -206,7 +214,7 @@
           <!-- <div class="c_bank_mask"></div> -->
         </ul>
       </section>
-    </section> 
+    </section>
 
 
 
@@ -228,37 +236,6 @@
   <script src="js/c_back.min.js"></script>
   <!-- flatpickr -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script>
-    flatpickr("input[type=datetime-local]", {
-      // mode: "range",
-      minDate: "today",
-      dateFormat: "Y-m-d",
-      inline: true,
-      disable: [
-        function (date) {
-          // disable every multiple of 8
-          return !(date.getDate() % 8);
-        }
-      ]
-    })
-    flatpickr(".timepicker", {
-      enableTime: true,
-      noCalendar: true,
-      dateFormat: "H:i-K",
-      // mode: "range",
-      minTime: "13:00",
-      maxTime: "16:00",
-    })
-
-  </script>
-
-
-
-
-
-
-
-
 
   <style>
     .flatpickr-calendar::before {
