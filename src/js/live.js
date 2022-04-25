@@ -92,7 +92,7 @@ new Vue({
           if (resp.nextData.length > 0) {
             this.NEXT_TIME = resp.nextData[0].NEXT_TIME;
           }
-          if (resp.data != "" && resp.data != undefined) {
+          if (resp.data != "" && resp.data != undefined && this.login_id !='') {
             setTimeout(() => {
               // 把留言全部用到最底下
               $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
