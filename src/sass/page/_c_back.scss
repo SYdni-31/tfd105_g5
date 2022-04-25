@@ -50,7 +50,7 @@
         margin-right: 52px;
         box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
     }
-    .timepicker {
+    select.timepicker {
         // width: 391px;
         border-radius: 10px;
         @include input($width: 391px, $mc:#F37F15, $sc: #F6FAFB, $bc:#040F15);
