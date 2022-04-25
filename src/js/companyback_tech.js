@@ -201,12 +201,12 @@ new Vue({
         })
     },
     created(){
-        // let companyAcc = sessionStorage.getItem("login_info");
-        // if(companyAcc != null){
-        //     this.company_info=companyAcc
-        // }else{
-        //     document.location.href='./index.html'
-        // }
+        let companyAcc = sessionStorage.getItem("login_info");
+        if(companyAcc != null){
+            this.company_info=companyAcc
+        }else{
+            document.location.href='./index.html'
+        }
     },
 })
 
