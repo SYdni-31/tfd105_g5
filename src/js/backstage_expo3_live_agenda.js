@@ -145,8 +145,8 @@ Vue.component('backstage_expo3',{
             <ul class="bg-color -margin0auto backstage-grid backstage-grid_expo3" v-for="(data, index) in datas">
                 <li class="bg-color bg-in-secondcolor">{{data.ID}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data.NAME}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data.START_TIME}}</li>
-                <li class="bg-color bg-in-secondcolor">{{data.END_TIME}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.START}}</li>
+                <li class="bg-color bg-in-secondcolor">{{data.END}}</li>
                 <li class="bg-color bg-in-secondcolor">{{data.APPLY_TIME}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
                 不通過
