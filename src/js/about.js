@@ -69,7 +69,7 @@ const vm = new Vue({
     data: {
         schedules:[],
         speakers:[],
-        today:"2022-04-11",
+        // today:new Date(),
         hideiamge:false,
         timestart:'',
         carousels:'',
@@ -104,7 +104,7 @@ const vm = new Vue({
             // console.log(body);
             // console.log(body['agenda']);
             // console.log(body['carousel']);
-            console.log(body['expo']);
+            // console.log(body['expo']);
             this.schedules=body['agenda'];
             this.carousels=body['carousel'];
             this.expos=body['expo'];
