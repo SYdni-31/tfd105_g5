@@ -47,9 +47,28 @@ const view = new Vue({
                 body: fromData,
             })
             .then(resp=>resp.json())
-            .then(resp=>
-                console.log(resp)
-                )
+            .then(resp=>{
+            let successful = resp.successful
+                    if(successful){
+                        this.$swal({
+                            title:"儲存成功",
+                            icon:"success",
+                            image: "",
+                            }).then(resp=>
+                                {
+                                    location.href = "././companyback_tech.html";
+                                }
+                            )         
+                    }else{
+                        this.$swal({
+                            title:"儲存失敗",
+                            icon:"error",
+                            image:"",
+                        })
+                    }
+                }
+                    
+            )
         }
     },
     mounted() {
