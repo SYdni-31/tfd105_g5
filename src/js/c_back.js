@@ -10,11 +10,13 @@ const view = new Vue({
             TIME:[],
             chose_time:"",
             TIME_ID:"",
+            date_obj:"",
+            company_info:"",
         }
     },
     methods: {
         insertsql(){
-            emailRule =/https\:\/\/www\.youtube\.com\//;
+            emailRule =/^https\:\/\/www\.youtube\.com\//;
             let email = document.querySelector(".c_link").value;
             if(emailRule.test(email)){
                 // alert("true");
@@ -57,6 +59,7 @@ const view = new Vue({
             this.DATE="";
             this.TIME=[];
             this.TIME_ID="";
+            this.date_obj.clear();
         }
     },
     watch:{
@@ -86,6 +89,14 @@ const view = new Vue({
             },
         },
     },
+    created(){
+        let info = sessionStorage.getItem("login_info");
+        if(info!=null){
+            this.company_info = info;
+        }else{
+            document.location.href="index.html";
+        }
+    },
     mounted() {
         let date_time =[];
         fetch(
@@ -110,7 +121,7 @@ const view = new Vue({
             // }
            this.$nextTick(()=>
            {
-            flatpickr("input[type=datetime-local]", {
+            this.date_obj = flatpickr("input[type=datetime-local]", {
             // mode: "range",
             minDate: "today", 
             dateFormat: "Y-m-d",
