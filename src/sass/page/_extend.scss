@@ -77,10 +77,10 @@
         .extend_booth1{
             @include relative();
             .video{
-                @include absolute(47.5%, null, null, 26%);
+                @include absolute(36%, null, null, 32.5%);
             };
             .extend_banner{
-                @include absolute(14.9%, null, null, 27.7%);
+                @include absolute(2.6%, null, null, 34.5%);
             }
         }
         .extend_booth2{
@@ -95,10 +95,10 @@
         .extend_booth3{
             @include relative();
             .video{
-                @include absolute(36%, null, null, 32.5%);
+                @include absolute(47.5%, null, null, 26%);
             };
             .extend_banner{
-                @include absolute(2.6%, null, null, 34.5%);
+                @include absolute(14.9%, null, null, 27.7%);
             }
         }   
         .extend_chat_btn{
