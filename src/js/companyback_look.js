@@ -4,7 +4,7 @@ const vm = new Vue({
       looks:'',
       techs:'',
       little_page:"about",
-      info_id:1,
+      info_id:'',
     },
     methods:{
         little(i){
@@ -42,6 +42,12 @@ const vm = new Vue({
         },
     },
     created(){
+        let info=sessionStorage.getItem("login_info")
+        if(info !=null){
+            this.company_info=info
+        }else{
+            document.location.href='index.html'
+        }
         fetch('php/companyback_look_select_company_info.php',{
             method: 'POST',
             headers:{

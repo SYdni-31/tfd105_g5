@@ -737,7 +737,6 @@ Vue.component('backstage_info2', {
         })
         .then(resp => resp.json())
         .then(resp => {
-            console.log(resp)
             this.datas = resp.data
             this.data_count = resp.data_count[0][0]
             this.pages = Math.ceil(this.data_count / this.perpage)
@@ -1163,60 +1162,50 @@ template: `
 })
 // ========頁面vue========
 const vm = new Vue({
-el: "#page",
-data: {
-    aside_btn: false,
-    table: 'backstage_info1',
-    pages: [
-        ["資訊管理", [
+    el: "#page",
+    data: {
+        aside_btn: false,
+        table: '',
+        pages: [
+            ["資訊管理", [
             {
                 pagename: "策展場次",
                 href: "backstage_info1",
-                onpage: true,
             }, {
                 pagename: "大會講師",
                 href: "backstage_info2",
-                onpage: false,
             }, {
                 pagename: "新聞資訊",
                 href: "backstage_info3",
-                onpage: false,
             }, {
                 pagename: "聯絡我們",
                 href:"backstage_info4",
                 onpage:false,
-            },],],
+                },],],
             ["會員管理",[
                 {
                     pagename: "來賓管理",
                     href:"backstage_member1",
-                    onpage:false,
                 },{
                     pagename: "廠商管理",
                     href:"backstage_member2",
-                    onpage:false,
-                },
-            ],],["活動管理",[
+                },],],
+            ["活動管理",[
                 {
                     pagename: "參展廠商",
                     href:"backstage_expo1",
-                    onpage:false,
                 },{
                     pagename: "直播時段",
                     href:"backstage_expo2",
-                    onpage:false,
                 },{
                     pagename: "直播審核表",
                     href:"backstage_expo3",
-                    onpage:false,
                 },{
                     pagename: "直播留言板",
                     href:"backstage_expo4",
-                    onpage:false,
-                },
-            ],],
+                },],],
         ],
-        tablename:"策展場次",
+        tablename:"",
     },
     methods: {
         aside_toggle() {
@@ -1227,23 +1216,27 @@ data: {
                 for(let j=0; j<this.pages[i][1].length; j++){
                     this.pages[i][1][j].onpage=false
                 }
-            }//綠色全拿掉 下面再接回綠色
+            }
             this.pages[index][1][index2].onpage=true
             this.table=this.pages[index][1][index2].href
             this.tablename=this.pages[index][1][index2].pagename
+            sessionStorage.setItem('user_tname', this.tablename)
+            sessionStorage.setItem('user_page', this.table)
         },
-    
-    changepage(index, index2) {
-        for (let i = 0; i < this.pages.length; i++) {
-            for (let j = 0; j < this.pages[i][1].length; j++) {
-                this.pages[i][1][j].onpage = false
-            }
-        }
-        this.pages[index][1][index2].onpage = true
-        this.table = this.pages[index][1][index2].href
-        this.tablename = this.pages[index][1][index2].pagename
     },
-},
+    created(){
+        let staypage=sessionStorage.getItem("user_page")
+        let tname=sessionStorage.getItem("user_tname")
+        if(staypage){
+            this.table=staypage
+            this.tablename=tname
+        }else{
+            this.table="backstage_info1"
+            this.tablename="策展場次"
+            sessionStorage.setItem('user_page', this.table)
+            sessionStorage.setItem('user_tname', this.tablename)
+        }
+    }
 })
 
 

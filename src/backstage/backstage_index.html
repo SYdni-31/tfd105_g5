@@ -40,7 +40,7 @@
                         <h4>{{page[0]}}</h4><img src="img/backstage/backstage-arrow-down-circle.svg" alt="logo">
                     </a></div>
                 <div class="backstage_menu_inner mb-10">
-                    <a v-for="(inner, index2) in page[1]" :class="{'-onpage':inner.onpage===true}" href="#"
+                    <a v-for="(inner, index2) in page[1]" :class="{'-onpage':tablename==inner.pagename}" href="#"
                         @click.prevent="changepage(index, index2)">
                         <h4>{{inner.pagename}}</h4>
                     </a>
@@ -56,7 +56,7 @@
         </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="js/backstage_index.min.js"></script>
   <script src="js/backstage_member1.min.js"></script>
   <script src="js/backstage_info3.min.js"></script>
