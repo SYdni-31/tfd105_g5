@@ -63,7 +63,7 @@ const vm = new Vue({
               BOARD_ID:id,
           })
         })  
-        let time=new Date().toISOString().slice(5).slice(0,11).replace("-", "/").replace("T", " ")
+        let time=new Date(+new Date() + 8 * 3600 * 1000).toISOString().slice(5).slice(0,11).replace("-", "/").replace("T", " ")
         e.currentTarget.closest('.extend_chatbox').querySelector('.chated').insertAdjacentHTML('beforeend',`<p v-for="talk in room.board" class="chat_content chat_content_me pall-5 mall-10 mt-30 ml-30">${this.chatword}<span>${time}</span></p>`)
         e.currentTarget.closest('.extend_chatbox').querySelector('.chated').scroll(0,e.currentTarget.closest('.extend_chatbox').querySelector('.chated').scrollHeight)
         this.chatword=""
