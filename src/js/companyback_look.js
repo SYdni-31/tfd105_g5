@@ -44,7 +44,7 @@ const vm = new Vue({
     created(){
         let info=sessionStorage.getItem("login_info")
         if(info !=null){
-            this.company_info=info
+            this.info_id=info
         }else{
             document.location.href='index.html'
         }
