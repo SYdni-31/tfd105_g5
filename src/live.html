@@ -73,7 +73,7 @@
             </div>
             <!-- 打字傳送區 -->
             <div class="input-block" v-if="login_id != '' && C_NAME != ''">
-              <input v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息">
+              <input v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息" @keyup.enter="text_save">
               <button class=" live-submit btn-short" name="live-submit" type="button" @click="text_save">送交</button>
             </div>
             <!-- 尚未登入 -->
@@ -102,7 +102,7 @@
             <!-- 打字傳送區 -->
             <div class="input-block" v-if="login_id != '' && C_NAME != ''">
               <input v-model="task" class="live-text-input-rwd" name="live-text-input" id="live_text_rwd"
-                placeholder="傳送訊息">
+                placeholder="傳送訊息" @keyup.enter="text_save_rwd">
               <button class="live-submit-rwd btn-short" name="live-submit" type="button"
                 @click="text_save_rwd">送交</button>
             </div>

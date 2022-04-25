@@ -7,8 +7,8 @@
     // select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     // order by START_TIME";
   
-    $sql="select * from AGENDA where DATE = :TODAY
-    union
+    $sql="select * from AGENDA where DATE = :TODAY and status !='D' and (open='1' or open is null)
+     union
     select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     order by START_TIME";
     $statement=$pdo->prepare($sql);
@@ -25,7 +25,7 @@
 
 
     //slogan 日期活動
-    $sql3="select NAME,START_TIME,END_TIME,INTRODUCE from tfd105_g5.expo where OPEN ='進行中';";
+    $sql3="select NAME,START_TIME,END_TIME,INTRODUCE from EXPO where OPEN ='進行中';";
     $statement3 = $pdo->prepare($sql3);
     $statement3->execute();
     $select3= $statement3->fetchAll();

@@ -25,10 +25,11 @@
           emailjs.init("VmKwawpbImHtur7aa");
       })();
   </script>
-  <!-- is.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.9.0/is.min.js"></script>
+ 
     <!-- vue -->
   <script src="js/vue.min.js"></script>
+    <!-- alert套件 -->
+    <script src="https://unpkg.com/vue-swal"></script>
   
 
   <title>聚策展-展會介紹</title>
@@ -63,9 +64,9 @@
         <!-- <h2 class="about_date">04.01 - 06.30</h2> -->
       </div>
     </section>
-    <section class="wrapper about_brief wrapper_about" v-for="expo in expos"> <!--data-aos="fade-up" data-aos-duration="2000"-->
+    <section class="wrapper about_brief wrapper_about" v-for="expo2 in expos"> <!--data-aos="fade-up" data-aos-duration="2000"-->
       <div class="mb-10 about_title">會議簡介</div>
-      <h3>{{expo.INTRODUCE}}
+      <h3>{{expo2.INTRODUCE}}
       </h3>
     </section>
     <section class="about_agenda "> <!--data-aos="fade-up" data-aos-duration="2000"-->
@@ -92,12 +93,14 @@
             <!-- <h4 class="mt-8">中華電信總經理</h4> -->
           </div>
           <div class="about_hoverText -hide" @click="turn_back(index)">
+            <div class="about_hover">
             <h4>{{speaker.NAME}}<br>
               <ul>
                 <p v-for="txt in speaker.txts">{{txt}}</p><br>
                 <!-- {{speaker.INTRODUCE.replaceAll('-',`${<br>}`)}} -->
               </ul>
             </h4> 
+          </div>
           </div>
         </div>
       </div>

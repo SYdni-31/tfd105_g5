@@ -5,13 +5,13 @@
     $sql= "SELECT A.LINK, ifnull(A.NAME,B.NAME) AS NAME,A.COMPANY_INFO_ID,B.EMAIL,B.ID 
     FROM (
         SELECT * FROM AGENDA  
-        where date = CURDATE() and HOUR(START_TIME) = HOUR(now()) and HOUR(END_TIME)>= HOUR(now()) order by START_TIME desc limit 1) A
+        where date = CURDATE() and HOUR(START_TIME) = HOUR(now()) and HOUR(END_TIME) >= HOUR(now()) and STATUS !='D' order by START_TIME desc limit 1) A
         LEFT join COMPANY B ON A.COMPANY_INFO_ID = B.ID";
     $statement=$pdo->prepare($sql);
     $statement->execute();
     $select=$statement->fetchAll(); 
 
-    $sql2= "SELECT CONCAT(DATE,\" \",SUBSTR(START_TIME,1,5)) AS NEXT_TIME FROM AGENDA where CONCAT(DATE,\" \",START_TIME) >= NOW() order by DATE,START_TIME  LIMIT 1 ";
+    $sql2= "SELECT CONCAT(DATE,\" \",SUBSTR(START_TIME,1,5)) AS NEXT_TIME FROM AGENDA where CONCAT(DATE,\" \",START_TIME) >= NOW() and STATUS !='D' order by DATE,START_TIME  LIMIT 1 ";
     $statement2 = $pdo->prepare($sql2);
     $statement2->execute();
     $select2= $statement2->fetchAll();
