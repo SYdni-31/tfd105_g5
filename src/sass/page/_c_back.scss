@@ -299,6 +299,7 @@ section.companyback_chat1 {
 //聊天室內部
 .companyback_chated {
     padding: 10px;
+    height: 500px;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -701,7 +702,7 @@ section.companyback_chat1 {
             margin: 0 auto;
             min-width: 300px;
             cursor: pointer;
-            height: calc(100vh - 70px);
+            height:650px;
         }
         .two {
             width: 100%;
@@ -711,7 +712,7 @@ section.companyback_chat1 {
             display: none;
             // @include absolute(0, 0, auto, auto, 10);
             @include fixed(0, 0, auto, auto, 100);
-            height: calc(100vh - 70px);
+            height: 650px;
             // @include sticky(0, 0, auto, auto, 10);
             // .companyback_chated {
             //     // height: calc(100vh - 350px);
