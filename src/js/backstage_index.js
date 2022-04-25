@@ -122,6 +122,13 @@ Vue.component('backstage_expo1',{
                 this.data_count=resp.data_count[0][0]
                 this.pages=Math.ceil(this.data_count/this.perpage)
                 this.inpage=inpage
+                for (let i = 0; i < this.datas.length; i++) {
+                    if (this.datas[i].ONBOARD == 0) {
+                        this.datas[i].OPEN_1 = false
+                    } else {
+                        this.datas[i].OPEN_1 = true
+                    }
+                }
             })
         },
         update(index){
@@ -132,7 +139,7 @@ Vue.component('backstage_expo1',{
                 },
                 body:JSON.stringify({
                     ID:this.datas[index].ID,
-                    ONBOARD:this.datas[index].ONBOARD
+                    ONBOARD:this.datas[index].OPEN_1
                 })
             }).then(resp =>resp.json())
             .then(body =>{ 
@@ -192,7 +199,7 @@ Vue.component('backstage_expo1',{
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td switch_flex">
                     下架
                     <div class="custom-control custom-switch">   
-                        <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.ONBOARD" @change="switchbtn(index)">
+                        <input type="checkbox" class="custom-control-input" :id="['customSwitch-' + data.ID]" v-model="data.OPEN_1" @change="switchbtn(index)">
                         <label class="custom-control-label" :for="['customSwitch-' + data.ID]"></label>
                     </div>
                     上架
@@ -228,6 +235,13 @@ Vue.component('backstage_expo1',{
             this.datas=resp.data
             this.data_count=resp.data_count[0][0]
             this.pages=Math.ceil(this.data_count/this.perpage)
+            for (let i = 0; i < this.datas.length; i++) {
+                if (this.datas[i].ONBOARD == 0) {
+                    this.datas[i].OPEN_1 = false
+                } else {
+                    this.datas[i].OPEN_1 = true
+                }
+            }
         })
     },
 })
@@ -836,7 +850,7 @@ Vue.component('backstage_info1_edit', {
                         <input type="text" name="NAME" id="NAME" v-model.trim="newdata.NAME">
                     </li>
                     <li class="mb-16 input-long"><label for="INTRODUCR">會議簡介</label>
-                        <textarea name="INTRODUCR" id="INTRODUCR" cols="30" rows="10" v-model="newdata.INTRODUCR"></textarea>
+                        <textarea name="INTRODUCR" id="INTRODUCR" cols="30" rows="10" v-model="newdata.INTRODUCE"></textarea>
                     </li>
                     <li class="mb-16 input-short"><label for="START_TIME">活動開始</label>
                         <input type="date" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">

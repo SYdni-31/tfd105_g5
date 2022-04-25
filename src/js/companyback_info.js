@@ -3,7 +3,7 @@ const view = new Vue({
     data(){
         return{
         datas: '',
-        who_id:1,
+        who_id:'',
         img_data:'',
         }
     },
@@ -70,6 +70,9 @@ const view = new Vue({
                     
             )
         }
+    },
+    created() {
+        this.who_id = sessionStorage['login_id'];
     },
     mounted() {
         fetch('php/companyback_info_select_company_info.php',{

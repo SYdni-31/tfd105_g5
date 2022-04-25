@@ -43,6 +43,13 @@ new Vue({
       }else{
         this.companyBack = true;
       }
+      if(window.location.href.includes("companyback_info")){
+        $("#companyBack_info").addClass("company-menu-border")
+      }else if(window.location.href.includes("companyback_tech")){
+        $("#companyBack_tech").addClass("company-menu-border")
+      }else {
+        $("#companyBack").addClass("company-menu-border")
+      }
     }else{
       this.logo='blue';
     }
