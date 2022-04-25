@@ -47,7 +47,7 @@ const view = new Vue({
             }else{
                 this.$swal({
                     title:"輸入失敗",
-                    text:"請輸入youtube網址 + \n + ex:https://www.youtube.com/您的網址!",
+                    text:"請輸入youtube網址",
                     icon:"error",
                     image:"",
                 });
