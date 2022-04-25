@@ -303,7 +303,7 @@
                     width: 58vw;
                     @include absolute(20.5vw, null, null, 21.5vw);
                     transition: diskLight 1.5s;
-                    animation: diskLight 1.5s ease-in-out 1s infinite;
+                    animation: diskLight 3s cubic-bezier(0.65, 0, 0.35, 1) 1s infinite;
                 }
                 .index_center_bot_disk {
                     width: 70vw;
@@ -336,28 +336,9 @@
                 .index_right_bar1 {
                     width: 11vw;
                     @include absolute (29vw, 1.5vw);
-                    animation: barHopping1 2.5s linear infinite;
+                    // animation: barHopping1 2.5s linear infinite;
                 }
-                // .index_right_bar2 {
-                //     width: 11vw;
-                //     @include absolute (29vw, 1.5vw);
-                //     animation: barHopping2 2.5s linear infinite;
-                // }
-                // .index_right_bar3 {
-                //     width: 11vw;
-                //     @include absolute (29vw, 1.5vw);
-                //     animation: barHopping3 2.5s linear infinite; 
-                // }
-                // .index_right_bar4 {
-                //     width: 11vw;
-                //     @include absolute (29vw, 1.5vw);
-                //     animation: barHopping4 2.5s linear infinite;
-                // }
-                // .index_right_bar5 {
-                //     width: 11vw;
-                //     @include absolute (29vw, 1.5vw);
-                //     animation: barHopping5 2.5s linear infinite;
-                // }
+
             }
             
         }
@@ -406,100 +387,7 @@
         0% {
             opacity: 0;
         }
-        100% {
-            opacity: 1;
-        }
-    }
-    // 右側區塊
-    // @keyframes barHopping1 {
-    //     0% {
-    //         opacity: 1;
-    //     }
-    //     18%{
-    //         opacity: 1;
-    //     }
-    //     19%{
-    //         opacity: 0;
-    //     }
-    //     100% {
-    //         opacity: 0;
-    //     }
-    // }
-    
-    @keyframes barHopping2 {
-        0% {
-            opacity: 0;
-        }
-        17% {
-            opacity: 0;
-        }
-        18%{
-            opacity: 1;
-        }
-        36%{
-            opacity: 1;
-        }
-        37%{
-            opacity: 0;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    @keyframes barHopping3 {
-        0% {
-            opacity: 0;
-        }
-        35% {
-            opacity: 0;
-        }
-        36%{
-            opacity: 1;
-        }
-        54%{
-            opacity: 1;
-        }
-        55%{
-            opacity: 0;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    @keyframes barHopping4 {
-        0% {
-            opacity: 0;
-        }
-        53% {
-            opacity: 0;
-        }
-        54%{
-            opacity: 1;
-        }
-        72%{
-            opacity: 1;
-        }
-        73%{
-            opacity: 0;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-    
-    @keyframes barHopping5 {
-        0% {
-            opacity: 0;
-        }
-        71% {
-            opacity: 0;
-        }
-        72%{
-            opacity: 1;
-        }
-        99%{
+        50% {
             opacity: 1;
         }
         100% {
