@@ -36,11 +36,7 @@ Vue.component('backstage_expo1_look',{
                 <div class='pall-5'><img :src="['img/extend/booth' + newdata.TYPE + '.png']"><br>攤位樣式</div>
                 <div class='pall-5'><img :src="['img/extend/robot' + newdata.ROBOT + '.png']"><br>客服機器人</div>
                 </li>
-                <div class="mb-16"><label>狀態</label><br>
-                    <label for="on"><input type="radio" name="ONBOARD" id="on"  value="1" v-model="newdata.ONBOARD" disabled>上架中</label>
-                    <label for="off"><input type="radio" name="ONBOARD" id="off"  value="0" v-model="newdata.ONBOARD" disabled>下架中</label>
-                </div>
-            </ul>                  
+            </ul>       
             <div class="backstage-insert-btn">
                 <button class="backstage-insert_close" @click="f_close">關閉</button>
             </div>
