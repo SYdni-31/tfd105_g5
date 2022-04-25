@@ -43,7 +43,7 @@
   .logo-orange {
     width: 50px;
     height: 40px;
-    // display: none;
+    display: none;
     object-fit: cover;
     @include mobile(568px) {
       width: 30px;
