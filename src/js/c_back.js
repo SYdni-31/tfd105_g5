@@ -16,9 +16,9 @@ const view = new Vue({
     },
     methods: {
         insertsql(){
-            emailRule =/^https\:\/\/www\.youtube\.com\//;
-            let email = document.querySelector(".c_link").value;
-            if(emailRule.test(email)){
+            youtubeRule =/^https\:\/\/www\.youtube\.com\//;
+            let youtube = document.querySelector(".c_link").value;
+            if(youtubeRule.test(youtube)){
                 // alert("true");
                 fetch('php/c_back_insert_agenda_time.php',{
                     method:'POST',
@@ -113,7 +113,8 @@ const view = new Vue({
             }
         ).then(resp=>{
             for(let values of resp){
-                // console.log(values[0])
+                console.log(resp)
+                console.log(values[0])
                 date_time.push(values[0]);
             }
             // for(let i = 0;i<resp.length;i++){
@@ -124,10 +125,10 @@ const view = new Vue({
            {
             this.date_obj = flatpickr("input[type=datetime-local]", {
             // mode: "range",
-            minDate: "today", 
+            minDate: "today",
             dateFormat: "Y-m-d",
             inline: true,
-            disable: date_time
+            disable: date_time,
           })
         //   flatpickr(".timepicker", {
         //     enableTime: true,
@@ -137,6 +138,7 @@ const view = new Vue({
         //     minTime: "13:00",
         //     maxTime: "16:00",
         //   })
+        console.log(date_time);
         })      
     })
 },

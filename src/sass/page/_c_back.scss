@@ -52,6 +52,9 @@
     }
     select.timepicker {
         // width: 391px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         border-radius: 10px;
         @include input($width: 391px, $mc:#F37F15, $sc: #F6FAFB, $bc:#040F15);
         height: 64px;

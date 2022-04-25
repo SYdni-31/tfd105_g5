@@ -74,7 +74,7 @@
             </li>
             <li>
               <label for="robot1"><img src="./img/c_back/robot1.png" alt=""></label>
-              <input type="radio" name="robotpicture" id="robot1" v-model="datas.ROBOT" value="1" >
+              <input type="radio" name="robotpicture" id="robot1" v-model="datas.ROBOT" value="1" required >
             </li>
             <li>
               <label for="robot2"><img src="./img/c_back/robot2 .png" alt=""></label>
@@ -92,7 +92,7 @@
             </li>
             <li>
               <label for="environment1"><img src="./img/c_back/evin (1).png" alt="" ></label>
-              <input type="radio" name="environmentpicture" id="environment1" v-model="datas.TYPE" value="1">
+              <input type="radio" name="environmentpicture" id="environment1" v-model="datas.TYPE" value="1" required>
             </li>
             <li>
               <label for="environment2"><img src="./img/c_back/evin (2).png" alt=""></label>
@@ -104,7 +104,7 @@
             </li>
           </ul>
 
-          <input type="submit" class="btn-long save mt-60" name="save" value="儲存並預覽" @click.prevent="formData">
+          <input type="submit" class="btn-long save mt-60" name="save" value="進行下一步" @click.prevent="formData">
         </form>
 
       
