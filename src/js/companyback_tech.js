@@ -12,18 +12,25 @@ new Vue({
     methods:{
         // 把隱藏的新增表格顯現
         showInsert(){
-            
             if(this.techs.length<8){
-                this.newforms=true;
-                
-            }else{
+                if(this.newforms==true){
+                    this.$swal({
+                            title: "新增失敗",
+                            icon: "error",
+                            text: "請完成目前該筆新增",
+                        });
+                }
+                else{
+                    this.newforms=true;
+                }
+            }
+            else{
                 this.newforms=false;
                 this.$swal({
                     title: "新增失敗",
                     icon: "error",
                     text: "可新增筆數上限為八筆",
                 });
-    
             }
             
 
@@ -194,12 +201,12 @@ new Vue({
         })
     },
     created(){
-        let companyAcc = sessionStorage.getItem("login_info");
-        if(companyAcc != null){
-            this.company_info=companyAcc
-        }else{
-            document.location.href='./index.html'
-        }
+        // let companyAcc = sessionStorage.getItem("login_info");
+        // if(companyAcc != null){
+        //     this.company_info=companyAcc
+        // }else{
+        //     document.location.href='./index.html'
+        // }
     },
 })
 
