@@ -65,26 +65,27 @@
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
-            <div class="result-block" >
+            <div class="result-block" v-if="login_id != '' && C_NAME != ''">
               <div class="search-container">
                 <todo-item v-for="(task,index) in tasks" :name="tasks[index]['name']"
                   :message="tasks[index]['message']"></todo-item>
               </div>
             </div>
             <!-- 打字傳送區 -->
-            <div class="input-block" >
+            <div class="input-block" v-if="login_id != '' && C_NAME != ''">
               <input v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息">
               <button class=" live-submit btn-short" name="live-submit" type="button" @click="text_save">送交</button>
             </div>
             <!-- 尚未登入 -->
             <div class="live-login-block" v-if="login_id == '' && C_NAME != ''">
-              <button class="btn-short">開始聊天</button>
+              <button class="btn-short" @click="live_login">開始聊天</button>
             </div>
           </div>
         </div>
 
         <!-- 留言板(RWD) -->
-        <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': rwdOpen === true}" v-if="C_NAME != ''" >
+        <div id="live_rwd" class="live-board-container-rwd" :class="{'rwd-active': rwdOpen === true}"
+          v-if="C_NAME != ''">
           <div class="live-board">
             <div class="search-container-title" @click="toggle_rwd()">
               <img src="img/live/live-arrow.svg" alt="留言板開關" id="live-icon-img-rwd" class="-transform--90"
@@ -92,24 +93,25 @@
               <h3 id="search-container-title-h3">留言板</h3>
             </div>
             <!-- 留言顯示區 -->
-            <div class="result-block-rwd">
+            <div class="result-block-rwd" v-if="login_id != '' && C_NAME != ''">
               <div class="search-container">
                 <todo-item v-for="(task,index) in tasks" :name="tasks[index]['name']"
                   :message="tasks[index]['message']"></todo-item>
               </div>
             </div>
             <!-- 打字傳送區 -->
-            <div class="input-block">
+            <div class="input-block" v-if="login_id != '' && C_NAME != ''">
               <input v-model="task" class="live-text-input-rwd" name="live-text-input" id="live_text_rwd"
                 placeholder="傳送訊息">
-              <button class=" live-submit-rwd btn-short" name="live-submit" type="button"
+              <button class="live-submit-rwd btn-short" name="live-submit" type="button"
                 @click="text_save_rwd">送交</button>
             </div>
+            <!-- 尚未登入 -->
+            <div class="live-login-block-rwd" v-if="login_id == '' && C_NAME != ''">
+              <button class="btn-long" @click="live_login">開始聊天</button>
+            </div>
           </div>
-          <!-- 尚未登入 -->
-          <div class="live-board" v-if="login_id == '' && C_NAME != ''">
-            <button class="btn-short">開始聊天</button>
-          </div>
+
         </div>
     </section>
     <!-- 下方廠商介紹區 -->

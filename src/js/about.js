@@ -69,7 +69,7 @@ const vm = new Vue({
     data: {
         schedules:[],
         speakers:[],
-        today:"2022-04-11",
+        today:`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`,
         hideiamge:false,
         timestart:'',
         carousels:'',
@@ -96,7 +96,7 @@ const vm = new Vue({
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // Today: this.today,
+                Today: this.today,
                 // Today:new Date(),
             })
         }).then(resp => resp.json())//接收
@@ -104,7 +104,7 @@ const vm = new Vue({
             // console.log(body);
             // console.log(body['agenda']);
             // console.log(body['carousel']);
-            console.log(body['expo']);
+            // console.log(body['expo']);
             this.schedules=body['agenda'];
             this.carousels=body['carousel'];
             this.expos=body['expo'];
