@@ -133,8 +133,7 @@ new Vue({
             let linkRule = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
             if(this.newtech !='' &&
                this.newlink !='' && 
-               linkRule.test(this.newlink && 
-               this.techs.length<9)){
+               linkRule.test(this.newlink)){
                 fetch('php/companyback_insert_tech.php',{
                     method: 'POST',
                     headers:{
@@ -201,12 +200,12 @@ new Vue({
         })
     },
     created(){
-        // let companyAcc = sessionStorage.getItem("login_info");
-        // if(companyAcc != null){
-        //     this.company_info=companyAcc
-        // }else{
-        //     document.location.href='./index.html'
-        // }
+        let companyAcc = sessionStorage.getItem("login_info");
+        if(companyAcc != null){
+            this.company_info=companyAcc
+        }else{
+            document.location.href='./index.html'
+        }
     },
 })
 

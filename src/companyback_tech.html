@@ -48,12 +48,12 @@
                     <div class="field pt-45">
                         <h2>技術名稱 :</h2>
                         <input type="text" :id="['skill_name' + index]" required autocomplete="off" v-model="tech.NAME">
-                        <label :for="['skill_name' + index]" title="Skill name" data-title="技術名稱"></label>
+                        <label :for="['skill_name' + index]" title="技術名稱" data-title="Skill name"></label>
                     </div>
                     <div class="field pt-45">
                         <h2>技術網址 :</h2>
                         <input type="text" :id="['password_add' + index]" required autocomplete="off" v-model="tech.LINK">
-                        <label :for="['password_add' + index]" title="Skill address" data-title="技術網址"></label>
+                        <label :for="['password_add' + index]" title="技術網址" data-title="Skill address"></label>
                     </div>
                     <a class="companyback_save btn_company_back" @click="update(tech.ID, tech.NAME, tech.LINK)">儲存</a>
                 </form>
@@ -70,12 +70,12 @@
                     <div class="field pt-45">
                         <h2>技術名稱 :</h2>
                         <input type="text" :id="['skill_name' + techs.length]" required autocomplete="off" v-model="newtech">
-                        <label :for="['skill_name' + techs.length]" title="Skill name" data-title="技術名稱" ></label>
+                        <label :for="['skill_name' + techs.length]" title="技術名稱" data-title="Skill name" ></label>
                     </div>
                     <div class="field pt-45">
                         <h2>技術網址 :</h2>
                         <input type="text" :id="['password_add' + techs.length]" required autocomplete="off" v-model="newlink">
-                        <label :for="['password_add' + techs.length]" title="Skill address" data-title="技術網址" ></label>
+                        <label :for="['password_add' + techs.length]" title="技術網址" data-title="Skill address" ></label>
                     </div>
                     <a class="companyback_save btn_company_back" @click="insert">儲存</a>
                 </form>
