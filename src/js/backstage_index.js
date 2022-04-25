@@ -836,7 +836,7 @@ Vue.component('backstage_info1_edit', {
                         <input type="text" name="NAME" id="NAME" v-model.trim="newdata.NAME">
                     </li>
                     <li class="mb-16 input-long"><label for="INTRODUCR">會議簡介</label>
-                        <textarea name="INTRODUCR" id="INTRODUCR" cols="30" rows="10" v-model="newdata.INTRODUCR"></textarea>
+                        <textarea name="INTRODUCR" id="INTRODUCR" cols="30" rows="10" v-model="newdata.INTRODUCE"></textarea>
                     </li>
                     <li class="mb-16 input-short"><label for="START_TIME">活動開始</label>
                         <input type="date" name="START_TIME" id="START_TIME" v-model="newdata.START_TIME">
