@@ -7,8 +7,8 @@
     // select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     // order by START_TIME";
   
-    $sql="select * from AGENDA where DATE = :TODAY
-    union
+    $sql="select * from AGENDA where DATE = :TODAY and status !='D' and (open='1' or open is null)
+     union
     select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     order by START_TIME";
     $statement=$pdo->prepare($sql);
