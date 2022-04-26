@@ -40,6 +40,7 @@ var vueApp = new Vue({
       login_id: '',
       login_name: '',
       login_type: '',
+      login_info:'',
     };
   },
   mounted: function () {
@@ -51,6 +52,7 @@ var vueApp = new Vue({
         this.login_id = sessionStorage['login_id'];
         this.login_name = sessionStorage['login_name'];
         this.login_type = sessionStorage['login_type'];
+        this.login_info = sessionStorage['login_info'];
       }
       // 一進到畫面先顯示留言內容
       fetch('php/live_select_live_board.php', {
