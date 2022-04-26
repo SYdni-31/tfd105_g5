@@ -11,6 +11,10 @@
     $select=$statement->fetchAll(); 
 
     if ($select != null){
-        echo json_encode($select);
+        $select['successful'] = true;
+    }else{
+        $select['successful'] = false;
+
     };
+    echo json_encode($select);
 ?>

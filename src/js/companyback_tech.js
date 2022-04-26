@@ -127,6 +127,8 @@ new Vue({
                     })
                 }
             })
+            .then(()=>document.getElementsByClassName(".companyback_form")[0].remove()
+            )
         },
         // 新增資料
         insert(){
@@ -199,7 +201,7 @@ new Vue({
                             this.rearrange();
                         })
                     }
-                });   
+                })
              }
         })
     },
