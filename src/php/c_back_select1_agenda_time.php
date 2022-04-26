@@ -1,6 +1,7 @@
 <?php
 include("connection.php");
-$sql = "select DATE, COUNT(*) from AGENDA where open = '1' group by DATE having COUNT(*) >= 3";
+$sql = "select DATE, COUNT(*) from AGENDA where open = '1' and status !='D' and THEME = '技術分享' group by DATE having COUNT(*) >= (select COUNT(*) from AGENDA_TIME where OPEN ='1')";
+
 $statement = $pdo->prepare($sql);
 $statement->execute();
 $date = $statement->fetchAll();

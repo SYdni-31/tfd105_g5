@@ -122,6 +122,7 @@ const vm = new Vue({
       })
       .then(resp => resp.json())
       .then(resp => {
+        console.log(resp);
           for(let i=0; i<resp['txt'].length; i++){
               if(resp['txt'][i].GUEST_ID !=null){
                   this.guest_text.push(resp['txt'][i])

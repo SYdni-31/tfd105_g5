@@ -77,7 +77,7 @@ const view = new Vue({
                     for(let values of resp){
                         delete values[0];
                         delete values[1];
-                        // console.log(values);
+                        console.log(values);
                         this.TIME.push(values);       
                         // this.timeandid.time=values[0];
                         // this.timeandid.id=values[1];
@@ -114,7 +114,7 @@ const view = new Vue({
         ).then(resp=>{
             for(let values of resp){
                 console.log(resp)
-                console.log(values[0])
+                console.log(values[0]);
                 date_time.push(values[0]);
             }
             // for(let i = 0;i<resp.length;i++){
