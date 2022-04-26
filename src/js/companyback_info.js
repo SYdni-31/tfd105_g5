@@ -55,7 +55,7 @@ const view = new Vue({
             );
             fromData.append("file",this.img_data)
             // console.log(fromData);
-            if(this.datas.ROBOT !== null && this.datas.TYPE!== null && this.datas.INTRODUCE !==null &&this.datas.LOGO !==null
+            if(this.datas.ROBOT !== null && this.datas.TYPE!== null && this.datas.INTRODUCE !=="" &&this.datas.LOGO !==null
                 ){
                     if(youtubeRule.test(this.datas.VIDEO)){
                         fetch('php/companyback_info_update_company_info.php',{
