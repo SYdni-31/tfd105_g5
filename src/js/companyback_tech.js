@@ -10,6 +10,11 @@ new Vue({
 
     },
     methods:{
+        // 修改用的
+        open(i){
+            document.querySelector(`#skill_name${i}`).removeAttribute('disabled');
+            document.querySelector(`#password_add${i}`).removeAttribute('disabled');
+         },
         // 把隱藏的新增表格顯現
         showInsert(){
             if(this.techs.length<8){
@@ -67,7 +72,7 @@ new Vue({
             if(name != '' &&
                link != '' &&
                linkRule.test(link) ){
-                fetch('php/companyback_update_tech.php',{
+                fetch('php/companyback_tech_update.php',{
                     method: 'POST',
                     headers:{
                         'Content-Type':'application/json'
@@ -102,7 +107,7 @@ new Vue({
         },
         // 刪除表格的資料，UPDATE STATUS='D'
         del(id, status){
-            fetch('php/companyback_update2_tech.php',{
+            fetch('php/companyback_tech_update2.php',{
                 method: 'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -124,8 +129,13 @@ new Vue({
                     })
                 }
             })
-            // .then(()=>document.getElementsByClassName(".companyback_form")[0].remove()
-            // )
+            .then(
+                setTimeout(() => {
+                    location.href="./companyback_tech.html"
+                    
+                }, 1000)
+            // document.getElementsByClassName(".companyback_form")[0].remove()
+            )
         },
         // 新增資料
         insert(){
@@ -133,7 +143,7 @@ new Vue({
             if(this.newtech !='' &&
                this.newlink !='' && 
                linkRule.test(this.newlink)){
-                fetch('php/companyback_insert_tech.php',{
+                fetch('php/companyback_tech_insert.php',{
                     method: 'POST',
                     headers:{
                         'Content-Type':'application/json'
@@ -179,7 +189,7 @@ new Vue({
                 this.company_info_id = sessionStorage['login_info'];
                 // console.log(this.company_info_id);
 
-                fetch('php/companyback_select_tech.php',{
+                fetch('php/companyback_tech_select.php',{
                     method: 'POST',
                     headers:{
                         'Content-Type':'application/json'
