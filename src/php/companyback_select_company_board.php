@@ -1,5 +1,6 @@
 <?php
 include("connection.php");
+//第一步 客戶方的訊息留言以及我們回附的留言
 $select=json_decode(file_get_contents("php://input"), true);
 $sql="
     select *
@@ -13,7 +14,7 @@ $statement=$pdo->prepare($sql);
 $statement->bindValue(":ID", $select["id"]);
 $statement->execute();
 $select=$statement->fetchAll(); 
-
+//第二步 必須是場商才能進行在後台搜尋的功能，搜尋字樣查詢
 $select2=json_decode(file_get_contents("php://input"), true);
 $sql2 =" 
     select distinct NAME, GUEST_ID, COMPANY_ID
@@ -27,7 +28,7 @@ $sql2 ="
     $statement2->bindValue(":searchword", '%'.$select2["searchword"].'%');
     $statement2->execute();
     $select2=$statement2->fetchAll(); 
-
+//第三步 搜尋來賓的留言紀錄
     $select3=json_decode(file_get_contents("php://input"), true);
 $sql3 =" 
     select distinct NAME, GUEST_ID, COMPANY_ID
@@ -47,7 +48,9 @@ if ($select != null){
     $folder['cname']=$select2;
     $folder['gname']=$select3;
 
-    echo json_encode($folder);
+}else{
+    $folder['fff']=true;
 };
+echo json_encode($folder);
 
 ?>
