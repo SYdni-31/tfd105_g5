@@ -191,10 +191,14 @@ new Vue({
                 })
                 .then(resp=>resp.json())
                 .then(resp=>{
-                    this.techs=resp
-                    this.$nextTick(()=>{
-                        this.rearrange();
-                    })
+                    console.log(resp);
+                    let {successful} = resp
+                    if(successful){
+                        this.techs=resp
+                        this.$nextTick(()=>{
+                            this.rearrange();
+                        })
+                    }
                 });   
              }
         })
