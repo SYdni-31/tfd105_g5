@@ -102,6 +102,7 @@ const vm = new Vue({
        rooms_data[j]['live']=[]
        rooms_data[j]['tech']=[]
        rooms_data[j]['board']=[]
+       rooms_data[j]['txts']=[]
         for(let i=0; i<resp.live.length; i++){
           if(resp.live[i].CI_ID==resp.rooms[j].ID){
            rooms_data[j]['live'].push(resp.live[i])
@@ -117,6 +118,8 @@ const vm = new Vue({
            rooms_data[j]['board'].push(resp.board[k])
           }
         }
+        let txt=rooms_data[j].INTRODUCE.split('\n');
+        rooms_data[j]['txts']=txt;
       }
       this.rooms = rooms_data
 
