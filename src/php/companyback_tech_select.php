@@ -11,6 +11,10 @@
     $select=$statement->fetchAll(); 
 
     if ($select != null){
-        echo json_encode($select);
+
+    }else{
+        $select['fff'] = true;
+
     };
+    echo json_encode($select);
 ?>

@@ -10,6 +10,11 @@ new Vue({
 
     },
     methods:{
+        // 修改用的
+        open(i){
+            document.querySelector(`#skill_name${i}`).removeAttribute('disabled');
+            document.querySelector(`#password_add${i}`).removeAttribute('disabled');
+         },
         // 把隱藏的新增表格顯現
         showInsert(){
             if(this.techs.length<8){
@@ -42,9 +47,6 @@ new Vue({
             let companybackForm = document.querySelectorAll(".companyback_form");
             let asideTag = document.querySelectorAll(".companyback_layout");
             
-            // console.log(asideTag);
-            
-            // console.log(companybackForm.length);
             for(i=0;i<companybackForm.length;i++){
                 companybackForm[i].querySelector(".companyback_layout").innerText=i+1;
                 // 先移除樣式，再裝上屬性
@@ -70,7 +72,7 @@ new Vue({
             if(name != '' &&
                link != '' &&
                linkRule.test(link) ){
-                fetch('php/companyback_update_tech.php',{
+                fetch('php/companyback_tech_update.php',{
                     method: 'POST',
                     headers:{
                         'Content-Type':'application/json'
@@ -105,7 +107,7 @@ new Vue({
         },
         // 刪除表格的資料，UPDATE STATUS='D'
         del(id, status){
-            fetch('php/companyback_update2_tech.php',{
+            fetch('php/companyback_tech_update2.php',{
                 method: 'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -127,6 +129,13 @@ new Vue({
                     })
                 }
             })
+            .then(
+                setTimeout(() => {
+                    location.href="./companyback_tech.html"
+                    
+                }, 1000)
+            // document.getElementsByClassName(".companyback_form")[0].remove()
+            )
         },
         // 新增資料
         insert(){
@@ -134,7 +143,7 @@ new Vue({
             if(this.newtech !='' &&
                this.newlink !='' && 
                linkRule.test(this.newlink)){
-                fetch('php/companyback_insert_tech.php',{
+                fetch('php/companyback_tech_insert.php',{
                     method: 'POST',
                     headers:{
                         'Content-Type':'application/json'
@@ -157,7 +166,7 @@ new Vue({
                     }
                     setTimeout(() => {
                         window.location.reload();
-                    }, 3000);
+                    }, 1500);
                 })
             }else{
                 this.$swal({
@@ -180,7 +189,7 @@ new Vue({
                 this.company_info_id = sessionStorage['login_info'];
                 // console.log(this.company_info_id);
 
-                fetch('php/companyback_select_tech.php',{
+                fetch('php/companyback_tech_select.php',{
                     method: 'POST',
                     headers:{
                         'Content-Type':'application/json'
@@ -191,15 +200,15 @@ new Vue({
                 })
                 .then(resp=>resp.json())
                 .then(resp=>{
-                    console.log(resp);
-                    let {successful} = resp
-                    if(successful){
+                    // console.log(resp);
+                    let {fff} = resp
+                    if(fff != true){
                         this.techs=resp
                         this.$nextTick(()=>{
                             this.rearrange();
                         })
                     }
-                });   
+                })
              }
         })
     },
