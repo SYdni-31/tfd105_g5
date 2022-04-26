@@ -146,9 +146,9 @@ new Vue({
           .then(body => {
             let { successful } = body;
             if (successful) {
-              console.log("成功");
+              // console.log("成功");
             } else {
-              console.log("失敗");
+              // console.log("失敗");
             }
           })
         // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
@@ -214,5 +214,29 @@ new Vue({
   },
 }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
 
-// aos 動畫
-AOS.init();
+function onYouTubeIframeAPIReady() {
+  var player;
+  player = new YT.Player('YouTubeVideoPlayerAPI', {
+      videoId: '5-k6v0YyU90',   // YouTube 影片ID
+      width: '1080',            // 播放器寬度 (px)
+      height: '720',           // 播放器高度 (px)
+      playerVars: {
+        autoplay: 1,            // 自動播放影片
+        controls: 1,            // 顯示播放器
+        showinfo: 0,            // 隱藏影片標題
+        modestbranding: 0,      // 隱藏YouTube Logo
+        loop: 1,                // 重覆播放
+        playlist:'5-k6v0YyU90', // 當使用影片要重覆播放時，需再輸入YouTube 影片ID
+        fs: 1,                  // 隱藏全螢幕按鈕
+        cc_load_policty: 0,     // 隱藏字幕
+        iv_load_policy: 3,      // 隱藏影片註解
+        autohide: 0             // 影片播放時，隱藏影片控制列
+      },
+      events: {
+        onReady: function(e) {
+          e.target.mute();      //播放時靜音
+          e.target.playVideo(); //強制播放(手機才會自動播放，但僅限於Android)
+        }
+      }
+    });
+  }
