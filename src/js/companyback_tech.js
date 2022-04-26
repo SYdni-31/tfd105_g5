@@ -42,9 +42,6 @@ new Vue({
             let companybackForm = document.querySelectorAll(".companyback_form");
             let asideTag = document.querySelectorAll(".companyback_layout");
             
-            // console.log(asideTag);
-            
-            // console.log(companybackForm.length);
             for(i=0;i<companybackForm.length;i++){
                 companybackForm[i].querySelector(".companyback_layout").innerText=i+1;
                 // 先移除樣式，再裝上屬性
@@ -127,8 +124,8 @@ new Vue({
                     })
                 }
             })
-            .then(()=>document.getElementsByClassName(".companyback_form")[0].remove()
-            )
+            // .then(()=>document.getElementsByClassName(".companyback_form")[0].remove()
+            // )
         },
         // 新增資料
         insert(){
@@ -159,7 +156,7 @@ new Vue({
                     }
                     setTimeout(() => {
                         window.location.reload();
-                    }, 3000);
+                    }, 1500);
                 })
             }else{
                 this.$swal({
@@ -193,9 +190,9 @@ new Vue({
                 })
                 .then(resp=>resp.json())
                 .then(resp=>{
-                    console.log(resp);
-                    let {successful} = resp
-                    if(successful){
+                    // console.log(resp);
+                    let {fff} = resp
+                    if(fff != true){
                         this.techs=resp
                         this.$nextTick(()=>{
                             this.rearrange();
