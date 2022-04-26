@@ -37,6 +37,7 @@
             }
         }
     }else{
+        $company['successfulOpen'] = true;
         $company['successful'] = false;
     }
     echo json_encode($company);
