@@ -12,12 +12,12 @@ const vm = new Vue({
       this.little_page=i
     },
     inlive(index){
-      let nowday= new Date().toISOString().slice(0,10)
+      let nowday= new Date(+new Date() + 8 * 3600 * 1000).toISOString().slice(0,10)
       let nowtime= new Date().toString().slice(16).slice(0,8)
       if(this.rooms[index].live){
         for(let i=0; i<this.rooms[index].live.length; i++){
-          if(this.rooms[index].live[i].DATE=="2022-04-10"){
-            if(this.rooms[index].live[i].START_TIME<"13:13:13" && this.rooms[index].live[i].END_TIME>"13:13:13"){
+          if(this.rooms[index].live[i].DATE==nowday){
+            if(this.rooms[index].live[i].START_TIME<nowtime && this.rooms[index].live[i].END_TIME>nowtime){
               let live=this.rooms[index].live[i].LINK
               return live
             }

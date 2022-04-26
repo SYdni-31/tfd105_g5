@@ -338,7 +338,7 @@ Vue.component('backstage_expo2', {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    inpage: this.inpage,
+                    inpage: inpage,
                     perpage: this.perpage,
                     search_word: this.search_word,
                 })
@@ -352,6 +352,7 @@ Vue.component('backstage_expo2', {
                     this.data_count = resp.data_count[0][0]
                     // pages是分幾頁，math無條件進位 11/10 =1.1 無條件進位 = 2
                     this.pages = Math.ceil(this.data_count / this.perpage)
+                    this.inpage=inpage
                     for (let i = 0; i < this.datas.length; i++) {
                         if (this.datas[i].OPEN == 0) {
                             this.datas[i].OPEN_1 = false
