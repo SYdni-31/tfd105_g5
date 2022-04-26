@@ -18,7 +18,7 @@
     //PHP接收 JSON POST
 
     //輪播照片
-    $sql2="select LOGO from view_company_info;";
+    $sql2="select LOGO from view_company_info where ONBOARD=1;";
     $statement2 = $pdo->prepare($sql2);
     $statement2->execute();
     $select2= $statement2->fetchAll();
