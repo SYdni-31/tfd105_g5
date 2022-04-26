@@ -14,12 +14,11 @@
   <link rel="icon" href="img/tianlam-logo-mainblack.svg" />
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- aos -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <!-- VUE -->
   <script src="js/vue.min.js"></script>
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+  <script async src="//www.youtube.com/iframe_api"></script>
   <script type="text/javascript">
     (function () {
       emailjs.init("VmKwawpbImHtur7aa");
@@ -45,16 +44,17 @@
         <!-- https://www.youtube.com/embed/gfwWsWJhoig?modestbranding=1&autoplay=1&playlist=gfwWsWJhoig -->
         <!-- src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ" -->
         <div class="live-video-container">
-          <h2>
+          <h2 v-if="C_NAME == ''">
             抱歉，目前無直播<br />下一次直播時間 : <br />
             <span>{{NEXT_TIME}}</span>
           </h2>
-          <iframe v-if="C_NAME != ''" width="900" height="500"
+          <!-- <iframe v-if="C_NAME != ''" width="900" height="500"
             :src="['https://www.youtube.com/embed/' + LINK.split('=')[1] + '?&autoplay=1&loop=1&modestbranding=1&playlist='+ LINK.split('=')[1] ]"
             title="video" frameborder="0" class="live-video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
-          </iframe>
+          </iframe> -->
+          <div id="YouTubeVideoPlayerAPI" class="live-video" ></div>
         </div>
         <!-- 留言板(PC) -->
         <div id="live_pc" class="live-board-container" :class="{'pc-active': pcOpen === true}" v-if="C_NAME != ''">
@@ -143,12 +143,11 @@
   <script>
 
   </script>
-  <!-- aos -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- 先連結main再連結各自設的js -->
   <script src="js/main.min.js"></script>
   <script src="js/login.min.js"></script>
   <script src="js/live.min.js"></script>
+
 </body>
 
 </html>
