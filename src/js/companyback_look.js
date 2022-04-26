@@ -61,7 +61,6 @@ const vm = new Vue({
         .then(resp => {
             this.looks=resp.rooms
             this.techs=resp.tech
-            console.log(resp)
             let txt=resp.rooms[0].INTRODUCE.split('\n');
             this.txts=txt;
         })
