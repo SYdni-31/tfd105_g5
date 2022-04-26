@@ -5,6 +5,7 @@ const vm = new Vue({
       techs:'',
       little_page:"about",
       info_id:'',
+      txts:'',
     },
     methods:{
         little(i){
@@ -60,6 +61,8 @@ const vm = new Vue({
         .then(resp => {
             this.looks=resp.rooms
             this.techs=resp.tech
+            let txt=rooms_data[j].INTRODUCE.split('\n');
+            this.txts=txt;
         })
 
     }

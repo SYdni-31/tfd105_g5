@@ -64,7 +64,7 @@
           <h3 @click="little('tech')" class="pb-20 content_point" :class="{'content_pointed':little_page=='tech'}">技術展示</h3>
           <h3 @click="little('live')" class="pb-20 content_point" :class="{'content_pointed':little_page=='live'}">展覽影片</h3>
           <article class="content_inner content_about" :class="{'-hide':little_page !='about'}">
-            <h4 class="mall-10">{{look.INTRODUCE}}</h4>
+            <h4 v-for="txt in txts" class="mall-10">{{txt}}</h4><br>
           </article>
           <article v-if="techs.length>0" class="content_inner content_tech" :class="{'-hide':little_page !='tech'}">
             <div class="-margin0auto pt-30" v-for="item in techs">
