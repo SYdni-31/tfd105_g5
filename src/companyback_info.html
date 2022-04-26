@@ -37,17 +37,17 @@
             <li class="">
               <div class="field pt-45">
                 <h2>策展名稱:</h2>
-                <input type="text" id="ex_name" required autocomplete="off" placeholder="" v-model="datas.EXPO_NAME" disabled />
+                <input type="text" id="ex_name" required autocomplete="off" placeholder="" v-model.trim="datas.EXPO_NAME" disabled />
                 <label for="ex_name" title="" data-title="策展名稱"></label>
               </div>
               <div class="field pt-45">
                 <h2>廠商名稱:</h2>
-                <input type="text" id="c_company_name" required autocomplete="off" v-model="datas.NAME" disabled/>
+                <input type="text" id="c_company_name" required autocomplete="off" v-model.trim="datas.NAME" disabled/>
                 <label for="c_company_name" title="" data-title="廠商名稱"></label>
               </div>
               <div class="field pt-45">
                 <h2>影片網址:</h2>
-                <input type="text" id="vedio_add" required autocomplete="off" v-model="datas.VIDEO" />
+                <input type="text" id="vedio_add" required autocomplete="off" v-model.trim="datas.VIDEO" />
                 <label for="vedio_add" title="影片網址" data-title="Video address"></label>
               </div>
             </li>
@@ -61,7 +61,7 @@
           </ul>
           <div class="field introduce pt-60">
             <h2>廠商介紹:</h2>
-            <textarea name="" class="fle" id="intr_company" rows="8" required autocomplete="off" size="300" v-model="datas.INTRODUCE"></textarea>
+            <textarea name="" class="fle" id="intr_company" rows="8" required autocomplete="off" size="300" v-model.trim="datas.INTRODUCE"></textarea>
             <label for="intr_company" title="廠商介紹" data-title="Introduce"></label>
           </div>
 

@@ -41,20 +41,15 @@
     <section>
       <div class="live-container">
         <!-- 影片區 -->
-        <!-- https://www.youtube.com/embed/gfwWsWJhoig?modestbranding=1&autoplay=1&playlist=gfwWsWJhoig -->
-        <!-- src="https://www.youtube.com/embed/at6SJkmogvQ?modestbranding=1&autoplay=1&playlist=at6SJkmogvQ" -->
         <div class="live-video-container">
           <h2 v-if="C_NAME == ''">
             抱歉，目前無直播<br />下一次直播時間 : <br />
             <span>{{NEXT_TIME}}</span>
           </h2>
-          <!-- <iframe v-if="C_NAME != ''" width="900" height="500"
-            :src="['https://www.youtube.com/embed/' + LINK.split('=')[1] + '?&autoplay=1&loop=1&modestbranding=1&playlist='+ LINK.split('=')[1] ]"
-            title="video" frameborder="0" class="live-video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe> -->
-          <div id="YouTubeVideoPlayerAPI" class="live-video" ></div>
+          <iframe v-if="C_NAME != ''" width="900" height="500" v-once
+            :src="['https://www.youtube.com/embed/' + LINK.split('=')[1] + '?&autoplay=1&enablejsapi=0&fs=1&disablekb=1&modestbranding=1&playlist='+ LINK.split('=')[1] ]"
+            title="video" frameborder="0" class="live-video" allowfullscreen>
+          </iframe>
         </div>
         <!-- 留言板(PC) -->
         <div id="live_pc" class="live-board-container" :class="{'pc-active': pcOpen === true}" v-if="C_NAME != ''">
@@ -73,7 +68,8 @@
             </div>
             <!-- 打字傳送區 -->
             <div class="input-block" v-if="login_id != '' && C_NAME != ''">
-              <input v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息" @keyup.enter="text_save">
+              <input v-model="task" class="live-text-input" name="live-text-input" id="live_text" placeholder="傳送訊息"
+                @keyup.enter="text_save">
               <button class=" live-submit btn-short" name="live-submit" type="button" @click="text_save">送交</button>
             </div>
             <!-- 尚未登入 -->

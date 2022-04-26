@@ -1,3 +1,4 @@
+
 // 輸入的訊息內容
 Vue.component('todo-item', {
   props: ['name', 'message'],
@@ -22,7 +23,7 @@ Vue.component('todo-item', {
 });
 
 // 控制全部
-new Vue({
+var vueApp = new Vue({
   el: '#live_container', //在這講是給誰執行
   data() {
     return {
@@ -39,6 +40,7 @@ new Vue({
       login_id: '',
       login_name: '',
       login_type: '',
+      login_info:'',
     };
   },
   mounted: function () {
@@ -50,6 +52,7 @@ new Vue({
         this.login_id = sessionStorage['login_id'];
         this.login_name = sessionStorage['login_name'];
         this.login_type = sessionStorage['login_type'];
+        this.login_info = sessionStorage['login_info'];
       }
       // 一進到畫面先顯示留言內容
       fetch('php/live_select_live_board.php', {
@@ -92,7 +95,7 @@ new Vue({
           if (resp.nextData.length > 0) {
             this.NEXT_TIME = resp.nextData[0].NEXT_TIME;
           }
-          if (resp.data != "" && resp.data != undefined && this.login_id !='') {
+          if (resp.data != "" && resp.data != undefined && this.login_id != '') {
             setTimeout(() => {
               // 把留言全部用到最底下
               $(".result-block").animate({ scrollTop: $('.result-block')[0].scrollHeight });
@@ -191,9 +194,9 @@ new Vue({
             let { successful } = body;
             if (successful) {
 
-              console.log("成功");
+              // console.log("成功");
             } else {
-              console.log("失敗");
+              // console.log("失敗");
             }
           })
         // 重點1：以下方式取得 section.result-block(藍框) 的可捲動區域高度(不含邊框)
@@ -210,33 +213,5 @@ new Vue({
         alert("請輸入資料");
       }
     },
-
   },
 }); //給初值，在裡面描述屬性跟方法，包在物件{}裡
-
-function onYouTubeIframeAPIReady() {
-  var player;
-  player = new YT.Player('YouTubeVideoPlayerAPI', {
-      videoId: '5-k6v0YyU90',   // YouTube 影片ID
-      width: '1080',            // 播放器寬度 (px)
-      height: '720',           // 播放器高度 (px)
-      playerVars: {
-        autoplay: 1,            // 自動播放影片
-        controls: 1,            // 顯示播放器
-        showinfo: 0,            // 隱藏影片標題
-        modestbranding: 0,      // 隱藏YouTube Logo
-        loop: 1,                // 重覆播放
-        playlist:'5-k6v0YyU90', // 當使用影片要重覆播放時，需再輸入YouTube 影片ID
-        fs: 1,                  // 隱藏全螢幕按鈕
-        cc_load_policty: 0,     // 隱藏字幕
-        iv_load_policy: 3,      // 隱藏影片註解
-        autohide: 0             // 影片播放時，隱藏影片控制列
-      },
-      events: {
-        onReady: function(e) {
-          e.target.mute();      //播放時靜音
-          e.target.playVideo(); //強制播放(手機才會自動播放，但僅限於Android)
-        }
-      }
-    });
-  }

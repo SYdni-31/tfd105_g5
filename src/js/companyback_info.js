@@ -107,7 +107,13 @@ const view = new Vue({
 
 
     created() {
-        this.who_id = sessionStorage['login_id'];
+        let info = sessionStorage.getItem("login_info");
+        if(info!=null){
+            this.who_id = sessionStorage['login_id'];
+            // this.company_info = info;
+        }else{
+            document.location.href="index.html";
+        }
     },
     mounted() {
         fetch('php/companyback_info_select_company_info.php',{
