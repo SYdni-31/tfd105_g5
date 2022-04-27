@@ -12,9 +12,11 @@
         }
       }
       @include pad(768px) {
+        margin-left: 10px;
         font-size: 20px;
       }
       @include mobile(375px) {
+        margin-left: 10px;
         font-size: 14px;
       }
     }
