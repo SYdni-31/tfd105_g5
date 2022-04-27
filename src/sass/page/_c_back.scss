@@ -41,9 +41,9 @@
 
     &::after {
         content: "";
-        width: 2vw;
-        height: 2vw;
-        @include absolute(42%, 2%);
+        width: 2%;
+        height: 8%;
+        @include absolute(43%, 2%);
         background-image: url(../img/c_back/dropdown_arrow.svg);
         background-repeat: no-repeat;
         background-size: contain;
@@ -557,7 +557,7 @@ section.companyback_chat1 {
                 padding-right: 4%;
 
                 &::after {
-                    @include absolute(42%, 6%);
+                    @include absolute(43%, 6%);
                 }
             
 
@@ -681,7 +681,7 @@ section.companyback_chat1 {
             //下面兩個都是第一部分右半邊的input
             .time_tech {
                 &::after {
-                    @include absolute(69%, 32%);
+                    @include absolute(67%, 32%);
                 }
 
                 .form-contril,
@@ -850,10 +850,14 @@ section.companyback_chat1 {
             }
             .time_tech {
                 &::after {
-                    @include absolute(70%, 23%);
+                    display: none;
+                }
+                select.timepicker {
+                    -webkit-appearance: auto;
+                    -moz-appearance: auto;
+                    appearance: auto;
                 }
             }
-        
         }
 
         .companyback_chated {
