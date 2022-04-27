@@ -166,7 +166,7 @@ new Vue({
                     }
                     setTimeout(() => {
                         window.location.reload();
-                    }, 1500);
+                    }, 1000);
                 })
             }else{
                 this.$swal({
