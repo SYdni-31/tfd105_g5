@@ -123,6 +123,7 @@ const view = new Vue({
            this.$nextTick(()=>
            {
             this.date_obj = flatpickr("input[type=datetime-local]", {
+            "locale": "zh",
             // mode: "range",
             minDate: "today",
             dateFormat: "Y-m-d",
