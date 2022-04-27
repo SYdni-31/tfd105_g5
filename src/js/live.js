@@ -166,7 +166,8 @@ var vueApp = new Vue({
         this.task = "";
 
       } else {
-        alert("請輸入資料");
+        swal("送出失敗", "請輸入資料!", "error");
+        // alert("請輸入資料");
       }
     },
     // rwd版點擊送出
@@ -210,7 +211,8 @@ var vueApp = new Vue({
         this.task = "";
 
       } else {
-        alert("請輸入資料");
+        swal("送出失敗", "請輸入資料!", "error");
+        // alert("請輸入資料");
       }
     },
   },
