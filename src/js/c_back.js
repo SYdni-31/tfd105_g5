@@ -138,7 +138,6 @@ const view = new Vue({
         //     minTime: "13:00",
         //     maxTime: "16:00",
         //   })
-        console.log(date_time);
         })      
     })
 },
