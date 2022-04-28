@@ -77,7 +77,7 @@
           <ul>
             <li v-for="(schedule,index) in schedules">
               <h3 class="about_time" >{{schedule.START_TIME.slice(0,-3)}}-{{schedule.END_TIME.slice(0,-3)}}</h3>
-              <h3 class="about_theme">{{schedule.THEME}}</h3>
+              <h3 class="about_theme">{{schedule.NAME}} {{schedule.THEME}}</h3>
             </li>
           </ul>
         </div>

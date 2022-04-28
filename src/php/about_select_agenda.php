@@ -7,12 +7,15 @@
     // select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
     // order by START_TIME";
   
-    $sql="select * from AGENDA where DATE = :TODAY and status !='D' and (open='1' or open is null)
-     union
-    select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','',''
-    order by START_TIME";
+    $sql=" select A.*, C.NAME from AGENDA A 
+    left join COMPANY_INFO B on A.COMPANY_INFO_ID= B.ID
+    left join COMPANY C on B.COMPANY_ID=C.ID
+   where DATE = CURDATE() and A.STATUS !='D' and (A.OPEN='1' or A.OPEN is null)
+        union
+       select '999',CURDATE(),'12:00:00','13:00:00','午休','','I','','','','','','','',''
+           order by START_TIME";
     $statement=$pdo->prepare($sql);
-    $statement->bindValue(":TODAY", $select["TODAY"]);
+    // $statement->bindValue(":TODAY", $select["TODAY"]);
     $statement->execute();
     $select=$statement->fetchAll(); 
     //PHP接收 JSON POST
