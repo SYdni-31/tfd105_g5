@@ -144,37 +144,6 @@ const vm = new Vue({
           this.gname=resp['gname']
       })
     },
-
-    
-    // chat(e){
-    //   $(e.currentTarget).next('.extend_chatbox').show(300)
-    //   document.querySelector(".swiper-button-next").classList.add("-hide")
-    //   document.querySelector(".swiper-button-prev").classList.add("-hide")
-    //   if(sessionStorage.getItem("login_type")){
-    //   }else{
-    //     this.$swal({
-    //       title: "尚未登入",
-    //       icon: "error",
-    //       text: "請登入後再進行留言",
-    //     })
-    //     $(e.currentTarget).next('.extend_chatbox').hide(300)
-    //     document.querySelector(".swiper-button-next").classList.remove("-hide")
-    //     document.querySelector(".swiper-button-prev").classList.remove("-hide")   
-    //   }
-    // },
-    // chatoff(e){
-    //   $(e.currentTarget).parents('.extend_chatbox').hide(300)
-    //   document.querySelector(".swiper-button-next").classList.remove("-hide")
-    //   document.querySelector(".swiper-button-prev").classList.remove("-hide")
-    // },
-
-    
-    // techconract(NAME, e){
-    //   e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('.extend_chat_btn').click()
-    //   e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('input').value = `我想了解你們的${NAME}`
-    //   window.scroll(0,200)
-    //   e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('.chated').scroll(0,e.currentTarget.closest(".extend_content").previousElementSibling.querySelector('.chated').scrollHeight)
-    // },
   },
   created(){
     let info=sessionStorage.getItem("login_info");
@@ -196,8 +165,6 @@ const vm = new Vue({
         if(fff){
 
         }else{
-          
-          console.log(resp); 
             for(let i=0; i<resp['txt'].length; i++){
               //如果你有GUEST_ID我就把你丟進guest_text
               //如果沒有GUEST_ID你就一定是跟廠商聯絡

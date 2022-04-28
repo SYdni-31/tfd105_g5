@@ -10,7 +10,7 @@
         .flatpickr-calendar.inline {
             background-color: #040F15;
             // box-shadow: none;
-            width: 331px;
+            width: 338px;
             // display:none;
             box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
             padding: 0px 8px;
@@ -41,9 +41,9 @@
 
     &::after {
         content: "";
-        width: 2vw;
-        height: 2vw;
-        @include absolute(42%, 2%);
+        width: 2%;
+        height: 8%;
+        @include absolute(43%, 2%);
         background-image: url(../img/c_back/dropdown_arrow.svg);
         background-repeat: no-repeat;
         background-size: contain;
@@ -130,11 +130,15 @@
 //第二層(留言板表頭)
 .chatboard {
     padding-top: 160px;
+    .title_skill{
+        margin-bottom: 40px;
+    }
 }
 
 // 搜尋欄
 .companyback_search {
     .companyback_searchinput {
+        margin-bottom:33px;
         background: #0D0D0D;
         color: $second-color;
         box-shadow: 0px 4px 4px rgba(0, 209, 255, 0.25);
@@ -245,6 +249,7 @@ section.companyback_chat1 {
 
 //聊天版
 .companyback_back_chatbox {
+    margin-top: 3px;
     width: 666px;
     height: 100%;
     padding: 30px;
@@ -557,7 +562,7 @@ section.companyback_chat1 {
                 padding-right: 4%;
 
                 &::after {
-                    @include absolute(42%, 6%);
+                    @include absolute(43%, 6%);
                 }
             
 
@@ -681,7 +686,7 @@ section.companyback_chat1 {
             //下面兩個都是第一部分右半邊的input
             .time_tech {
                 &::after {
-                    @include absolute(69%, 32%);
+                    @include absolute(67%, 32%);
                 }
 
                 .form-contril,
@@ -850,10 +855,14 @@ section.companyback_chat1 {
             }
             .time_tech {
                 &::after {
-                    @include absolute(70%, 23%);
+                    display: none;
+                }
+                select.timepicker {
+                    -webkit-appearance: auto;
+                    -moz-appearance: auto;
+                    appearance: auto;
                 }
             }
-        
         }
 
         .companyback_chated {

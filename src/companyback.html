@@ -71,9 +71,9 @@
           <li class="one">
             <div class="companyback_search">
               <!-- icon -->
-              <input class="companyback_searchinput mt-44" type="search" name="search" placeholder="Search" autocomplete="" v-model="searchword" @keyup="ajax" >
+              <input class="companyback_searchinput mt-9" type="search" name="search" placeholder="Search" autocomplete="" v-model="searchword" @keyup="ajax" >
             </div>
-            <section class="companyback_chat1 mt-43">
+            <section class="companyback_chat1 mt-4">
               <h3>廠商</h3>
               <ol class="chat1_company pt-12">
                 <li class="variouscompany" v-for="(cn, ci) in cname">
@@ -116,7 +116,7 @@
                 </li> -->
               </ol>
             </section>
-            <section class="companyback_chat1 mt-43">
+            <section class="companyback_chat1 mt-4">
               <h3>來賓</h3>
               <ol class="chat1_company pt-12">
                 <li class="variouscompany"  v-for="(gn, gi) in gname">
@@ -182,7 +182,7 @@
 
 
           <li class="two">
-            <article class="companyback_back_chatbox  mt-43">
+            <article class="companyback_back_chatbox ">
               <div class="chat_title ">
                 <i class="fa-solid fa-address-card main-color"></i>
                 <span class="pl-27">
@@ -193,7 +193,7 @@
 
 
               </div>
-              <div class="companyback_chated mt-41">
+              <div class="companyback_chated ">
                 <P v-if="mainchat<=0" class="text_center">目前無對話紀錄</P>
                 <p  v-for="talk in mainchat" class="chat_content mt-43 mr-30" :class="talk.C_MSG==null?'chat_content_me':'chat_content_you'">{{talk.G_MSG||talk.C_MSG}}<span>{{talktime(talk.MSGTIME)}}</span>
                 </p>
@@ -311,6 +311,7 @@
       border-color: #57FFF5;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/zh.js"></script>
 </body>
 
 </html>

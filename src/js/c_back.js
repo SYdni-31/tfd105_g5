@@ -113,7 +113,7 @@ const view = new Vue({
             }
         ).then(resp=>{
             for(let values of resp){
-                // console.log(values[0]);
+                console.log(values[0]);
                 date_time.push(values[0]);
             }
             // for(let i = 0;i<resp.length;i++){
@@ -123,6 +123,7 @@ const view = new Vue({
            this.$nextTick(()=>
            {
             this.date_obj = flatpickr("input[type=datetime-local]", {
+            "locale": "zh",
             // mode: "range",
             minDate: "today",
             dateFormat: "Y-m-d",
@@ -137,7 +138,6 @@ const view = new Vue({
         //     minTime: "13:00",
         //     maxTime: "16:00",
         //   })
-        console.log(date_time);
         })      
     })
 },
