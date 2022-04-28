@@ -737,7 +737,7 @@ Vue.component('backstage_expo2_add', {
                     this.$swal({
                         title: "儲存失敗",
                         icon: "error",
-                        text: "請確認日期是否正確",
+                        text: "請確認時間是否正確",
                     });
                 }
             } else {

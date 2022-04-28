@@ -125,7 +125,6 @@ const view = new Vue({
         .then(response =>response.json())
         .then(response=>
         {
-            console.log(response[0]);
             this.datas = response[0];
             this.LOGO=response[0].LOGO
         }

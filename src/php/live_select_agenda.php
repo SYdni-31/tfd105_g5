@@ -3,13 +3,9 @@
     
     // $select = json_decode(file_get_contents("php://input"), true);      // 只有變數可以修改
     // 查詢現在的直播資訊
-    $sql= "SELECT A.LINK, ifnull(A.NAME,D.NAME) AS NAME,A.COMPANY_INFO_ID,D.EMAIL,D.ID 
-    FROM (
-        SELECT * FROM AGENDA  
-        where date = CURDATE() and HOUR(START_TIME) = HOUR(now()) and HOUR(END_TIME) >= HOUR(now()) and ( open='1' or open is null ) and STATUS !='D' order by START_TIME desc limit 1) A
-       join (
-        select b.* from COMPANY_INFO a join COMPANY b on  a.COMPANY_ID = b.ID ) D
-        limit 1";
+    $sql= "SELECT  A.LINK, ifnull(A.NAME,C.NAME) AS NAME,A.COMPANY_INFO_ID,C.EMAIL,C.ID  FROM AGENDA A LEFT join COMPANY_INFO B ON A.COMPANY_INFO_ID = B.ID
+    LEFT JOIN COMPANY C ON B.COMPANY_ID=C.ID
+    where A.date = CURDATE() and HOUR(A.START_TIME) = HOUR(now()) and HOUR(A.END_TIME) >= HOUR(now()) and ( A.OPEN='1' or A.OPEN is null ) and A.STATUS !='D' order by A.START_TIME desc limit 1";
     $statement=$pdo->prepare($sql);
     $statement->execute();
     $select=$statement->fetchAll(); 

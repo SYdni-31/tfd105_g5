@@ -9,7 +9,7 @@
     $select= $statement->fetchAll();
 
     $select3 = json_decode(file_get_contents("php://input"), true);
-    $sql3= "select CI.ID CI_ID, T.* from view_company_info CI join TECH T on  CI.ID=T.COMPANY_INFO_ID where COMPANY_INFO_ID=:ID;";
+    $sql3= "select CI.ID CI_ID, T.* from view_company_info CI join TECH T on  CI.ID=T.COMPANY_INFO_ID where COMPANY_INFO_ID=:ID and STATUS !='D';";
     $statement3 = $pdo->prepare($sql3);
     $statement3->bindValue(":ID", $select3["id"]);
     $statement3->execute();
