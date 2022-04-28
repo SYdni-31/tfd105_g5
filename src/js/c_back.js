@@ -113,7 +113,7 @@ const view = new Vue({
             }
         ).then(resp=>{
             for(let values of resp){
-                // console.log(values[0]);
+                console.log(values[0]);
                 date_time.push(values[0]);
             }
             // for(let i = 0;i<resp.length;i++){

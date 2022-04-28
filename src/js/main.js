@@ -65,6 +65,8 @@ new Vue({
       $(".menu_img_news").removeClass("-hide");
     }else if(window.location.href.includes("contect")){
       $(".menu_img_contect").removeClass("-hide");
+    }else if(window.location.href.includes("companyback_info") || window.location.href.includes("companyback_tech") || window.location.href.includes("companyback")){
+      $(".menu_img_back").removeClass("-hide");
     }
 
   },
