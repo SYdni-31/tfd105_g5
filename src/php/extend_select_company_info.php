@@ -13,7 +13,7 @@
     $select2= $statement2->fetchAll();
 
 
-    $sql3= "select CI.ID CI_ID, T.* from view_company_info CI join TECH T on  CI.ID=T.COMPANY_INFO_ID where ONBOARD=1;";
+    $sql3= "select CI.ID CI_ID, T.* from view_company_info CI join TECH T on  CI.ID=T.COMPANY_INFO_ID where ONBOARD=1 and T.STATUS !=\"D\";";
     $statement3 = $pdo->prepare($sql3);
     $statement3->execute();
     $select3= $statement3->fetchAll();

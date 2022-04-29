@@ -1,7 +1,7 @@
 <?php
     include("connection.php");
     // 選取全部數量
-    $sql= "select count(*) from AGENDA where NAME is not null";
+    $sql= "select count(*) from AGENDA where NAME is not null and STATUS !=\"D\" ";
     $statement = $pdo->prepare($sql);
     $statement->execute();
 

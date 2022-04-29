@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 // 選取全部數量
-$sql="select count(*) from view_live_agenda";
+$sql="select count(*) from view_live_agenda where STATUS !=\"D\" ";
 $statement=$pdo->prepare($sql);
 $statement->execute();
 $select=$statement->fetchAll(); 

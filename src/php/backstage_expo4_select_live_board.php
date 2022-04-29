@@ -1,7 +1,7 @@
 <?php
     include("connection.php");
     // 選取全部數量
-    $sql= "select count(*) from view_live_board V join AGENDA A on V.AGENDA_ID=A.ID ";  // table名與欄位名一定要大寫.view可以不用
+    $sql= "select count(*) from view_live_board V join AGENDA A on V.AGENDA_ID=A.ID and V.STATUS !=\"D\" ";  // table名與欄位名一定要大寫.view可以不用
     $statement = $pdo->prepare($sql);
     $statement->execute();
 
