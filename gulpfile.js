@@ -60,7 +60,10 @@ exports.allcss = concatall_css;
 //  js壓縮套件 
 const uglify = require('gulp-uglify');
 function minijs() {
-   return src('src/js/*.js')
+    return src('src/js/*.js')
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
       .pipe(uglify())
       .pipe(rename({
          extname: '.min.js' // 修改附檔名
