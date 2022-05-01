@@ -3226,6 +3226,28 @@ Vue.component('backstage_info2', {
                 this.pages = Math.ceil(this.data_count / this.perpage)
                 this.inpage = inpage
             })
+        },
+        gogoagenda(){
+            fetch('php/backstage_info2_insert_today_agenda.php')
+            .then(resp => resp.json())
+            .then(body => {
+                let {successful} =body
+                if (successful) {
+                    this.$swal({
+                        title: "儲存成功",
+                        icon: "success",
+                        image: "",
+                    }).then((willInsert) => {
+                        this.$emit('addsave')
+                    })
+                } else {
+                    this.$swal({
+                        title: "儲存失敗",
+                        icon: "error",
+                        text: "請檢查欄位",
+                    });
+                }
+            })
         }
     },
     computed: {
@@ -3269,7 +3291,9 @@ Vue.component('backstage_info2', {
                 <li class="bg-color bg-in-secondcolor">{{data.END_TIME.slice(0, 5)}}</li>
                 <li class="bg-color bg-in-secondcolor"><div class="backstage_btn_td"><button @click="edit(data, index)" class="backstage_btn backstage_btn_short">修改</button><button @click="del(index)" class="backstage_btn backstage_btn_bad ml-4">刪除</button></div></li>
             </ul>
+            
             <div class='backstage_pages mt-10'>
+                <button class="backstage_btn agenda_add" @click="gogoagenda">快速新增議程</button>
                 <button class='backstage_pages_btn_left mr-2'  @click.stop="previouspage">上一頁</button>
                 <button @click.prevent='changepage(1)' class='backstage_pages_btn pr-2 pl-2' :class="{'action':inpage==1}">1</button>
                 <button v-if="pages>centersize+2 && inpage-centersize/2-1>1" class='backstage_pages_btn pr-2 pl-2'>...</button>
